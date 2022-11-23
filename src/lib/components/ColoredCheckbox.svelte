@@ -10,9 +10,9 @@
 	<input type="checkbox" bind:checked class="hidden" />
 
 	<span
-		class="{color} absolute top-0 left-0 w-4 h-full transition-opacity"
+		class="{color} absolute block top-0 bottom-0 left-0 w-4 transition-opacity"
 		class:opacity-100={checked}
-		class:opacity-50={!checked}
+		class:opacity-30={!checked}
 	/>
 
 	<span class="ml-4">{label}</span>

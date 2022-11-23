@@ -10,3 +10,10 @@
 	font-style: normal;
 	font-display: swap;
 }
+
+@layer base {
+	html {
+		scroll-padding-top: 4rem;
+		scroll-behavior: smooth;
+	}
+}

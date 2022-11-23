@@ -13,7 +13,8 @@
 
 <button
 	on:click
-	class="relative w-full overflow-hidden grid p-4 border border-gray-200 rounded-lg text-left hocus:scale-[1.02] hocus:border-gray-400 focus:outline-none transition"
+	id={word.word}
+	class="relative w-full overflow-hidden grid p-4 border border-gray-200 rounded-lg text-left hover:scale-[1.02] hocus:border-gray-400 focus:outline-none transition"
 >
 	<div class="flex gap-2 justify-between">
 		<div>
@@ -44,3 +45,18 @@
 		/>
 	</div>
 </button>
+
+<style>
+	@keyframes highlight {
+		0% {
+			@apply bg-blue-100;
+		}
+		100% {
+			@apply bg-white;
+		}
+	}
+
+	:target {
+		animation: highlight 3s ease-in-out;
+	}
+</style>

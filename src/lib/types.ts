@@ -32,7 +32,7 @@ export interface Word {
 	 * Maps from language code to definition
 	 */
 	def: Record<string, string>;
-	commentary: string;
+	commentary?: string;
 	sitelen_pona: string;
 	sitelen_pona_etymology?: string;
 
