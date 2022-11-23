@@ -7,6 +7,7 @@
 	import type { UsageCategory, Word } from '$lib/types';
 
 	import ColoredCheckbox from '$lib/components/ColoredCheckbox.svelte';
+	import Select from '$lib/components/Select.svelte';
 	import WordSpace from '$lib/components/WordSpace.svelte';
 	import WordDetails from '$lib/components/WordDetails.svelte';
 
@@ -15,7 +16,6 @@
 	const words = Object.values(data.data);
 
 	let search = '';
-	let definitionSearch = false;
 	let selectedWord: Word | null = null;
 
 	$: fixedSearch = search.trim().toLowerCase();
@@ -29,9 +29,18 @@
 		.filter(category => category.shown)
 		.map(category => category.name);
 
+	let searchMethod: 'term' | 'definition' = 'term';
+
+	let sortingMethod: 'alphabetical' | 'recognition' = 'alphabetical';
+	$: sorter =
+		sortingMethod === 'alphabetical'
+			? (a: Word, b: Word) => a.word.localeCompare(b.word)
+			: (a: Word, b: Word) =>
+					Number(b.recognition['2022-08']) - Number(a.recognition['2022-08']);
+
 	let filteredWords: Word[] = [];
 
-	$: if (!definitionSearch) {
+	$: if (searchMethod === 'term') {
 		filteredWords = words
 			.filter(
 				word =>
@@ -39,9 +48,9 @@
 					(word.word.toLowerCase().includes(fixedSearch) ||
 						distance(word.word, search) <= 1)
 			)
-			.sort((a, b) => a.word.localeCompare(b.word))
+			.sort(sorter)
 			.sort((a, b) => {
-				if (search === '') return 0;
+				if (fixedSearch === '') return 0;
 				const aContains = a.word.toLowerCase().includes(fixedSearch);
 				const bContains = b.word.toLowerCase().includes(fixedSearch);
 				if (aContains && !bContains) return -1;
@@ -58,7 +67,7 @@
 	}
 </script>
 
-<div class="p-16">
+<div class="p-16 max-w-screen-2xl m-auto">
 	<div>
 		<h1 class="text-4xl font-bold">sona nimi</h1>
 
@@ -72,11 +81,21 @@
 			{/each}
 		</div>
 
-		<div class="mt-2 flex">
-			<ColoredCheckbox
-				bind:checked={definitionSearch}
-				label="Search by Definition"
-				color="bg-emerald-400"
+		<div class="mt-2 flex flex-wrap gap-2">
+			<Select
+				options={[
+					{ label: 'Search by Toki Pona', value: 'term' },
+					{ label: 'Search by Definition', value: 'definition' }
+				]}
+				bind:value={searchMethod}
+			/>
+
+			<Select
+				options={[
+					{ label: 'Sort Alphabetically', value: 'alphabetical' },
+					{ label: 'Sort by Usage', value: 'recognition' }
+				]}
+				bind:value={sortingMethod}
 			/>
 		</div>
 
@@ -84,7 +103,7 @@
 			type="text"
 			placeholder="nimi..."
 			bind:value={search}
-			class="mt-4 p-2 border border-gray-200 rounded-lg focus:outline-none focus:border-gray-400 transition-colors max-w-full w-96"
+			class="mt-2 p-2 border border-gray-200 rounded-lg focus:outline-none focus:border-gray-400 transition-colors max-w-full w-96"
 		/>
 	</div>
 

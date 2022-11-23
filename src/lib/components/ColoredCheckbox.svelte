@@ -5,12 +5,12 @@
 </script>
 
 <label
-	class="relative flex items-center px-2 py-0.5 border border-gray-200 cursor-pointer rounded-lg overflow-hidden"
+	class="relative flex items-center px-2 py-0.5 border border-gray-200 cursor-pointer rounded-lg overflow-hidden select-none hocus:border-gray-400 transition-colors"
 >
 	<input type="checkbox" bind:checked class="hidden" />
 
 	<span
-		class="{color} absolute block top-0 bottom-0 left-0 w-4 transition-opacity"
+		class="{color} absolute top-0 bottom-0 left-0 w-4 transition-opacity"
 		class:opacity-100={checked}
 		class:opacity-30={!checked}
 	/>
