@@ -4,8 +4,8 @@
 
 @font-face {
 	font-family: 'Fairfax Pona HD';
-	src: url('FairfaxPonaHD.woff2') format('woff2'),
-		url('FairfaxPonaHD.woff') format('woff');
+	src: url('/FairfaxPonaHD.woff2') format('woff2'),
+		url('/FairfaxPonaHD.woff') format('woff');
 	font-weight: 500;
 	font-style: normal;
 	font-display: swap;
