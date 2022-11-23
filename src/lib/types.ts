@@ -1,4 +1,10 @@
-export type UsageCategory = 'obscure' | 'rare' | 'uncommon' | 'common' | 'widespread' | 'core';
+export type UsageCategory =
+	| 'obscure'
+	| 'rare'
+	| 'uncommon'
+	| 'common'
+	| 'widespread'
+	| 'core';
 
 export interface JasimaData {
 	languages: Record<string, Language>;
