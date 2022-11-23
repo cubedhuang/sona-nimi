@@ -58,12 +58,14 @@
 				return distance(a.word, search) - distance(b.word, search);
 			});
 	} else {
-		filteredWords = words.filter(
-			word =>
-				shownCategories.includes(word.usage_category) &&
-				(word.def.en.toLowerCase().includes(fixedSearch) ||
-					word.ku_data?.toLowerCase().includes(fixedSearch))
-		);
+		filteredWords = words
+			.filter(
+				word =>
+					shownCategories.includes(word.usage_category) &&
+					(word.def.en.toLowerCase().includes(fixedSearch) ||
+						word.ku_data?.toLowerCase().includes(fixedSearch))
+			)
+			.sort(sorter);
 	}
 </script>
 
