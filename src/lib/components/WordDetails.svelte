@@ -129,13 +129,15 @@
 			</p>
 		{/if}
 
-		<a
-			href="/{word.word}"
-			class="inline-block mt-4 px-2 py-1 border border-gray-200 hocus:border-gray-400 rounded-lg transition-colors
-				dark:border-gray-800 dark:hocus:border-gray-600"
-		>
-			more info
-		</a>
+		<p>
+			<a
+				href="/{word.word}"
+				class="inline-block mt-4 px-2 py-1 border border-gray-200 hocus:border-gray-400 rounded-lg transition-colors
+					dark:border-gray-800 dark:hocus:border-gray-600"
+			>
+				more info
+			</a>
+		</p>
 
 		<span
 			class="absolute -top-4 -left-4 p-4 rounded-full {categoryColors[
