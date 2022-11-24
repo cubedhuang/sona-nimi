@@ -7,6 +7,7 @@
 	import type { UsageCategory, Word } from '$lib/types';
 
 	import ColoredCheckbox from '$lib/components/ColoredCheckbox.svelte';
+	import DarkModeToggle from '$lib/components/DarkModeToggle.svelte';
 	import Select from '$lib/components/Select.svelte';
 	import WordSpace from '$lib/components/WordSpace.svelte';
 	import WordDetails from '$lib/components/WordDetails.svelte';
@@ -82,7 +83,11 @@
 
 <div class="px-8 py-16 lg:px-16 max-w-screen-2xl m-auto">
 	<div>
-		<h1 class="text-4xl font-bold">sona nimi</h1>
+		<div class="flex justify-between">
+			<h1 class="text-4xl font-bold">sona nimi</h1>
+
+			<DarkModeToggle />
+		</div>
 
 		<p class="mt-4">
 			<span class="font-bold">sona nimi</span> is an interactive toki pona
