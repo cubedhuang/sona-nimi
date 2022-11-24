@@ -10,7 +10,7 @@ export const categoryColors: Record<UsageCategory, string> = {
 };
 
 export const bookColors: Record<BookName, string> = {
-	pu: categoryColors.uncommon,
+	pu: categoryColors.core,
 	'ku suli': categoryColors.widespread,
 	'ku lili': categoryColors.common,
 	none: categoryColors.obscure
