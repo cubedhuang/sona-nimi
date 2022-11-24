@@ -147,7 +147,7 @@
 		</div>
 	</div>
 
-	<div class="mt-4 grid grid-cols gap-4">
+	<div class="mt-4 flex flex-col sm:grid grid-cols gap-4">
 		{#each filteredWords as word (word.word)}
 			<WordSpace
 				{word}
