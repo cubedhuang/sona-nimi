@@ -9,6 +9,8 @@
 		dark:border-gray-800 dark:hocus:border-gray-700"
 	on:click={e => (checked = !checked)}
 	on:keypress|stopPropagation
+	role="checkbox"
+	aria-checked={checked}
 >
 	<span
 		class="{color} absolute top-0 bottom-0 left-0 w-4 transition-opacity"
