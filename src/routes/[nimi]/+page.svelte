@@ -85,7 +85,7 @@
 
 		{@const words = word.see_also.split(', ')}
 
-		<p>
+		<p class="mt-2">
 			{#each words as other, i (other)}
 				<!-- Formatting here is weird to prevent additional spaces between commas -->
 				<a href="/{other}" class="text-blue-500">{other}</a
@@ -98,19 +98,19 @@
 		<h2 class="mt-4 text-2xl font-bold">origin</h2>
 
 		{#if word.etymology}
-			<p>
+			<p class="mt-2">
 				<span class="text-gray-500 dark:text-gray-400">Source Language:</span>
 				{word.source_language}
 			</p>
 
-			<p>
+			<p class="mt-2">
 				<span class="text-gray-500 dark:text-gray-400">Etymology:</span>
 				{word.etymology}
 			</p>
 		{/if}
 
 		{#if word.creator}
-			<p>
+			<p class="mt-2">
 				<span class="text-gray-500 dark:text-gray-400">Creator(s):</span>
 				{word.creator}
 			</p>
@@ -120,12 +120,12 @@
 	{#if word.sitelen_pona}
 		<h2 class="mt-4 text-2xl font-bold">sitelen pona</h2>
 
-		<span class="font-medium font-pona text-7xl">
+		<span class="mt-2 font-medium font-pona text-7xl">
 			{word.sitelen_pona}
 		</span>
 
 		{#if word.sitelen_pona_etymology}
-			<p>
+			<p class="mt-2">
 				<span class="text-gray-500 dark:text-gray-400">Etymology:</span>
 				{word.sitelen_pona_etymology}
 			</p>
@@ -138,14 +138,14 @@
 		<img
 			src={word.sitelen_sitelen}
 			alt="{word.word} sitelen sitelen"
-			class="w-16 h-16 dark:invert"
+			class="mt-2 w-16 h-16 dark:invert"
 		/>
 	{/if}
 
 	{#if word.sitelen_emosi}
 		<h2 class="mt-4 text-2xl font-bold">sitelen emosi</h2>
 
-		<p class="text-6xl">
+		<p class="mt-2 text-6xl">
 			{word.sitelen_emosi}
 		</p>
 	{/if}
