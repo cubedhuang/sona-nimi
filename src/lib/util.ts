@@ -12,7 +12,7 @@ export const categoryColors: Record<UsageCategory, string> = {
 export function sortLanguages(languages: Record<string, Language>) {
 	// Sort by completeness percent for each usage category
 	return Object.entries(languages)
-		.sort((a, b) => a[1].name_toki_pona.localeCompare(b[1].name_toki_pona))
+		.sort((a, b) => a[1].name_endonym.localeCompare(b[1].name_endonym))
 		.sort(
 			(a, b) =>
 				Number(b[1].completeness_percent.obscure) -

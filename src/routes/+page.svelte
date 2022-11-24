@@ -148,7 +148,7 @@
 
 		<Select
 			options={sortLanguages(data.languages).map(([code, language]) => {
-				return { label: language.name_toki_pona, value: code };
+				return { label: language.name_endonym, value: code };
 			})}
 			bind:value={$language}
 		/>
