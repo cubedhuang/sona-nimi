@@ -84,9 +84,10 @@
 	).some(percent => percent !== '100');
 </script>
 
-<svelte:window
+<svelte:body
 	on:keypress={e => {
 		if (document.activeElement !== searchBar) {
+			console.log(e);
 			searchBar.focus();
 		}
 	}}
@@ -218,6 +219,9 @@
 	on:refer={e => {
 		if (!filteredWords.some(word => word.word === e.detail)) {
 			search = '';
+			categories.forEach(category => {
+				category.shown = true;
+			});
 		}
 	}}
 />
