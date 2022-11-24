@@ -59,6 +59,8 @@
 			.sort(sorter)
 			.sort((a, b) => {
 				if (fixedSearch === '') return 0;
+				if (a.word.toLowerCase() === fixedSearch) return -1;
+				if (b.word.toLowerCase() === fixedSearch) return 1;
 				const aContains = a.word.toLowerCase().includes(fixedSearch);
 				const bContains = b.word.toLowerCase().includes(fixedSearch);
 				if (aContains && bContains) return 0;
