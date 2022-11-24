@@ -75,7 +75,6 @@
 	on:keypress={e => {
 		if (document.activeElement !== searchBar) {
 			searchBar.focus();
-			e.preventDefault();
 		}
 	}}
 />
