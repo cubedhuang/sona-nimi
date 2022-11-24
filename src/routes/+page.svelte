@@ -15,6 +15,7 @@
 
 	const words = Object.values(data.data);
 
+	let searchBar: HTMLInputElement;
 	let search = '';
 	let selectedWord: Word | null = null;
 
@@ -69,7 +70,16 @@
 	}
 </script>
 
-<div class="p-16 max-w-screen-2xl m-auto">
+<svelte:window
+	on:keypress={e => {
+		if (e.key === '/' && document.activeElement !== searchBar) {
+			searchBar.focus();
+			e.preventDefault();
+		}
+	}}
+/>
+
+<div class="px-8 py-16 lg:px-16 max-w-screen-2xl m-auto">
 	<div>
 		<h1 class="text-4xl font-bold">sona nimi</h1>
 
@@ -105,7 +115,8 @@
 			type="text"
 			placeholder="nimi..."
 			bind:value={search}
-			class="mt-2 p-2 border border-gray-200 rounded-lg focus:outline-none focus:border-gray-400 transition-colors max-w-full w-96"
+			bind:this={searchBar}
+			class="mt-4 p-2 border border-gray-200 rounded-lg focus:outline-none focus:border-gray-400 transition-colors max-w-full w-96"
 		/>
 	</div>
 
