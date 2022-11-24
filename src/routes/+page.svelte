@@ -54,6 +54,7 @@
 				if (fixedSearch === '') return 0;
 				const aContains = a.word.toLowerCase().includes(fixedSearch);
 				const bContains = b.word.toLowerCase().includes(fixedSearch);
+				if (aContains && bContains) return 0;
 				if (aContains && !bContains) return -1;
 				if (!aContains && bContains) return 1;
 				return distance(a.word, search) - distance(b.word, search);
