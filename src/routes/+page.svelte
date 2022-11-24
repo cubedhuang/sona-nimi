@@ -115,6 +115,8 @@
 		>.
 	</p>
 
+	<p class="mt-2">Click on a word to read more.</p>
+
 	<div class="mt-4 flex flex-wrap gap-2">
 		{#each categories as category}
 			<ColoredCheckbox
