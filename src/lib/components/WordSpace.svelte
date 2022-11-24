@@ -48,7 +48,7 @@
 </button>
 
 <style>
-	@keyframes highlight {
+	@keyframes highlight-light {
 		0% {
 			@apply bg-blue-100;
 		}
@@ -57,7 +57,20 @@
 		}
 	}
 
+	@keyframes highlight-dark {
+		0% {
+			@apply bg-slate-900;
+		}
+		100% {
+			@apply bg-black;
+		}
+	}
+
 	:target {
-		animation: highlight 3s ease-in-out;
+		animation: highlight-light 3s ease-in-out;
+	}
+
+	:global(.dark) :target {
+		animation: highlight-dark 3s ease-in-out;
 	}
 </style>
