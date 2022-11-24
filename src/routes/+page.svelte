@@ -3,8 +3,9 @@
 
 	import type { PageData } from './$types';
 
-	import { categoryColors } from '$lib/util';
 	import type { UsageCategory, Word } from '$lib/types';
+	import { categoryColors } from '$lib/util';
+	import { sitelenMode } from '$lib/stores';
 
 	import ColoredCheckbox from '$lib/components/ColoredCheckbox.svelte';
 	import DarkModeToggle from '$lib/components/DarkModeToggle.svelte';
@@ -127,12 +128,21 @@
 				]}
 				bind:value={sortingMethod}
 			/>
+
+			<Select
+				options={[
+					{ label: 'sitelen pona', value: 'pona' },
+					{ label: 'sitelen sitelen', value: 'sitelen' },
+					{ label: 'sitelen emosi', value: 'emosi' }
+				]}
+				bind:value={$sitelenMode}
+			/>
 		</div>
 
 		<div class="mt-4 flex gap-1 items-center">
 			<input
 				type="text"
-				placeholder="nimi..."
+				placeholder={searchMethod === 'term' ? 'nimi...' : 'definition...'}
 				bind:value={search}
 				bind:this={searchBar}
 				class="p-2 border border-gray-200 rounded-lg focus:outline-none focus:border-gray-400 transition-colors max-w-full w-96

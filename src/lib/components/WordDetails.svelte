@@ -34,7 +34,7 @@
 			</button>
 		</div>
 
-		<p class="text-gray-500">
+		<p class="text-gray-500 dark:text-gray-400">
 			{word.usage_category} &middot;
 			{word.recognition['2022-08']}%
 			{#if word.coined_era}
@@ -109,20 +109,21 @@
 
 			<img
 				src={word.sitelen_sitelen}
-				alt="{word} sitelen sitelen"
-				class="w-12 h-12 dark:invert"
+				alt="{word.word} sitelen sitelen"
+				class="w-10 h-10 dark:invert"
 			/>
 		{/if}
 
 		{#if word.sitelen_emosi}
-			<h3 class="mt-2 text-lg font-bold">
-				sitelen emosi
+			<h3 class="mt-2 text-lg font-bold">sitelen emosi</h3>
+
+			<p class="text-3xl">
 				{word.sitelen_emosi}
-			</h3>
+			</p>
 		{/if}
 
 		{#if word.commentary}
-			<p class="mt-2 text-gray-500">
+			<p class="mt-2 text-gray-500 dark:text-gray-400">
 				{word.commentary}
 			</p>
 		{/if}

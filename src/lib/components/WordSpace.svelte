@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { Word } from '$lib/types';
 	import { categoryColors } from '$lib/util';
+	import { sitelenMode } from '$lib/stores';
 
 	export let word: Word;
 
@@ -21,7 +22,7 @@
 		<div>
 			<h2 class="text-xl font-bold">{word.word}</h2>
 
-			<p class="text-gray-500">
+			<p class="text-gray-500 dark:text-gray-400">
 				{word.usage_category} &middot;
 				{word.recognition['2022-08']}%
 				{#if word.coined_era}
@@ -35,8 +36,22 @@
 			<p>{def}</p>
 		</div>
 
-		{#if word.sitelen_pona}
-			<p class="font-pona text-4xl text-right">{word.sitelen_pona}</p>
+		{#if $sitelenMode === 'pona'}
+			{#if word.sitelen_pona}
+				<p class="font-pona text-4xl text-right">{word.sitelen_pona}</p>
+			{/if}
+		{:else if $sitelenMode === 'sitelen'}
+			{#if word.sitelen_sitelen}
+				<img
+					src={word.sitelen_sitelen}
+					alt="{word.word} sitelen sitelen"
+					class="ml-auto w-10 h-10 dark:invert"
+				/>
+			{/if}
+		{:else if word.sitelen_emosi}
+			<p class="ml-auto text-3xl text-right">
+				{word.sitelen_emosi}
+			</p>
 		{/if}
 
 		<span
