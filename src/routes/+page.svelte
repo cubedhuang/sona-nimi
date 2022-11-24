@@ -73,7 +73,7 @@
 
 <svelte:window
 	on:keypress={e => {
-		if (e.key === '/' && document.activeElement !== searchBar) {
+		if (document.activeElement !== searchBar) {
 			searchBar.focus();
 			e.preventDefault();
 		}
