@@ -32,7 +32,7 @@
 
 	let searchMethod: 'term' | 'definition' = 'term';
 
-	let sortingMethod: 'alphabetical' | 'recognition' = 'alphabetical';
+	let sortingMethod: 'alphabetical' | 'recognition' = 'recognition';
 	$: sorter =
 		sortingMethod === 'alphabetical'
 			? (a: Word, b: Word) => a.word.localeCompare(b.word)
@@ -97,16 +97,16 @@
 		<div class="mt-2 flex flex-wrap gap-2">
 			<Select
 				options={[
-					{ label: 'Search by Toki Pona', value: 'term' },
-					{ label: 'Search by Definition', value: 'definition' }
+					{ label: 'Search with Toki Pona', value: 'term' },
+					{ label: 'Search with Definition', value: 'definition' }
 				]}
 				bind:value={searchMethod}
 			/>
 
 			<Select
 				options={[
-					{ label: 'Sort Alphabetically', value: 'alphabetical' },
-					{ label: 'Sort by Usage', value: 'recognition' }
+					{ label: 'Sort by Usage', value: 'recognition' },
+					{ label: 'Sort Alphabetically', value: 'alphabetical' }
 				]}
 				bind:value={sortingMethod}
 			/>
