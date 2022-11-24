@@ -101,123 +101,125 @@
 	}}
 />
 
-<div>
-	<div class="flex justify-between items-start">
-		<h1 class="text-4xl font-bold">sona nimi</h1>
+<div class="flex justify-between items-start">
+	<h1 class="text-4xl font-bold">sona nimi</h1>
 
-		<DarkModeToggle />
-	</div>
+	<DarkModeToggle />
+</div>
 
+<p class="mt-4">
+	<span class="font-bold">sona nimi</span> is an interactive toki pona
+	dictionary. It uses
+	<a
+		href="https://lipu-linku.github.io/about/jasima/"
+		target="_blank"
+		rel="noopener noreferrer"
+		class="text-blue-500">jasima Linku</a
+	>
+	for data. You can view the source code
+	<a
+		href="https://github.com/cubedhuang/sona-nimi"
+		target="_blank"
+		rel="noopener noreferrer"
+		class="text-blue-500">here</a
+	>.
+</p>
+
+<p class="mt-2">Click on a word to read more.</p>
+
+<div class="mt-4 flex flex-wrap gap-2">
+	{#each categories as category}
+		<ColoredCheckbox
+			bind:checked={category.shown}
+			label={category.name[0].toUpperCase() + category.name.slice(1)}
+			color={categoryColors[category.name]}
+		/>
+	{/each}
+</div>
+
+<div class="mt-2 flex flex-wrap gap-2">
+	{#each books as book}
+		<ColoredCheckbox
+			bind:checked={book.shown}
+			label={book.name === 'none' ? 'no book' : `nimi ${book.name}`}
+			color={bookColors[book.name]}
+		/>
+	{/each}
+</div>
+
+<div class="mt-2 flex flex-wrap gap-2">
+	<Select
+		options={[
+			{ label: 'Search with Toki Pona', value: 'term' },
+			{ label: 'Search with Definition', value: 'definition' }
+		]}
+		bind:value={searchMethod}
+	/>
+
+	<Select
+		options={[
+			{ label: 'Sort by Usage', value: 'recognition' },
+			{ label: 'Sort Alphabetically', value: 'alphabetical' }
+		]}
+		bind:value={sortingMethod}
+	/>
+
+	<Select
+		options={sortLanguages(data.languages).map(([code, language]) => {
+			return { label: language.name_endonym, value: code };
+		})}
+		bind:value={$language}
+	/>
+
+	<Select
+		options={[
+			{ label: 'sitelen pona', value: 'pona' },
+			{ label: 'sitelen sitelen', value: 'sitelen' },
+			{ label: 'sitelen emosi', value: 'emosi' }
+		]}
+		bind:value={$sitelenMode}
+	/>
+</div>
+
+{#if missingDefinitions}
 	<p class="mt-4">
-		<span class="font-bold">sona nimi</span> is an interactive toki pona
-		dictionary. It uses
-		<a
-			href="https://lipu-linku.github.io/about/jasima/"
-			target="_blank"
-			rel="noopener noreferrer"
-			class="text-blue-500">jasima Linku</a
-		>
-		for data. You can view the source code
-		<a
-			href="https://github.com/cubedhuang/sona-nimi"
-			target="_blank"
-			rel="noopener noreferrer"
-			class="text-blue-500">here</a
-		>.
+		<span class="font-bold">o lukin a!</span>
+		nimi li jo ala e nasin pi {data.languages[$language].name_toki_pona}. nimi
+		ni li kepeken e toki Inli.
 	</p>
+	<p>
+		<span class="font-bold">Warning!</span>
+		Some words are missing {data.languages[$language].name_english} translations.
+		These are replaced with English translations.
+	</p>
+{/if}
 
-	<p class="mt-2">Click on a word to read more.</p>
+<p class="mt-2 text-gray-500 dark:text-gray-400">
+	{filteredWords.length} / {words.length}
+</p>
 
-	<div class="mt-4 flex flex-wrap gap-2">
-		{#each categories as category}
-			<ColoredCheckbox
-				bind:checked={category.shown}
-				label={category.name[0].toUpperCase() + category.name.slice(1)}
-				color={categoryColors[category.name]}
-			/>
-		{/each}
-	</div>
-
-	<div class="mt-2 flex flex-wrap gap-2">
-		{#each books as book}
-			<ColoredCheckbox
-				bind:checked={book.shown}
-				label={book.name === 'none' ? 'no book' : `nimi ${book.name}`}
-				color={bookColors[book.name]}
-			/>
-		{/each}
-	</div>
-
-	<div class="mt-2 flex flex-wrap gap-2">
-		<Select
-			options={[
-				{ label: 'Search with Toki Pona', value: 'term' },
-				{ label: 'Search with Definition', value: 'definition' }
-			]}
-			bind:value={searchMethod}
-		/>
-
-		<Select
-			options={[
-				{ label: 'Sort by Usage', value: 'recognition' },
-				{ label: 'Sort Alphabetically', value: 'alphabetical' }
-			]}
-			bind:value={sortingMethod}
-		/>
-
-		<Select
-			options={sortLanguages(data.languages).map(([code, language]) => {
-				return { label: language.name_endonym, value: code };
-			})}
-			bind:value={$language}
-		/>
-
-		<Select
-			options={[
-				{ label: 'sitelen pona', value: 'pona' },
-				{ label: 'sitelen sitelen', value: 'sitelen' },
-				{ label: 'sitelen emosi', value: 'emosi' }
-			]}
-			bind:value={$sitelenMode}
-		/>
-	</div>
-
-	{#if missingDefinitions}
-		<p class="mt-4">
-			<span class="font-bold">o lukin a!</span>
-			nimi li jo ala e nasin pi {data.languages[$language].name_toki_pona}. nimi
-			ni li kepeken e toki Inli.
-		</p>
-		<p>
-			<span class="font-bold">Warning!</span>
-			Some words are missing {data.languages[$language].name_english} translations.
-			These are replaced with English translations.
-		</p>
-	{/if}
-
-	<div class="mt-4 flex gap-1 items-center">
-		<input
-			type="text"
-			placeholder={searchMethod === 'term' ? 'nimi...' : 'definition...'}
-			bind:value={search}
-			bind:this={searchBar}
-			class="p-2 border border-gray-200 rounded-lg focus:outline-none focus:border-gray-400 transition-colors max-w-full w-96
+<div class="mt-1 flex gap-1 items-center">
+	<input
+		type="text"
+		placeholder={searchMethod === 'term' ? 'nimi...' : 'definition...'}
+		bind:value={search}
+		bind:this={searchBar}
+		class="p-2 border border-gray-200 rounded-lg focus:outline-none focus:border-gray-400 transition-colors max-w-full w-96
 					dark:bg-black dark:border-gray-800 dark:focus:border-gray-700"
-		/>
+	/>
 
-		{#if search}
-			<button
-				class="p-2 rounded-lg hover:bg-gray-200 focus:outline-none focus:bg-gray-200 border border-transparent transition-colors
+	{#if search}
+		<button
+			class="p-2 rounded-lg hover:bg-gray-200 focus:outline-none focus:bg-gray-200 border border-transparent transition-colors
 						dark:hocus:bg-gray-900"
-				on:click={() => {
-					search = '';
-					searchBar.focus();
-				}}
-			>
-				<X />
-			</button>
-		{/if}
-	</div>
+			on:click={() => {
+				search = '';
+				searchBar.focus();
+			}}
+		>
+			<X />
+		</button>
+	{/if}
 </div>
 
 <div class="mt-4 flex flex-col sm:grid grid-cols gap-4">
