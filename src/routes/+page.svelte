@@ -237,9 +237,11 @@
 	on:refer={e => {
 		if (!filteredWords.some(word => word.word === e.detail)) {
 			search = '';
-			categories.forEach(category => {
-				category.shown = true;
-			});
+			categories = categories.map(category => ({
+				...category,
+				shown: true
+			}));
+			books = books.map(book => ({ ...book, shown: true }));
 		}
 	}}
 />

@@ -13,9 +13,7 @@
 
 	$: word = data.data[$page.params.nimi];
 
-	$: if (browser && !word) {
-		goto('/');
-	}
+	$: if (browser && !word) goto('/');
 </script>
 
 {#if word}
