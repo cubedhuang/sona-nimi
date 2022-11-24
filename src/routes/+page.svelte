@@ -3,8 +3,9 @@
 
 	import type { PageData } from './$types';
 
-	import type { UsageCategory, Word } from '$lib/types';
+	import type { BookName, UsageCategory, Word } from '$lib/types';
 	import {
+		bookColors,
 		categoryColors,
 		getDefinition,
 		getRecognition,
@@ -33,10 +34,15 @@
 		name: category as UsageCategory,
 		shown: true
 	}));
+	let books = ['pu', 'ku suli', 'ku lili', 'none'].map(book => ({
+		name: book as BookName,
+		shown: true
+	}));
 
 	$: shownCategories = categories
 		.filter(category => category.shown)
 		.map(category => category.name);
+	$: shownBooks = books.filter(book => book.shown).map(book => book.name);
 
 	let searchMethod: 'term' | 'definition' = 'term';
 
@@ -53,6 +59,7 @@
 			.filter(
 				word =>
 					shownCategories.includes(word.usage_category) &&
+					shownBooks.includes(word.book) &&
 					(word.word.toLowerCase().includes(fixedSearch) ||
 						distance(word.word, search) <= 1)
 			)
@@ -73,6 +80,7 @@
 			.filter(
 				word =>
 					shownCategories.includes(word.usage_category) &&
+					shownBooks.includes(word.book) &&
 					(getDefinition(word, $language).toLowerCase().includes(fixedSearch) ||
 						word.ku_data?.toLowerCase().includes(fixedSearch))
 			)
@@ -126,6 +134,16 @@
 				bind:checked={category.shown}
 				label={category.name[0].toUpperCase() + category.name.slice(1)}
 				color={categoryColors[category.name]}
+			/>
+		{/each}
+	</div>
+
+	<div class="mt-2 flex flex-wrap gap-2">
+		{#each books as book}
+			<ColoredCheckbox
+				bind:checked={book.shown}
+				label={book.name === 'none' ? 'no book' : `nimi ${book.name}`}
+				color={bookColors[book.name]}
 			/>
 		{/each}
 	</div>

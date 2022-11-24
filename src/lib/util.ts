@@ -1,4 +1,4 @@
-import type { Language, UsageCategory, Word } from './types';
+import type { BookName, Language, UsageCategory, Word } from './types';
 
 export const categoryColors: Record<UsageCategory, string> = {
 	core: 'bg-emerald-400 dark:bg-emerald-600',
@@ -7,6 +7,13 @@ export const categoryColors: Record<UsageCategory, string> = {
 	uncommon: 'bg-yellow-500 dark:bg-yellow-600',
 	rare: 'bg-red-500 dark:bg-red-600',
 	obscure: 'bg-zinc-500 dark:bg-zinc-600'
+};
+
+export const bookColors: Record<BookName, string> = {
+	pu: categoryColors.uncommon,
+	'ku suli': categoryColors.widespread,
+	'ku lili': categoryColors.common,
+	none: categoryColors.obscure
 };
 
 export function sortLanguages(languages: Record<string, Language>) {

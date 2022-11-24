@@ -5,6 +5,7 @@ export type UsageCategory =
 	| 'common'
 	| 'widespread'
 	| 'core';
+export type BookName = 'pu' | 'ku suli' | 'ku lili' | 'none';
 
 export interface JasimaData {
 	languages: Record<string, Language>;
@@ -32,6 +33,7 @@ export interface Word {
 	 * Maps from language code to definition
 	 */
 	def: Record<string, string>;
+	book: BookName;
 	commentary?: string;
 	sitelen_pona: string;
 	sitelen_pona_etymology?: string;
@@ -64,7 +66,6 @@ export interface Word {
 	audio?: Record<string, string>;
 	coined_year?: string;
 	coined_era?: string;
-	book: string;
 	usage_category: UsageCategory;
 	source_language?: string;
 	etymology?: string;
