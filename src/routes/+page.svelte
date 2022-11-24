@@ -130,12 +130,14 @@
 				placeholder="nimi..."
 				bind:value={search}
 				bind:this={searchBar}
-				class="p-2 border border-gray-200 rounded-lg focus:outline-none focus:border-gray-400 transition-colors max-w-full w-96"
+				class="p-2 border border-gray-200 rounded-lg focus:outline-none focus:border-gray-400 transition-colors max-w-full w-96
+					dark:bg-black dark:border-gray-800 dark:focus:border-gray-700"
 			/>
 
 			{#if search}
 				<button
-					class="p-2 rounded-lg hover:bg-gray-200 focus:outline-none focus:bg-gray-200 border border-transparent transition-colors"
+					class="p-2 rounded-lg hover:bg-gray-200 focus:outline-none focus:bg-gray-200 border border-transparent transition-colors
+						dark:hocus:bg-gray-900"
 					on:click={() => {
 						search = '';
 						searchBar.focus();
