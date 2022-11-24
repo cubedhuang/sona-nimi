@@ -33,6 +33,8 @@ if (browser) {
 	});
 }
 
+export const language = savedWritable('language', 'en');
+
 export const sitelenMode = savedWritable<'pona' | 'sitelen' | 'emosi'>(
 	'sitelenMode',
 	'pona'

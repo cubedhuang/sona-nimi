@@ -3,7 +3,8 @@
 	import { fly } from 'svelte/transition';
 
 	import type { Word } from '$lib/types';
-	import { categoryColors } from '$lib/util';
+	import { language } from '$lib/stores';
+	import { categoryColors, getDefinition, getRecognition } from '$lib/util';
 
 	import X from './X.svelte';
 
@@ -36,7 +37,7 @@
 
 		<p class="text-gray-500 dark:text-gray-400">
 			{word.usage_category} &middot;
-			{word.recognition['2022-08']}%
+			{getRecognition(word)}%
 			{#if word.coined_era}
 				&middot; {word.coined_era}
 			{/if}
@@ -46,7 +47,7 @@
 		</p>
 
 		<p class="mt-2">
-			{word.def.en}
+			{getDefinition(word, $language)}
 		</p>
 
 		{#if word.ku_data}

@@ -4,8 +4,13 @@
 	import type { PageData } from './$types';
 
 	import type { UsageCategory, Word } from '$lib/types';
-	import { categoryColors } from '$lib/util';
-	import { sitelenMode } from '$lib/stores';
+	import {
+		categoryColors,
+		getDefinition,
+		getRecognition,
+		sortLanguages
+	} from '$lib/util';
+	import { language, sitelenMode } from '$lib/stores';
 
 	import ColoredCheckbox from '$lib/components/ColoredCheckbox.svelte';
 	import DarkModeToggle from '$lib/components/DarkModeToggle.svelte';
@@ -39,8 +44,7 @@
 	$: sorter =
 		sortingMethod === 'alphabetical'
 			? (a: Word, b: Word) => a.word.localeCompare(b.word)
-			: (a: Word, b: Word) =>
-					Number(b.recognition['2022-08']) - Number(a.recognition['2022-08']);
+			: (a: Word, b: Word) => getRecognition(b) - getRecognition(a);
 
 	let filteredWords: Word[] = [];
 
@@ -67,11 +71,15 @@
 			.filter(
 				word =>
 					shownCategories.includes(word.usage_category) &&
-					(word.def.en.toLowerCase().includes(fixedSearch) ||
+					(getDefinition(word, $language).toLowerCase().includes(fixedSearch) ||
 						word.ku_data?.toLowerCase().includes(fixedSearch))
 			)
 			.sort(sorter);
 	}
+
+	$: missingDefinitions = Object.values(
+		data.languages[$language].completeness_percent
+	).some(percent => percent !== '100');
 </script>
 
 <svelte:window
@@ -135,6 +143,13 @@
 		/>
 
 		<Select
+			options={sortLanguages(data.languages).map(([code, language]) => {
+				return { label: language.name_toki_pona, value: code };
+			})}
+			bind:value={$language}
+		/>
+
+		<Select
 			options={[
 				{ label: 'sitelen pona', value: 'pona' },
 				{ label: 'sitelen sitelen', value: 'sitelen' },
@@ -143,6 +158,19 @@
 			bind:value={$sitelenMode}
 		/>
 	</div>
+
+	{#if missingDefinitions}
+		<p class="mt-4">
+			<span class="font-bold">o lukin a!</span>
+			nimi li jo ala e nasin pi {data.languages[$language].name_toki_pona}. nimi
+			ni li kepeken e toki Inli.
+		</p>
+		<p>
+			<span class="font-bold">Warning!</span>
+			Some words are missing {data.languages[$language].name_english} translations.
+			These are replaced with English translations.
+		</p>
+	{/if}
 
 	<div class="mt-4 flex gap-1 items-center">
 		<input

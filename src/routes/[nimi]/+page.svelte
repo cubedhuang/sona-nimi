@@ -5,6 +5,8 @@
 
 	import type { PageData } from './$types';
 
+	import { getDefinition, getRecognition } from '$lib/util';
+	import { language } from '$lib/stores';
 	import DarkModeToggle from '$lib/components/DarkModeToggle.svelte';
 
 	export let data: PageData;
@@ -40,7 +42,7 @@
 
 	<p class="mt-2">
 		<span class="text-gray-500 dark:text-gray-400">Recognition:</span>
-		{word.recognition['2022-08']}%
+		{getRecognition(word)}%
 	</p>
 
 	<p class="mt-2">
@@ -63,7 +65,7 @@
 	{/if}
 
 	<p class="mt-2">
-		{word.def.en}
+		{getDefinition(word, $language)}
 	</p>
 
 	{#if word.commentary}

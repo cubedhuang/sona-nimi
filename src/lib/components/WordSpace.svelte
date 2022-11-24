@@ -1,15 +1,14 @@
 <script lang="ts">
 	import type { Word } from '$lib/types';
-	import { categoryColors } from '$lib/util';
-	import { sitelenMode } from '$lib/stores';
+	import { categoryColors, getDefinition, getRecognition } from '$lib/util';
+	import { language, sitelenMode } from '$lib/stores';
 
 	export let word: Word;
 
 	const maxLength = 120;
-	$: def =
-		word.def.en.length > maxLength
-			? word.def.en.slice(0, maxLength) + '...'
-			: word.def.en;
+	$: def = getDefinition(word, $language);
+	$: ellipsizedDef =
+		def.length > maxLength ? def.slice(0, maxLength) + '...' : def;
 </script>
 
 <button
@@ -24,7 +23,7 @@
 
 			<p class="text-gray-500 dark:text-gray-400">
 				{word.usage_category} &middot;
-				{word.recognition['2022-08']}%
+				{getRecognition(word)}%
 				{#if word.coined_era}
 					&middot; {word.coined_era}
 				{/if}
@@ -33,7 +32,7 @@
 				{/if}
 			</p>
 
-			<p>{def}</p>
+			<p>{ellipsizedDef}</p>
 		</div>
 
 		{#if $sitelenMode === 'pona'}

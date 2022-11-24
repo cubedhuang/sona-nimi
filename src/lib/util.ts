@@ -1,4 +1,4 @@
-import type { UsageCategory } from './types';
+import type { Language, UsageCategory, Word } from './types';
 
 export const categoryColors: Record<UsageCategory, string> = {
 	core: 'bg-emerald-400 dark:bg-emerald-600',
@@ -8,3 +8,50 @@ export const categoryColors: Record<UsageCategory, string> = {
 	rare: 'bg-red-500 dark:bg-red-600',
 	obscure: 'bg-zinc-500 dark:bg-zinc-600'
 };
+
+export function sortLanguages(languages: Record<string, Language>) {
+	// Sort by completeness percent for each usage category
+	return Object.entries(languages)
+		.sort((a, b) => a[1].name_toki_pona.localeCompare(b[1].name_toki_pona))
+		.sort(
+			(a, b) =>
+				Number(b[1].completeness_percent.obscure) -
+				Number(a[1].completeness_percent.obscure)
+		)
+		.sort(
+			(a, b) =>
+				Number(b[1].completeness_percent.rare) -
+				Number(a[1].completeness_percent.rare)
+		)
+		.sort(
+			(a, b) =>
+				Number(b[1].completeness_percent.uncommon) -
+				Number(a[1].completeness_percent.uncommon)
+		)
+		.sort(
+			(a, b) =>
+				Number(b[1].completeness_percent.common) -
+				Number(a[1].completeness_percent.common)
+		)
+		.sort(
+			(a, b) =>
+				Number(b[1].completeness_percent.widespread) -
+				Number(a[1].completeness_percent.widespread)
+		)
+		.sort(
+			(a, b) =>
+				Number(b[1].completeness_percent.core) -
+				Number(a[1].completeness_percent.core)
+		);
+}
+
+export function getDefinition(word: Word, language: string): string {
+	return word.def[language] ?? word.def.en;
+}
+
+export function getRecognition(word: Word) {
+	const dates = Object.keys(word.recognition).sort();
+	const latest = dates[dates.length - 1];
+
+	return Number(word.recognition[latest]);
+}

@@ -13,6 +13,8 @@
 		dark:bg-black dark:border-gray-800 dark:hocus:border-gray-700"
 >
 	{#each options as option}
-		<option value={option.value}>{option.label}</option>
+		<option value={option.value} selected={option.value === value}>
+			{option.label}
+		</option>
 	{/each}
 </select>
