@@ -10,6 +10,7 @@
 	import Select from '$lib/components/Select.svelte';
 	import WordSpace from '$lib/components/WordSpace.svelte';
 	import WordDetails from '$lib/components/WordDetails.svelte';
+	import X from '$lib/components/X.svelte';
 
 	export let data: PageData;
 
@@ -83,6 +84,18 @@
 	<div>
 		<h1 class="text-4xl font-bold">sona nimi</h1>
 
+		<p class="mt-4">
+			<span class="font-bold">sona nimi</span> is an interactive toki pona
+			dictionary. It uses
+			<a href="https://lipu-linku.github.io/about/jasima/" class="text-blue-500"
+				>jasima Linku</a
+			>
+			for data. You can view the source code
+			<a href="https://github.com/cubedhuang/sona-nimi" class="text-blue-500"
+				>here</a
+			>.
+		</p>
+
 		<div class="mt-4 flex flex-wrap gap-2">
 			{#each categories as category}
 				<ColoredCheckbox
@@ -111,13 +124,27 @@
 			/>
 		</div>
 
-		<input
-			type="text"
-			placeholder="nimi..."
-			bind:value={search}
-			bind:this={searchBar}
-			class="mt-4 p-2 border border-gray-200 rounded-lg focus:outline-none focus:border-gray-400 transition-colors max-w-full w-96"
-		/>
+		<div class="mt-4 flex gap-1 items-center">
+			<input
+				type="text"
+				placeholder="nimi..."
+				bind:value={search}
+				bind:this={searchBar}
+				class="p-2 border border-gray-200 rounded-lg focus:outline-none focus:border-gray-400 transition-colors max-w-full w-96"
+			/>
+
+			{#if search}
+				<button
+					class="p-2 rounded-lg hover:bg-gray-200 focus:outline-none focus:bg-gray-200 border border-transparent transition-colors"
+					on:click={() => {
+						search = '';
+						searchBar.focus();
+					}}
+				>
+					<X />
+				</button>
+			{/if}
+		</div>
 	</div>
 
 	<div class="mt-4 grid grid-cols gap-4">
@@ -133,7 +160,14 @@
 	</div>
 </div>
 
-<WordDetails bind:word={selectedWord} />
+<WordDetails
+	bind:word={selectedWord}
+	on:refer={e => {
+		if (!filteredWords.some(word => word.word === e.detail)) {
+			search = '';
+		}
+	}}
+/>
 
 <style>
 	.grid-cols {

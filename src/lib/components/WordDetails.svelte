@@ -1,8 +1,15 @@
 <script lang="ts">
+	import { createEventDispatcher } from 'svelte';
 	import { fly } from 'svelte/transition';
 
 	import type { Word } from '$lib/types';
 	import { categoryColors } from '$lib/util';
+
+	import X from './X.svelte';
+
+	const dispatch = createEventDispatcher<{
+		refer: string;
+	}>();
 
 	export let word: Word | null;
 </script>
@@ -21,18 +28,7 @@
 					word = null;
 				}}
 			>
-				<svg
-					class="w-6 h-6"
-					viewBox="0 0 24 24"
-					stroke="currentColor"
-					stroke-width="2"
-					fill="none"
-					stroke-linecap="round"
-					stroke-linejoin="round"
-				>
-					<line x1="18" y1="6" x2="6" y2="18" />
-					<line x1="6" y1="6" x2="18" y2="18" />
-				</svg>
+				<X />
 			</button>
 		</div>
 
@@ -64,8 +60,13 @@
 				see
 				{#each words as other, i (other)}
 					<!-- Formatting here is weird to prevent additional spaces between commas -->
-					<a href="#{other}" class="text-blue-500">{other}</a
-					>{#if i !== words.length - 1}{', '}{/if}
+					<a
+						href="#{other}"
+						class="text-blue-500"
+						on:click={() => {
+							dispatch('refer', other);
+						}}>{other}</a
+					>{#if i < words.length - 1}{', '}{/if}
 				{/each}
 			</p>
 		{/if}
@@ -88,12 +89,11 @@
 		{/if}
 
 		{#if word.sitelen_pona}
-			<h3 class="mt-2 text-lg font-bold">
-				sitelen pona
-				<span class="font-medium font-pona text-2xl">
-					{word.sitelen_pona}
-				</span>
-			</h3>
+			<h3 class="mt-2 text-lg font-bold">sitelen pona</h3>
+
+			<span class="font-medium font-pona text-4xl">
+				{word.sitelen_pona}
+			</span>
 
 			{#if word.sitelen_pona_etymology}
 				<p>
