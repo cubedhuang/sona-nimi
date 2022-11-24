@@ -17,4 +17,6 @@
 	<meta property="og:url" content="https://nimi.dan.onl/" />
 </svelte:head>
 
-<slot />
+<div class="px-8 py-16 lg:px-16 max-w-screen-2xl m-auto">
+	<slot />
+</div>

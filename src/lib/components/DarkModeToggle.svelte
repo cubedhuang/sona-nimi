@@ -3,7 +3,7 @@
 </script>
 
 <label
-	class="grid place-items-center cursor-pointer p-2 rounded-lg border border-gray-400 hocus:border-gray-600
+	class="grid place-items-center cursor-pointer p-2 rounded-lg border border-gray-200 hocus:border-gray-400 transition-colors
 		dark:border-gray-800 dark:hocus:border-gray-700"
 >
 	<input type="checkbox" class="hidden" bind:checked={$darkMode} />

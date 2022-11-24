@@ -1,7 +1,7 @@
 import { browser } from '$app/environment';
-import { writable } from 'svelte/store';
+import { writable, type Writable } from 'svelte/store';
 
-function savedWritable<T>(key: string, initialValue: T) {
+function savedWritable<T>(key: string, initialValue: T): Writable<T> {
 	const { subscribe, set, update } = writable(initialValue);
 
 	if (browser) {

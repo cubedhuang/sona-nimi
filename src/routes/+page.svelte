@@ -82,99 +82,103 @@
 	}}
 />
 
-<div class="px-8 py-16 lg:px-16 max-w-screen-2xl m-auto">
-	<div>
-		<div class="flex justify-between">
-			<h1 class="text-4xl font-bold">sona nimi</h1>
+<div>
+	<div class="flex justify-between items-start">
+		<h1 class="text-4xl font-bold">sona nimi</h1>
 
-			<DarkModeToggle />
-		</div>
-
-		<p class="mt-4">
-			<span class="font-bold">sona nimi</span> is an interactive toki pona
-			dictionary. It uses
-			<a href="https://lipu-linku.github.io/about/jasima/" class="text-blue-500"
-				>jasima Linku</a
-			>
-			for data. You can view the source code
-			<a href="https://github.com/cubedhuang/sona-nimi" class="text-blue-500"
-				>here</a
-			>.
-		</p>
-
-		<div class="mt-4 flex flex-wrap gap-2">
-			{#each categories as category}
-				<ColoredCheckbox
-					bind:checked={category.shown}
-					label={category.name[0].toUpperCase() + category.name.slice(1)}
-					color={categoryColors[category.name]}
-				/>
-			{/each}
-		</div>
-
-		<div class="mt-2 flex flex-wrap gap-2">
-			<Select
-				options={[
-					{ label: 'Search with Toki Pona', value: 'term' },
-					{ label: 'Search with Definition', value: 'definition' }
-				]}
-				bind:value={searchMethod}
-			/>
-
-			<Select
-				options={[
-					{ label: 'Sort by Usage', value: 'recognition' },
-					{ label: 'Sort Alphabetically', value: 'alphabetical' }
-				]}
-				bind:value={sortingMethod}
-			/>
-
-			<Select
-				options={[
-					{ label: 'sitelen pona', value: 'pona' },
-					{ label: 'sitelen sitelen', value: 'sitelen' },
-					{ label: 'sitelen emosi', value: 'emosi' }
-				]}
-				bind:value={$sitelenMode}
-			/>
-		</div>
-
-		<div class="mt-4 flex gap-1 items-center">
-			<input
-				type="text"
-				placeholder={searchMethod === 'term' ? 'nimi...' : 'definition...'}
-				bind:value={search}
-				bind:this={searchBar}
-				class="p-2 border border-gray-200 rounded-lg focus:outline-none focus:border-gray-400 transition-colors max-w-full w-96
-					dark:bg-black dark:border-gray-800 dark:focus:border-gray-700"
-			/>
-
-			{#if search}
-				<button
-					class="p-2 rounded-lg hover:bg-gray-200 focus:outline-none focus:bg-gray-200 border border-transparent transition-colors
-						dark:hocus:bg-gray-900"
-					on:click={() => {
-						search = '';
-						searchBar.focus();
-					}}
-				>
-					<X />
-				</button>
-			{/if}
-		</div>
+		<DarkModeToggle />
 	</div>
 
-	<div class="mt-4 flex flex-col sm:grid grid-cols gap-4">
-		{#each filteredWords as word (word.word)}
-			<WordSpace
-				{word}
-				on:click={() => {
-					if (selectedWord?.word === word.word) selectedWord = null;
-					else selectedWord = word;
-				}}
+	<p class="mt-4">
+		<span class="font-bold">sona nimi</span> is an interactive toki pona
+		dictionary. It uses
+		<a
+			href="https://lipu-linku.github.io/about/jasima/"
+			target="_blank"
+			rel="noopener noreferrer"
+			class="text-blue-500">jasima Linku</a
+		>
+		for data. You can view the source code
+		<a
+			href="https://github.com/cubedhuang/sona-nimi"
+			target="_blank"
+			rel="noopener noreferrer"
+			class="text-blue-500">here</a
+		>.
+	</p>
+
+	<div class="mt-4 flex flex-wrap gap-2">
+		{#each categories as category}
+			<ColoredCheckbox
+				bind:checked={category.shown}
+				label={category.name[0].toUpperCase() + category.name.slice(1)}
+				color={categoryColors[category.name]}
 			/>
 		{/each}
 	</div>
+
+	<div class="mt-2 flex flex-wrap gap-2">
+		<Select
+			options={[
+				{ label: 'Search with Toki Pona', value: 'term' },
+				{ label: 'Search with Definition', value: 'definition' }
+			]}
+			bind:value={searchMethod}
+		/>
+
+		<Select
+			options={[
+				{ label: 'Sort by Usage', value: 'recognition' },
+				{ label: 'Sort Alphabetically', value: 'alphabetical' }
+			]}
+			bind:value={sortingMethod}
+		/>
+
+		<Select
+			options={[
+				{ label: 'sitelen pona', value: 'pona' },
+				{ label: 'sitelen sitelen', value: 'sitelen' },
+				{ label: 'sitelen emosi', value: 'emosi' }
+			]}
+			bind:value={$sitelenMode}
+		/>
+	</div>
+
+	<div class="mt-4 flex gap-1 items-center">
+		<input
+			type="text"
+			placeholder={searchMethod === 'term' ? 'nimi...' : 'definition...'}
+			bind:value={search}
+			bind:this={searchBar}
+			class="p-2 border border-gray-200 rounded-lg focus:outline-none focus:border-gray-400 transition-colors max-w-full w-96
+					dark:bg-black dark:border-gray-800 dark:focus:border-gray-700"
+		/>
+
+		{#if search}
+			<button
+				class="p-2 rounded-lg hover:bg-gray-200 focus:outline-none focus:bg-gray-200 border border-transparent transition-colors
+						dark:hocus:bg-gray-900"
+				on:click={() => {
+					search = '';
+					searchBar.focus();
+				}}
+			>
+				<X />
+			</button>
+		{/if}
+	</div>
+</div>
+
+<div class="mt-4 flex flex-col sm:grid grid-cols gap-4">
+	{#each filteredWords as word (word.word)}
+		<WordSpace
+			{word}
+			on:click={() => {
+				if (selectedWord?.word === word.word) selectedWord = null;
+				else selectedWord = word;
+			}}
+		/>
+	{/each}
 </div>
 
 <WordDetails
