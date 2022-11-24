@@ -15,5 +15,29 @@
 	html {
 		scroll-padding-top: 4rem;
 		scroll-behavior: smooth;
+
+		scrollbar-width: thin;
+
+		--scrollbar-bg: #fff;
+		--scrollbar-thumb: #0004;
+
+		scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-bg);
+	}
+
+	::-webkit-scrollbar {
+		width: 2px;
+	}
+
+	::-webkit-scrollbar-track {
+		background: var(--scrollbar-bg);
+	}
+
+	::-webkit-scrollbar-thumb {
+		background-color: var(--scrollbar-thumb);
+	}
+
+	html.dark {
+		--scrollbar-bg: #000;
+		--scrollbar-thumb: #fff4;
 	}
 }
