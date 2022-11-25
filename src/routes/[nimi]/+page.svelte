@@ -10,6 +10,24 @@
 	$: word = data;
 </script>
 
+<svelte:head>
+	<title>{word.word} &ndash; sona nimi</title>
+
+	<meta name="author" content="jan Tani" />
+	<meta name="description" content={word.def.en} />
+	<meta
+		name="keywords"
+		content="toki pona, toki pona dictionary, dictionary, nimi, {word.word}"
+	/>
+
+	<meta property="og:title" content={word.word} />
+	<meta property="og:author" content="jan Tani" />
+	<meta property="og:description" content={word.def.en} />
+	<meta property="og:url" content="https://nimi.dan.onl/{word.word}" />
+	<meta property="og:site_name" content="sona nimi" />
+	<meta property="og:type" content="website" />
+</svelte:head>
+
 {#if word}
 	<div class="flex justify-between items-start">
 		<div>
