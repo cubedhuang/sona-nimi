@@ -222,7 +222,7 @@
 	{/if}
 </div>
 
-<div class="mt-4 flex flex-col sm:grid grid-cols gap-4">
+<div class="mt-4 grid grid-cols gap-4">
 	{#each filteredWords as word (word.word)}
 		<WordSpace
 			{word}
@@ -250,6 +250,6 @@
 
 <style>
 	.grid-cols {
-		grid-template-columns: repeat(auto-fill, minmax(24rem, 1fr));
+		grid-template-columns: repeat(auto-fill, minmax(min(24rem, 100%), 1fr));
 	}
 </style>
