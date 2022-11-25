@@ -1,8 +1,4 @@
 <script lang="ts">
-	import { browser } from '$app/environment';
-	import { goto } from '$app/navigation';
-	import { page } from '$app/stores';
-
 	import type { PageData } from './$types';
 
 	import { getDefinition, getRecognition } from '$lib/util';
@@ -11,9 +7,7 @@
 
 	export let data: PageData;
 
-	$: word = data.data[$page.params.nimi];
-
-	$: if (browser && !word) goto('/');
+	$: word = data;
 </script>
 
 {#if word}
