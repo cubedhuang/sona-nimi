@@ -1,9 +1,9 @@
 import { redirect } from '@sveltejs/kit';
 import type { JasimaData } from '$lib/types';
 
-import type { PageLoad } from './$types';
+import type { PageServerLoad } from './$types';
 
-export const load: PageLoad = async ({ fetch, params }) => {
+export const load: PageServerLoad = async ({ fetch, params }) => {
 	const data = (await fetch(
 		'https://lipu-linku.github.io/jasima/data.json'
 	).then(res => res.json())) as JasimaData;
