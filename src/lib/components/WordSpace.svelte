@@ -37,7 +37,11 @@
 
 		{#if $sitelenMode === 'pona'}
 			{#if word.sitelen_pona}
-				<p class="font-pona text-4xl text-right">{word.sitelen_pona}</p>
+				<div class="flex flex-col items-end text-right">
+					{#each word.sitelen_pona.split(' ') as sitelen}
+						<p class="font-pona text-4xl">{sitelen}</p>
+					{/each}
+				</div>
 			{/if}
 		{:else if $sitelenMode === 'sitelen'}
 			{#if word.sitelen_sitelen}
