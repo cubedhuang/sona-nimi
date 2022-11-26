@@ -3,7 +3,7 @@
 </script>
 
 <div
-	class="px-8 py-16 lg:px-16 max-w-screen-2xl m-auto"
+	class="px-8 py-16 lg:px-16 max-w-screen-2xl m-auto font-text"
 	data-sveltekit-prefetch
 >
 	<slot />

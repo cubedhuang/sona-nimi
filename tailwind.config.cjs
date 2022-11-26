@@ -1,4 +1,5 @@
 const plugin = require('tailwindcss/plugin');
+const defaultTheme = require('tailwindcss/defaultTheme');
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -7,7 +8,9 @@ module.exports = {
 	theme: {
 		extend: {
 			fontFamily: {
-				pona: ['"Fairfax Pona HD"', 'sans-serif']
+				pona: ['"Fairfax Pona HD"', ...defaultTheme.fontFamily.sans],
+				text: ['"SFProText"', ...defaultTheme.fontFamily.sans],
+				display: ['"SFRounded"', ...defaultTheme.fontFamily.sans]
 			}
 		}
 	},

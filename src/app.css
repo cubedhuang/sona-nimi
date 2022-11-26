@@ -11,6 +11,42 @@
 	font-display: swap;
 }
 
+@font-face {
+	font-family: 'SFRounded';
+	src: url('/subset-SFRounded-Bold.woff2') format('woff2'),
+		url('/subset-SFRounded-Bold.woff') format('woff');
+	font-weight: bold;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'SFProText';
+	src: url('/subset-SFProText-Bold.woff2') format('woff2'),
+		url('/subset-SFProText-Bold.woff') format('woff');
+	font-weight: bold;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'SFProText';
+	src: url('/subset-SFProText-Regular.woff2') format('woff2'),
+		url('/subset-SFProText-Regular.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'SFProText';
+	src: url('/subset-SFProText-RegularItalic.woff2') format('woff2'),
+		url('/subset-SFProText-RegularItalic.woff') format('woff');
+	font-weight: normal;
+	font-style: italic;
+	font-display: swap;
+}
+
 @layer base {
 	html {
 		scroll-padding-top: 4rem;
@@ -39,5 +75,14 @@
 	html.dark {
 		--scrollbar-bg: #000;
 		--scrollbar-thumb: #fff4;
+	}
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		font-family: 'SFRounded', serif;
 	}
 }
