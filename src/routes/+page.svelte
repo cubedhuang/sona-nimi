@@ -134,13 +134,13 @@
 		rel="noopener noreferrer"
 		class="text-blue-500">jasima Linku</a
 	>
-	for data. You can view the source code
+	for data. This project is
 	<a
 		href="https://github.com/cubedhuang/sona-nimi"
 		target="_blank"
 		rel="noopener noreferrer"
-		class="text-blue-500">here</a
-	>.
+		class="text-blue-500">open source</a
+	>!
 </p>
 
 <p class="mt-2">Click on a word to read more.</p>
