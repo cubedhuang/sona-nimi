@@ -1,3 +1,3 @@
 # sona nimi
 
-[https://nimi.dan.onl](**sona nimi**) is an interactive toki pona dictionary using data from [https://lipu-linku.github.io/about/jasima/](jasima Linku).
+[**sona nimi**](https://nimi.dan.onl) is an interactive toki pona dictionary using data from [jasima Linku](https://lipu-linku.github.io/about/jasima/) and jan Sonja's [compounds list](https://tokipona.org/compounds.txt).
