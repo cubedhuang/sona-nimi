@@ -87,7 +87,7 @@
 
 	{#if word.ku_data}
 		<h2 class="mt-4 text-2xl font-bold">lipu ku translations</h2>
-		<p>
+		<p class="mt-2">
 			{word.ku_data}
 		</p>
 	{/if}
