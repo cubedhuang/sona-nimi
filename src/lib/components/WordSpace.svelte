@@ -1,29 +1,30 @@
 <script lang="ts">
 	import type { Word } from '$lib/types';
-	import { categoryColors, getDefinition, getRecognition } from '$lib/util';
+	import {
+		categoryColors,
+		getWordDefinition,
+		getWordRecognition
+	} from '$lib/util';
 	import { language, sitelenMode } from '$lib/stores';
+
+	import Space from './Space.svelte';
 
 	export let word: Word;
 
 	const maxLength = 120;
-	$: def = getDefinition(word, $language);
+	$: def = getWordDefinition(word, $language);
 	$: ellipsizedDef =
 		def.length > maxLength ? def.slice(0, maxLength) + '...' : def;
 </script>
 
-<button
-	on:click
-	id={word.word}
-	class="relative w-full overflow-hidden grid p-4 border border-gray-200 rounded-lg text-left hover:scale-[1.02] hocus:border-gray-400 focus:outline-none transition
-		dark:border-gray-800 dark:hocus:border-gray-700"
->
+<Space on:click id={word.word}>
 	<div class="flex gap-2 justify-between">
 		<div>
 			<h2 class="text-xl font-bold">{word.word}</h2>
 
 			<p class="text-gray-500 dark:text-gray-400">
 				{word.usage_category} &middot;
-				{getRecognition(word)}%
+				{getWordRecognition(word)}%
 				{#if word.coined_era}
 					&middot; {word.coined_era}
 				{/if}
@@ -63,7 +64,7 @@
 			]}"
 		/>
 	</div>
-</button>
+</Space>
 
 <style>
 	@keyframes highlight-light {

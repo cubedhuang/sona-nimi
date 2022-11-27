@@ -1,10 +1,12 @@
 <script lang="ts">
+	import Nav from '$lib/components/Nav.svelte';
 	import '../app.css';
 </script>
 
 <div
-	class="px-8 py-16 lg:px-16 max-w-screen-2xl m-auto font-text"
+	class="px-8 py-20 lg:px-16 max-w-screen-2xl m-auto font-text"
 	data-sveltekit-prefetch
 >
+	<Nav />
 	<slot />
 </div>

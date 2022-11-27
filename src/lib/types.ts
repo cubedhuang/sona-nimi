@@ -93,3 +93,10 @@ export interface Font {
 	style: string;
 	features: string;
 }
+
+export type CompoundData = Record<string, Compound>;
+
+export interface Compound {
+	compound: string;
+	uses: Record<string, number>;
+}

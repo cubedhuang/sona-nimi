@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { PageData } from './$types';
 
-	import { getDefinition, getRecognition } from '$lib/util';
+	import { getWordDefinition, getWordRecognition } from '$lib/util';
 	import { language } from '$lib/stores';
 	import DarkModeToggle from '$lib/components/DarkModeToggle.svelte';
 
@@ -52,7 +52,7 @@
 
 	<p class="mt-2">
 		<span class="text-gray-500 dark:text-gray-400">Recognition:</span>
-		{getRecognition(word)}%
+		{getWordRecognition(word)}%
 	</p>
 
 	<p class="mt-2">
@@ -75,7 +75,7 @@
 	{/if}
 
 	<p class="mt-2">
-		{getDefinition(word, $language)}
+		{getWordDefinition(word, $language)}
 	</p>
 
 	{#if word.commentary}

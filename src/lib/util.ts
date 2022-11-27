@@ -52,11 +52,11 @@ export function sortLanguages(languages: Record<string, Language>) {
 		);
 }
 
-export function getDefinition(word: Word, language: string): string {
+export function getWordDefinition(word: Word, language: string): string {
 	return word.def[language] ?? word.def.en;
 }
 
-export function getRecognition(word: Word) {
+export function getWordRecognition(word: Word) {
 	const dates = Object.keys(word.recognition).sort();
 	const latest = dates[dates.length - 1];
 

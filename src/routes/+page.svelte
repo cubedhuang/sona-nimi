@@ -7,17 +7,18 @@
 	import {
 		bookColors,
 		categoryColors,
-		getDefinition,
-		getRecognition,
+		getWordDefinition,
+		getWordRecognition,
 		sortLanguages
 	} from '$lib/util';
 	import { language, sitelenMode } from '$lib/stores';
 
 	import ColoredCheckbox from '$lib/components/ColoredCheckbox.svelte';
 	import DarkModeToggle from '$lib/components/DarkModeToggle.svelte';
+	import Grid from '$lib/components/Grid.svelte';
 	import Select from '$lib/components/Select.svelte';
-	import WordSpace from '$lib/components/WordSpace.svelte';
 	import WordDetails from '$lib/components/WordDetails.svelte';
+	import WordSpace from '$lib/components/WordSpace.svelte';
 	import X from '$lib/components/X.svelte';
 
 	export let data: PageData;
@@ -50,7 +51,7 @@
 	$: sorter =
 		sortingMethod === 'alphabetical'
 			? (a: Word, b: Word) => a.word.localeCompare(b.word)
-			: (a: Word, b: Word) => getRecognition(b) - getRecognition(a);
+			: (a: Word, b: Word) => getWordRecognition(b) - getWordRecognition(a);
 
 	let filteredWords: Word[] = [];
 
@@ -81,7 +82,9 @@
 				word =>
 					shownCategories.includes(word.usage_category) &&
 					shownBooks.includes(word.book) &&
-					(getDefinition(word, $language).toLowerCase().includes(fixedSearch) ||
+					(getWordDefinition(word, $language)
+						.toLowerCase()
+						.includes(fixedSearch) ||
 						word.ku_data?.toLowerCase().includes(fixedSearch))
 			)
 			.sort(sorter);
@@ -126,24 +129,9 @@
 </div>
 
 <p class="mt-4">
-	<span class="font-bold">sona nimi</span> is an interactive toki pona
-	dictionary. It uses
-	<a
-		href="https://lipu-linku.github.io/about/jasima/"
-		target="_blank"
-		rel="noopener noreferrer"
-		class="text-blue-500">jasima Linku</a
-	>
-	for data. This project is
-	<a
-		href="https://github.com/cubedhuang/sona-nimi"
-		target="_blank"
-		rel="noopener noreferrer"
-		class="text-blue-500">open source</a
-	>!
+	<span class="font-bold">sona nimi</span> is an interactive toki pona dictionary.
+	Click on a word to read more!
 </p>
-
-<p class="mt-2">Click on a word to read more.</p>
 
 <div class="mt-4 flex flex-wrap gap-2">
 	{#each categories as category}
@@ -240,7 +228,7 @@
 	{/if}
 </div>
 
-<div class="mt-4 grid grid-cols gap-4">
+<Grid>
 	{#each filteredWords as word (word.word)}
 		<WordSpace
 			{word}
@@ -250,7 +238,7 @@
 			}}
 		/>
 	{/each}
-</div>
+</Grid>
 
 <WordDetails
 	bind:word={selectedWord}
@@ -265,9 +253,3 @@
 		}
 	}}
 />
-
-<style>
-	.grid-cols {
-		grid-template-columns: repeat(auto-fill, minmax(min(24rem, 100%), 1fr));
-	}
-</style>
