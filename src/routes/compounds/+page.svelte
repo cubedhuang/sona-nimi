@@ -186,7 +186,7 @@
 	{/if}
 </div>
 
-<Grid>
+<Grid width="16rem">
 	{#each filteredCompounds as compound (compound.compound)}
 		<CompoundSpace
 			{compound}
