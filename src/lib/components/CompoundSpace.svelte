@@ -15,7 +15,7 @@
 	<div>
 		<h2 class="text-xl font-bold">{compound.compound}</h2>
 
-		<p class="text-gray-500">{uses[0][1]}%</p>
+		<p class="text-gray-500 dark:text-gray-400">{uses[0][1]}%</p>
 
 		<p>
 			{ellipsized}
