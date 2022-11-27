@@ -80,7 +80,7 @@
 
 	{#if word.commentary}
 		<h2 class="mt-4 text-2xl font-bold">commentary</h2>
-		<p>
+		<p class="mt-2">
 			{word.commentary}
 		</p>
 	{/if}
