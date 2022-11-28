@@ -59,4 +59,13 @@
 			class="text-blue-500">list of compounds the community uses</a
 		> was used for all of the compounds.
 	</li>
+
+	<li>
+		The <a
+			href="https://www.kreativekorp.com/software/fonts/fairfaxponahd/"
+			target="_blank"
+			rel="noopener noreferrer"
+			class="text-blue-500">Fairfax Pona HD</a
+		> font is used for sitelen pona displayed on the site.
+	</li>
 </ul>
