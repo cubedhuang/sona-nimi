@@ -6,7 +6,7 @@
 	export let compound: Compound;
 
 	$: uses = Object.entries(compound.uses).sort((a, b) => b[1] - a[1]);
-	$: usesString = uses.map(([use]) => use).join(', ');
+	$: usesString = uses.map(([use]) => use.replaceAll(' ', '\u00a0')).join(', ');
 	$: ellipsized =
 		usesString.length > 100 ? usesString.slice(0, 100) + '...' : usesString;
 </script>
