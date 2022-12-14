@@ -105,7 +105,7 @@
 	<meta property="og:title" content="compounds – sona nimi" />
 	<meta property="og:author" content="jan Tani" />
 	<meta property="og:description" content="interactive toki pona dictionary" />
-	<meta property="og:url" content="https://nimi.dan.onl/compounds" />
+	<meta property="og:url" content="https://nimi.li/compounds" />
 	<meta property="og:site_name" content="sona nimi" />
 	<meta property="og:type" content="website" />
 </svelte:head>

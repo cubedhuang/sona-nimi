@@ -15,7 +15,7 @@
 	<meta property="og:title" content="about – sona nimi" />
 	<meta property="og:author" content="jan Tani" />
 	<meta property="og:description" content="interactive toki pona dictionary" />
-	<meta property="og:url" content="https://nimi.dan.onl/about" />
+	<meta property="og:url" content="https://nimi.li/about" />
 	<meta property="og:site_name" content="sona nimi" />
 	<meta property="og:type" content="website" />
 </svelte:head>

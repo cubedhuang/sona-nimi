@@ -68,13 +68,14 @@
 					see
 					{#each words as other, i (other)}
 						<!-- Formatting here is weird to prevent additional spaces between commas -->
+						{i !== 0 ? ',' : ''}
 						<a
 							href="#{other}"
 							class="text-blue-500"
 							on:click={() => {
 								dispatch('refer', other);
 							}}>{other}</a
-						>{#if i < words.length - 1}{', '}{/if}
+						>
 					{/each}
 				</p>
 			{/if}

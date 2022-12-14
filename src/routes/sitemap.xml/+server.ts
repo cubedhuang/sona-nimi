@@ -19,9 +19,8 @@ export const GET: RequestHandler = async ({ fetch }) => {
 const render = (words: string[]) =>
 	`<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<url><loc>https://nimi.dan.onl/</loc></url>
-${words
-	.map(word => `<url><loc>https://nimi.dan.onl/${word}</loc></url>`)
-	.join('')}
+<url><loc>https://nimi.li/</loc></url>
+<url><loc>https://nimi.li/compounds</loc></url>
+${words.map(word => `<url><loc>https://nimi.li/${word}</loc></url>`).join('')}
 </urlset>
 `;

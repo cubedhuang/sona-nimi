@@ -23,7 +23,7 @@
 	<meta property="og:title" content={word.word} />
 	<meta property="og:author" content="jan Tani" />
 	<meta property="og:description" content={word.def.en} />
-	<meta property="og:url" content="https://nimi.dan.onl/{word.word}" />
+	<meta property="og:url" content="https://nimi.li/{word.word}" />
 	<meta property="og:site_name" content="sona nimi" />
 	<meta property="og:type" content="website" />
 </svelte:head>

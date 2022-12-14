@@ -29,13 +29,25 @@
 				</button>
 			</div>
 
-			<div class="flex flex-col">
+			<p class="font-pona text-4xl">
+				{compound.glyphs.join(' ') || compound.compound}
+			</p>
+
+			<p>
+				see
+				{#each compound.compound.split(' ') as word, i (word)}
+					{i !== 0 ? ',' : ''}
+					<a href="/{word}" class="text-blue-500">{word}</a>
+				{/each}
+			</p>
+
+			<div class="flex flex-col mt-2">
 				{#each Object.entries(compound.uses) as [use, count]}
 					<p>
 						{use}
-						<span class="text-gray-500 dark:text-gray-400"
-							>&middot; {count}%</span
-						>
+						<span class="text-gray-500 dark:text-gray-400">
+							&middot; {count}%
+						</span>
 					</p>
 				{/each}
 			</div>
