@@ -1,4 +1,4 @@
-import { redirect } from '@sveltejs/kit';
+import { error } from '@sveltejs/kit';
 import type { JasimaData } from '$lib/types';
 
 import type { PageServerLoad } from './$types';
@@ -12,7 +12,7 @@ export const load: PageServerLoad = async ({ fetch, params }) => {
 
 	const word = data.data[params.nimi];
 
-	if (!word) throw redirect(308, '/');
+	if (!word) throw error(404, 'Not Found');
 
 	return word;
 };

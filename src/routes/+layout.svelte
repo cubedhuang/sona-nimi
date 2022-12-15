@@ -3,10 +3,10 @@
 	import '../app.css';
 </script>
 
-<div
-	class="px-8 py-20 lg:px-16 max-w-screen-2xl m-auto font-text"
-	data-sveltekit-preload-data="hover"
->
+<div class="px-8 lg:px-16 max-w-screen-2xl m-auto font-text">
 	<Nav />
-	<slot />
+
+	<div class="pt-8 pb-24" data-sveltekit-preload-data="hover">
+		<slot />
+	</div>
 </div>

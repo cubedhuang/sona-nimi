@@ -3,7 +3,6 @@
 
 	import { getWordDefinition, getWordRecognition } from '$lib/util';
 	import { language } from '$lib/stores';
-	import DarkModeToggle from '$lib/components/DarkModeToggle.svelte';
 
 	export let data: PageData;
 
@@ -29,21 +28,15 @@
 </svelte:head>
 
 {#if word}
-	<div class="flex justify-between items-start">
-		<div>
-			<a
-				href="/"
-				class="inline-block px-2 py-1 border border-gray-200 hocus:border-gray-400 rounded-lg transition-colors text-lg
-					dark:border-gray-800 dark:hocus:border-gray-700"
-			>
-				back
-			</a>
+	<a
+		href="/"
+		class="inline-block px-2 py-1 border border-gray-200 hocus:border-gray-400 rounded-lg transition-colors text-lg
+			dark:border-gray-800 dark:hocus:border-gray-700"
+	>
+		back
+	</a>
 
-			<h1 class="mt-4 text-4xl font-bold">{word.word}</h1>
-		</div>
-
-		<DarkModeToggle />
-	</div>
+	<h1 class="mt-4 text-4xl font-bold">{word.word}</h1>
 
 	<p class="mt-2">
 		<span class="text-gray-500 dark:text-gray-400">Usage category:</span>

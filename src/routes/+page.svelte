@@ -14,7 +14,6 @@
 	import { language, sitelenMode } from '$lib/stores';
 
 	import ColoredCheckbox from '$lib/components/ColoredCheckbox.svelte';
-	import DarkModeToggle from '$lib/components/DarkModeToggle.svelte';
 	import Grid from '$lib/components/Grid.svelte';
 	import Select from '$lib/components/Select.svelte';
 	import WordDetails from '$lib/components/WordDetails.svelte';
@@ -122,11 +121,7 @@
 	}}
 />
 
-<div class="flex justify-between items-start">
-	<h1 class="text-4xl font-bold">sona nimi</h1>
-
-	<DarkModeToggle />
-</div>
+<h1 class="text-4xl font-bold">sona nimi</h1>
 
 <p class="mt-4">
 	<span class="font-bold">sona nimi</span> is an interactive toki pona dictionary.

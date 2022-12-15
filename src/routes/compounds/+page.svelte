@@ -8,7 +8,6 @@
 	import ColoredCheckbox from '$lib/components/ColoredCheckbox.svelte';
 	import CompoundDetails from '$lib/components/CompoundDetails.svelte';
 	import CompoundSpace from '$lib/components/CompoundSpace.svelte';
-	import DarkModeToggle from '$lib/components/DarkModeToggle.svelte';
 	import Grid from '$lib/components/Grid.svelte';
 	import Select from '$lib/components/Select.svelte';
 	import X from '$lib/components/X.svelte';
@@ -119,11 +118,7 @@
 	}}
 />
 
-<div class="flex justify-between items-start">
-	<h1 class="text-4xl font-bold">compounds &ndash; sona nimi</h1>
-
-	<DarkModeToggle />
-</div>
+<h1 class="text-4xl font-bold">compounds &ndash; sona nimi</h1>
 
 <p class="mt-4">
 	This is a list of popular compound phrases and interpretations of words in

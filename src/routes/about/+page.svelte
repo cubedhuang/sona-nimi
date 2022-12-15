@@ -1,7 +1,3 @@
-<script>
-	import DarkModeToggle from '$lib/components/DarkModeToggle.svelte';
-</script>
-
 <svelte:head>
 	<title>about &ndash; sona nimi</title>
 
@@ -20,11 +16,7 @@
 	<meta property="og:type" content="website" />
 </svelte:head>
 
-<div class="flex justify-between items-start">
-	<h1 class="text-4xl font-bold">about &ndash; sona nimi</h1>
-
-	<DarkModeToggle />
-</div>
+<h1 class="text-4xl font-bold">about &ndash; sona nimi</h1>
 
 <p class="mt-4">
 	This project is
