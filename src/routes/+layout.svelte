@@ -5,7 +5,7 @@
 
 <div
 	class="px-8 py-20 lg:px-16 max-w-screen-2xl m-auto font-text"
-	data-sveltekit-prefetch
+	data-sveltekit-preload-data="hover"
 >
 	<Nav />
 	<slot />
