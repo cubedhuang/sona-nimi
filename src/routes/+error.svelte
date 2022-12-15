@@ -1,13 +1,23 @@
+<script lang="ts">
+	import { page } from '$app/stores';
+</script>
+
 <svelte:head>
-	<title>404 &ndash; lon ala</title>
+	<title>pakala &ndash; {$page.status}</title>
 </svelte:head>
 
 <div
 	class="flex flex-col py-8 sm:py-16 md:py-24 items-center justify-center text-center"
 >
-	<h1 class="text-6xl text-orange-400">pakala nanpa 404!</h1>
+	<h1 class="text-6xl text-orange-400">pakala nanpa {$page.status}!</h1>
 
-	<p class="mt-4 text-lg">lipu ni li lon ala.</p>
+	<p class="mt-4 text-lg">
+		{#if $page.status === 404}
+			lipu ni li lon ala.
+		{:else}
+			ijo mi li pakala!
+		{/if}
+	</p>
 
 	<p>
 		<a
