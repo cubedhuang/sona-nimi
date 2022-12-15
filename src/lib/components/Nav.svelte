@@ -10,6 +10,8 @@
 
 	const commonClasses =
 		'p-2 rounded-lg sm:rounded-t-none border sm:border-t-0 border-gray-200 dark:border-gray-800 transition-colors';
+	const hoverableClasses =
+		'focus:outline-none hocus:border-gray-400 dark:hocus:border-gray-700';
 </script>
 
 <nav class="flex flex-wrap gap-2 pt-4 sm:pt-0">
@@ -21,18 +23,14 @@
 				{route.name}
 			</span>
 		{:else}
-			<a
-				href={route.href}
-				class="{commonClasses} focus:outline-none hocus:border-gray-400 dark:hocus:border-gray-700"
-			>
+			<a href={route.href} class="{commonClasses} {hoverableClasses}">
 				{route.name}
 			</a>
 		{/if}
 	{/each}
 
 	<label
-		class="{commonClasses} sm:py-0 sm:ml-auto grid place-items-center cursor-pointer
-			dark:border-gray-800 dark:hocus:border-gray-700"
+		class="{commonClasses} {hoverableClasses} sm:py-0 sm:ml-auto grid place-items-center cursor-pointer"
 	>
 		<input type="checkbox" class="hidden" bind:checked={$darkMode} />
 

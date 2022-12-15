@@ -9,7 +9,9 @@
 <div
 	class="flex flex-col py-8 sm:py-16 md:py-24 items-center justify-center text-center"
 >
-	<h1 class="text-6xl text-orange-400">pakala nanpa {$page.status}!</h1>
+	<h1 class="text-6xl text-orange-500 dark:text-orange-400">
+		pakala nanpa {$page.status}!
+	</h1>
 
 	<p class="mt-4 text-lg">
 		{#if $page.status === 404}
