@@ -1,10 +1,75 @@
 <script lang="ts">
-	import Nav from '$lib/components/Nav.svelte';
 	import '../app.css';
+
+	import { page } from '$app/stores';
+	import { darkMode } from '$lib/stores';
+
+	const routes = [
+		{ name: 'vocabulary', href: '/' },
+		{ name: 'compounds', href: '/compounds' },
+		{ name: 'about', href: '/about' }
+	];
+
+	const commonClasses =
+		'p-2 rounded-lg sm:rounded-t-none border sm:border-t-0 border-gray-200 dark:border-gray-800 transition-colors';
+	const hoverableClasses =
+		'focus:outline-none hocus:border-gray-400 dark:hocus:border-gray-700';
 </script>
 
 <div class="px-8 lg:px-16 max-w-screen-2xl m-auto font-text">
-	<Nav />
+	<nav class="flex flex-wrap gap-2 pt-4 sm:pt-0">
+		{#each routes as route}
+			{#if $page.url.pathname === route.href}
+				<span
+					class="{commonClasses} text-gray-500 dark:text-gray-400 cursor-default"
+				>
+					{route.name}
+				</span>
+			{:else}
+				<a href={route.href} class="{commonClasses} {hoverableClasses}">
+					{route.name}
+				</a>
+			{/if}
+		{/each}
+
+		<label
+			class="{commonClasses} {hoverableClasses} sm:py-0 sm:ml-auto grid place-items-center cursor-pointer"
+		>
+			<input type="checkbox" class="hidden" bind:checked={$darkMode} />
+
+			{#if $darkMode}
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					fill="none"
+					viewBox="0 0 24 24"
+					stroke-width="1.5"
+					stroke="currentColor"
+					class="w-6 h-6"
+				>
+					<path
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"
+					/>
+				</svg>
+			{:else}
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					fill="none"
+					viewBox="0 0 24 24"
+					stroke-width="1.5"
+					stroke="currentColor"
+					class="w-6 h-6"
+				>
+					<path
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"
+					/>
+				</svg>
+			{/if}
+		</label>
+	</nav>
 
 	<div class="pt-8 pb-24" data-sveltekit-preload-data="hover">
 		<slot />

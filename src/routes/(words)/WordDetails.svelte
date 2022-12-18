@@ -10,7 +10,7 @@
 		getWordRecognition
 	} from '$lib/util';
 
-	import X from './X.svelte';
+	import X from '$lib/components/X.svelte';
 
 	const dispatch = createEventDispatcher<{
 		refer: string;
@@ -22,29 +22,39 @@
 {#if word}
 	{#key word.word}
 		<div
-			class="fixed bottom-0 right-0 left-0 md:bottom-4 md:right-4 md:left-auto md:w-[36rem] max-h-80 md:max-h-[40rem] p-6 overflow-y-auto bg-white border-t md:border border-gray-400 md:rounded-lg shadow-lg
+			class="fixed bottom-0 right-0 left-0 top-1/3 md:bottom-4 md:right-4 md:left-auto md:top-auto md:w-[36rem] md:max-h-[40rem] p-6 overflow-y-auto bg-white border-t md:border border-gray-400 md:rounded-lg shadow-lg
 				dark:bg-black dark:border-gray-800"
 			transition:fly={{ y: 24, duration: 300 }}
 		>
-			<div class="flex">
+			<div class="flex items-end">
 				<h2 class="text-2xl font-bold">{word.word}</h2>
 
-				<button
-					class="ml-auto p-1 rounded-lg hocus:bg-gray-200 focus:outline-none transition-colors
-						dark:hocus:bg-gray-900"
-					on:click={() => {
-						word = null;
-					}}
-				>
-					<X />
-				</button>
+				<div class="ml-auto flex items-center gap-2">
+					<a
+						href="/{word.word}"
+						class="px-2 py-1 border border-gray-200 hocus:border-gray-400 rounded-lg focus:outline-none transition-colors
+								dark:border-gray-800 dark:hocus:border-gray-600"
+					>
+						more
+					</a>
+
+					<button
+						class="p-1 rounded-lg border border-gray-200 hocus:border-gray-400 focus:outline-none transition-colors
+							dark:border-gray-800 dark:hocus:border-gray-600"
+						on:click={() => {
+							word = null;
+						}}
+					>
+						<X />
+					</button>
+				</div>
 			</div>
 
 			<p class="text-gray-500 dark:text-gray-400">
 				{word.usage_category} &middot;
 				{getWordRecognition(word)}%
-				{#if word.coined_era}
-					&middot; {word.coined_era}
+				{#if word.book !== 'none'}
+					&middot; {word.book}
 				{/if}
 				{#if word.coined_year}
 					&middot; {word.coined_year}
@@ -134,16 +144,6 @@
 					{word.commentary}
 				</p>
 			{/if}
-
-			<p>
-				<a
-					href="/{word.word}"
-					class="inline-block mt-4 px-2 py-1 border border-gray-200 hocus:border-gray-400 rounded-lg transition-colors
-						dark:border-gray-800 dark:hocus:border-gray-600"
-				>
-					more info
-				</a>
-			</p>
 
 			<span
 				class="absolute -top-4 -left-4 p-4 rounded-full {categoryColors[

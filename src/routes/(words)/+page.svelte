@@ -15,16 +15,15 @@
 
 	import ColoredCheckbox from '$lib/components/ColoredCheckbox.svelte';
 	import Grid from '$lib/components/Grid.svelte';
+	import Search from '$lib/components/Search.svelte';
 	import Select from '$lib/components/Select.svelte';
-	import WordDetails from '$lib/components/WordDetails.svelte';
-	import WordSpace from '$lib/components/WordSpace.svelte';
-	import X from '$lib/components/X.svelte';
+	import WordDetails from './WordDetails.svelte';
+	import WordSpace from './WordSpace.svelte';
 
 	export let data: PageData;
 
 	const words = Object.values(data.data);
 
-	let searchBar: HTMLInputElement;
 	let search = '';
 	let selectedWord: Word | null = null;
 
@@ -112,14 +111,6 @@
 	<meta property="og:type" content="website" />
 </svelte:head>
 
-<svelte:body
-	on:keypress={e => {
-		if (document.activeElement !== searchBar) {
-			searchBar.focus();
-		}
-	}}
-/>
-
 <h1 class="text-4xl font-bold">sona nimi</h1>
 
 <p class="mt-4">
@@ -198,7 +189,7 @@
 	{filteredWords.length} / {words.length}
 </p>
 
-<div class="mt-1 flex gap-1 items-center">
+<!-- <div class="mt-1 flex gap-1 items-center">
 	<input
 		type="text"
 		placeholder={searchMethod === 'term' ? 'nimi...' : 'definition...'}
@@ -220,7 +211,12 @@
 			<X />
 		</button>
 	{/if}
-</div>
+</div> -->
+
+<Search
+	placeholder={searchMethod === 'term' ? 'nimi...' : 'definition...'}
+	bind:value={search}
+/>
 
 <Grid>
 	{#each filteredWords as word (word.word)}

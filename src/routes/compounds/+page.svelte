@@ -4,14 +4,14 @@
 	import type { PageData } from './$types';
 
 	import type { Compound } from '$lib/types';
+	import { categoryColors } from '$lib/util';
 
 	import ColoredCheckbox from '$lib/components/ColoredCheckbox.svelte';
-	import CompoundDetails from '$lib/components/CompoundDetails.svelte';
-	import CompoundSpace from '$lib/components/CompoundSpace.svelte';
+	import CompoundDetails from './CompoundDetails.svelte';
+	import CompoundSpace from './CompoundSpace.svelte';
 	import Grid from '$lib/components/Grid.svelte';
+	import Search from '$lib/components/Search.svelte';
 	import Select from '$lib/components/Select.svelte';
-	import X from '$lib/components/X.svelte';
-	import { categoryColors } from '$lib/util';
 
 	export let data: PageData;
 
@@ -27,7 +27,6 @@
 		? allCompounds.filter(compound => compound.compound.split(' ').length > 1)
 		: allCompounds;
 
-	let searchBar: HTMLInputElement;
 	let search = '';
 	let selectedCompound: Compound | null = null;
 
@@ -109,14 +108,6 @@
 	<meta property="og:type" content="website" />
 </svelte:head>
 
-<svelte:body
-	on:keypress={e => {
-		if (document.activeElement !== searchBar) {
-			searchBar.focus();
-		}
-	}}
-/>
-
 <h1 class="text-4xl font-bold">compounds &ndash; sona nimi</h1>
 
 <p class="mt-4">
@@ -156,29 +147,10 @@
 	{filteredCompounds.length} / {compounds.length}
 </p>
 
-<div class="mt-1 flex gap-1 items-center">
-	<input
-		type="text"
-		placeholder={searchMethod === 'term' ? 'nimi...' : 'definition...'}
-		bind:value={search}
-		bind:this={searchBar}
-		class="p-2 border border-gray-200 rounded-lg focus:outline-none focus:border-gray-400 transition-colors max-w-full w-96
-			dark:bg-black dark:border-gray-800 dark:focus:border-gray-700"
-	/>
-
-	{#if search}
-		<button
-			class="p-2 rounded-lg hover:bg-gray-200 focus:outline-none focus:bg-gray-200 border border-transparent transition-colors
-				dark:hocus:bg-gray-900"
-			on:click={() => {
-				search = '';
-				searchBar.focus();
-			}}
-		>
-			<X />
-		</button>
-	{/if}
-</div>
+<Search
+	placeholder={searchMethod === 'term' ? 'nimi...' : 'definition...'}
+	bind:value={search}
+/>
 
 <Grid width="16rem">
 	{#each filteredCompounds as compound (compound.compound)}

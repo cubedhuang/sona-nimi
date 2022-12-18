@@ -7,7 +7,7 @@
 	} from '$lib/util';
 	import { language, sitelenMode } from '$lib/stores';
 
-	import Space from './Space.svelte';
+	import Space from '$lib/components/Space.svelte';
 
 	export let word: Word;
 
@@ -25,8 +25,8 @@
 			<p class="text-gray-500 dark:text-gray-400">
 				{word.usage_category} &middot;
 				{getWordRecognition(word)}%
-				{#if word.coined_era}
-					&middot; {word.coined_era}
+				{#if word.book !== 'none'}
+					&middot; {word.book}
 				{/if}
 				{#if word.coined_year}
 					&middot; {word.coined_year}

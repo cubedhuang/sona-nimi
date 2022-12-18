@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { Compound } from '$lib/types';
 
-	import Space from './Space.svelte';
+	import Space from '$lib/components/Space.svelte';
 
 	export let compound: Compound;
 

@@ -3,7 +3,7 @@
 
 	import type { Compound } from '$lib/types';
 
-	import X from './X.svelte';
+	import X from '$lib/components/X.svelte';
 
 	export let compound: Compound | null;
 </script>
@@ -19,8 +19,8 @@
 				<h2 class="text-2xl font-bold">{compound.compound}</h2>
 
 				<button
-					class="ml-auto p-1 rounded-lg hocus:bg-gray-200 focus:outline-none transition-colors
-						dark:hocus:bg-gray-900"
+					class="ml-auto p-1 rounded-lg border border-gray-200 hocus:border-gray-400 focus:outline-none transition-colors
+							dark:border-gray-800 dark:hocus:border-gray-600"
 					on:click={() => {
 						compound = null;
 					}}
