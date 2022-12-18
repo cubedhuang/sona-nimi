@@ -112,7 +112,6 @@
 <svelte:body
 	on:keypress={e => {
 		if (document.activeElement !== searchBar) {
-			console.log(e);
 			searchBar.focus();
 		}
 	}}
