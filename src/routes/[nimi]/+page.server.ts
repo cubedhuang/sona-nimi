@@ -1,5 +1,7 @@
 import { error } from '@sveltejs/kit';
+import { overrides } from '$lib/overrides';
 import type { JasimaData } from '$lib/types';
+import { applyOverrides } from '$lib/util';
 
 import type { PageServerLoad } from './$types';
 
@@ -13,6 +15,8 @@ export const load: PageServerLoad = async ({ fetch, params }) => {
 	const word = data.data[params.nimi];
 
 	if (!word) throw error(404, 'Not Found');
+
+	applyOverrides(word, overrides);
 
 	return word;
 };
