@@ -1,6 +1,8 @@
 <script lang="ts">
 	import '../app.css';
 
+	import { fly } from 'svelte/transition';
+
 	import { page } from '$app/stores';
 	import { darkMode } from '$lib/stores';
 
@@ -11,30 +13,84 @@
 	];
 
 	const commonClasses =
-		'p-2 rounded-lg sm:rounded-t-none border sm:border-t-0 border-gray-200 dark:border-gray-800 transition-colors';
+		'p-2 rounded-b-lg border border-t-0 border-gray-200 dark:border-gray-800 transition-colors';
 	const hoverableClasses =
 		'focus:outline-none hocus:border-gray-400 dark:hocus:border-gray-700';
+
+	let opened = false;
 </script>
 
-<div class="px-8 lg:px-16 max-w-screen-2xl m-auto font-text">
-	<nav class="flex flex-wrap gap-2 pt-4 sm:pt-0">
-		{#each routes as route}
-			{#if $page.url.pathname === route.href}
-				<span
-					class="{commonClasses} text-gray-500 dark:text-gray-400 cursor-default"
-				>
-					{route.name}
-				</span>
-			{:else}
-				<a href={route.href} class="{commonClasses} {hoverableClasses}">
-					{route.name}
-				</a>
-			{/if}
-		{/each}
+<svelte:window
+	on:click={() => {
+		opened = false;
+	}}
+	on:touchstart|passive={() => {
+		opened = false;
+	}}
+/>
 
-		<label
-			class="{commonClasses} {hoverableClasses} sm:py-0 sm:ml-auto grid place-items-center cursor-pointer"
-		>
+<div class="px-8 lg:px-16 max-w-screen-2xl m-auto font-text">
+	<nav class="flex flex-wrap gap-2 pt-0">
+		<div class="hidden sm:contents">
+			{#each routes as route}
+				{#if $page.url.pathname === route.href}
+					<span
+						class="{commonClasses} text-gray-500 dark:text-gray-400 cursor-default"
+					>
+						{route.name}
+					</span>
+				{:else}
+					<a href={route.href} class="{commonClasses} {hoverableClasses}">
+						{route.name}
+					</a>
+				{/if}
+			{/each}
+		</div>
+
+		<div class="relative sm:hidden">
+			<button
+				on:click|stopPropagation={() => {
+					opened = !opened;
+				}}
+				on:touchstart|passive|stopPropagation
+				class="{commonClasses} {hoverableClasses} cursor-pointer"
+			>
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					viewBox="0 0 24 24"
+					fill="currentColor"
+					class="w-6 h-6"
+				>
+					<path
+						fill-rule="evenodd"
+						d="M3 6.75A.75.75 0 013.75 6h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 6.75zM3 12a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 12zm0 5.25a.75.75 0 01.75-.75H12a.75.75 0 010 1.5H3.75a.75.75 0 01-.75-.75z"
+						clip-rule="evenodd"
+					/>
+				</svg>
+			</button>
+
+			{#if opened}
+				<div
+					transition:fly={{ y: 12, duration: 300 }}
+					class="absolute top-full mt-2 flex flex-col bg-white border border-gray-200 divide-y divide-gray-200 rounded-lg shadow-lg
+						dark:bg-black dark:border-gray-800 dark:divide-gray-800"
+				>
+					{#each routes as route}
+						{#if $page.url.pathname === route.href}
+							<span class="p-2 text-gray-500 dark:text-gray-400 cursor-default">
+								{route.name}
+							</span>
+						{:else}
+							<a href={route.href} class="p-2">
+								{route.name}
+							</a>
+						{/if}
+					{/each}
+				</div>
+			{/if}
+		</div>
+
+		<label class="{commonClasses} {hoverableClasses} ml-auto cursor-pointer">
 			<input type="checkbox" class="hidden" bind:checked={$darkMode} />
 
 			{#if $darkMode}
@@ -71,7 +127,7 @@
 		</label>
 	</nav>
 
-	<div class="pt-8 pb-24" data-sveltekit-preload-data="hover">
+	<div class="pt-4 sm:pt-8 pb-24" data-sveltekit-preload-data="hover">
 		<slot />
 	</div>
 </div>
