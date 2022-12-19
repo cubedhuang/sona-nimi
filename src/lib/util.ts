@@ -62,4 +62,3 @@ export function getWordRecognition(word: Word) {
 
 	return Number(word.recognition[latest]);
 }
-
