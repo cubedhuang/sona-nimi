@@ -1,12 +1,9 @@
+import type { JasimaData } from '$lib/types';
+
 import type { RequestHandler } from './$types';
 
-export const prerendered = true;
-
 export const GET: RequestHandler = async ({ fetch }) => {
-	const data = await fetch(
-		'https://lipu-linku.github.io/jasima/data.json'
-	).then(res => res.json());
-
+	const data: JasimaData = await fetch('/data').then(res => res.json());
 	const words = Object.keys(data.data);
 
 	return new Response(render(words), {
@@ -23,5 +20,4 @@ const render = (words: string[]) =>
 <url><loc>https://nimi.li/about</loc></url>
 <url><loc>https://nimi.li/compounds</loc></url>
 ${words.map(word => `<url><loc>https://nimi.li/${word}</loc></url>`).join('')}
-</urlset>
-`;
+</urlset>`;

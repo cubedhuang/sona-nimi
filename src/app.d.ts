@@ -4,6 +4,10 @@
 declare namespace App {
 	// interface Locals {}
 	// interface PageData {}
-	// interface Error {}
+
+	interface Error {
+		closest?: string[];
+	}
+
 	// interface Platform {}
 }
