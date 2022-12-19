@@ -85,4 +85,12 @@
 	h6 {
 		@apply font-display;
 	}
+
+	.no-transition {
+		transition: none !important;
+	}
+
+	.no-transition * {
+		transition: none !important;
+	}
 }

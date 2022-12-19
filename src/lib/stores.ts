@@ -29,7 +29,15 @@ if (browser) {
 	darkMode.subscribe(value => {
 		localStorage.setItem('darkMode', value.toString());
 
+		if (document.documentElement.classList.contains('dark') === value) return;
+
+		document.documentElement.classList.add('no-transition');
 		document.documentElement.classList.toggle('dark', value);
+
+		// Force a reflow to make sure the transition is triggered
+		document.documentElement.offsetWidth;
+
+		document.documentElement.classList.remove('no-transition');
 	});
 }
 
