@@ -1,9 +1,9 @@
-import type { JasimaData } from '$lib/types';
+import type { Linku } from '$lib/types';
 
 import type { RequestHandler } from './$types';
 
 export const GET: RequestHandler = async ({ fetch }) => {
-	const data: JasimaData = await fetch('/data').then(res => res.json());
+	const data: Linku = await fetch('/data').then(res => res.json());
 	const words = Object.keys(data.data);
 
 	return new Response(render(words), {

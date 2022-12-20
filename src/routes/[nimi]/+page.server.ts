@@ -1,5 +1,5 @@
 import { error } from '@sveltejs/kit';
-import type { JasimaData } from '$lib/types';
+import type { Linku } from '$lib/types';
 import { distance } from 'fastest-levenshtein';
 
 import type { PageServerLoad } from './$types';
@@ -7,7 +7,7 @@ import type { PageServerLoad } from './$types';
 export const prerender = 'auto';
 
 export const load: PageServerLoad = async ({ fetch, params }) => {
-	const data: JasimaData = await fetch('/data').then(res => res.json());
+	const data: Linku = await fetch('/data').then(res => res.json());
 
 	const word = data.data[params.nimi];
 

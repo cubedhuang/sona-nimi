@@ -8,7 +8,7 @@ export type UsageCategory =
 export type BookName = 'pu' | 'ku suli' | 'ku lili' | 'none';
 export type CoinedEra = 'pre-pu' | 'post-pu' | 'post-ku';
 
-export interface JasimaData {
+export interface Linku {
 	languages: Record<string, Language>;
 	credits: Record<string, Credit>;
 	data: Record<string, Word>;
