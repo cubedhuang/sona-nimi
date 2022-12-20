@@ -18,6 +18,7 @@ export const newWords: Word[] = [
 			en: 'to gaslight, to deceive into believing a lie; the act of gaslighting'
 		},
 		book: 'none',
+		coined_era: 'post-ku',
 		recognition: { '2022-08': '0' },
 		usage_category: 'obscure',
 		creator: 'waso Wen',

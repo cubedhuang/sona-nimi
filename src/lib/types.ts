@@ -6,6 +6,7 @@ export type UsageCategory =
 	| 'widespread'
 	| 'core';
 export type BookName = 'pu' | 'ku suli' | 'ku lili' | 'none';
+export type CoinedEra = 'pre-pu' | 'post-pu' | 'post-ku';
 
 export interface JasimaData {
 	languages: Record<string, Language>;
@@ -65,7 +66,7 @@ export interface Word {
 	 */
 	audio?: Record<string, string>;
 	coined_year?: string;
-	coined_era?: string;
+	coined_era?: CoinedEra;
 	usage_category: UsageCategory;
 	source_language?: string;
 	etymology?: string;

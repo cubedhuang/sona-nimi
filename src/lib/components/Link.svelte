@@ -4,7 +4,7 @@
 
 <a
 	{href}
-	target={href.startsWith('/') ? undefined : '_blank'}
+	target={href.startsWith('/') || href.startsWith('#') ? undefined : '_blank'}
 	rel="noopener noreferrer"
 	class="text-blue-500 hocus:text-blue-600 transition-colors"
 	on:click
