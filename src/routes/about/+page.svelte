@@ -32,7 +32,7 @@
 </p>
 
 {#if tokiPona}
-	<h1 class="mt-4 text-4xl font-bold">sona &ndash; nimi.li</h1>
+	<h1 class="mt-4 text-4xl">sona &ndash; nimi.li</h1>
 
 	<p class="mt-2">
 		mi jan Tani li pali e ni. jan ale li ken
@@ -66,7 +66,7 @@
 		</li>
 	</ul>
 
-	<h2 class="mt-4 text-3xl font-bold">lipu ni</h2>
+	<h2 class="mt-4 text-3xl">lipu ni</h2>
 
 	<p class="mt-2">
 		mi pali e lipu ni kepeken
@@ -92,7 +92,7 @@
 		</li>
 	</ul>
 {:else}
-	<h1 class="mt-4 text-4xl font-bold">about &ndash; nimi.li</h1>
+	<h1 class="mt-4 text-4xl">about &ndash; nimi.li</h1>
 
 	<p class="mt-2">
 		This project was made by me, Dani. It's
@@ -130,7 +130,7 @@
 		</li>
 	</ul>
 
-	<h2 class="mt-4 text-3xl font-bold">this website</h2>
+	<h2 class="mt-4 text-3xl">this website</h2>
 
 	<p class="mt-2">
 		This website was built with

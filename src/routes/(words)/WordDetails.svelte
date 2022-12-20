@@ -24,7 +24,7 @@
 	{#key word.word}
 		<div class="details" transition:fly={{ y: 24, duration: 300 }}>
 			<div class="flex items-end">
-				<h2 class="text-2xl font-bold">{word.word}</h2>
+				<h2 class="text-2xl">{word.word}</h2>
 
 				<div class="ml-auto flex items-center gap-2">
 					<a href="/{word.word}" class="px-2 py-1 interactable"> more </a>
@@ -80,7 +80,7 @@
 			{/if}
 
 			{#if word.creator || word.etymology}
-				<h3 class="mt-2 text-lg font-bold">origin</h3>
+				<h3 class="mt-2 text-lg">origin</h3>
 
 				{#if word.etymology}
 					<p>
@@ -97,7 +97,7 @@
 			{/if}
 
 			{#if word.sitelen_pona}
-				<h3 class="mt-2 text-lg font-bold">sitelen pona</h3>
+				<h3 class="mt-2 text-lg">sitelen pona</h3>
 
 				<span class="font-medium font-pona text-4xl">
 					{word.sitelen_pona}
@@ -111,7 +111,7 @@
 			{/if}
 
 			{#if word.sitelen_sitelen}
-				<h3 class="mt-2 text-lg font-bold">sitelen sitelen</h3>
+				<h3 class="mt-2 text-lg">sitelen sitelen</h3>
 
 				<img
 					src={word.sitelen_sitelen}
@@ -121,7 +121,7 @@
 			{/if}
 
 			{#if word.sitelen_emosi}
-				<h3 class="mt-2 text-lg font-bold">sitelen emosi</h3>
+				<h3 class="mt-2 text-lg">sitelen emosi</h3>
 
 				<p class="text-3xl">
 					{word.sitelen_emosi}

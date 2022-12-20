@@ -16,7 +16,7 @@
 <Space on:click id={compound.compound}>
 	<div class="flex gap-2 justify-between">
 		<div>
-			<h2 class="text-xl font-bold">{compound.compound}</h2>
+			<h2 class="text-xl">{compound.compound}</h2>
 
 			<p class="faded">{uses[0][1]}%</p>
 

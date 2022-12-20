@@ -20,7 +20,7 @@
 <Space on:click id={word.word}>
 	<div class="flex gap-2 justify-between">
 		<div>
-			<h2 class="text-xl font-bold">{word.word}</h2>
+			<h2 class="text-xl">{word.word}</h2>
 
 			<p class="faded">
 				{word.usage_category} &middot;

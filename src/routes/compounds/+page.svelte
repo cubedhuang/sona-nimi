@@ -108,7 +108,7 @@
 	<meta property="og:type" content="website" />
 </svelte:head>
 
-<h1 class="text-4xl font-bold">compounds &ndash; nimi.li</h1>
+<h1 class="text-4xl">compounds &ndash; nimi.li</h1>
 
 <p class="mt-2">
 	This is a list of popular compound phrases and interpretations of words in

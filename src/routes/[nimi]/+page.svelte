@@ -31,7 +31,7 @@
 {#if word}
 	<a href="/" class="inline-block px-2 py-1 interactable">back</a>
 
-	<h1 class="mt-4 text-4xl font-bold">{word.word}</h1>
+	<h1 class="mt-4 text-4xl">{word.word}</h1>
 
 	<p class="mt-2">
 		<span class="faded">Usage category:</span>
@@ -67,21 +67,21 @@
 	</p>
 
 	{#if word.commentary}
-		<h2 class="mt-4 text-2xl font-bold">commentary</h2>
+		<h2 class="mt-4 text-2xl">commentary</h2>
 		<p class="mt-2">
 			{word.commentary}
 		</p>
 	{/if}
 
 	{#if word.ku_data}
-		<h2 class="mt-4 text-2xl font-bold">lipu ku translations</h2>
+		<h2 class="mt-4 text-2xl">lipu ku translations</h2>
 		<p class="mt-2">
 			{word.ku_data}
 		</p>
 	{/if}
 
 	{#if word.see_also}
-		<h2 class="mt-4 text-2xl font-bold">related words</h2>
+		<h2 class="mt-4 text-2xl">related words</h2>
 
 		{@const words = word.see_also.split(', ')}
 
@@ -95,7 +95,7 @@
 	{/if}
 
 	{#if word.creator || word.etymology}
-		<h2 class="mt-4 text-2xl font-bold">origin</h2>
+		<h2 class="mt-4 text-2xl">origin</h2>
 
 		{#if word.etymology}
 			<p class="mt-2">
@@ -118,7 +118,7 @@
 	{/if}
 
 	{#if word.sitelen_pona}
-		<h2 class="mt-4 text-2xl font-bold">sitelen pona</h2>
+		<h2 class="mt-4 text-2xl">sitelen pona</h2>
 
 		<span class="mt-2 font-medium font-pona text-7xl">
 			{word.sitelen_pona}
@@ -133,7 +133,7 @@
 	{/if}
 
 	{#if word.sitelen_sitelen}
-		<h2 class="mt-4 text-2xl font-bold">sitelen sitelen</h2>
+		<h2 class="mt-4 text-2xl">sitelen sitelen</h2>
 
 		<img
 			src={word.sitelen_sitelen}
@@ -143,7 +143,7 @@
 	{/if}
 
 	{#if word.sitelen_emosi}
-		<h2 class="mt-4 text-2xl font-bold">sitelen emosi</h2>
+		<h2 class="mt-4 text-2xl">sitelen emosi</h2>
 
 		<p class="mt-2 text-6xl">
 			{word.sitelen_emosi}
@@ -153,7 +153,7 @@
 	{#if word.audio}
 		{@const audios = Object.entries(word.audio)}
 
-		<h2 class="mt-4 text-2xl font-bold">audio</h2>
+		<h2 class="mt-4 text-2xl">audio</h2>
 
 		{#each audios as [person, url] (url)}
 			<p>
@@ -170,7 +170,7 @@
 	{/if}
 
 	{#if word.luka_pona}
-		<h2 class="mt-4 text-2xl font-bold">luka pona</h2>
+		<h2 class="mt-4 text-2xl">luka pona</h2>
 
 		<p>
 			<Link href={word.luka_pona.gif}>luka pona gif</Link>

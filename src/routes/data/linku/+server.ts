@@ -4,7 +4,7 @@ import type { Linku } from '$lib/types';
 
 import type { RequestHandler } from './$types';
 
-export const GET: RequestHandler = async () => {
+export const GET: RequestHandler = async ({ fetch }) => {
 	const data = (await fetch(
 		'https://lipu-linku.github.io/jasima/data.json'
 	).then(res => res.json())) as Linku;

@@ -16,7 +16,7 @@
 			transition:fly={{ y: 24, duration: 300 }}
 		>
 			<div class="flex">
-				<h2 class="text-2xl font-bold">{compound.compound}</h2>
+				<h2 class="text-2xl">{compound.compound}</h2>
 
 				<button
 					class="ml-auto p-1 interactable"
