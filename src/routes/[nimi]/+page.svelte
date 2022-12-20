@@ -29,41 +29,35 @@
 </svelte:head>
 
 {#if word}
-	<a
-		href="/"
-		class="inline-block px-2 py-1 border border-gray-200 hocus:border-gray-400 rounded-lg transition-colors
-			dark:border-gray-800 dark:hocus:border-gray-700"
-	>
-		back
-	</a>
+	<a href="/" class="inline-block px-2 py-1 interactable">back</a>
 
 	<h1 class="mt-4 text-4xl font-bold">{word.word}</h1>
 
 	<p class="mt-2">
-		<span class="text-gray-500 dark:text-gray-400">Usage category:</span>
+		<span class="faded">Usage category:</span>
 		{word.usage_category}
 	</p>
 
 	<p class="mt-2">
-		<span class="text-gray-500 dark:text-gray-400">Recognition:</span>
+		<span class="faded">Recognition:</span>
 		{getWordRecognition(word)}%
 	</p>
 
 	<p class="mt-2">
-		<span class="text-gray-500 dark:text-gray-400">Book:</span>
+		<span class="faded">Book:</span>
 		{word.book}
 	</p>
 
 	{#if word.coined_era}
 		<p class="mt-2">
-			<span class="text-gray-500 dark:text-gray-400">Coined era:</span>
+			<span class="faded">Coined era:</span>
 			{word.coined_era}
 		</p>
 	{/if}
 
 	{#if word.coined_year}
 		<p class="mt-2">
-			<span class="text-gray-500 dark:text-gray-400">Coined year:</span>
+			<span class="faded">Coined year:</span>
 			{word.coined_year}
 		</p>
 	{/if}
@@ -105,19 +99,19 @@
 
 		{#if word.etymology}
 			<p class="mt-2">
-				<span class="text-gray-500 dark:text-gray-400">Source Language:</span>
+				<span class="faded">Source Language:</span>
 				{word.source_language}
 			</p>
 
 			<p class="mt-2">
-				<span class="text-gray-500 dark:text-gray-400">Etymology:</span>
+				<span class="faded">Etymology:</span>
 				{word.etymology}
 			</p>
 		{/if}
 
 		{#if word.creator}
 			<p class="mt-2">
-				<span class="text-gray-500 dark:text-gray-400">Creator(s):</span>
+				<span class="faded">Creator(s):</span>
 				{word.creator}
 			</p>
 		{/if}
@@ -132,7 +126,7 @@
 
 		{#if word.sitelen_pona_etymology}
 			<p class="mt-2">
-				<span class="text-gray-500 dark:text-gray-400">Etymology:</span>
+				<span class="faded">Etymology:</span>
 				{word.sitelen_pona_etymology}
 			</p>
 		{/if}

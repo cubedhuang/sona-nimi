@@ -24,8 +24,7 @@
 
 <p>
 	<button
-		class="px-2 py-1 border border-gray-200 hocus:border-gray-400 rounded-lg focus:outline-none transition-colors
-			dark:border-gray-800 dark:hocus:border-gray-600"
+		class="px-2 py-1 interactable"
 		on:click={() => (tokiPona = !tokiPona)}
 	>
 		{tokiPona ? 'o ante tawa toki Inli' : 'change to toki pona'}

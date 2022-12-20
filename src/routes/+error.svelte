@@ -25,11 +25,7 @@
 		<ul class="mt-2 flex flex-wrap gap-1">
 			{#each $page.error?.closest as word}
 				<li>
-					<a
-						href="/{word}"
-						class="inline-block px-2 py-1 border border-gray-200 hocus:border-gray-400 rounded-lg transition-colors
-							dark:border-gray-800 dark:hocus:border-gray-600"
-					>
+					<a href="/{word}" class="inline-block px-2 py-1 interactable">
 						{word}
 					</a>
 				</li>
@@ -38,11 +34,7 @@
 	{/if}
 
 	<p class="mt-6">
-		<a
-			href="/"
-			class="inline-block px-2 py-1 border border-gray-200 hocus:border-gray-400 rounded-lg transition-colors
-				dark:border-gray-800 dark:hocus:border-gray-600"
-		>
+		<a href="/" class="inline-block px-2 py-1 interactable">
 			o tawa e lipu suli
 		</a>
 	</p>

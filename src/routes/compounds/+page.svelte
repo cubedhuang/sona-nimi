@@ -143,7 +143,7 @@
 	/>
 </div>
 
-<p class="mt-2 text-gray-500 dark:text-gray-400">
+<p class="mt-2 faded">
 	{filteredCompounds.length} / {compounds.length}
 </p>
 

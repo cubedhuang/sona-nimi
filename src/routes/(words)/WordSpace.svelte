@@ -22,7 +22,7 @@
 		<div>
 			<h2 class="text-xl font-bold">{word.word}</h2>
 
-			<p class="text-gray-500 dark:text-gray-400">
+			<p class="faded">
 				{word.usage_category} &middot;
 				{getWordRecognition(word)}%
 				{#if word.book !== 'none'}

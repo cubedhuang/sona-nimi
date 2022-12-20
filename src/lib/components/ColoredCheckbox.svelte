@@ -5,8 +5,7 @@
 </script>
 
 <button
-	class="flex items-center border border-gray-200 rounded-lg overflow-hidden select-none hocus:border-gray-400 focus:outline-none transition-colors
-		dark:border-gray-800 dark:hocus:border-gray-700"
+	class="flex items-center interactable"
 	on:click={() => (checked = !checked)}
 	on:keypress|stopPropagation
 	role="checkbox"

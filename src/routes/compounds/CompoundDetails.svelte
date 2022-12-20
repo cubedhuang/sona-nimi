@@ -12,16 +12,14 @@
 {#if compound}
 	{#key compound.compound}
 		<div
-			class="fixed bottom-0 right-0 left-0 md:bottom-4 md:right-4 md:left-auto md:w-[36rem] max-h-80 md:max-h-[40rem] p-6 overflow-y-auto bg-white border-t md:border border-gray-400 md:rounded-lg shadow-lg
-				dark:bg-black dark:border-gray-800"
+			class="details top-auto max-h-80 md:max-h-[40rem]"
 			transition:fly={{ y: 24, duration: 300 }}
 		>
 			<div class="flex">
 				<h2 class="text-2xl font-bold">{compound.compound}</h2>
 
 				<button
-					class="ml-auto p-1 rounded-lg border border-gray-200 hocus:border-gray-400 focus:outline-none transition-colors
-							dark:border-gray-800 dark:hocus:border-gray-600"
+					class="ml-auto p-1 interactable"
 					on:click={() => {
 						compound = null;
 					}}
@@ -46,7 +44,7 @@
 				{#each Object.entries(compound.uses) as [use, count]}
 					<p>
 						{use}
-						<span class="text-gray-500 dark:text-gray-400">
+						<span class="faded">
 							&middot; {count}%
 						</span>
 					</p>

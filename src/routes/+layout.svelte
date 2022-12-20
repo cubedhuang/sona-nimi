@@ -34,9 +34,7 @@
 		<div class="hidden sm:contents">
 			{#each routes as route}
 				{#if $page.url.pathname === route.href}
-					<span
-						class="{commonClasses} text-gray-500 dark:text-gray-400 cursor-default"
-					>
+					<span class="{commonClasses} faded cursor-default">
 						{route.name}
 					</span>
 				{:else}
@@ -77,7 +75,7 @@
 				>
 					{#each routes as route}
 						{#if $page.url.pathname === route.href}
-							<span class="p-2 text-gray-500 dark:text-gray-400 cursor-default">
+							<span class="p-2 faded cursor-default">
 								{route.name}
 							</span>
 						{:else}

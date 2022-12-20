@@ -22,26 +22,15 @@
 
 {#if word}
 	{#key word.word}
-		<div
-			class="fixed bottom-0 right-0 left-0 top-1/3 md:bottom-4 md:right-4 md:left-auto md:top-auto md:w-[36rem] md:max-h-[40rem] p-6 overflow-y-auto bg-white border-t md:border border-gray-400 md:rounded-lg shadow-lg
-				dark:bg-black dark:border-gray-800"
-			transition:fly={{ y: 24, duration: 300 }}
-		>
+		<div class="details" transition:fly={{ y: 24, duration: 300 }}>
 			<div class="flex items-end">
 				<h2 class="text-2xl font-bold">{word.word}</h2>
 
 				<div class="ml-auto flex items-center gap-2">
-					<a
-						href="/{word.word}"
-						class="px-2 py-1 border border-gray-200 hocus:border-gray-400 rounded-lg focus:outline-none transition-colors
-							dark:border-gray-800 dark:hocus:border-gray-600"
-					>
-						more
-					</a>
+					<a href="/{word.word}" class="px-2 py-1 interactable"> more </a>
 
 					<button
-						class="p-1 rounded-lg border border-gray-200 hocus:border-gray-400 focus:outline-none transition-colors
-							dark:border-gray-800 dark:hocus:border-gray-600"
+						class="p-1 interactable"
 						on:click={() => {
 							word = null;
 						}}
@@ -51,7 +40,7 @@
 				</div>
 			</div>
 
-			<p class="text-gray-500 dark:text-gray-400">
+			<p class="faded">
 				{word.usage_category} &middot;
 				{getWordRecognition(word)}%
 				{#if word.book !== 'none'}
@@ -140,7 +129,7 @@
 			{/if}
 
 			{#if word.commentary}
-				<p class="mt-2 text-gray-500 dark:text-gray-400">
+				<p class="mt-2 faded">
 					{word.commentary}
 				</p>
 			{/if}

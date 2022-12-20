@@ -21,14 +21,12 @@
 		{placeholder}
 		bind:value
 		bind:this={searchBar}
-		class="p-2 border border-gray-200 rounded-lg focus:outline-none focus:border-gray-400 transition-colors max-w-full w-96
-			dark:bg-black dark:border-gray-800 dark:focus:border-gray-700"
+		class="p-2 max-w-full w-96 interactable"
 	/>
 
 	{#if value}
 		<button
-			class="p-2 rounded-lg border border-gray-200 hocus:border-gray-400 focus:outline-none transition-colors
-				dark:border-gray-800 dark:hocus:border-gray-600"
+			class="p-2 interactable"
 			on:click={() => {
 				value = '';
 				searchBar.focus();
