@@ -3,6 +3,7 @@
 
 	import type { Compound } from '$lib/types';
 
+	import Link from '$lib/components/Link.svelte';
 	import X from '$lib/components/X.svelte';
 
 	export let compound: Compound | null;
@@ -37,7 +38,7 @@
 				see
 				{#each compound.compound.split(' ') as word, i (word)}
 					{i !== 0 ? ',' : ''}
-					<a href="/{word}" class="text-blue-500">{word}</a>
+					<Link href="/{word}">{word}</Link>
 				{/each}
 			</p>
 

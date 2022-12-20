@@ -3,6 +3,7 @@
 
 	import { getWordDefinition, getWordRecognition } from '$lib/util';
 	import { language } from '$lib/stores';
+	import Link from '$lib/components/Link.svelte';
 
 	export let data: PageData;
 
@@ -10,7 +11,7 @@
 </script>
 
 <svelte:head>
-	<title>{word.word} &ndash; sona nimi</title>
+	<title>{word.word} &ndash; nimi.li</title>
 
 	<meta name="author" content="jan Tani" />
 	<meta name="description" content={word.def.en} />
@@ -23,14 +24,14 @@
 	<meta property="og:author" content="jan Tani" />
 	<meta property="og:description" content={word.def.en} />
 	<meta property="og:url" content="https://nimi.li/{word.word}" />
-	<meta property="og:site_name" content="sona nimi" />
+	<meta property="og:site_name" content="nimi.li" />
 	<meta property="og:type" content="website" />
 </svelte:head>
 
 {#if word}
 	<a
 		href="/"
-		class="inline-block px-2 py-1 border border-gray-200 hocus:border-gray-400 rounded-lg transition-colors text-lg
+		class="inline-block px-2 py-1 border border-gray-200 hocus:border-gray-400 rounded-lg transition-colors
 			dark:border-gray-800 dark:hocus:border-gray-700"
 	>
 		back
@@ -93,7 +94,7 @@
 		<p class="mt-2">
 			{#each words as other, i (other)}
 				<!-- Formatting here is weird to prevent additional spaces between commas -->
-				<a href="/{other}" class="text-blue-500">{other}</a
+				<Link href="/{other}">{other}</Link
 				>{#if i < words.length - 1}{', '}{/if}
 			{/each}
 		</p>
@@ -162,19 +163,14 @@
 
 		{#each audios as [person, url] (url)}
 			<p>
-				<a
-					href={url}
-					target="_blank"
-					rel="noopener noreferrer"
-					class="text-blue-500"
-				>
+				<Link href={url}>
 					Recording by {person
 						.split('_')
 						.map((name, i) =>
 							i === 0 ? name : name[0].toUpperCase() + name.slice(1)
 						)
 						.join(' ')}
-				</a>
+				</Link>
 			</p>
 		{/each}
 	{/if}
@@ -183,20 +179,10 @@
 		<h2 class="mt-4 text-2xl font-bold">luka pona</h2>
 
 		<p>
-			<a
-				href={word.luka_pona.gif}
-				target="_blank"
-				rel="noopener noreferrer"
-				class="text-blue-500">luka pona gif</a
-			>
+			<Link href={word.luka_pona.gif}>luka pona gif</Link>
 		</p>
 		<p>
-			<a
-				href={word.luka_pona.mp4}
-				target="_blank"
-				rel="noopener noreferrer"
-				class="text-blue-500">luka pona mp4</a
-			>
+			<Link href={word.luka_pona.mp4}>luka pona mp4</Link>
 		</p>
 	{/if}
 {/if}

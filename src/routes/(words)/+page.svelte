@@ -94,7 +94,7 @@
 </script>
 
 <svelte:head>
-	<title>sona nimi</title>
+	<title>nimi.li</title>
 
 	<meta name="author" content="jan Tani" />
 	<meta name="description" content="interactive toki pona dictionary" />
@@ -103,18 +103,18 @@
 		content="toki pona, toki pona dictionary, dictionary, nimi"
 	/>
 
-	<meta property="og:title" content="sona nimi" />
+	<meta property="og:title" content="nimi.li" />
 	<meta property="og:author" content="jan Tani" />
 	<meta property="og:description" content="interactive toki pona dictionary" />
 	<meta property="og:url" content="https://nimi.li/" />
-	<meta property="og:site_name" content="sona nimi" />
+	<meta property="og:site_name" content="nimi.li" />
 	<meta property="og:type" content="website" />
 </svelte:head>
 
-<h1 class="text-4xl font-bold">sona nimi</h1>
+<h1 class="text-4xl font-bold">nimi.li</h1>
 
-<p class="mt-4">
-	<span class="font-bold">sona nimi</span> is an interactive toki pona dictionary.
+<p class="mt-2">
+	<span class="font-bold">nimi.li</span> is an interactive toki pona dictionary.
 	Click on a word to read more!
 </p>
 

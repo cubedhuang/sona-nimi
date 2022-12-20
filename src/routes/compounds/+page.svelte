@@ -91,7 +91,7 @@
 </script>
 
 <svelte:head>
-	<title>compounds &ndash; sona nimi</title>
+	<title>compounds &ndash; nimi.li</title>
 
 	<meta name="author" content="jan Tani" />
 	<meta name="description" content="interactive toki pona dictionary" />
@@ -100,17 +100,17 @@
 		content="toki pona, toki pona dictionary, dictionary, nimi, compounds, compound expressions"
 	/>
 
-	<meta property="og:title" content="compounds – sona nimi" />
+	<meta property="og:title" content="compounds – nimi.li" />
 	<meta property="og:author" content="jan Tani" />
 	<meta property="og:description" content="interactive toki pona dictionary" />
 	<meta property="og:url" content="https://nimi.li/compounds" />
-	<meta property="og:site_name" content="sona nimi" />
+	<meta property="og:site_name" content="nimi.li" />
 	<meta property="og:type" content="website" />
 </svelte:head>
 
-<h1 class="text-4xl font-bold">compounds &ndash; sona nimi</h1>
+<h1 class="text-4xl font-bold">compounds &ndash; nimi.li</h1>
 
-<p class="mt-4">
+<p class="mt-2">
 	This is a list of popular compound phrases and interpretations of words in
 	toki pona. This is <span class="font-bold">not</span>
 	a list of definitions, just common ways people express their ideas! Click on an

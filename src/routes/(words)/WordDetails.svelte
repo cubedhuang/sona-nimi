@@ -10,6 +10,7 @@
 		getWordRecognition
 	} from '$lib/util';
 
+	import Link from '$lib/components/Link.svelte';
 	import X from '$lib/components/X.svelte';
 
 	const dispatch = createEventDispatcher<{
@@ -33,7 +34,7 @@
 					<a
 						href="/{word.word}"
 						class="px-2 py-1 border border-gray-200 hocus:border-gray-400 rounded-lg focus:outline-none transition-colors
-								dark:border-gray-800 dark:hocus:border-gray-600"
+							dark:border-gray-800 dark:hocus:border-gray-600"
 					>
 						more
 					</a>
@@ -79,12 +80,11 @@
 					{#each words as other, i (other)}
 						<!-- Formatting here is weird to prevent additional spaces between commas -->
 						{i !== 0 ? ',' : ''}
-						<a
+						<Link
 							href="#{other}"
-							class="text-blue-500"
 							on:click={() => {
 								dispatch('refer', other);
-							}}>{other}</a
+							}}>{other}</Link
 						>
 					{/each}
 				</p>
