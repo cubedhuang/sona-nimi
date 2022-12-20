@@ -35,7 +35,7 @@ export interface Word {
 	def: Record<string, string>;
 	book: BookName;
 	commentary?: string;
-	sitelen_pona: string;
+	sitelen_pona?: string;
 	sitelen_pona_etymology?: string;
 
 	/**

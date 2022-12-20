@@ -1,5 +1,5 @@
 import { json } from '@sveltejs/kit';
-import { overrides } from '$lib/overrides';
+import { newWords, overrides } from '$lib/overrides';
 import type { JasimaData } from '$lib/types';
 
 import type { RequestHandler } from './$types';
@@ -22,6 +22,10 @@ export const GET: RequestHandler = async () => {
 				}
 			};
 		}
+	}
+
+	for (const word of newWords) {
+		data.data[word.word] = word;
 	}
 
 	return json(data);
