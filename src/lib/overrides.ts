@@ -20,6 +20,7 @@ export const newWords: Word[] = [
 		book: 'none',
 		recognition: { '2022-08': '0' },
 		usage_category: 'obscure',
+		creator: 'waso Wen',
 		commentary:
 			'mi konsuno e sina? ni li lon ala. jan pona sina li toki e nimi tawa sina anu seme?',
 		etymology: 'kon + suno, calque of English gaslight',
