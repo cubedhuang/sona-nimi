@@ -21,7 +21,7 @@
 		{placeholder}
 		bind:value
 		bind:this={searchBar}
-		class="p-2 max-w-full w-96 interactable"
+		class="p-2 max-w-full w-96 interactable cursor-auto"
 	/>
 
 	{#if value}
