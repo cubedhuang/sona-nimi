@@ -29,7 +29,7 @@
 			</div>
 
 			<p class="font-pona text-4xl">
-				{compound.glyphs.join(' ') || compound.compound}
+				{compound.glyphs?.join(' ') || compound.compound}
 			</p>
 
 			<p>

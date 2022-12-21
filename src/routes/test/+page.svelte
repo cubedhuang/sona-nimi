@@ -95,8 +95,8 @@
 	$: compounds = Object.values(data.compounds);
 
 	$: glyphFrequencies = compounds.reduce((acc, compound) => {
-		acc[compound.glyphs.length] ??= 0;
-		acc[compound.glyphs.length]++;
+		acc[compound.glyphs?.length ?? 0] ??= 0;
+		acc[compound.glyphs?.length ?? 0]++;
 		return acc;
 	}, [] as Record<number, number>);
 

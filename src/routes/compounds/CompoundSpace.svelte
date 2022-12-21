@@ -25,7 +25,7 @@
 			</p>
 		</div>
 
-		{#if compound.glyphs.length}
+		{#if compound.glyphs?.length}
 			<div class="flex flex-col items-end text-right">
 				{#each compound.glyphs as glyph}
 					<p class="font-pona text-4xl whitespace-nowrap">{glyph}</p>

@@ -1,5 +1,5 @@
 import { json } from '@sveltejs/kit';
-import type { CompoundData } from '$lib/types';
+import type { Compound, CompoundData } from '$lib/types';
 
 import type { RequestHandler } from './$types';
 
@@ -43,7 +43,11 @@ export const GET: RequestHandler = async ({ fetch }) => {
 				matches = [compound];
 			}
 
-			return [compound, { compound, uses, glyphs: matches }];
+			const data: [string, Compound] = [compound, { compound, uses }];
+
+			if (matches.length) data[1].glyphs = matches;
+
+			return data;
 		})
 	);
 
