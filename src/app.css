@@ -58,6 +58,7 @@
 		--scrollbar-thumb: #0004;
 
 		scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-bg);
+		scrollbar-gutter: stable;
 	}
 
 	::-webkit-scrollbar {
