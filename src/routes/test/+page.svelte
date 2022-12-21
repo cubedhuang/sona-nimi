@@ -7,7 +7,7 @@
 
 	import Link from '$lib/components/Link.svelte';
 	import X from '$lib/components/X.svelte';
-	import { bookColors, categoryColors } from '$lib/util';
+	import { categoryColors } from '$lib/util';
 
 	export let data: PageData;
 
@@ -158,8 +158,8 @@
 	</div>
 {/if}
 
-<h2 class="mt-4 text-3xl">
-	linku data
+<h2 class="mt-4 text-3xl" data-sveltekit-preload-data="off">
+	<Link href="/data/compounds">linku data</Link>
 	<span class="font-text text-sm faded">
 		({words.length})
 	</span>
@@ -284,8 +284,8 @@
 	</tbody>
 </table>
 
-<h2 class="mt-4 text-3xl">
-	compounds
+<h2 class="mt-4 text-3xl" data-sveltekit-preload-data="off">
+	<Link href="/data/compounds">compounds</Link>
 	<span class="font-text text-sm faded">
 		({compounds.length})
 	</span>
