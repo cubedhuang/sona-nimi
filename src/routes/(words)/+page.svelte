@@ -175,8 +175,8 @@
 {#if missingDefinitions}
 	<p class="mt-4">
 		<span class="font-bold">o lukin a!</span>
-		nimi li jo ala e nasin pi {data.languages[$language].name_toki_pona}. nimi
-		ni li kepeken e toki Inli.
+		nimi ale ala li jo ala e nasin pi
+		{data.languages[$language].name_toki_pona}. nimi ni li kepeken e toki Inli.
 	</p>
 	<p>
 		<span class="font-bold">Warning!</span>
