@@ -2,8 +2,6 @@ import type { Linku } from '$lib/types';
 
 import type { RequestHandler } from './$types';
 
-export const prerender = true;
-
 export const GET: RequestHandler = async ({ fetch }) => {
 	const data: Linku = await fetch('/data/linku').then(res => res.json());
 	const words = Object.keys(data.data);

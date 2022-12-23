@@ -4,8 +4,6 @@ import type { Linku } from '$lib/types';
 
 import type { RequestHandler } from './$types';
 
-export const prerender = true;
-
 export const GET: RequestHandler = async ({ fetch }) => {
 	const data = (await fetch(
 		'https://lipu-linku.github.io/jasima/data.json'
