@@ -159,7 +159,7 @@
 {/if}
 
 <h2 class="mt-4 text-3xl" data-sveltekit-preload-data="off">
-	<Link href="/data/compounds">linku data</Link>
+	<Link href="/data/linku">linku data</Link>
 	<span class="font-text text-sm faded">
 		({words.length})
 	</span>
