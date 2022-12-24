@@ -19,6 +19,7 @@ export const newWords: Word[] = [
 			tok: 'toki li lon ala; jan li toki pi lon ala'
 		},
 		book: 'none',
+		coined_year: '2022',
 		coined_era: 'post-ku',
 		recognition: null,
 		usage_category: 'obscure',
@@ -34,6 +35,7 @@ export const newWords: Word[] = [
 			en: 'at least, definitely; yet'
 		},
 		book: 'none',
+		coined_year: '2022',
 		coined_era: 'post-ku',
 		recognition: null,
 		usage_category: 'obscure',
@@ -49,6 +51,7 @@ export const newWords: Word[] = [
 			en: 'dream; trance, hypnosis, hallucination; illusion, fantasy, imaginary; narrative, story, myth'
 		},
 		book: 'none',
+		coined_year: '2022',
 		coined_era: 'post-ku',
 		recognition: null,
 		usage_category: 'obscure',
@@ -64,6 +67,7 @@ export const newWords: Word[] = [
 			en: 'present state, unchanged, unaltered, unaffected, instinct, habit'
 		},
 		book: 'none',
+		coined_year: '2022',
 		coined_era: 'post-ku',
 		recognition: null,
 		usage_category: 'obscure',
@@ -79,6 +83,7 @@ export const newWords: Word[] = [
 			en: '(between subject phrase and predicate phrase; introduces pre-predicate phrase)'
 		},
 		book: 'none',
+		coined_year: '2022',
 		coined_era: 'post-ku',
 		recognition: null,
 		usage_category: 'obscure',
