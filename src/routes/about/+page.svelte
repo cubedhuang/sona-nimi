@@ -69,12 +69,12 @@
 	<h2 class="mt-4 text-3xl">lipu ni</h2>
 
 	<p class="mt-2">
-		mi pali e lipu ni kepeken
-		<Link href="https://kit.svelte.dev">ilo SvelteKit</Link>
-		kepeken
-		<Link href="https://www.typescriptlang.org">ilo TypeScript</Link>
-		kepeken
-		<Link href="https://tailwindcss.com">ilo TailwindCSS</Link>.
+		mi pali e lipu ni kepeken ilo
+		<Link href="https://kit.svelte.dev">SvelteKit</Link>
+		kepeken ilo
+		<Link href="https://www.typescriptlang.org">TypeScript</Link>
+		kepeken ilo
+		<Link href="https://tailwindcss.com">TailwindCSS</Link>.
 	</p>
 
 	<p class="mt-2">
@@ -85,17 +85,24 @@
 
 	<ul class="mt-2 ml-4 list-disc">
 		<li>
-			<Link href="/jule">nimi jule</Link> li kepeken sona sin tan jan Powa.
+			nimi <Link href="/jule">jule</Link> li kepeken sona sin tan pilin Powa.
 		</li>
 		<li>
-			<Link href="/konsuno">nimi konsuno</Link> li sin.
+			jan lon ma lili li kepeken e nimi
+			<Link href="/inta">inta</Link>,
+			<Link href="/kana">kana</Link>,
+			<Link href="/sole">sole</Link>,
+			<Link href="/ta">ta</Link>. ni li sin tan pilin Powa.
+		</li>
+		<li>
+			nimi <Link href="/konsuno">konsuno</Link> li sin tawa musi.
 		</li>
 	</ul>
 {:else}
 	<h1 class="mt-4 text-4xl">about &ndash; nimi.li</h1>
 
 	<p class="mt-2">
-		This project was made by me, Dani. It's
+		This project was made by me, jan Tani. It's
 		<Link href="https://github.com/cubedhuang/sona-nimi">open source</Link>!
 	</p>
 
@@ -147,10 +154,18 @@
 	<ul class="mt-2 ml-4 list-disc">
 		<li>
 			The word <Link href="/jule">jule</Link> is now using an updated definition
-			from jan Powa, with added commentary.
+			from pilin Powa, with added commentary.
 		</li>
 		<li>
-			The word <Link href="/konsuno">konsuno</Link> was added.
+			A few words predominant in the ma lili community were added:
+			<Link href="/inta">inta</Link>,
+			<Link href="/kana">kana</Link>,
+			<Link href="/sole">sole</Link>, and
+			<Link href="/ta">ta</Link>.
+			<span class="italic">(Thanks pilin Powa!)</span>
+		</li>
+		<li>
+			The word <Link href="/konsuno">konsuno</Link> was added (as a joke).
 		</li>
 	</ul>
 {/if}
