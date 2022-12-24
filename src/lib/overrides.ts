@@ -15,7 +15,8 @@ export const newWords: Word[] = [
 	{
 		word: 'konsuno',
 		def: {
-			en: 'to gaslight, to deceive into believing a lie; the act of gaslighting'
+			en: 'to gaslight, to deceive into believing a lie; the act of gaslighting',
+			tok: 'toki li lon ala; jan li toki pi lon ala'
 		},
 		book: 'none',
 		coined_era: 'post-ku',
