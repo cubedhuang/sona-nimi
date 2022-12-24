@@ -20,7 +20,7 @@ export const newWords: Word[] = [
 		},
 		book: 'none',
 		coined_era: 'post-ku',
-		recognition: { '2022-08': '0' },
+		recognition: null,
 		usage_category: 'obscure',
 		creator: 'waso Wen',
 		commentary:
@@ -35,12 +35,12 @@ export const newWords: Word[] = [
 		},
 		book: 'none',
 		coined_era: 'post-ku',
-		recognition: { '2022-08': '0' },
+		recognition: null,
 		usage_category: 'obscure',
 		creator: 'pilin Powa',
 		commentary:
 			'Predominately present within the community ma lili. "Yet" is in the sense of "even so". "At least" denotes that the speaker knows for a fact one thing, but is unaware otherwise.',
-		etymology: 'ainda \'still, yet, even\'',
+		etymology: "ainda 'still, yet, even'",
 		source_language: 'Portuguese'
 	},
 	{
@@ -50,12 +50,12 @@ export const newWords: Word[] = [
 		},
 		book: 'none',
 		coined_era: 'post-ku',
-		recognition: { '2022-08': '0' },
+		recognition: null,
 		usage_category: 'obscure',
 		creator: 'pilin Powa',
 		commentary:
 			'Predominately present within the community ma lili. Serves as a non-deprecated, neutral-connotation, and polysemous variant of words like oni, powe, or jume.',
-		etymology: 'ಕನ kana \'dream\'',
+		etymology: "ಕನ kana 'dream'",
 		source_language: 'Tulu'
 	},
 	{
@@ -65,12 +65,12 @@ export const newWords: Word[] = [
 		},
 		book: 'none',
 		coined_era: 'post-ku',
-		recognition: { '2022-08': '0' },
+		recognition: null,
 		usage_category: 'obscure',
 		creator: 'waso Netun',
 		commentary:
 			'Predominately present within the community ma lili. May refer to a state prior to a kama.',
-		etymology: 'soler \'to use to, to tend to\'',
+		etymology: "soler 'to use to, to tend to'",
 		source_language: 'Spanish'
 	},
 	{
@@ -80,7 +80,7 @@ export const newWords: Word[] = [
 		},
 		book: 'none',
 		coined_era: 'post-ku',
-		recognition: { '2022-08': '0' },
+		recognition: null,
 		usage_category: 'obscure',
 		creator: 'pilin Powa',
 		commentary:

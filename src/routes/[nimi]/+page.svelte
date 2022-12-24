@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { PageData } from './$types';
 
-	import { getWordDefinition, getWordRecognition } from '$lib/util';
+	import { getWordDefinition, getWordDisplayRecognition } from '$lib/util';
 	import { language } from '$lib/stores';
 	import Link from '$lib/components/Link.svelte';
 
@@ -40,7 +40,7 @@
 
 	<p class="mt-2">
 		<span class="faded">Recognition:</span>
-		{getWordRecognition(word)}%
+		{getWordDisplayRecognition(word)}
 	</p>
 
 	<p class="mt-2">

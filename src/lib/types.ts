@@ -42,8 +42,11 @@ export interface Word {
 	/**
 	 * Maps from date to string of percentage used
 	 * @example { '2022-08': '99' }
+	 *
+	 * Linku never gives a null value here, but it's in the type so overrides
+	 * can be added without recognition being required.
 	 */
-	recognition: Record<string, string>;
+	recognition: Record<string, string> | null;
 
 	/**
 	 * Unicode

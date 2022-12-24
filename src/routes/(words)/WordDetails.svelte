@@ -7,7 +7,7 @@
 	import {
 		categoryColors,
 		getWordDefinition,
-		getWordRecognition
+		getWordDisplayRecognition
 	} from '$lib/util';
 
 	import Link from '$lib/components/Link.svelte';
@@ -42,7 +42,7 @@
 
 			<p class="faded">
 				{word.usage_category} &middot;
-				{getWordRecognition(word)}%
+				{getWordDisplayRecognition(word)}
 				{#if word.book !== 'none'}
 					&middot; {word.book}
 				{/if}

@@ -57,8 +57,16 @@ export function getWordDefinition(word: Word, language: string): string {
 }
 
 export function getWordRecognition(word: Word) {
+	if (word.recognition === null) return -1;
+
 	const dates = Object.keys(word.recognition).sort();
 	const latest = dates[dates.length - 1];
 
 	return Number(word.recognition[latest]);
+}
+
+export function getWordDisplayRecognition(word: Word) {
+	const recognition = getWordRecognition(word);
+	if (recognition === -1) return 'unknown';
+	return `${recognition}%`;
 }
