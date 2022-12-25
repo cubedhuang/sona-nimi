@@ -2,11 +2,11 @@ import type { CompoundData, Linku } from '$lib/types';
 
 import type { PageServerLoad } from './$types';
 
-export const load: PageServerLoad = async ({ fetch }) => {
+export const load = (async ({ fetch }) => {
 	return {
-		linku: (await fetch('/data/linku').then(res => res.json())) as Linku,
-		compounds: (await fetch('/data/compounds').then(res =>
+		linku: fetch('/data/linku').then(res => res.json()) as Promise<Linku>,
+		compounds: fetch('/data/compounds').then(res =>
 			res.json()
-		)) as CompoundData
+		) as Promise<CompoundData>
 	};
-};
+}) satisfies PageServerLoad;

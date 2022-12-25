@@ -3,7 +3,7 @@ import type { Compound, CompoundData } from '$lib/types';
 
 import type { RequestHandler } from './$types';
 
-export const GET: RequestHandler = async ({ fetch }) => {
+export const GET = (async ({ fetch }) => {
 	const regex = /^(.+?): \["?(.+?)"?\]/gm;
 
 	const rawData = await fetch('https://tokipona.org/compounds.txt').then(res =>
@@ -52,4 +52,4 @@ export const GET: RequestHandler = async ({ fetch }) => {
 	);
 
 	return json(data);
-};
+}) satisfies RequestHandler;

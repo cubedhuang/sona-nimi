@@ -6,7 +6,7 @@ import type { PageServerLoad } from './$types';
 
 export const prerender = 'auto';
 
-export const load: PageServerLoad = async ({ fetch, params }) => {
+export const load = (async ({ fetch, params }) => {
 	const data: Linku = await fetch('/data/linku').then(res => res.json());
 
 	const word = data.data[params.nimi];
@@ -31,4 +31,4 @@ export const load: PageServerLoad = async ({ fetch, params }) => {
 	}
 
 	return word;
-};
+}) satisfies PageServerLoad;
