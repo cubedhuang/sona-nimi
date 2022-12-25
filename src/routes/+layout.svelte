@@ -125,7 +125,7 @@
 		</label>
 	</nav>
 
-	<div class="pt-4 sm:pt-8 pb-24" data-sveltekit-preload-data="hover">
+	<div class="pt-4 sm:pt-8 pb-24">
 		<slot />
 	</div>
 </div>
