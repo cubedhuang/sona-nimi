@@ -1,13 +1,12 @@
 <script lang="ts">
-	import { fly } from 'svelte/transition';
-
 	import type { BookName, CoinedEra, UsageCategory, Word } from '$lib/types';
 
+	import { categoryColors } from '$lib/util';
 	import type { PageData } from './$types';
 
+	import Details from '$lib/components/Details.svelte';
 	import Link from '$lib/components/Link.svelte';
 	import X from '$lib/components/X.svelte';
-	import { categoryColors } from '$lib/util';
 
 	export let data: PageData;
 
@@ -39,7 +38,7 @@
 
 	$: frequencies = keys.map(key => {
 		const values = words.map(word => word[key]);
-		const existing = values.filter(value => value);
+		const existing = values.filter(value => value !== undefined);
 		const unique = new Set(existing).size;
 
 		return { key, count: existing.length, unique };
@@ -132,31 +131,26 @@
 	</button>
 </p>
 
-{#if detailsOpen}
-	<div
-		class="details top-auto max-h-80 md:max-h-[40rem]"
-		transition:fly={{ y: 24, duration: 300 }}
-	>
-		<div class="flex">
-			<h2 class="text-2xl">title</h2>
+<Details value={detailsOpen} key={() => ''}>
+	<div class="flex">
+		<h2 class="text-2xl">title</h2>
 
-			<button
-				class="ml-auto p-1 interactable"
-				on:click={() => {
-					detailsOpen = false;
-				}}
-			>
-				<X />
-			</button>
-		</div>
-
-		<p class="font-pona text-4xl">ni li seme a</p>
-
-		<p class="mt-2">
-			mi sona <Link href="/ala">ala</Link>
-		</p>
+		<button
+			class="ml-auto p-1 interactable"
+			on:click={() => {
+				detailsOpen = false;
+			}}
+		>
+			<X />
+		</button>
 	</div>
-{/if}
+
+	<p class="font-pona text-4xl">ni li seme a</p>
+
+	<p class="mt-2">
+		mi sona <Link href="/ala">ala</Link>
+	</p>
+</Details>
 
 <h2 class="mt-4 text-3xl" data-sveltekit-preload-data="off">
 	<Link href="/data/linku">linku data</Link>
@@ -183,13 +177,70 @@
 	<tbody>
 		{#each frequencies as { key, count, unique }}
 			<tr>
-				<td>{key}</td>
+				<td>
+					<span class="flex items-center gap-2">
+						<span
+							class="w-2 h-2 rounded-full {count === words.length &&
+							count === unique
+								? 'bg-green-500'
+								: count === words.length
+								? 'bg-blue-500'
+								: count > words.length - 20
+								? 'bg-yellow-500'
+								: 'bg-red-500'}"
+						/>
+
+						{key}
+
+						{#if count !== words.length && count > words.length - 20}
+							<span class="faded">
+								{words.length - count} missing
+							</span>
+						{/if}
+					</span>
+				</td>
 				<td>{count}</td>
 				<td>{unique}</td>
 			</tr>
 		{/each}
 	</tbody>
 </table>
+
+<p class="mt-2">
+	missing source_language:
+	{words
+		.filter(w => !w.source_language)
+		.map(w => w.word)
+		.join(', ')}
+</p>
+<p>
+	missing etymology:
+	{words
+		.filter(w => !w.etymology)
+		.map(w => w.word)
+		.join(', ')}
+</p>
+<p>
+	missing coined_era:
+	{words
+		.filter(w => !w.coined_era)
+		.map(w => w.word)
+		.join(', ')}
+</p>
+<p>
+	missing creator:
+	{words
+		.filter(w => !w.creator)
+		.map(w => w.word)
+		.join(', ')}
+</p>
+<p>
+	missing sitelen_pona:
+	{words
+		.filter(w => !w.sitelen_pona)
+		.map(w => w.word)
+		.join(', ')}
+</p>
 
 <h3 class="mt-4 text-2xl">more stats</h3>
 
