@@ -1,12 +1,19 @@
 import { browser } from '$app/environment';
 import { writable, type Writable } from 'svelte/store';
 
-function savedWritable<T>(key: string, initialValue: T): Writable<T> {
+import type { BookName, UsageCategory } from './types';
+import { bookColors, categoryColors } from './util';
+
+function savedWritable<T>(
+	key: string,
+	initialValue: T,
+	validator?: (value: T) => boolean
+): Writable<T> {
 	const { subscribe, set, update } = writable(initialValue);
 
 	if (browser) {
 		const json = localStorage.getItem(key);
-		if (json) {
+		if (json !== null && (!validator || validator(JSON.parse(json)))) {
 			set(JSON.parse(json));
 		}
 	}
@@ -23,7 +30,10 @@ function savedWritable<T>(key: string, initialValue: T): Writable<T> {
 	};
 }
 
-export const darkMode = savedWritable('darkMode', true);
+export const darkMode = savedWritable(
+	'darkMode',
+	browser ? window.matchMedia('(prefers-color-scheme: dark)').matches : true
+);
 
 if (browser) {
 	darkMode.subscribe(value => {
@@ -46,4 +56,22 @@ export const language = savedWritable('language', 'en');
 export const sitelenMode = savedWritable<'pona' | 'sitelen' | 'emosi'>(
 	'sitelenMode',
 	'pona'
+);
+
+export const categories = savedWritable(
+	'categories',
+	Object.keys(categoryColors).map(category => ({
+		name: category as UsageCategory,
+		shown: true
+	})),
+	value => value.some(({ shown }) => shown)
+);
+
+export const books = savedWritable(
+	'books',
+	Object.keys(bookColors).map(book => ({
+		name: book as BookName,
+		shown: true
+	})),
+	value => value.some(({ shown }) => shown)
 );

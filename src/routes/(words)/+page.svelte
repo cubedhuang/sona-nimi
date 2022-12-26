@@ -3,7 +3,7 @@
 
 	import type { PageData } from './$types';
 
-	import type { BookName, UsageCategory, Word } from '$lib/types';
+	import type { Word } from '$lib/types';
 	import {
 		bookColors,
 		categoryColors,
@@ -11,7 +11,7 @@
 		getWordRecognition,
 		sortLanguages
 	} from '$lib/util';
-	import { language, sitelenMode } from '$lib/stores';
+	import { books, categories, language, sitelenMode } from '$lib/stores';
 
 	import ColoredCheckbox from '$lib/components/ColoredCheckbox.svelte';
 	import Grid from '$lib/components/Grid.svelte';
@@ -29,19 +29,10 @@
 
 	$: fixedSearch = search.trim().toLowerCase();
 
-	let categories = Object.keys(categoryColors).map(category => ({
-		name: category as UsageCategory,
-		shown: true
-	}));
-	let books = ['pu', 'ku suli', 'ku lili', 'none'].map(book => ({
-		name: book as BookName,
-		shown: true
-	}));
-
-	$: shownCategories = categories
+	$: shownCategories = $categories
 		.filter(category => category.shown)
 		.map(category => category.name);
-	$: shownBooks = books.filter(book => book.shown).map(book => book.name);
+	$: shownBooks = $books.filter(book => book.shown).map(book => book.name);
 
 	let searchMethod: 'term' | 'definition' = 'term';
 
@@ -119,7 +110,7 @@
 </p>
 
 <div class="mt-4 flex flex-wrap gap-2">
-	{#each categories as category}
+	{#each $categories as category}
 		<ColoredCheckbox
 			bind:checked={category.shown}
 			label={category.name[0].toUpperCase() + category.name.slice(1)}
@@ -129,7 +120,7 @@
 </div>
 
 <div class="mt-2 flex flex-wrap gap-2">
-	{#each books as book}
+	{#each $books as book}
 		<ColoredCheckbox
 			bind:checked={book.shown}
 			label={book.name === 'none' ? 'no book' : `nimi ${book.name}`}
@@ -211,11 +202,16 @@
 	on:refer={e => {
 		if (!filteredWords.some(word => word.word === e.detail)) {
 			search = '';
-			categories = categories.map(category => ({
+
+			$categories = $categories.map(category => ({
 				...category,
-				shown: true
+				shown:
+					category.shown || category.name === data.data[e.detail].usage_category
 			}));
-			books = books.map(book => ({ ...book, shown: true }));
+			$books = $books.map(book => ({
+				...book,
+				shown: book.shown || book.name === data.data[e.detail].book
+			}));
 		}
 	}}
 />
