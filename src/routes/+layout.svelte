@@ -4,6 +4,8 @@
 	import { fly } from 'svelte/transition';
 
 	import { page } from '$app/stores';
+	import { afterNavigate, beforeNavigate } from '$app/navigation';
+
 	import { darkMode } from '$lib/stores';
 
 	const routes = [
@@ -18,6 +20,14 @@
 		'focus:outline-none hocus:border-gray-400 dark:hocus:border-gray-700';
 
 	let opened = false;
+
+	// disable smooth scroll on navigation
+	beforeNavigate(() => {
+		document.documentElement.style.scrollBehavior = 'auto';
+	});
+	afterNavigate(() => {
+		document.documentElement.style.scrollBehavior = 'smooth';
+	});
 </script>
 
 <svelte:window

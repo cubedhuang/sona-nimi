@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { fly } from 'svelte/transition';
 
+	import { navigating } from '$app/stores';
+
 	import type { Compound } from '$lib/types';
 
 	import Link from '$lib/components/Link.svelte';
@@ -13,7 +15,7 @@
 	{#key compound.compound}
 		<div
 			class="details top-auto max-h-80 md:max-h-[40rem]"
-			transition:fly={{ y: 24, duration: 300 }}
+			transition:fly={{ y: 24, duration: $navigating ? 0 : 300 }}
 		>
 			<div class="flex">
 				<h2 class="text-2xl">{compound.compound}</h2>

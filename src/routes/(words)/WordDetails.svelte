@@ -2,6 +2,8 @@
 	import { createEventDispatcher } from 'svelte';
 	import { fly } from 'svelte/transition';
 
+	import { navigating } from '$app/stores';
+
 	import type { Word } from '$lib/types';
 	import { language } from '$lib/stores';
 	import {
@@ -22,12 +24,15 @@
 
 {#if word}
 	{#key word.word}
-		<div class="details" transition:fly={{ y: 24, duration: 300 }}>
+		<div
+			class="details"
+			transition:fly={{ y: 24, duration: $navigating ? 0 : 300 }}
+		>
 			<div class="flex items-end">
 				<h2 class="text-2xl">{word.word}</h2>
 
 				<div class="ml-auto flex items-center gap-2">
-					<a href="/{word.word}" class="px-2 py-1 interactable"> more </a>
+					<a href="/{word.word}" class="px-2 py-1 interactable">more</a>
 
 					<button
 						class="p-1 interactable"
