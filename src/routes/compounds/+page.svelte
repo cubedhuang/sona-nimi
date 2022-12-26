@@ -5,6 +5,7 @@
 
 	import type { Compound } from '$lib/types';
 	import { categoryColors } from '$lib/util';
+	import { searchMethod, sortingMethod } from '$lib/stores';
 
 	import ColoredCheckbox from '$lib/components/ColoredCheckbox.svelte';
 	import CompoundDetails from './CompoundDetails.svelte';
@@ -32,18 +33,15 @@
 
 	$: fixedSearch = search.trim().toLowerCase();
 
-	let searchMethod: 'term' | 'definition' = 'term';
-
-	let sortingMethod: 'alphabetical' | 'recognition' = 'recognition';
 	$: sorter =
-		sortingMethod === 'alphabetical'
+		$sortingMethod === 'alphabetical'
 			? (a: Compound, b: Compound) => a.compound.localeCompare(b.compound)
 			: (a: Compound, b: Compound) =>
 					getCompoundRecognition(b) - getCompoundRecognition(a);
 
 	let filteredCompounds: Compound[] = [];
 
-	$: if (searchMethod === 'term') {
+	$: if ($searchMethod === 'term') {
 		filteredCompounds = compounds
 			.filter(
 				compound =>
@@ -131,7 +129,7 @@
 			{ label: 'Search with Toki Pona', value: 'term' },
 			{ label: 'Search with Definition', value: 'definition' }
 		]}
-		bind:value={searchMethod}
+		bind:value={$searchMethod}
 	/>
 
 	<Select
@@ -139,7 +137,7 @@
 			{ label: 'Sort by Usage', value: 'recognition' },
 			{ label: 'Sort Alphabetically', value: 'alphabetical' }
 		]}
-		bind:value={sortingMethod}
+		bind:value={$sortingMethod}
 	/>
 </div>
 
@@ -148,7 +146,7 @@
 </p>
 
 <Search
-	placeholder={searchMethod === 'term' ? 'nimi...' : 'definition...'}
+	placeholder={$searchMethod === 'term' ? 'nimi...' : 'definition...'}
 	bind:value={search}
 />
 
