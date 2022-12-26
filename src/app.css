@@ -102,12 +102,6 @@
 			dark:bg-black dark:border-gray-800 dark:hocus:border-gray-700;
 	}
 
-	.details {
-		@apply absolute bottom-0 right-0 left-0 max-h-[75vh] p-6 overflow-y-auto bg-white border-t border-gray-400
-			md:bottom-4 md:right-4 md:left-auto md:top-auto md:w-[36rem] md:max-h-[40rem] md:border md:rounded-lg shadow-lg
-			dark:bg-black dark:border-gray-800;
-	}
-
 	.faded {
 		@apply text-gray-500 dark:text-gray-400;
 	}

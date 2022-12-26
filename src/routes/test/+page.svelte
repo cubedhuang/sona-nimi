@@ -175,29 +175,17 @@
 <table class="mt-2">
 	<thead>
 		<tr class="text-left">
-			<th class="px-2 py-0.5 border border-gray-200 dark:border-gray-800">
-				key
-			</th>
-			<th class="px-2 py-0.5 border border-gray-200 dark:border-gray-800">
-				# of words with value
-			</th>
-			<th class="px-2 py-0.5 border border-gray-200 dark:border-gray-800">
-				# of non-empty unique values
-			</th>
+			<th>key</th>
+			<th># of words with value</th>
+			<th># of non-empty unique values</th>
 		</tr>
 	</thead>
 	<tbody>
 		{#each frequencies as { key, count, unique }}
 			<tr>
-				<td class="px-2 py-0.5 border border-gray-200 dark:border-gray-800">
-					{key}
-				</td>
-				<td class="px-2 py-0.5 border border-gray-200 dark:border-gray-800">
-					{count}
-				</td>
-				<td class="px-2 py-0.5 border border-gray-200 dark:border-gray-800">
-					{unique}
-				</td>
+				<td>{key}</td>
+				<td>{count}</td>
+				<td>{unique}</td>
 			</tr>
 		{/each}
 	</tbody>
@@ -208,27 +196,20 @@
 <table class="inline-table mt-2">
 	<thead>
 		<tr class="text-left">
-			<th class="px-2 py-0.5 border border-gray-200 dark:border-gray-800">
-				usage
-			</th>
-			<th class="px-2 py-0.5 border border-gray-200 dark:border-gray-800">
-				count
-			</th>
+			<th>usage</th>
+			<th>count</th>
 		</tr>
 	</thead>
 	<tbody>
 		{#each Object.entries(usageCategoryFrequencies) as [category, count]}
 			<tr>
-				<td class="px-2 py-0.5 border border-gray-200 dark:border-gray-800">
+				<td>
 					<span class="flex items-center gap-2">
 						<span class="w-2 h-2 rounded-full {getCategoryColor(category)}" />
-
 						{category}
 					</span>
 				</td>
-				<td class="px-2 py-0.5 border border-gray-200 dark:border-gray-800">
-					{count}
-				</td>
+				<td>{count}</td>
 			</tr>
 		{/each}
 	</tbody>
@@ -237,23 +218,15 @@
 <table class="inline-table mt-2">
 	<thead>
 		<tr class="text-left">
-			<th class="px-2 py-0.5 border border-gray-200 dark:border-gray-800">
-				book
-			</th>
-			<th class="px-2 py-0.5 border border-gray-200 dark:border-gray-800">
-				count
-			</th>
+			<th>book</th>
+			<th>count</th>
 		</tr>
 	</thead>
 	<tbody>
 		{#each Object.entries(booksFrequencies) as [book, count]}
 			<tr>
-				<td class="px-2 py-0.5 border border-gray-200 dark:border-gray-800">
-					{book}
-				</td>
-				<td class="px-2 py-0.5 border border-gray-200 dark:border-gray-800">
-					{count}
-				</td>
+				<td>{book}</td>
+				<td>{count}</td>
 			</tr>
 		{/each}
 	</tbody>
@@ -262,23 +235,15 @@
 <table class="inline-table mt-2">
 	<thead>
 		<tr class="text-left">
-			<th class="px-2 py-0.5 border border-gray-200 dark:border-gray-800">
-				coined era
-			</th>
-			<th class="px-2 py-0.5 border border-gray-200 dark:border-gray-800">
-				count
-			</th>
+			<th>coined era</th>
+			<th>count</th>
 		</tr>
 	</thead>
 	<tbody>
 		{#each Object.entries(coinedEraFrequencies) as [era, count]}
 			<tr>
-				<td class="px-2 py-0.5 border border-gray-200 dark:border-gray-800">
-					{era}
-				</td>
-				<td class="px-2 py-0.5 border border-gray-200 dark:border-gray-800">
-					{count}
-				</td>
+				<td>{era}</td>
+				<td>{count}</td>
 			</tr>
 		{/each}
 	</tbody>
@@ -294,24 +259,27 @@
 <table class="inline-table mt-2">
 	<thead>
 		<tr class="text-left">
-			<th class="px-2 py-0.5 border border-gray-200 dark:border-gray-800">
-				unique glyphs
-			</th>
-			<th class="px-2 py-0.5 border border-gray-200 dark:border-gray-800">
-				count
-			</th>
+			<th>unique glyphs</th>
+			<th>count</th>
 		</tr>
 	</thead>
 	<tbody>
 		{#each Object.entries(glyphFrequencies) as [amount, count]}
 			<tr>
-				<td class="px-2 py-0.5 border border-gray-200 dark:border-gray-800">
-					{amount}
-				</td>
-				<td class="px-2 py-0.5 border border-gray-200 dark:border-gray-800">
-					{count}
-				</td>
+				<td>{amount}</td>
+				<td>{count}</td>
 			</tr>
 		{/each}
 	</tbody>
 </table>
+
+<style>
+	th,
+	td {
+		@apply px-2 py-0.5 border border-gray-200;
+	}
+
+	:global(.dark) :is(th, td) {
+		@apply border-gray-800;
+	}
+</style>
