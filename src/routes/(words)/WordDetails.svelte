@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
-	import { scale, fly } from 'svelte/transition';
+	import { fly } from 'svelte/transition';
 
 	import type { Word } from '$lib/types';
 	import { language } from '$lib/stores';
