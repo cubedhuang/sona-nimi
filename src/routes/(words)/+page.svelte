@@ -11,7 +11,14 @@
 		getWordRecognition,
 		sortLanguages
 	} from '$lib/util';
-	import { books, categories, language, sitelenMode } from '$lib/stores';
+	import {
+		books,
+		categories,
+		language,
+		searchMethod,
+		sitelenMode,
+		sortingMethod
+	} from '$lib/stores';
 
 	import ColoredCheckbox from '$lib/components/ColoredCheckbox.svelte';
 	import Grid from '$lib/components/Grid.svelte';
@@ -34,17 +41,14 @@
 		.map(category => category.name);
 	$: shownBooks = $books.filter(book => book.shown).map(book => book.name);
 
-	let searchMethod: 'term' | 'definition' = 'term';
-
-	let sortingMethod: 'alphabetical' | 'recognition' = 'recognition';
 	$: sorter =
-		sortingMethod === 'alphabetical'
+		$sortingMethod === 'alphabetical'
 			? (a: Word, b: Word) => a.word.localeCompare(b.word)
 			: (a: Word, b: Word) => getWordRecognition(b) - getWordRecognition(a);
 
 	let filteredWords: Word[] = [];
 
-	$: if (searchMethod === 'term') {
+	$: if ($searchMethod === 'term') {
 		filteredWords = words
 			.filter(
 				word =>
@@ -135,7 +139,7 @@
 			{ label: 'Search with Toki Pona', value: 'term' },
 			{ label: 'Search with Definition', value: 'definition' }
 		]}
-		bind:value={searchMethod}
+		bind:value={$searchMethod}
 	/>
 
 	<Select
@@ -143,7 +147,7 @@
 			{ label: 'Sort by Usage', value: 'recognition' },
 			{ label: 'Sort Alphabetically', value: 'alphabetical' }
 		]}
-		bind:value={sortingMethod}
+		bind:value={$sortingMethod}
 	/>
 
 	<Select
@@ -181,7 +185,7 @@
 </p>
 
 <Search
-	placeholder={searchMethod === 'term' ? 'nimi...' : 'definition...'}
+	placeholder={$searchMethod === 'term' ? 'nimi...' : 'definition...'}
 	bind:value={search}
 />
 

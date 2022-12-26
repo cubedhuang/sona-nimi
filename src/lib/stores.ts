@@ -51,13 +51,6 @@ if (browser) {
 	});
 }
 
-export const language = savedWritable('language', 'en');
-
-export const sitelenMode = savedWritable<'pona' | 'sitelen' | 'emosi'>(
-	'sitelenMode',
-	'pona'
-);
-
 export const categories = savedWritable(
 	'categories',
 	Object.keys(categoryColors).map(category => ({
@@ -74,4 +67,21 @@ export const books = savedWritable(
 		shown: true
 	})),
 	value => value.some(({ shown }) => shown)
+);
+
+export const searchMethod = savedWritable<'term' | 'definition'>(
+	'searchMethod',
+	'term'
+);
+
+export const sortingMethod = savedWritable<'alphabetical' | 'recognition'>(
+	'sortingMethod',
+	'recognition'
+);
+
+export const language = savedWritable('language', 'en');
+
+export const sitelenMode = savedWritable<'pona' | 'sitelen' | 'emosi'>(
+	'sitelenMode',
+	'pona'
 );
