@@ -11,14 +11,11 @@
 
 {#if compound}
 	<div
-		class="fixed bottom-0 right-0"
+		class="fixed bottom-0 right-0 w-full"
 		transition:fly|local={{ y: 24, duration: 300 }}
 	>
 		{#key compound.compound}
-			<div
-				class="details top-auto max-h-80 md:max-h-[40rem]"
-				transition:fly|local={{ y: 24, duration: 300 }}
-			>
+			<div class="details" transition:fly|local={{ y: 24, duration: 300 }}>
 				<div class="flex">
 					<h2 class="text-2xl">{compound.compound}</h2>
 

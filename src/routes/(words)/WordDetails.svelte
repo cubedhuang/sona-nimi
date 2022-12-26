@@ -22,7 +22,7 @@
 
 {#if word}
 	<div
-		class="fixed bottom-0 right-0"
+		class="fixed bottom-0 right-0 w-full"
 		transition:fly|local={{ y: 24, duration: 300 }}
 	>
 		{#key word.word}
