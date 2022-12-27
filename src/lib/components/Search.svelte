@@ -26,7 +26,7 @@
 
 	{#if value}
 		<button
-			class="p-2 interactable"
+			class="p-2 interactable shrink-0"
 			on:click={() => {
 				value = '';
 				searchBar.focus();
