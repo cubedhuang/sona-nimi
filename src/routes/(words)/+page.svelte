@@ -1,6 +1,4 @@
 <script lang="ts">
-	let CURRENT_VERSION = "0.0.1-pwa"
-
 	import { distance } from 'fastest-levenshtein';
 
 	import type { PageData } from './$types';
@@ -109,7 +107,6 @@
 </svelte:head>
 
 <h1 class="text-4xl" style="display:inline">nimi.li</h1> 
-<p class="opacity-50" style="display:inline">v{CURRENT_VERSION}</p>
 
 <p class="mt-2">
 	<span class="font-bold">nimi.li</span> is an interactive toki pona dictionary.
