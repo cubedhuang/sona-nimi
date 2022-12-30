@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Link from '$lib/components/Link.svelte';
 
-	let tokiPona = true;
+	let tokiPona = false;
 </script>
 
 <svelte:head>
@@ -15,7 +15,7 @@
 	/>
 
 	<meta property="og:title" content="about – nimi.li" />
-	<meta property="og:author" content="jan Tani" />
+	<meta property="og:author" content="jan Tani and woflydev" />
 	<meta property="og:description" content="interactive toki pona dictionary" />
 	<meta property="og:url" content="https://nimi.li/about" />
 	<meta property="og:site_name" content="nimi.li" />
@@ -27,17 +27,28 @@
 		class="px-2 py-1 interactable"
 		on:click={() => (tokiPona = !tokiPona)}
 	>
-		{tokiPona ? 'o ante tawa toki Inli' : 'change to toki pona'}
+		{tokiPona ? 'change to english' : 'o ante tawa toki pona'}
 	</button>
 </p>
 
 {#if tokiPona}
 	<h1 class="mt-4 text-4xl">sona &ndash; nimi.li</h1>
 
-	<p class="mt-2">
+	<p class="mt-2"> 
+		<Link href="https://github.com/cubedhuang/">jan Tani</Link> li pali e ni. taso jan
+		<Link href="https://github.com/woflydev/">woflydev</Link> (mi) li pali e tawa Progressive Web Application.
+		
+		<br>
+		ijo majuna li jan ale li ken
+		<Link href="https://github.com/cubedhuang/sona-nimi">pona e pali ni</Link>!
+		taso ijo mi li
+		<Link href="https://github.com/woflydev/nimi.li">lon</Link>.
+	</p>
+
+	<!--<p class="mt-2">
 		mi jan Tani li pali e ni. jan ale li ken
 		<Link href="https://github.com/cubedhuang/sona-nimi">pona e pali ni</Link>!
-	</p>
+	</p> -->
 
 	<p class="mt-2">
 		pali <span class="font-bold">nimi.li</span> li kepeken pali pona mute tan jan
@@ -63,6 +74,27 @@
 			<Link href="https://www.kreativekorp.com/software/fonts/fairfaxponahd/">
 				Fairfax Pona HD
 			</Link> tawa sitelen pona lon lipu.
+		</li>
+	</ul>
+
+	<p class="mt-2">
+		<span class="font-bold">ilo PWA</span> li kepeken pali pona mute tan jan ante:
+	</p>
+
+	<ul class="mt-2 ml-4 list-disc">
+		<li>
+			<Link href="https://github.com/antfu/">
+				Anthony Fu
+			</Link>
+			en
+			<Link href="https://github.com/userquin/">Joaquín Sánchez</Link> pali e
+			<Link href="https://vite-pwa-org.netlify.app/">Vite PWA</Link>.
+
+		</li>
+
+		<li>
+			<Link href="https://github.com/sveltejs/">SvelteJS</Link> li pali pona mute e
+			<Link href="https://github.com/sveltejs/kit/tree/master/packages/adapter-cloudflare">Cloudflare Adapter</Link>.
 		</li>
 	</ul>
 
@@ -102,8 +134,15 @@
 	<h1 class="mt-4 text-4xl">about &ndash; nimi.li</h1>
 
 	<p class="mt-2">
-		This project was made by me, jan Tani. It's
-		<Link href="https://github.com/cubedhuang/sona-nimi">open source</Link>!
+		The nimi.li project was started and completed by 
+		<Link href="https://github.com/cubedhuang/">jan Tani</Link>, 
+		ported to a Progressive Web Application by me,
+		<Link href="https://github.com/woflydev/">woflydev</Link>.
+		<br>
+		The original project is completely
+		<Link href="https://github.com/cubedhuang/sona-nimi">open source</Link>
+		on GitHub, while my version can be found
+		<Link href="https://github.com/woflydev/nimi.li">here</Link>.
 	</p>
 
 	<p class="mt-2">
@@ -134,6 +173,32 @@
 				Fairfax Pona HD
 			</Link>
 			font is used for sitelen pona displayed on the site.
+		</li>
+	</ul>
+
+	<p class="mt-2">
+		<span class="font-bold">PWA functionality</span> on my port is thanks to these amazing people:
+	</p>
+
+	<ul class="mt-2 ml-4 list-disc">
+		<li>
+			<Link href="https://github.com/antfu/">
+				Anthony Fu
+			</Link>
+			and
+			<Link href="https://github.com/userquin/">Joaquín Sánchez</Link>'s work on
+			<Link href="https://vite-pwa-org.netlify.app/">Vite PWA</Link>.
+
+		</li>
+
+		<li>
+			The (albeit work-in-progress)
+			<Link href="https://github.com/sveltejs/kit/tree/master/packages/adapter-cloudflare">
+				Cloudflare Adapter
+			</Link>
+			by the dedicated people at
+			<Link href="https://github.com/sveltejs/">SvelteJS</Link>.
+
 		</li>
 	</ul>
 

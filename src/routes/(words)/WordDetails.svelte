@@ -9,7 +9,6 @@
 		getWordDisplayRecognition
 	} from '$lib/util';
 
-	import Copy from '$lib/components/Copy.svelte';
 	import Details from '$lib/components/Details.svelte';
 	import Link from '$lib/components/Link.svelte';
 	import X from '$lib/components/X.svelte';
@@ -125,18 +124,6 @@
 
 		<p class="text-3xl">
 			{word.sitelen_emosi}
-		</p>
-	{/if}
-
-	{#if word.ucsur}
-		<h3 class="mt-2 text-lg">ucsur</h3>
-
-		<p class="flex items-center gap-2">
-			{word.ucsur}
-
-			<Copy
-				value={String.fromCodePoint(parseInt(word.ucsur?.slice(2) ?? '', 16))}
-			/>
 		</p>
 	{/if}
 

@@ -110,7 +110,9 @@
 
 <p class="mt-2">
 	<span class="font-bold">nimi.li</span> is an interactive toki pona dictionary.
-	Click on a word to read more!
+	Click on a word to read more! Now available as an installable app.
+	<br>
+	Use the download button in the address bar on <span class="font-bold">desktop</span>, or three dots then 'Install App' on <span class="font-bold">mobile</span>.
 </p>
 
 <div class="mt-4 flex flex-wrap gap-2">

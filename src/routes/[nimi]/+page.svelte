@@ -3,8 +3,6 @@
 
 	import { getWordDefinition, getWordDisplayRecognition } from '$lib/util';
 	import { language } from '$lib/stores';
-
-	import Copy from '$lib/components/Copy.svelte';
 	import Link from '$lib/components/Link.svelte';
 
 	export let data: PageData;
@@ -149,18 +147,6 @@
 
 		<p class="mt-2 text-6xl">
 			{word.sitelen_emosi}
-		</p>
-	{/if}
-
-	{#if word.ucsur}
-		<h2 class="mt-4 text-2xl">ucsur</h2>
-
-		<p class="flex items-center gap-2">
-			{word.ucsur}
-
-			<Copy
-				value={String.fromCodePoint(parseInt(word.ucsur?.slice(2) ?? '', 16))}
-			/>
 		</p>
 	{/if}
 
