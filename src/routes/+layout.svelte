@@ -32,6 +32,7 @@
 	});
 
 	// BeforeInstallPromptEvent doesn't have a type definition :(
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	let deferredPrompt: Event & any;
 
 	onMount(() => {

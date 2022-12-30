@@ -8,6 +8,7 @@
 
 	// This is a hack since the type of value is T | null even though it's
 	// guaranteed to be non-null in the template.
+	// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 	$: nonNullValue = value!;
 </script>
 

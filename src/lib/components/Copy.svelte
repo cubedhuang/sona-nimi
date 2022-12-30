@@ -4,6 +4,9 @@
 	export let value: string;
 
 	let copied = false;
+
+	// ESLint doesn't recognize NodeJS.Timeout
+	// eslint-disable-next-line no-undef
 	let timeout: NodeJS.Timeout;
 </script>
 
