@@ -15,7 +15,6 @@
 	];
 
 	const commonClasses =
-		// 'p-2 rounded-lg border border-gray-200 dark:border-gray-800 transition-colors';
 		'p-2 rounded-lg sm:rounded-t-none border sm:border-t-0 border-gray-200 dark:border-gray-800 transition-colors';
 	const hoverableClasses =
 		'focus:outline-none hocus:border-gray-400 dark:hocus:border-gray-700';
