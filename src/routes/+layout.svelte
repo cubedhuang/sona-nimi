@@ -1,9 +1,11 @@
 <script lang="ts">
 	import '../app.css';
 
-	import { fly } from 'svelte/transition';
+	import { onMount } from 'svelte';
+	import { fly, slide } from 'svelte/transition';
 
 	import { page } from '$app/stores';
+	import { dev } from '$app/environment';
 	import { afterNavigate, beforeNavigate } from '$app/navigation';
 
 	import { darkMode } from '$lib/stores';
@@ -28,6 +30,23 @@
 	afterNavigate(() => {
 		document.documentElement.style.scrollBehavior = 'smooth';
 	});
+
+	// BeforeInstallPromptEvent doesn't have a type definition :(
+	let deferredPrompt: Event & any;
+
+	onMount(() => {
+		window.addEventListener('beforeinstallprompt', e => {
+			e.preventDefault();
+			deferredPrompt = e;
+		});
+
+		if (dev) {
+			// simulate deferred prompt
+			setTimeout(() => {
+				deferredPrompt = true;
+			}, 500);
+		}
+	});
 </script>
 
 <svelte:window
@@ -40,8 +59,8 @@
 />
 
 <div class="px-8 lg:px-16 max-w-screen-2xl m-auto font-text">
-	<nav class="flex flex-wrap gap-2 pt-2 sm:pt-0">
-		<div class="hidden sm:contents">
+	<nav class="pt-4 sm:pt-0 flex justify-between">
+		<div class="hidden sm:flex gap-2">
 			{#each routes as route}
 				{#if $page.url.pathname === route.href}
 					<span class="{commonClasses} faded cursor-default">
@@ -98,43 +117,68 @@
 			{/if}
 		</div>
 
-		<!-- TODO: add install button here -->
-
-		<label class="{commonClasses} {hoverableClasses} ml-auto cursor-pointer">
-			<input type="checkbox" class="hidden" bind:checked={$darkMode} />
-
-			{#if $darkMode}
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					fill="none"
-					viewBox="0 0 24 24"
-					stroke-width="1.5"
-					stroke="currentColor"
-					class="w-6 h-6"
+		<div class="flex gap-2">
+			{#if deferredPrompt}
+				<button
+					class="{commonClasses} {hoverableClasses}"
+					on:click={() => {
+						deferredPrompt.prompt();
+					}}
+					transition:slide={{ duration: 300 }}
 				>
-					<path
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"
-					/>
-				</svg>
-			{:else}
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					fill="none"
-					viewBox="0 0 24 24"
-					stroke-width="1.5"
-					stroke="currentColor"
-					class="w-6 h-6"
-				>
-					<path
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"
-					/>
-				</svg>
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						fill="none"
+						viewBox="0 0 24 24"
+						stroke-width="1.5"
+						stroke="currentColor"
+						class="w-6 h-6"
+					>
+						<path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"
+						/>
+					</svg>
+				</button>
 			{/if}
-		</label>
+
+			<label class="{commonClasses} {hoverableClasses} cursor-pointer">
+				<input type="checkbox" class="hidden" bind:checked={$darkMode} />
+
+				{#if $darkMode}
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						fill="none"
+						viewBox="0 0 24 24"
+						stroke-width="1.5"
+						stroke="currentColor"
+						class="w-6 h-6"
+					>
+						<path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"
+						/>
+					</svg>
+				{:else}
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						fill="none"
+						viewBox="0 0 24 24"
+						stroke-width="1.5"
+						stroke="currentColor"
+						class="w-6 h-6"
+					>
+						<path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"
+						/>
+					</svg>
+				{/if}
+			</label>
+		</div>
 	</nav>
 
 	<div class="pt-4 sm:pt-8 pb-24">
