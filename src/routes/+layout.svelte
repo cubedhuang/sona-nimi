@@ -14,10 +14,9 @@
 		{ name: 'about', href: '/about' }
 	];
 
-	const hiddenRoutes = [{ name: 'themeswitch', href: '/themeswitch' }];
-
 	const commonClasses =
-		'p-2 rounded-lg border border-gray-200 dark:border-gray-800 transition-colors';
+		// 'p-2 rounded-lg border border-gray-200 dark:border-gray-800 transition-colors';
+		'p-2 rounded-lg sm:rounded-t-none border sm:border-t-0 border-gray-200 dark:border-gray-800 transition-colors';
 	const hoverableClasses =
 		'focus:outline-none hocus:border-gray-400 dark:hocus:border-gray-700';
 
@@ -32,8 +31,6 @@
 	});
 </script>
 
-<!-- const commonClasses original value - 'p-2 rounded-b-lg border border-t-0 border-gray-200 dark:border-gray-800 transition-colors' -->
-
 <svelte:window
 	on:click={() => {
 		opened = false;
@@ -44,7 +41,7 @@
 />
 
 <div class="px-8 lg:px-16 max-w-screen-2xl m-auto font-text">
-	<nav class="flex flex-wrap gap-2 pt-0">
+	<nav class="flex flex-wrap gap-2 pt-2 sm:pt-0">
 		<div class="hidden sm:contents">
 			{#each routes as route}
 				{#if $page.url.pathname === route.href}
@@ -102,53 +99,9 @@
 			{/if}
 		</div>
 
-		<!--
-		<p class="{commonClasses} {hoverableClasses} cursor-pointer">
-			<button id="installApp">
-				install
-			</button>
-		</p>
-		-->
+		<!-- TODO: add install button here -->
 
-		<!-- this sector used to be a <label> -->
-		<p class="{commonClasses} {hoverableClasses} ml-auto cursor-pointer">
-			<!-- first hidden route (hiddenRoutes[0]) is the themeswitcher page-->
-			<a href={hiddenRoutes[0].href}>
-				{#if $darkMode}
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						fill="none"
-						viewBox="0 0 24 24"
-						stroke-width="1.5"
-						stroke="currentColor"
-						class="w-6 h-6"
-					>
-						<path
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"
-						/>
-					</svg>
-				{:else}
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						fill="none"
-						viewBox="0 0 24 24"
-						stroke-width="1.5"
-						stroke="currentColor"
-						class="w-6 h-6"
-					>
-						<path
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"
-						/>
-					</svg>
-				{/if}
-			</a>
-		</p>
-
-		<!-- <label class="{commonClasses} {hoverableClasses} ml-auto cursor-pointer">
+		<label class="{commonClasses} {hoverableClasses} ml-auto cursor-pointer">
 			<input type="checkbox" class="hidden" bind:checked={$darkMode} />
 
 			{#if $darkMode}
@@ -182,7 +135,7 @@
 					/>
 				</svg>
 			{/if}
-		</label> -->
+		</label>
 	</nav>
 
 	<div class="pt-4 sm:pt-8 pb-24">

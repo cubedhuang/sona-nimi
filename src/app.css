@@ -59,9 +59,12 @@
 
 		scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-bg);
 		scrollbar-gutter: stable;
+	}
 
-		overscroll-behavior: none;
+	html,
+	body {
 		overscroll-behavior-y: none;
+		overscroll-behavior: none;
 	}
 
 	::-webkit-scrollbar {
@@ -108,11 +111,4 @@
 	.faded {
 		@apply text-gray-500 dark:text-gray-400;
 	}
-}
-
-body {
-	margin-top: 0.5rem;
-
-	overscroll-behavior-y: none;
-	overscroll-behavior: none;
 }
