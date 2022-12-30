@@ -2,7 +2,7 @@
 	import '../app.css';
 
 	import { onMount } from 'svelte';
-	import { fly, slide } from 'svelte/transition';
+	import { fly } from 'svelte/transition';
 
 	import { page } from '$app/stores';
 	import { dev } from '$app/environment';
@@ -124,7 +124,7 @@
 					on:click={() => {
 						deferredPrompt.prompt();
 					}}
-					transition:slide={{ duration: 300 }}
+					transition:fly={{ y: -4, duration: 300 }}
 				>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
