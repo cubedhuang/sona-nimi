@@ -18,6 +18,23 @@ worker.addEventListener('install', event => {
 	event.waitUntil(cacheFiles());
 });
 
+worker.addEventListener('activate', event => {
+	// If the files are not cached, add them to the cache
+	async function cacheFiles() {
+		const cache = await caches.open(CACHE);
+		const cached = await cache.keys();
+		const cachedUrls = cached.map(request => request.url);
+		const expectedUrls = ASSETS.map(
+			url => new URL(url, worker.location.href).href
+		);
+		const expected = expectedUrls.filter(url => !cachedUrls.includes(url));
+
+		await cache.addAll(expected);
+	}
+
+	event.waitUntil(cacheFiles());
+});
+
 worker.addEventListener('fetch', event => {
 	if (event.request.method !== 'GET') return;
 
