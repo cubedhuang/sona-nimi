@@ -63,5 +63,8 @@
 				word.usage_category
 			]}"
 		/>
+
+		<!-- This is a hack to get SvelteKit to prerender every word -->
+		<a href="/{word.word}" class="hidden">{word.word}</a>
 	</div>
 </Space>

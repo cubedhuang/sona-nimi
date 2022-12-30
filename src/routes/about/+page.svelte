@@ -15,7 +15,7 @@
 	/>
 
 	<meta property="og:title" content="about – nimi.li" />
-	<meta property="og:author" content="jan Tani" />
+	<meta property="og:author" content="jan Tani and woflydev" />
 	<meta property="og:description" content="interactive toki pona dictionary" />
 	<meta property="og:url" content="https://nimi.li/about" />
 	<meta property="og:site_name" content="nimi.li" />
@@ -27,7 +27,7 @@
 		class="px-2 py-1 interactable"
 		on:click={() => (tokiPona = !tokiPona)}
 	>
-		{tokiPona ? 'o ante tawa toki Inli' : 'change to toki pona'}
+		{tokiPona ? 'use English' : 'o kepeken toki pona'}
 	</button>
 </p>
 
@@ -35,7 +35,10 @@
 	<h1 class="mt-4 text-4xl">sona &ndash; nimi.li</h1>
 
 	<p class="mt-2">
-		mi jan Tani li pali e ni. jan ale li ken
+		toki a! mi
+		<Link href="https://github.com/cubedhuang/">jan Tani</Link> li pali e ni. jan
+		<Link href="https://github.com/woflydev/">woflydev</Link> li pona e ni kepeken
+		Progressive Web Application. jan ale li ken
 		<Link href="https://github.com/cubedhuang/sona-nimi">pona e pali ni</Link>!
 	</p>
 
@@ -74,7 +77,9 @@
 		kepeken ilo
 		<Link href="https://www.typescriptlang.org">TypeScript</Link>
 		kepeken ilo
-		<Link href="https://tailwindcss.com">TailwindCSS</Link>.
+		<Link href="https://tailwindcss.com">TailwindCSS</Link>
+		kepeken ilo
+		<Link href="https://vite-pwa-org.netlify.app/>">Vite PWA</Link>.
 	</p>
 
 	<p class="mt-2">
@@ -102,7 +107,10 @@
 	<h1 class="mt-4 text-4xl">about &ndash; nimi.li</h1>
 
 	<p class="mt-2">
-		This project was made by me, jan Tani. It's
+		Hi! I'm <Link href="https://github.com/cubedhuang/">jan Tani</Link>, and I
+		made this project. Thanks to
+		<Link href="https://github.com/woflydev/">woflydev</Link>
+		for making this a Progressive Web Application. This is
 		<Link href="https://github.com/cubedhuang/sona-nimi">open source</Link>!
 	</p>
 
@@ -142,8 +150,9 @@
 	<p class="mt-2">
 		This website was built with
 		<Link href="https://kit.svelte.dev">SvelteKit</Link>,
-		<Link href="https://www.typescriptlang.org">TypeScript</Link>, and
-		<Link href="https://tailwindcss.com">TailwindCSS</Link>.
+		<Link href="https://www.typescriptlang.org">TypeScript</Link>,
+		<Link href="https://tailwindcss.com">TailwindCSS</Link>, and
+		<Link href="https://vite-pwa-org.netlify.app/>">Vite PWA</Link>.
 	</p>
 
 	<p class="mt-2">

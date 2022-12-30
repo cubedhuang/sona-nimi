@@ -1,7 +1,8 @@
 import { json } from '@sveltejs/kit';
-import type { Compound, CompoundData } from '$lib/types';
-
 import type { RequestHandler } from './$types';
+
+import type { Compound, CompoundData } from '$lib/types';
+import glyphs from './glyphs.json';
 
 export const GET = (async ({ fetch }) => {
 	const regex = /^(.+?): \["?(.+?)"?\]/gm;
@@ -9,9 +10,6 @@ export const GET = (async ({ fetch }) => {
 	const rawData = await fetch('https://tokipona.org/compounds.txt').then(res =>
 		res.text()
 	);
-	const glyphs = (await fetch('/glyphs.json').then(res =>
-		res.json()
-	)) as string[];
 
 	const data: CompoundData = Object.fromEntries(
 		[...rawData.matchAll(regex)].map(match => {

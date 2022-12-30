@@ -2,52 +2,52 @@
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
-	font-family: 'Fairfax Pona HD';
-	src: url('./fonts/FairfaxPonaHD.woff2') format('woff2'),
-		url('./fonts/FairfaxPonaHD.woff') format('woff');
-	font-weight: 500;
-	font-style: normal;
-	font-display: swap;
-}
-
-@font-face {
-	font-family: 'SFRounded';
-	src: url('./fonts/subset-SFRounded-Bold.woff2') format('woff2'),
-		url('./fonts/subset-SFRounded-Bold.woff') format('woff');
-	font-weight: bold;
-	font-style: normal;
-	font-display: swap;
-}
-
-@font-face {
-	font-family: 'SFProText';
-	src: url('./fonts/subset-SFProText-Bold.woff2') format('woff2'),
-		url('./fonts/subset-SFProText-Bold.woff') format('woff');
-	font-weight: bold;
-	font-style: normal;
-	font-display: swap;
-}
-
-@font-face {
-	font-family: 'SFProText';
-	src: url('./fonts/subset-SFProText-Regular.woff2') format('woff2'),
-		url('./fonts/subset-SFProText-Regular.woff') format('woff');
-	font-weight: normal;
-	font-style: normal;
-	font-display: swap;
-}
-
-@font-face {
-	font-family: 'SFProText';
-	src: url('./fonts/subset-SFProText-RegularItalic.woff2') format('woff2'),
-		url('./fonts/subset-SFProText-RegularItalic.woff') format('woff');
-	font-weight: normal;
-	font-style: italic;
-	font-display: swap;
-}
-
 @layer base {
+	@font-face {
+		font-family: 'Fairfax Pona HD';
+		src: url('fonts/FairfaxPonaHD.woff2') format('woff2'),
+			url('fonts/FairfaxPonaHD.woff') format('woff');
+		font-weight: 500;
+		font-style: normal;
+		font-display: swap;
+	}
+
+	@font-face {
+		font-family: 'SFRounded';
+		src: url('fonts/subset-SFRounded-Bold.woff2') format('woff2'),
+			url('fonts/subset-SFRounded-Bold.woff') format('woff');
+		font-weight: bold;
+		font-style: normal;
+		font-display: swap;
+	}
+
+	@font-face {
+		font-family: 'SFProText';
+		src: url('fonts/subset-SFProText-Bold.woff2') format('woff2'),
+			url('fonts/subset-SFProText-Bold.woff') format('woff');
+		font-weight: bold;
+		font-style: normal;
+		font-display: swap;
+	}
+
+	@font-face {
+		font-family: 'SFProText';
+		src: url('fonts/subset-SFProText-Regular.woff2') format('woff2'),
+			url('fonts/subset-SFProText-Regular.woff') format('woff');
+		font-weight: normal;
+		font-style: normal;
+		font-display: swap;
+	}
+
+	@font-face {
+		font-family: 'SFProText';
+		src: url('fonts/subset-SFProText-RegularItalic.woff2') format('woff2'),
+			url('fonts/subset-SFProText-RegularItalic.woff') format('woff');
+		font-weight: normal;
+		font-style: italic;
+		font-display: swap;
+	}
+
 	html {
 		scroll-padding-top: 4rem;
 		scroll-behavior: smooth;
@@ -59,6 +59,12 @@
 
 		scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-bg);
 		scrollbar-gutter: stable;
+	}
+
+	html,
+	body {
+		overscroll-behavior-y: none;
+		overscroll-behavior: none;
 	}
 
 	::-webkit-scrollbar {

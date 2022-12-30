@@ -6,18 +6,18 @@
 	<title>pakala &ndash; {$page.status}</title>
 </svelte:head>
 
-<div class="py-8 sm:py-16 md:py-24">
-	<h1 class="text-6xl text-orange-500 dark:text-orange-400">
+<div class="py-24">
+	<h1 class="text-5xl sm:text-6xl text-orange-500 dark:text-orange-400">
 		pakala nanpa {$page.status}!
 	</h1>
 
-	<p class="mt-4">
-		{#if $page.status === 404}
-			lipu ni li lon ala.
-		{:else}
-			ijo mi li pakala!
-		{/if}
-	</p>
+	{#if $page.status === 404}
+		<p class="mt-4">lipu ni li lon ala.</p>
+		<p class="faded">this page doesn't exist!</p>
+	{:else}
+		<p class="mt-4">ijo mi li pakala!</p>
+		<p class="faded">whoops, my bad.</p>
+	{/if}
 
 	{#if $page.error?.closest?.length}
 		<h2 class="mt-6 text-2xl">ken la sina wile e lipu ni:</h2>
