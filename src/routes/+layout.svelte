@@ -11,12 +11,10 @@
 	const routes = [
 		{ name: 'vocabulary', href: '/' },
 		{ name: 'compounds', href: '/compounds' },
-		{ name: 'about', href: '/about' },
+		{ name: 'about', href: '/about' }
 	];
 
-	const hiddenRoutes = [
-		{ name: 'themeswitch', href: '/themeswitch' }
-	];
+	const hiddenRoutes = [{ name: 'themeswitch', href: '/themeswitch' }];
 
 	const commonClasses =
 		'p-2 rounded-lg border border-gray-200 dark:border-gray-800 transition-colors';
@@ -103,7 +101,7 @@
 				</div>
 			{/if}
 		</div>
-		
+
 		<!--
 		<p class="{commonClasses} {hoverableClasses} cursor-pointer">
 			<button id="installApp">
@@ -115,7 +113,7 @@
 		<!-- this sector used to be a <label> -->
 		<p class="{commonClasses} {hoverableClasses} ml-auto cursor-pointer">
 			<!-- first hidden route (hiddenRoutes[0]) is the themeswitcher page-->
-			<a href="{hiddenRoutes[0].href}">
+			<a href={hiddenRoutes[0].href}>
 				{#if $darkMode}
 					<svg
 						xmlns="http://www.w3.org/2000/svg"

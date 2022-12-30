@@ -4,7 +4,6 @@
 	import { darkMode, sitelenMode } from '$lib/stores';
 </script>
 
-
 <svelte:head>
 	<title>Danger Zone</title>
 </svelte:head>
@@ -20,17 +19,18 @@
 
 	<p class="mt-4">
 		Ahead lies the controls for changing the theme of this website.
-		<br>
+		<br />
 		{#if $darkMode}
-			Switching to light mode will most certainly result in your eyes' untimely demise.
-			<br>
+			Switching to light mode will most certainly result in your eyes' untimely
+			demise.
+			<br />
 			Proceed with extreme caution.
 		{:else}
 			Welcome back to the dark side, my friend.
-			<br>
+			<br />
 			Prepare to embrace darkness once more.
 		{/if}
-		<br><br>
+		<br /><br />
 	</p>
 
 	<p class="mt-6">

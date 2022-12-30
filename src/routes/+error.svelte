@@ -11,16 +11,16 @@
 	<h1 class="text-6xl text-orange-500 dark:text-orange-400">
 		pakala nanpa (error) {$page.status}!
 	</h1>
-	<br>
+	<br />
 
 	<p class="mt-4">
 		{#if $page.status === 404}
 			lipu ni li lon ala.
-			<br>
+			<br />
 			this page does not exist!
 		{:else}
 			ijo mi li pakala!
-			<br>
+			<br />
 			whoops, my bad.
 		{/if}
 	</p>
@@ -42,7 +42,7 @@
 	<p class="mt-6">
 		<a href="/" class="inline-block px-2 py-1 interactable">
 			o tawa e lipu suli (go home!)
-			<br>
+			<br />
 		</a>
 	</p>
 </div>
