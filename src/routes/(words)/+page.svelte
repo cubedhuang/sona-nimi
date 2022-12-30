@@ -106,7 +106,7 @@
 	<meta property="og:type" content="website" />
 </svelte:head>
 
-<h1 class="text-4xl" style="display:inline">nimi.li</h1> 
+<h1 class="text-4xl">nimi.li</h1>
 
 <p class="mt-2">
 	<span class="font-bold">nimi.li</span> is an interactive toki pona dictionary.
