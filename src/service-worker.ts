@@ -19,8 +19,14 @@ worker.addEventListener('install', event => {
 });
 
 worker.addEventListener('activate', event => {
-	// If the files are not cached, add them to the cache
 	async function cacheFiles() {
+		// Delete old caches
+		const keys = await caches.keys();
+		await Promise.all(
+			keys.filter(key => key !== CACHE).map(key => caches.delete(key))
+		);
+
+		// If files are not cached, add them to the cache
 		const cache = await caches.open(CACHE);
 		const cached = await cache.keys();
 		const cachedUrls = cached.map(request => request.url);
