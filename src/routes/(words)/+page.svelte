@@ -59,7 +59,7 @@
 		return categoryIndex[a.usage_category] - categoryIndex[b.usage_category];
 	};
 
-	$: sorter =
+	$: genericSorter =
 		$sortingMethod === 'alphabetical'
 			? azSorter
 			: $sortingMethod === 'recognition'
@@ -68,17 +68,23 @@
 
 	let filteredWords: Word[] = [];
 
+	function genericFilter(word: Word) {
+		return (
+			($showMusi || !word.musi) &&
+			shownCategories.includes(word.usage_category) &&
+			shownBooks.includes(word.book)
+		);
+	}
+
 	$: if ($searchMethod === 'term') {
 		filteredWords = words
+			.filter(genericFilter)
 			.filter(
 				word =>
-					($showMusi || !word.musi) &&
-					shownCategories.includes(word.usage_category) &&
-					shownBooks.includes(word.book) &&
-					(word.word.toLowerCase().includes(fixedSearch) ||
-						distance(word.word, search) <= 1)
+					word.word.toLowerCase().includes(fixedSearch) ||
+					distance(word.word, search) <= 1
 			)
-			.sort(sorter)
+			.sort(genericSorter)
 			.sort((a, b) => {
 				if (fixedSearch === '') return 0;
 				if (a.word.toLowerCase() === fixedSearch) return -1;
@@ -90,19 +96,27 @@
 				if (!aContains && bContains) return 1;
 				return distance(a.word, search) - distance(b.word, search);
 			});
-	} else {
+	} else if ($searchMethod === 'definition') {
 		filteredWords = words
+			.filter(genericFilter)
 			.filter(
 				word =>
-					($showMusi || !word.musi) &&
-					shownCategories.includes(word.usage_category) &&
-					shownBooks.includes(word.book) &&
-					(getWordDefinition(word, $language)
+					getWordDefinition(word, $language)
 						.toLowerCase()
 						.includes(fixedSearch) ||
-						word.ku_data?.toLowerCase().includes(fixedSearch))
+					word.ku_data?.toLowerCase().includes(fixedSearch)
 			)
-			.sort(sorter);
+			.sort(genericSorter);
+	} else {
+		filteredWords = words
+			.filter(genericFilter)
+			.filter(word => word.creator)
+			.filter(
+				word =>
+					word.creator?.toLowerCase().includes(fixedSearch) ||
+					distance(word.creator!, search) <= 1
+			)
+			.sort(genericSorter);
 	}
 
 	$: missingDefinitions = Object.values(
@@ -166,8 +180,9 @@
 <div class="mt-2 flex flex-wrap gap-2">
 	<Select
 		options={[
-			{ label: 'Search with Toki Pona', value: 'term' },
-			{ label: 'Search with Definition', value: 'definition' }
+			{ label: 'Search by Toki Pona', value: 'term' },
+			{ label: 'Search by Definition', value: 'definition' },
+			{ label: 'Search by Creator', value: 'creator' }
 		]}
 		bind:value={$searchMethod}
 	/>

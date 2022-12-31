@@ -71,7 +71,7 @@ export const books = savedWritable(
 
 export const showMusi = savedWritable('showMusi', true);
 
-export const searchMethod = savedWritable<'term' | 'definition'>(
+export const searchMethod = savedWritable<'term' | 'definition' | 'creator'>(
 	'searchMethod',
 	'term'
 );
