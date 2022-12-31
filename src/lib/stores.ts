@@ -60,17 +60,6 @@ export const categories = savedWritable(
 	value => value.some(({ shown }) => shown)
 );
 
-export const books = savedWritable(
-	'books',
-	Object.keys(bookColors).map(book => ({
-		name: book as BookName,
-		shown: true
-	})),
-	value => value.some(({ shown }) => shown)
-);
-
-export const showMusi = savedWritable('showMusi', true);
-
 export const searchMethod = savedWritable<'term' | 'definition' | 'creator'>(
 	'searchMethod',
 	'term'

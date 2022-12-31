@@ -1,9 +1,10 @@
 <script lang="ts">
+	import { fly } from 'svelte/transition';
 	import { distance } from 'fastest-levenshtein';
 
 	import type { PageData } from './$types';
 
-	import type { UsageCategory, Word } from '$lib/types';
+	import type { BookName, UsageCategory, Word } from '$lib/types';
 	import {
 		bookColors,
 		categoryColors,
@@ -12,11 +13,9 @@
 		sortLanguages
 	} from '$lib/util';
 	import {
-		books,
 		categories,
 		language,
 		searchMethod,
-		showMusi,
 		sitelenMode,
 		sortingMethod
 	} from '$lib/stores';
@@ -32,6 +31,8 @@
 
 	const words = Object.values(data.data);
 
+	let moreOptions = false;
+
 	let search = '';
 	let selectedWord: Word | null = null;
 
@@ -40,7 +41,14 @@
 	$: shownCategories = $categories
 		.filter(category => category.shown)
 		.map(category => category.name);
-	$: shownBooks = $books.filter(book => book.shown).map(book => book.name);
+
+	let books = Object.keys(bookColors).map(book => ({
+		name: book as BookName,
+		shown: true
+	}));
+	$: shownBooks = books.filter(book => book.shown).map(book => book.name);
+
+	let showMusi = true;
 
 	const categoryIndex: Record<UsageCategory, number> = {
 		core: 0,
@@ -69,7 +77,7 @@
 	let filteredWords: Word[] = [];
 
 	$: genericFilter = (word: Word) =>
-		($showMusi || !word.musi) &&
+		(showMusi || !word.musi) &&
 		shownCategories.includes(word.usage_category) &&
 		shownBooks.includes(word.book);
 
@@ -146,7 +154,7 @@
 	Click on a word to read more!
 </p>
 
-<div class="mt-4 flex flex-wrap gap-x-1 gap-y-0.5 sm:gap-x-2 sm:gap-y-1">
+<div class="mt-4 flex flex-wrap gap-1 sm:gap-x-2 sm:gap-y-1">
 	{#each $categories as category}
 		<ColoredCheckbox
 			bind:checked={category.shown}
@@ -154,25 +162,113 @@
 			color={categoryColors[category.name]}
 		/>
 	{/each}
+
+	<div class="relative flex justify-center">
+		<button
+			on:click={() => {
+				moreOptions = !moreOptions;
+			}}
+			class="p-0.5 interactable lg:block"
+			class:hidden={moreOptions}
+			title="more"
+		>
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				fill="none"
+				viewBox="0 0 24 24"
+				stroke-width="1.5"
+				stroke="currentColor"
+				class="w-6 h-6"
+			>
+				<path
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					d="M6.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM12.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM18.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"
+				/>
+			</svg>
+		</button>
+
+		{#if moreOptions}
+			<div
+				transition:fly={{ y: 4, duration: 300 }}
+				on:click|stopPropagation
+				on:touchstart|passive|stopPropagation
+				on:keydown|stopPropagation
+				class="hidden lg:block absolute top-full mt-2 w-max bg-black border-gray-200
+					dark:border-gray-800 border rounded-lg shadow-lg p-2"
+			>
+				<div class="flex flex-wrap gap-1 sm:gap-x-2 sm:gap-y-1">
+					{#each books as book}
+						<ColoredCheckbox
+							bind:checked={book.shown}
+							label={book.name === 'none' ? 'no book' : `nimi ${book.name}`}
+							color={bookColors[book.name]}
+						/>
+					{/each}
+				</div>
+
+				<div class="mt-2 flex">
+					<ColoredCheckbox
+						bind:checked={showMusi}
+						label="nimi pi musi taso"
+						color="bg-pink-400"
+					/>
+				</div>
+			</div>
+		{/if}
+	</div>
 </div>
 
-<div class="mt-2 flex flex-wrap gap-x-1 gap-y-0.5 sm:gap-x-2 sm:gap-y-1">
-	{#each $books as book}
-		<ColoredCheckbox
-			bind:checked={book.shown}
-			label={book.name === 'none' ? 'no book' : `nimi ${book.name}`}
-			color={bookColors[book.name]}
-		/>
-	{/each}
-</div>
+{#if moreOptions}
+	<div
+		on:click|stopPropagation
+		on:touchstart|passive|stopPropagation
+		on:keydown|stopPropagation
+		class="mt-2 lg:hidden border border-gray-400 rounded-lg p-2
+			dark:border-gray-800"
+	>
+		<div class="flex flex-wrap gap-1 sm:gap-x-2 sm:gap-y-1">
+			{#each books as book}
+				<ColoredCheckbox
+					bind:checked={book.shown}
+					label={book.name === 'none' ? 'no book' : `nimi ${book.name}`}
+					color={bookColors[book.name]}
+				/>
+			{/each}
+		</div>
 
-<div class="mt-2 flex">
-	<ColoredCheckbox
-		bind:checked={$showMusi}
-		label="nimi pi musi taso"
-		color="bg-pink-400"
-	/>
-</div>
+		<div class="mt-2 flex justify-between">
+			<ColoredCheckbox
+				bind:checked={showMusi}
+				label="nimi pi musi taso"
+				color="bg-pink-400"
+			/>
+
+			<button
+				on:click={() => {
+					moreOptions = false;
+				}}
+				class="p-0.5 interactable"
+				title="close"
+			>
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					fill="none"
+					viewBox="0 0 24 24"
+					stroke-width="1.5"
+					stroke="currentColor"
+					class="w-6 h-6"
+				>
+					<path
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						d="M6 18L18 6M6 6l12 12"
+					/>
+				</svg>
+			</button>
+		</div>
+	</div>
+{/if}
 
 <div class="mt-2 flex flex-wrap gap-2">
 	<Select
@@ -228,7 +324,11 @@
 </p>
 
 <Search
-	placeholder={$searchMethod === 'term' ? 'nimi...' : 'definition...'}
+	placeholder={$searchMethod === 'term'
+		? 'nimi...'
+		: $searchMethod === 'definition'
+		? 'definition...'
+		: 'creator...'}
 	bind:value={search}
 />
 
@@ -255,7 +355,7 @@
 				shown:
 					category.shown || category.name === data.data[e.detail].usage_category
 			}));
-			$books = $books.map(book => ({
+			books = books.map(book => ({
 				...book,
 				shown: book.shown || book.name === data.data[e.detail].book
 			}));

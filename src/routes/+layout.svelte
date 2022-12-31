@@ -82,6 +82,7 @@
 				}}
 				on:touchstart|passive|stopPropagation
 				class="{commonClasses} {hoverableClasses} cursor-pointer"
+				title="menu"
 			>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
@@ -121,11 +122,12 @@
 		<div class="flex gap-2">
 			{#if deferredPrompt}
 				<button
-					class="{commonClasses} {hoverableClasses}"
 					on:click={() => {
 						deferredPrompt.prompt();
 					}}
 					transition:fly={{ y: -4, duration: 300 }}
+					class="{commonClasses} {hoverableClasses}"
+					title="install as app"
 				>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
