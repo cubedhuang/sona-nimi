@@ -3,7 +3,7 @@
 
 	import type { PageData } from './$types';
 
-	import type { Word } from '$lib/types';
+	import type { UsageCategory, Word } from '$lib/types';
 	import {
 		bookColors,
 		categoryColors,
@@ -42,10 +42,29 @@
 		.map(category => category.name);
 	$: shownBooks = $books.filter(book => book.shown).map(book => book.name);
 
+	const categoryIndex: Record<UsageCategory, number> = {
+		core: 0,
+		widespread: 1,
+		common: 2,
+		uncommon: 3,
+		rare: 4,
+		obscure: 5
+	};
+
+	const azSorter = (a: Word, b: Word) => a.word.localeCompare(b.word);
+	const recognitionSorter = (a: Word, b: Word) =>
+		getWordRecognition(b) - getWordRecognition(a);
+	const combinedSorter = (a: Word, b: Word) => {
+		if (a.usage_category === b.usage_category) return azSorter(a, b);
+		return categoryIndex[a.usage_category] - categoryIndex[b.usage_category];
+	};
+
 	$: sorter =
 		$sortingMethod === 'alphabetical'
-			? (a: Word, b: Word) => a.word.localeCompare(b.word)
-			: (a: Word, b: Word) => getWordRecognition(b) - getWordRecognition(a);
+			? azSorter
+			: $sortingMethod === 'recognition'
+			? recognitionSorter
+			: combinedSorter;
 
 	let filteredWords: Word[] = [];
 
@@ -155,6 +174,7 @@
 
 	<Select
 		options={[
+			{ label: 'Sort A-Z by Usage', value: 'combined' },
 			{ label: 'Sort by Usage', value: 'recognition' },
 			{ label: 'Sort Alphabetically', value: 'alphabetical' }
 		]}

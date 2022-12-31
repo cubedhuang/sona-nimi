@@ -76,10 +76,9 @@ export const searchMethod = savedWritable<'term' | 'definition'>(
 	'term'
 );
 
-export const sortingMethod = savedWritable<'alphabetical' | 'recognition'>(
-	'sortingMethod',
-	'recognition'
-);
+export const sortingMethod = savedWritable<
+	'alphabetical' | 'recognition' | 'combined'
+>('sortingMethod', 'combined');
 
 export const language = savedWritable('language', 'en');
 

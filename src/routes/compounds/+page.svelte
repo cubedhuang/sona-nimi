@@ -134,6 +134,7 @@
 
 	<Select
 		options={[
+			{ label: 'Sort A-Z by Usage', value: 'combined' },
 			{ label: 'Sort by Usage', value: 'recognition' },
 			{ label: 'Sort Alphabetically', value: 'alphabetical' }
 		]}
