@@ -146,7 +146,7 @@
 	Click on a word to read more!
 </p>
 
-<div class="mt-4 flex flex-wrap gap-2">
+<div class="mt-4 flex flex-wrap gap-x-1 gap-y-0.5 sm:gap-x-2 sm:gap-y-1">
 	{#each $categories as category}
 		<ColoredCheckbox
 			bind:checked={category.shown}
@@ -156,7 +156,7 @@
 	{/each}
 </div>
 
-<div class="mt-2 flex flex-wrap gap-2">
+<div class="mt-2 flex flex-wrap gap-x-1 gap-y-0.5 sm:gap-x-2 sm:gap-y-1">
 	{#each $books as book}
 		<ColoredCheckbox
 			bind:checked={book.shown}
