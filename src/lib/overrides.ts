@@ -37,7 +37,11 @@ export const musi = [
 	'toma',
 	'konsuno',
 	'nimisin',
-	'nja'
+	'nja',
+	'kalamawala',
+	'wawajete',
+	'kisa',
+	'lokon'
 ];
 
 export const overrides: Record<string, Partial<Word>> = {
