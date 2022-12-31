@@ -1,5 +1,5 @@
 import { json } from '@sveltejs/kit';
-import { newWords, overrides } from '$lib/overrides';
+import { musi, newWords, overrides } from '$lib/overrides';
 import type { Linku } from '$lib/types';
 
 import type { RequestHandler } from './$types';
@@ -26,6 +26,10 @@ export const GET = (async ({ fetch }) => {
 
 	for (const word of newWords) {
 		data.data[word.word] = word;
+	}
+
+	for (const word of musi) {
+		data.data[word].musi = true;
 	}
 
 	return json(data);

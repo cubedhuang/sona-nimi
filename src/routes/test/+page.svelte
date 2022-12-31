@@ -300,6 +300,18 @@
 	</tbody>
 </table>
 
+<h3 class="mt-4 text-2xl">links</h3>
+
+<p class="mt-2">these links will make everything prerendered</p>
+
+<p class="mt-2 flex flex-wrap gap-1">
+	{#each words as word}
+		<Link href="/{word.word}">
+			{word.word}
+		</Link>
+	{/each}
+</p>
+
 <h2 class="mt-4 text-3xl" data-sveltekit-preload-data="off">
 	<Link href="/data/compounds">compounds</Link>
 	<span class="font-text text-sm faded">

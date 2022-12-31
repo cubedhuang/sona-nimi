@@ -55,7 +55,7 @@ export const categories = savedWritable(
 	'categories',
 	Object.keys(categoryColors).map(category => ({
 		name: category as UsageCategory,
-		shown: true
+		shown: ['core', 'widespread'].includes(category)
 	})),
 	value => value.some(({ shown }) => shown)
 );
@@ -69,15 +69,16 @@ export const books = savedWritable(
 	value => value.some(({ shown }) => shown)
 );
 
-export const searchMethod = savedWritable<'term' | 'definition'>(
+export const showMusi = savedWritable('showMusi', true);
+
+export const searchMethod = savedWritable<'term' | 'definition' | 'creator'>(
 	'searchMethod',
 	'term'
 );
 
-export const sortingMethod = savedWritable<'alphabetical' | 'recognition'>(
-	'sortingMethod',
-	'recognition'
-);
+export const sortingMethod = savedWritable<
+	'alphabetical' | 'recognition' | 'combined'
+>('sortingMethod', 'combined');
 
 export const language = savedWritable('language', 'en');
 

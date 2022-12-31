@@ -3,7 +3,7 @@
 
 	import type { PageData } from './$types';
 
-	import type { Word } from '$lib/types';
+	import type { UsageCategory, Word } from '$lib/types';
 	import {
 		bookColors,
 		categoryColors,
@@ -16,6 +16,7 @@
 		categories,
 		language,
 		searchMethod,
+		showMusi,
 		sitelenMode,
 		sortingMethod
 	} from '$lib/stores';
@@ -41,23 +42,49 @@
 		.map(category => category.name);
 	$: shownBooks = $books.filter(book => book.shown).map(book => book.name);
 
-	$: sorter =
+	const categoryIndex: Record<UsageCategory, number> = {
+		core: 0,
+		widespread: 1,
+		common: 2,
+		uncommon: 3,
+		rare: 4,
+		obscure: 5
+	};
+
+	const azSorter = (a: Word, b: Word) => a.word.localeCompare(b.word);
+	const recognitionSorter = (a: Word, b: Word) =>
+		getWordRecognition(b) - getWordRecognition(a);
+	const combinedSorter = (a: Word, b: Word) => {
+		if (a.usage_category === b.usage_category) return azSorter(a, b);
+		return categoryIndex[a.usage_category] - categoryIndex[b.usage_category];
+	};
+
+	$: genericSorter =
 		$sortingMethod === 'alphabetical'
-			? (a: Word, b: Word) => a.word.localeCompare(b.word)
-			: (a: Word, b: Word) => getWordRecognition(b) - getWordRecognition(a);
+			? azSorter
+			: $sortingMethod === 'recognition'
+			? recognitionSorter
+			: combinedSorter;
 
 	let filteredWords: Word[] = [];
 
+	function genericFilter(word: Word) {
+		return (
+			($showMusi || !word.musi) &&
+			shownCategories.includes(word.usage_category) &&
+			shownBooks.includes(word.book)
+		);
+	}
+
 	$: if ($searchMethod === 'term') {
 		filteredWords = words
+			.filter(genericFilter)
 			.filter(
 				word =>
-					shownCategories.includes(word.usage_category) &&
-					shownBooks.includes(word.book) &&
-					(word.word.toLowerCase().includes(fixedSearch) ||
-						distance(word.word, search) <= 1)
+					word.word.toLowerCase().includes(fixedSearch) ||
+					distance(word.word, search) <= 1
 			)
-			.sort(sorter)
+			.sort(genericSorter)
 			.sort((a, b) => {
 				if (fixedSearch === '') return 0;
 				if (a.word.toLowerCase() === fixedSearch) return -1;
@@ -69,18 +96,27 @@
 				if (!aContains && bContains) return 1;
 				return distance(a.word, search) - distance(b.word, search);
 			});
-	} else {
+	} else if ($searchMethod === 'definition') {
 		filteredWords = words
+			.filter(genericFilter)
 			.filter(
 				word =>
-					shownCategories.includes(word.usage_category) &&
-					shownBooks.includes(word.book) &&
-					(getWordDefinition(word, $language)
+					getWordDefinition(word, $language)
 						.toLowerCase()
 						.includes(fixedSearch) ||
-						word.ku_data?.toLowerCase().includes(fixedSearch))
+					word.ku_data?.toLowerCase().includes(fixedSearch)
 			)
-			.sort(sorter);
+			.sort(genericSorter);
+	} else {
+		filteredWords = words
+			.filter(genericFilter)
+			.filter(word => word.creator)
+			.filter(
+				word =>
+					word.creator?.toLowerCase().includes(fixedSearch) ||
+					distance(word.creator!, search) <= 1
+			)
+			.sort(genericSorter);
 	}
 
 	$: missingDefinitions = Object.values(
@@ -133,17 +169,27 @@
 	{/each}
 </div>
 
+<div class="mt-2 flex">
+	<ColoredCheckbox
+		bind:checked={$showMusi}
+		label="nimi pi musi taso"
+		color="bg-pink-400"
+	/>
+</div>
+
 <div class="mt-2 flex flex-wrap gap-2">
 	<Select
 		options={[
-			{ label: 'Search with Toki Pona', value: 'term' },
-			{ label: 'Search with Definition', value: 'definition' }
+			{ label: 'Search by Toki Pona', value: 'term' },
+			{ label: 'Search by Definition', value: 'definition' },
+			{ label: 'Search by Creator', value: 'creator' }
 		]}
 		bind:value={$searchMethod}
 	/>
 
 	<Select
 		options={[
+			{ label: 'Sort A-Z by Usage', value: 'combined' },
 			{ label: 'Sort by Usage', value: 'recognition' },
 			{ label: 'Sort Alphabetically', value: 'alphabetical' }
 		]}

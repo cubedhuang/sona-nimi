@@ -80,6 +80,12 @@ export interface Word {
 	 * Other words, separated by commas
 	 */
 	see_also?: string;
+
+	/**
+	 * This property is not in Linku but it's an added tag for joke words
+	 * that shouldn't be in real usage
+	 */
+	musi?: boolean;
 }
 
 export interface Font {
