@@ -1,27 +1,6 @@
 import type { Word } from './types';
 
-export const overrides: Record<string, Partial<Word>> = {
-	jule: {
-		creator: 'pilin Powa',
-		commentary:
-			"This definition of the word is quite different from the ones present in lipu Linku. This is because certain ideas I had at the time did not pan out in the way that I'd expect. The new version deprecates the 'oscillate, swing' definition to address major overlap with sike, removes the 'wave, tide' definition as it was never used in practice, and adds definitions to characterize the word's actual use better. The actual usage of the word more or less remains the exact same as prior to this quote, but hopefully this clears up the intention behind the word more. — pilin Powa"
-	},
-
-	// The original data has "poka. teje" which is malformed.
-	soto: {
-		see_also: 'poka, teje'
-	},
-
-	// The original data has "a; wa" which is malformed.
-	je: {
-		see_also: 'a, wa'
-	},
-
-	// The original data has "lape‚ (weird unicode quotation instead of a comma) insa" which is malformed.
-	jume: {
-		see_also: 'lape, insa'
-	}
-};
+export const overrides: Record<string, Partial<Word>> = {};
 
 export const newWords: Word[] = [
 	{
