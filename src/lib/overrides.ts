@@ -7,7 +7,7 @@ export const musi = [
 	'omekapo',
 	'yupekosi',
 	'wuwojiti',
-	'sunopatikuna',
+	'sutopatikuna',
 	'kulijo',
 	'omekalike',
 	'owe',
