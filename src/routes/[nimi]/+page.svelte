@@ -26,7 +26,7 @@
 
 	<meta property="og:title" content={word.word} />
 	<meta property="og:author" content="jan Tani" />
-	<meta property="og:description" content={word.def.en} />
+	<meta property="og:description" content={description} />
 	<meta property="og:url" content="https://nimi.li/{word.word}" />
 	<meta property="og:site_name" content="nimi.li" />
 	<meta property="og:type" content="website" />
