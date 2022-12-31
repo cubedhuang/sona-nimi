@@ -38,7 +38,7 @@ export const musi = [
 	'konsuno',
 	'nimisin',
 	'nja',
-	'kalamawala',
+	'kamalawala',
 	'wawajete',
 	'kisa',
 	'lokon'
