@@ -68,13 +68,10 @@
 
 	let filteredWords: Word[] = [];
 
-	function genericFilter(word: Word) {
-		return (
-			($showMusi || !word.musi) &&
-			shownCategories.includes(word.usage_category) &&
-			shownBooks.includes(word.book)
-		);
-	}
+	$: genericFilter = (word: Word) =>
+		($showMusi || !word.musi) &&
+		shownCategories.includes(word.usage_category) &&
+		shownBooks.includes(word.book);
 
 	$: if ($searchMethod === 'term') {
 		filteredWords = words
