@@ -103,6 +103,12 @@
 			nimi <Link href="/konsuno">konsuno</Link> li sin tawa musi.
 		</li>
 	</ul>
+
+	<p class="mt-2">
+		kin la, lipu ni li jo e kulupu <span class="text-pink-400">musi</span>. nimi
+		lon kulupu musi li nimi pi musi taso, sama nimi kijetesantakalu sama nimi
+		konsuno.
+	</p>
 {:else}
 	<h1 class="mt-4 text-4xl">about &ndash; nimi.li</h1>
 
@@ -177,4 +183,10 @@
 			The word <Link href="/konsuno">konsuno</Link> was added (as a joke).
 		</li>
 	</ul>
+
+	<p class="mt-2">
+		This website also as a <span class="text-pink-400">musi</span> tag. Words with
+		the tag are marked as musi taso, and are joke words that shouldn't be used seriously
+		like kijetesantakalu and konsuno.
+	</p>
 {/if}

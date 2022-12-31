@@ -69,6 +69,8 @@ export const books = savedWritable(
 	value => value.some(({ shown }) => shown)
 );
 
+export const showMusi = savedWritable('showMusi', true);
+
 export const searchMethod = savedWritable<'term' | 'definition'>(
 	'searchMethod',
 	'term'

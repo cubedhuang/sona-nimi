@@ -16,6 +16,7 @@
 		categories,
 		language,
 		searchMethod,
+		showMusi,
 		sitelenMode,
 		sortingMethod
 	} from '$lib/stores';
@@ -52,6 +53,7 @@
 		filteredWords = words
 			.filter(
 				word =>
+					($showMusi || !word.musi) &&
 					shownCategories.includes(word.usage_category) &&
 					shownBooks.includes(word.book) &&
 					(word.word.toLowerCase().includes(fixedSearch) ||
@@ -73,6 +75,7 @@
 		filteredWords = words
 			.filter(
 				word =>
+					($showMusi || !word.musi) &&
 					shownCategories.includes(word.usage_category) &&
 					shownBooks.includes(word.book) &&
 					(getWordDefinition(word, $language)
@@ -131,6 +134,14 @@
 			color={bookColors[book.name]}
 		/>
 	{/each}
+</div>
+
+<div class="mt-2 flex">
+	<ColoredCheckbox
+		bind:checked={$showMusi}
+		label="nimi pi musi taso"
+		color="bg-pink-400"
+	/>
 </div>
 
 <div class="mt-2 flex flex-wrap gap-2">
