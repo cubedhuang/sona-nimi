@@ -41,6 +41,10 @@
 	</div>
 
 	<p class="faded">
+		{#if word.musi}
+			<span class="text-pink-400">musi</span>
+			&middot;
+		{/if}
 		{word.usage_category} &middot;
 		{getWordDisplayRecognition(word)}
 		{#if word.book !== 'none'}
@@ -50,6 +54,13 @@
 			&middot; {word.coined_year}
 		{/if}
 	</p>
+
+	{#if word.musi}
+		<p class="mt-2 faded text-sm">
+			This word is marked as <span class="text-pink-400">musi</span>, indicating
+			that it is a joke word not intended for serious use.
+		</p>
+	{/if}
 
 	<p class="mt-2">
 		{getWordDefinition(word, $language)}

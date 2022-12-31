@@ -1,5 +1,18 @@
 import type { Word } from './types';
 
+export const musi = [
+	'kijetesantakalu',
+	'konsuno',
+	'epiku',
+	'sutopatikuna',
+	'Pingo',
+	'owe',
+	'yupekosi',
+	'polinpin',
+	'jonke',
+	'itomi'
+];
+
 export const overrides: Record<string, Partial<Word>> = {
 	jule: {
 		creator: 'pilin Powa',

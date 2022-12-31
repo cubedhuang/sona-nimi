@@ -55,7 +55,7 @@ export const categories = savedWritable(
 	'categories',
 	Object.keys(categoryColors).map(category => ({
 		name: category as UsageCategory,
-		shown: true
+		shown: ['core', 'widespread'].includes(category)
 	})),
 	value => value.some(({ shown }) => shown)
 );
