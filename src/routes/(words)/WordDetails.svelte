@@ -132,7 +132,7 @@
 	{/if}
 
 	{#if word.sitelen_emosi}
-		<h3 class="mt-2 text-lg">sitelen emosi</h3>
+		<h3 class="mt-2 text-lg">sitelen Emosi</h3>
 
 		<p class="text-3xl">
 			{word.sitelen_emosi}

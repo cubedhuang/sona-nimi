@@ -300,7 +300,7 @@
 		options={[
 			{ label: 'sitelen pona', value: 'pona' },
 			{ label: 'sitelen sitelen', value: 'sitelen' },
-			{ label: 'sitelen emosi', value: 'emosi' }
+			{ label: 'sitelen Emosi', value: 'emosi' }
 		]}
 		bind:value={$sitelenMode}
 	/>

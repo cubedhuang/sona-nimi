@@ -154,7 +154,7 @@
 	{/if}
 
 	{#if word.sitelen_emosi}
-		<h2 class="mt-4 text-2xl">sitelen emosi</h2>
+		<h2 class="mt-4 text-2xl">sitelen Emosi</h2>
 
 		<p class="mt-2 text-6xl">
 			{word.sitelen_emosi}
