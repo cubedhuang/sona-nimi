@@ -7,14 +7,6 @@
 	let searchBar: HTMLInputElement;
 </script>
 
-<svelte:body
-	on:keypress={() => {
-		if (document.activeElement !== searchBar) {
-			searchBar.focus();
-		}
-	}}
-/>
-
 <div class="mt-1 flex gap-1 items-center">
 	<input
 		type="text"
