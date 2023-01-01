@@ -7,6 +7,7 @@ export type UsageCategory =
 	| 'core';
 export type BookName = 'pu' | 'ku suli' | 'ku lili' | 'none';
 export type CoinedEra = 'pre-pu' | 'post-pu' | 'post-ku';
+export type Tag = 'pre-pu ALT' | 'nimi nanpa';
 
 export interface Linku {
 	languages: Record<string, Language>;
@@ -80,6 +81,13 @@ export interface Word {
 	 * Other words, separated by commas
 	 */
 	see_also?: string;
+
+	tags?: Tag;
+
+	/**
+	 * Only a few language codes (en, fr, de, eo)
+	 */
+	pu_verbatim?: Record<string, string>;
 
 	/**
 	 * This property is not in Linku but it's an added tag for joke words
