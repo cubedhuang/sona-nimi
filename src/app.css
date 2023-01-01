@@ -100,6 +100,14 @@
 	.no-transition * {
 		transition: none !important;
 	}
+
+	@media (prefers-reduced-motion: reduce) {
+		* {
+			transition: none !important;
+			animation-delay: 0ms !important;
+			animation-duration: 1ms !important;
+		}
+	}
 }
 
 @layer components {
