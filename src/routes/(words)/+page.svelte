@@ -194,8 +194,8 @@
 				on:click|stopPropagation
 				on:touchstart|passive|stopPropagation
 				on:keydown|stopPropagation
-				class="hidden lg:block absolute top-full mt-2 w-max bg-black border-gray-200
-					dark:border-gray-800 border rounded-lg shadow-lg p-2"
+				class="hidden lg:block absolute top-full mt-2 p-2 w-max bg-white border-gray-200 border rounded-lg shadow-lg
+					dark:border-gray-800 dark:bg-black"
 			>
 				<div class="flex flex-wrap gap-1 sm:gap-x-2 sm:gap-y-1">
 					{#each books as book}
