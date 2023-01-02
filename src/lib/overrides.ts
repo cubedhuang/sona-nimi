@@ -77,9 +77,10 @@ export const newWords: Word[] = [
 		usage_category: 'obscure',
 		creator: 'pilin Powa',
 		commentary:
-			'Predominately present within the community ma lili. "Yet" is in the sense of "even so". "At least" denotes that the speaker knows for a fact one thing, but is unaware otherwise.',
+			'Predominately present within the community ma lili. "Yet" is in the sense of "even so". "At least" denotes that the speaker knows for a fact one thing, but is unaware otherwise. It functions similarly grammatically to "taso" and "kin".',
 		etymology: "ainda 'still, yet, even'",
-		source_language: 'Portuguese'
+		source_language: 'Portuguese',
+		see_also: 'kin, taso'
 	},
 	{
 		word: 'kana',
@@ -95,7 +96,8 @@ export const newWords: Word[] = [
 		commentary:
 			'Predominately present within the community ma lili. Serves as a non-deprecated, neutral-connotation, and polysemous variant of words like oni, powe, or jume.',
 		etymology: "ಕನ kana 'dream'",
-		source_language: 'Tulu'
+		source_language: 'Tulu',
+		see_also: 'oni, powe, jume'
 	},
 	{
 		word: 'sole',
