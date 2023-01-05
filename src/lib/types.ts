@@ -91,8 +91,8 @@ export interface Word {
 	pu_verbatim?: Record<string, string>;
 
 	/**
-	 * This property is not in Linku but it's an added tag for joke words
-	 * that shouldn't be in real usage
+	 * This property is not in Linku but it's an added tag for words
+	 * which generally aren't used in serious contexts or toki pona taso
 	 */
 	musi?: boolean;
 }

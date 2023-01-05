@@ -10,15 +10,13 @@
 	export let data: PageData;
 
 	$: word = data;
-
-	$: description = !word.musi ? word.def.en : `(musi taso) ${word.def.en}`;
 </script>
 
 <svelte:head>
 	<title>{word.word} &ndash; nimi.li</title>
 
 	<meta name="author" content="jan Tani" />
-	<meta name="description" content={description} />
+	<meta name="description" content={word.def.en} />
 	<meta
 		name="keywords"
 		content="toki pona, toki pona dictionary, dictionary, nimi, {word.word}"
@@ -26,7 +24,7 @@
 
 	<meta property="og:title" content={word.word} />
 	<meta property="og:author" content="jan Tani" />
-	<meta property="og:description" content={description} />
+	<meta property="og:description" content={word.def.en} />
 	<meta property="og:url" content="https://nimi.li/{word.word}" />
 	<meta property="og:site_name" content="nimi.li" />
 	<meta property="og:type" content="website" />
@@ -39,8 +37,9 @@
 
 	{#if word.musi}
 		<p class="mt-2">
-			This word is marked as <span class="text-pink-400">musi taso</span>,
-			indicating that it is a joke word not intended for serious use.
+			This word is often considered <span class="text-pink-400">musi</span>,
+			indicating that it's sometimes not used in more serious contexts or in
+			toki pona taso conversation. However, it may still be useful to know.
 		</p>
 	{/if}
 

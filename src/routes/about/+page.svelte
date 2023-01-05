@@ -50,9 +50,7 @@
 	<ul class="mt-2 ml-4 list-disc">
 		<li>
 			ni li kepeken sona pi
-			<Link href="https://lipu-linku.github.io/about/jasima/">
-				jasima Linku
-			</Link> tawa nimi wan.
+			<Link href="https://linku.la/about/jasima/">jasima Linku</Link> tawa nimi wan.
 		</li>
 
 		<li>
@@ -84,8 +82,7 @@
 
 	<p class="mt-2">
 		lipu ni li ante lili tan
-		<Link href="https://lipu-linku.github.io">lipu Linku</Link>. mi ante e nimi
-		ni:
+		<Link href="https://linku.la">lipu Linku</Link>. mi ante e nimi ni:
 	</p>
 
 	<ul class="mt-2 ml-4 list-disc">
@@ -106,8 +103,9 @@
 
 	<p class="mt-2">
 		kin la, lipu ni li jo e kulupu <span class="text-pink-400">musi</span>. nimi
-		lon kulupu musi li nimi pi musi taso, sama nimi kijetesantakalu sama nimi
-		konsuno.
+		lon kulupu musi li sama nimi
+		<Link href="/itomi">itomi</Link>
+		sama nimi <Link href="/itomi">okepuma</Link>.
 	</p>
 {:else}
 	<h1 class="mt-4 text-4xl">about &ndash; nimi.li</h1>
@@ -128,9 +126,7 @@
 	<ul class="mt-2 ml-4 list-disc">
 		<li>
 			The
-			<Link href="https://lipu-linku.github.io/about/jasima/">
-				jasima Linku
-			</Link>
+			<Link href="https://linku.la/about/jasima/">jasima Linku</Link>
 			public API is used for all of data with the vocabulary.
 		</li>
 
@@ -163,7 +159,7 @@
 
 	<p class="mt-2">
 		A few changes were made from the definitions in
-		<Link href="https://lipu-linku.github.io">lipu Linku</Link>:
+		<Link href="https://linku.la">lipu Linku</Link>:
 	</p>
 
 	<ul class="mt-2 ml-4 list-disc">
@@ -185,8 +181,12 @@
 	</ul>
 
 	<p class="mt-2">
-		This website also as a <span class="text-pink-400">musi</span> tag. Words with
-		the tag are marked as musi taso, and are joke words that shouldn't be used seriously
-		like kijetesantakalu and konsuno.
+		This website also marks some words with a
+		<span class="text-pink-400">musi</span>
+		tag. Words with the tag are often considered unused in serious or toki pona taso
+		contexts, like
+		<Link href="/itomi">itomi</Link>
+		and
+		<Link href="/okepuma">okepuma</Link>.
 	</p>
 {/if}

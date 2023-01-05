@@ -210,7 +210,7 @@
 				<div class="mt-2 flex">
 					<ColoredCheckbox
 						bind:checked={showMusi}
-						label="nimi pi musi taso"
+						label="nimi musi"
 						color="bg-pink-400"
 					/>
 				</div>
@@ -240,7 +240,7 @@
 		<div class="mt-2 flex justify-between">
 			<ColoredCheckbox
 				bind:checked={showMusi}
-				label="nimi pi musi taso"
+				label="show nimi musi"
 				color="bg-pink-400"
 			/>
 
