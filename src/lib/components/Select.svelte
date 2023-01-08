@@ -1,10 +1,12 @@
 <script lang="ts">
+	type T = $$Generic;
+
 	export let options: {
 		label: string;
-		value: string;
+		value: T;
 	}[];
 
-	export let value: string;
+	export let value: T;
 </script>
 
 <select bind:value class="px-2 py-0.5 interactable">
