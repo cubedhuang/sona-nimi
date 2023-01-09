@@ -17,5 +17,7 @@
 		class:opacity-30={!checked}
 	/>
 
-	<span class="px-2 py-0.5">{label}</span>
+	<span class="px-2 py-0.5" class:faded={!checked}>
+		{label}
+	</span>
 </button>
