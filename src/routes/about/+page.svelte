@@ -27,7 +27,7 @@
 		class="px-2 py-1 interactable"
 		on:click={() => (tokiPona = !tokiPona)}
 	>
-		{tokiPona ? 'use English' : 'o kepeken toki pona'}
+		{tokiPona ? 'use English' : 'o toki pona'}
 	</button>
 </p>
 
