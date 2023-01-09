@@ -190,7 +190,7 @@
 
 		{#if moreOptions}
 			<div
-				transition:fly={{ y: 4, duration: 300 }}
+				transition:fly|local={{ y: 4, duration: 300 }}
 				on:click|stopPropagation
 				on:touchstart|passive|stopPropagation
 				on:keydown|stopPropagation
