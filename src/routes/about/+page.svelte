@@ -77,7 +77,7 @@
 		kepeken ilo
 		<Link href="https://tailwindcss.com">TailwindCSS</Link>
 		kepeken ilo
-		<Link href="https://vite-pwa-org.netlify.app/>">Vite PWA</Link>.
+		<Link href="https://vite-pwa-org.netlify.app/">Vite PWA</Link>.
 	</p>
 
 	<p class="mt-2">
@@ -154,7 +154,7 @@
 		<Link href="https://kit.svelte.dev">SvelteKit</Link>,
 		<Link href="https://www.typescriptlang.org">TypeScript</Link>,
 		<Link href="https://tailwindcss.com">TailwindCSS</Link>, and
-		<Link href="https://vite-pwa-org.netlify.app/>">Vite PWA</Link>.
+		<Link href="https://vite-pwa-org.netlify.app/">Vite PWA</Link>.
 	</p>
 
 	<p class="mt-2">
