@@ -26,6 +26,10 @@
 	<meta property="og:author" content="jan Tani" />
 	<meta property="og:description" content={word.def.en} />
 	<meta property="og:url" content="https://nimi.li/{word.word}" />
+	<meta
+		property="og:image"
+		content="https://sitelen.nimi.li/img/{word.word}.png"
+	/>
 	<meta property="og:site_name" content="nimi.li" />
 	<meta property="og:type" content="website" />
 </svelte:head>
