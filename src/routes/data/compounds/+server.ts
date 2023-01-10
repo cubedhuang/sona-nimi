@@ -4,6 +4,8 @@ import type { RequestHandler } from './$types';
 import type { Compound, CompoundData } from '$lib/types';
 import glyphs from './glyphs.json';
 
+export const prerender = 'auto';
+
 export const GET = (async ({ fetch }) => {
 	const regex = /^(.+?): \["?(.+?)"?\]/gm;
 
