@@ -16,8 +16,8 @@
 		"fastest-levenshtein": "^1.0.16"
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-auto": "1.0.0-next.91",
-		"@sveltejs/kit": "1.0.0-next.589",
+		"@sveltejs/adapter-auto": "^1.0.0",
+		"@sveltejs/kit": "^1.0.10",
 		"@typescript-eslint/eslint-plugin": "^5.48.1",
 		"@typescript-eslint/parser": "^5.48.1",
 		"@vite-pwa/sveltekit": "^0.1.2",
