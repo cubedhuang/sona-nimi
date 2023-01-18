@@ -75,7 +75,7 @@ export const newWords: Word[] = [
 		usage_category: 'obscure',
 		creator: 'pilin Powa',
 		commentary:
-			'Predominately present within the community ma lili. "Yet" is in the sense of "even so". "At least" denotes that the speaker knows for a fact one thing, but is unaware otherwise. It functions similarly grammatically to "taso" and "kin".',
+			'"Yet" is in the sense of "even so". "At least" denotes that the speaker knows for a fact one thing, but is unaware otherwise. It functions similarly grammatically to "taso" and "kin".',
 		etymology: "ainda 'still, yet, even'",
 		source_language: 'Portuguese',
 		see_also: 'kin, taso'
@@ -92,7 +92,7 @@ export const newWords: Word[] = [
 		usage_category: 'obscure',
 		creator: 'pilin Powa',
 		commentary:
-			'Predominately present within the community ma lili. Serves as a non-deprecated, neutral-connotation, and polysemous variant of words like oni, powe, or jume.',
+			'Serves as a non-deprecated, neutral-connotation, and polysemous variant of words like oni, powe, or jume.',
 		etymology: "ಕನ kana 'dream'",
 		source_language: 'Tulu',
 		see_also: 'oni, powe, jume'
@@ -108,15 +108,14 @@ export const newWords: Word[] = [
 		recognition: null,
 		usage_category: 'obscure',
 		creator: 'waso Netun',
-		commentary:
-			'Predominately present within the community ma lili. May refer to a state prior to a kama.',
+		commentary: 'May refer to a state prior to a kama.',
 		etymology: "soler 'to use to, to tend to'",
 		source_language: 'Spanish'
 	},
 	{
 		word: 'ta',
 		def: {
-			en: '(between subject phrase and predicate phrase; introduces pre-predicate phrase)'
+			en: '(pre-predicate marker)'
 		},
 		book: 'none',
 		coined_year: '2022',
@@ -125,8 +124,56 @@ export const newWords: Word[] = [
 		usage_category: 'obscure',
 		creator: 'pilin Powa',
 		commentary:
-			'Predominately present within the community ma lili. Follows a semantically consistent pattern of "SUBJ is PV in being/doing [SUBJ is/does PRED to OBJ]" or "SUBJ does PV to [SUBJ is/does PRED to OBJ]".',
+			'Follows a semantically consistent pattern of "SUBJ li PV ta PRED" = "SUBJ li PV e [SUBJ li PRED]" or "[SUBJ li PRED] li PV".',
 		etymology: 'a priori',
 		source_language: '∅'
+	},
+	{
+		word: 'anta',
+		def: {
+			en: 'oil, fat, fuel; slippery; salty, savory, umami'
+		},
+		book: 'none',
+		coined_year: '2022',
+		coined_era: 'post-ku',
+		recognition: null,
+		usage_category: 'obscure',
+		etymology: "油 anda 'oil'",
+		source_language: 'Okinawan'
+	},
+	{
+		word: 'iseki',
+		def: {
+			en: 'flower; adornment, accessory, garnish, spice; ornamental, aesthetic, beauty, flourish'
+		},
+		book: 'none',
+		coined_year: '2023',
+		coined_era: 'post-ku',
+		recognition: null,
+		usage_category: 'obscure',
+		creator: 'ijo Wenso',
+		commentary:
+			'Intended as an alt for namako that removes the "additional, extra" definition. used to emphasize that these details are core to something, and not superfluous.',
+		etymology: "çiçek and çiçeği 'flower, blossom'",
+		source_language: 'Turkish',
+		see_also: 'namako'
+	},
+	{
+		word: 'nowi',
+		def: {
+			en: 'connected, related, joined; complementary, mutual; exchange'
+		},
+		book: 'none',
+		coined_year: '2023',
+		coined_era: 'post-ku',
+		recognition: null,
+		usage_category: 'obscure',
+		creator: 'ijo Wenso',
+		commentary:
+			'Intended as an alt to esun which implies that non-mutually-beneficial relationships are not real relationships.',
+		etymology:
+			"nối 'to join, to add, to unite, to connect; to continue, to carry on, to perpetuate'",
+		source_language: 'Vietnamese',
+		see_also: 'esun'
 	}
 ];
