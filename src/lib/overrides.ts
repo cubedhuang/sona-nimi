@@ -170,7 +170,7 @@ export const newWords: Word[] = [
 		coined_era: 'post-ku',
 		recognition: null,
 		usage_category: 'obscure',
-		creator: 'pilin Powa',
+		creator: 'pilin Powa, ijo Wenso',
 		commentary:
 			'Intended as an alt to esun which implies that non-mutually-beneficial relationships are not real relationships.',
 		etymology:
