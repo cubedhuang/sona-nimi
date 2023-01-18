@@ -97,6 +97,11 @@
 			<Link href="/ta">ta</Link>. ni li sin tan pilin Powa.
 		</li>
 		<li>
+			nimi <Link href="/anta">anta</Link>,
+			<Link href="/iseki">iseki</Link>,
+			<Link href="/nowi">nowi</Link> li sin.
+		</li>
+		<li>
 			nimi <Link href="/konsuno">konsuno</Link> li sin tawa musi.
 		</li>
 	</ul>
