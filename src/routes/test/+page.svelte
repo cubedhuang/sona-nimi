@@ -336,7 +336,7 @@
 	</tbody>
 </table>
 
-<style>
+<style lang="postcss">
 	th,
 	td {
 		@apply px-2 py-0.5 border border-gray-200;

@@ -10,7 +10,7 @@
 	<slot />
 </button>
 
-<style>
+<style lang="postcss">
 	@keyframes highlight-light {
 		0% {
 			@apply bg-blue-100;
