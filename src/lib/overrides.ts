@@ -138,6 +138,7 @@ export const newWords: Word[] = [
 		coined_era: 'post-ku',
 		recognition: null,
 		usage_category: 'obscure',
+		creator: 'iseki Powa',
 		etymology: "油 anda 'oil'",
 		source_language: 'Okinawan'
 	},
@@ -168,7 +169,7 @@ export const newWords: Word[] = [
 		coined_era: 'post-ku',
 		recognition: null,
 		usage_category: 'obscure',
-		creator: 'ijo Wenso',
+		creator: 'iseki Powa',
 		commentary:
 			'Intended as an alt to esun which implies that non-mutually-beneficial relationships are not real relationships.',
 		etymology:
