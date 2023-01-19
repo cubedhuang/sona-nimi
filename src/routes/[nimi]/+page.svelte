@@ -182,15 +182,18 @@
 		<h2 class="mt-4 text-2xl">audio</h2>
 
 		{#each audios as [person, url] (url)}
+			<p class="mt-2">
+				{person
+					.split('_')
+					.map((name, i) =>
+						i === 0 ? name : name[0].toUpperCase() + name.slice(1)
+					)
+					.join(' ')}
+			</p>
 			<p>
-				<Link href={url}>
-					Recording by {person
-						.split('_')
-						.map((name, i) =>
-							i === 0 ? name : name[0].toUpperCase() + name.slice(1)
-						)
-						.join(' ')}
-				</Link>
+				<audio src={url} controls>
+					<Link href={url}>download</Link>
+				</audio>
 			</p>
 		{/each}
 	{/if}
@@ -198,11 +201,17 @@
 	{#if word.luka_pona}
 		<h2 class="mt-4 text-2xl">luka pona</h2>
 
-		<p>
-			<Link href={word.luka_pona.gif}>luka pona gif</Link>
+		<p class="mt-2">
+			<img
+				src={word.luka_pona.gif}
+				alt="luka pona for {word.word}"
+				class="rounded-lg"
+			/>
 		</p>
-		<p>
-			<Link href={word.luka_pona.mp4}>luka pona mp4</Link>
+		<p class="mt-2">
+			<Link href={word.luka_pona.gif}>gif</Link>
+			&middot;
+			<Link href={word.luka_pona.mp4}>mp4</Link>
 		</p>
 	{/if}
 {/if}
