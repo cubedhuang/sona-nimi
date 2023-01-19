@@ -112,16 +112,29 @@
 					word.ku_data?.toLowerCase().includes(fixedSearch)
 			)
 			.sort(genericSorter);
-	} else {
+	} else if ($searchMethod === 'creator') {
 		filteredWords = words
 			.filter(genericFilter)
 			.filter(word => word.creator)
 			.filter(
 				word =>
 					word.creator?.toLowerCase().includes(fixedSearch) ||
-					distance(word.creator!, search) <= 1
+					distance(word.creator!.toLowerCase(), search) <= 1
 			)
 			.sort(genericSorter);
+	} else if ($searchMethod === 'origin') {
+		filteredWords = words
+			.filter(genericFilter)
+			.filter(word => word.source_language)
+			.filter(
+				word =>
+					word.source_language?.toLowerCase().includes(fixedSearch) ||
+					distance(word.source_language!.toLowerCase(), search) <= 1 ||
+					word.etymology?.toLowerCase().includes(fixedSearch)
+			)
+			.sort(genericSorter);
+	} else {
+		filteredWords = words.filter(genericFilter);
 	}
 
 	$: missingDefinitions = Object.values(
@@ -275,7 +288,8 @@
 		options={[
 			{ label: 'Search by Toki Pona', value: 'term' },
 			{ label: 'Search by Definition', value: 'definition' },
-			{ label: 'Search by Creator', value: 'creator' }
+			{ label: 'Search by Creator', value: 'creator' },
+			{ label: 'Search by Origin', value: 'origin' }
 		]}
 		bind:value={$searchMethod}
 	/>
@@ -328,7 +342,9 @@
 		? 'nimi...'
 		: $searchMethod === 'definition'
 		? 'definition...'
-		: 'creator...'}
+		: $searchMethod === 'creator'
+		? 'creator...'
+		: 'language or etymology...'}
 	bind:value={search}
 />
 
