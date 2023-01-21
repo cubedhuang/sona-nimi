@@ -10,6 +10,7 @@
 	import CompoundDetails from './CompoundDetails.svelte';
 	import CompoundSpace from './CompoundSpace.svelte';
 	import Grid from '$lib/components/Grid.svelte';
+	import Link from '$lib/components/Link.svelte';
 	import Search from '$lib/components/Search.svelte';
 	import Select from '$lib/components/Select.svelte';
 
@@ -111,10 +112,10 @@
 <h1 class="text-4xl">compounds &ndash; nimi.li</h1>
 
 <p class="mt-2">
-	This is a list of popular compound phrases and interpretations of words in
-	toki pona. This is <span class="font-bold">not</span>
-	a list of definitions, just common ways people express their ideas! Click on an
-	expression to see more details.
+	This is a list of popular compound phrases and interpretations of words
+	<Link href="https://tokipona.org/compounds.txt">compiled by jan Sonja</Link>.
+	This is <span class="font-bold">not</span> a list of definitions, just common ways
+	people express their ideas! Click on an expression to see more details.
 </p>
 
 <div class="mt-4 flex flex-wrap gap-2">

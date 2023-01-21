@@ -87,9 +87,6 @@
 
 	<ul class="mt-2 ml-4 list-disc">
 		<li>
-			nimi <Link href="/jule">jule</Link> li kepeken sona sin tan pilin Powa.
-		</li>
-		<li>
 			jan lon ma lili li kepeken e nimi
 			<Link href="/inta">inta</Link>,
 			<Link href="/kana">kana</Link>,
@@ -169,16 +166,17 @@
 
 	<ul class="mt-2 ml-4 list-disc">
 		<li>
-			The word <Link href="/jule">jule</Link> is now using an updated definition
-			from pilin Powa, with added commentary.
-		</li>
-		<li>
 			A few words predominant in the ma lili community were added:
 			<Link href="/inta">inta</Link>,
 			<Link href="/kana">kana</Link>,
 			<Link href="/sole">sole</Link>, and
 			<Link href="/ta">ta</Link>.
 			<span class="italic">(Thanks pilin Powa!)</span>
+		</li>
+		<li>
+			<Link href="/anta">anta</Link>,
+			<Link href="/iseki">iseki</Link>, and
+			<Link href="/nowi">nowi</Link> were added.
 		</li>
 		<li>
 			The word <Link href="/konsuno">konsuno</Link> was added (as a joke).
