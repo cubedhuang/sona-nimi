@@ -33,7 +33,6 @@ export const musi = [
 	'suke',
 	'kutopoma',
 	'toma',
-	'konsuno',
 	'nimisin',
 	'nja',
 	'kamalawala',
