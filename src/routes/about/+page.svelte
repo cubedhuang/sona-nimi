@@ -98,9 +98,6 @@
 			<Link href="/iseki">iseki</Link>,
 			<Link href="/nowi">nowi</Link> li sin.
 		</li>
-		<li>
-			nimi <Link href="/konsuno">konsuno</Link> li sin tawa musi.
-		</li>
 	</ul>
 
 	<p class="mt-2">
@@ -177,9 +174,6 @@
 			<Link href="/anta">anta</Link>,
 			<Link href="/iseki">iseki</Link>, and
 			<Link href="/nowi">nowi</Link> were added.
-		</li>
-		<li>
-			The word <Link href="/konsuno">konsuno</Link> was added (as a joke).
 		</li>
 	</ul>
 
