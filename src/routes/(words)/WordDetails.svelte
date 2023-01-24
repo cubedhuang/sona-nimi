@@ -22,7 +22,7 @@
 	export { possibleWord as word };
 </script>
 
-<Details value={possibleWord} key={word => word.word} let:value={word}>
+<Details bind:value={possibleWord} key={word => word.word} let:value={word}>
 	<div class="flex items-end">
 		<h2 class="text-2xl">{word.word}</h2>
 

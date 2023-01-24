@@ -10,11 +10,15 @@
 	import Space from '$lib/components/Space.svelte';
 
 	export let word: Word;
+	export let detailed = false;
 
 	const maxLength = 120;
 	$: def = getWordDefinition(word, $language);
-	$: ellipsizedDef =
-		def.length > maxLength ? def.slice(0, maxLength) + '...' : def;
+	$: ellipsizedDef = detailed
+		? def
+		: def.length > maxLength
+		? def.slice(0, maxLength) + '...'
+		: def;
 </script>
 
 <Space on:click id={word.word}>
@@ -38,6 +42,31 @@
 			</p>
 
 			<p>{ellipsizedDef}</p>
+
+			{#if detailed}
+				{#if word.ku_data}
+					<p class="mt-2">
+						{word.ku_data}
+					</p>
+				{/if}
+
+				{#if word.etymology}
+					<p class="mt-2">
+						{word.source_language}
+						&middot;
+						{word.etymology}
+					</p>
+				{/if}
+				{#if word.creator}
+					<p class="faded">
+						{word.creator}
+					</p>
+				{/if}
+
+				{#if word.commentary}
+					<p class="mt-2 faded">{word.commentary}</p>
+				{/if}
+			{/if}
 		</div>
 
 		{#if $sitelenMode === 'pona'}

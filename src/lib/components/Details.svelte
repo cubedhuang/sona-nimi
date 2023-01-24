@@ -12,6 +12,12 @@
 	$: nonNullValue = value!;
 </script>
 
+<svelte:window
+	on:keydown={e => {
+		if (e.key === 'Escape') value = null;
+	}}
+/>
+
 {#if value}
 	<div
 		class="z-20 fixed bottom-0 right-0 w-full"

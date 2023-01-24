@@ -48,7 +48,7 @@
 	}));
 	$: shownBooks = books.filter(book => book.shown).map(book => book.name);
 
-	let showMusi = true;
+	let detailed = false;
 
 	const categoryIndex: Record<UsageCategory, number> = {
 		core: 0,
@@ -77,7 +77,6 @@
 	let filteredWords: Word[] = [];
 
 	$: genericFilter = (word: Word) =>
-		(showMusi || !word.musi) &&
 		shownCategories.includes(word.usage_category) &&
 		shownBooks.includes(word.book);
 
@@ -176,6 +175,12 @@
 		/>
 	{/each}
 
+	<ColoredCheckbox
+		bind:checked={detailed}
+		label="sona mute"
+		color="bg-pink-400"
+	/>
+
 	<div class="relative flex justify-center">
 		<button
 			on:click={() => {
@@ -207,26 +212,18 @@
 				on:click|stopPropagation
 				on:touchstart|passive|stopPropagation
 				on:keydown|stopPropagation
-				class="hidden lg:block absolute top-full mt-2 p-2 w-max bg-white border-gray-200 border rounded-lg shadow-lg
+				class="absolute top-full mt-2 p-2 w-max 
+					hidden lg:flex flex-wrap gap-1 sm:gap-x-2 sm:gap-y-1
+					bg-white border-gray-200 border rounded-lg shadow-lg
 					dark:border-gray-800 dark:bg-black"
 			>
-				<div class="flex flex-wrap gap-1 sm:gap-x-2 sm:gap-y-1">
-					{#each books as book}
-						<ColoredCheckbox
-							bind:checked={book.shown}
-							label={book.name === 'none' ? 'no book' : `nimi ${book.name}`}
-							color={bookColors[book.name]}
-						/>
-					{/each}
-				</div>
-
-				<div class="mt-2 flex">
+				{#each books as book}
 					<ColoredCheckbox
-						bind:checked={showMusi}
-						label="nimi musi"
-						color="bg-pink-400"
+						bind:checked={book.shown}
+						label={book.name === 'none' ? 'no book' : `nimi ${book.name}`}
+						color={bookColors[book.name]}
 					/>
-				</div>
+				{/each}
 			</div>
 		{/if}
 	</div>
@@ -237,7 +234,7 @@
 		on:click|stopPropagation
 		on:touchstart|passive|stopPropagation
 		on:keydown|stopPropagation
-		class="mt-2 lg:hidden border border-gray-400 rounded-lg p-2
+		class="mt-2 p-2 flex lg:hidden items-start justify-between gap-2 border border-gray-400 rounded-lg
 			dark:border-gray-800"
 	>
 		<div class="flex flex-wrap gap-1 sm:gap-x-2 sm:gap-y-1">
@@ -250,36 +247,28 @@
 			{/each}
 		</div>
 
-		<div class="mt-2 flex justify-between">
-			<ColoredCheckbox
-				bind:checked={showMusi}
-				label="show nimi musi"
-				color="bg-pink-400"
-			/>
-
-			<button
-				on:click={() => {
-					moreOptions = false;
-				}}
-				class="p-0.5 interactable"
-				title="close"
+		<button
+			on:click={() => {
+				moreOptions = false;
+			}}
+			class="shrink-0 p-0.5 interactable"
+			title="close"
+		>
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				fill="none"
+				viewBox="0 0 24 24"
+				stroke-width="1.5"
+				stroke="currentColor"
+				class="w-6 h-6"
 			>
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					fill="none"
-					viewBox="0 0 24 24"
-					stroke-width="1.5"
-					stroke="currentColor"
-					class="w-6 h-6"
-				>
-					<path
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						d="M6 18L18 6M6 6l12 12"
-					/>
-				</svg>
-			</button>
-		</div>
+				<path
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					d="M6 18L18 6M6 6l12 12"
+				/>
+			</svg>
+		</button>
 	</div>
 {/if}
 
@@ -348,10 +337,11 @@
 	bind:value={search}
 />
 
-<Grid>
+<Grid width={detailed ? '30rem' : '24rem'}>
 	{#each filteredWords as word (word.word)}
 		<WordSpace
 			{word}
+			{detailed}
 			on:click={() => {
 				if (selectedWord?.word === word.word) selectedWord = null;
 				else selectedWord = word;

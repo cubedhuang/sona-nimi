@@ -10,7 +10,7 @@
 </script>
 
 <Details
-	value={possibleCompound}
+	bind:value={possibleCompound}
 	key={compound => compound.compound}
 	let:value={compound}
 >
