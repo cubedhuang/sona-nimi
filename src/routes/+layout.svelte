@@ -50,6 +50,19 @@
 	});
 </script>
 
+<svelte:head>
+	<script>
+		const darkModeValue = localStorage.getItem('darkMode');
+
+		if (darkModeValue !== null) {
+			document.documentElement.classList.toggle(
+				'dark',
+				darkModeValue === 'true'
+			);
+		}
+	</script>
+</svelte:head>
+
 <svelte:window
 	on:click={() => {
 		opened = false;

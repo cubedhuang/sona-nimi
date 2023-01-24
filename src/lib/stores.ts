@@ -1,8 +1,8 @@
 import { browser } from '$app/environment';
 import { writable, type Writable } from 'svelte/store';
 
-import type { BookName, UsageCategory } from './types';
-import { bookColors, categoryColors } from './util';
+import type { UsageCategory } from './types';
+import { categoryColors } from './util';
 
 function savedWritable<T>(
 	key: string,
