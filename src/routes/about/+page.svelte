@@ -37,7 +37,7 @@
 	<p class="mt-2">
 		toki a! mi
 		<Link href="https://github.com/cubedhuang/">jan Tani</Link> li pali e ni. jan
-		<Link href="https://github.com/woflydev/">woflydev</Link> li pona e ni kepeken
+		<Link href="https://github.com/woflydev/">woflydev</Link> li pona e ni kepeken ilo
 		Progressive Web Application. jan ale li ken
 		<Link href="https://github.com/cubedhuang/sona-nimi">pona e pali ni</Link>!
 	</p>
