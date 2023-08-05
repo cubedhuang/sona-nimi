@@ -166,6 +166,25 @@
 	Click on a word to read more!
 </p>
 
+<p
+	class="max-w-prose p-4 bg-gray-50 border-gray-200 border rounded-lg shadow-lg
+		dark:border-gray-800 dark:bg-gray-900 mt-2"
+>
+	The
+	<a
+		href="https://linku.la/wile"
+		target="_blank"
+		rel="noopener noreferrer"
+		class="text-blue-500 hocus:text-blue-600 transition-colors"
+	>
+		2023 Linku word survey
+	</a>
+	is now open!
+	<strong>nimi.li</strong>
+	relies on the data collected by this survey to provide definitions and describe
+	the community's usage of words. Please take a moment to fill it out!
+</p>
+
 <div class="mt-4 flex flex-wrap gap-1 sm:gap-x-2 sm:gap-y-1">
 	{#each $categories as category}
 		<ColoredCheckbox
