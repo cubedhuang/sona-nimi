@@ -231,7 +231,8 @@
 				on:click|stopPropagation
 				on:touchstart|passive|stopPropagation
 				on:keydown|stopPropagation
-				class="absolute top-full mt-2 p-2 w-max 
+				aria-hidden="true"
+				class="absolute top-full mt-2 p-2 w-max
 					hidden lg:flex flex-wrap gap-1 sm:gap-x-2 sm:gap-y-1
 					bg-white border-gray-200 border rounded-lg shadow-lg
 					dark:border-gray-800 dark:bg-black"
@@ -253,6 +254,7 @@
 		on:click|stopPropagation
 		on:touchstart|passive|stopPropagation
 		on:keydown|stopPropagation
+		aria-hidden="true"
 		class="mt-2 p-2 flex lg:hidden items-start justify-between gap-2 border border-gray-400 rounded-lg
 			dark:border-gray-800"
 	>
