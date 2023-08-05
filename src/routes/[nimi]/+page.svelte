@@ -10,6 +10,8 @@
 	export let data: PageData;
 
 	$: word = data;
+
+	$: puData = word.pu_verbatim?.[$language] || word.pu_verbatim?.['en'];
 </script>
 
 <svelte:head>
@@ -92,6 +94,22 @@
 		<p class="mt-2">
 			{word.ku_data}
 		</p>
+	{/if}
+
+	{#if puData}
+		<h2 class="mt-4 text-2xl">pu verbatim</h2>
+
+		<div class="mt-2">
+			{#each puData.split('\n') as line}
+				{@const partOfSpeech = line.split(' ')[0]}
+				{@const definition = line.slice(partOfSpeech.length + 1)}
+
+				<p class="flex items-baseline gap-2">
+					<span class="faded shrink-0">{partOfSpeech}</span>
+					{definition}
+				</p>
+			{/each}
+		</div>
 	{/if}
 
 	{#if word.see_also}
