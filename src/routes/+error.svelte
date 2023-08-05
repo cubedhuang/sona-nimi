@@ -35,7 +35,7 @@
 
 	<p class="mt-6">
 		<a href="/" class="inline-block px-2 py-1 interactable">
-			o tawa e lipu suli
+			o tawa lipu suli
 		</a>
 	</p>
 </div>
