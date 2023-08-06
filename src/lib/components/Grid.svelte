@@ -6,7 +6,7 @@
 	<slot />
 </div>
 
-<style>
+<style lang="postcss">
 	.grid-cols {
 		grid-template-columns: repeat(
 			auto-fill,
