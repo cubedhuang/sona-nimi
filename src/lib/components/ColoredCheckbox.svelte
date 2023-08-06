@@ -7,7 +7,6 @@
 <button
 	class="flex items-center interactable"
 	on:click={() => (checked = !checked)}
-	on:keypress|stopPropagation
 	role="checkbox"
 	aria-checked={checked}
 >
