@@ -1,5 +1,12 @@
 import type { BookName, Language, UsageCategory, Word } from './types';
 
+export const normalize = (str: string) =>
+	str
+		.normalize('NFD')
+		.replace(/[\u0300-\u036f]/g, '')
+		.toLowerCase()
+		.trim();
+
 export const categoryColors: Record<UsageCategory, string> = {
 	core: 'bg-emerald-400 dark:bg-emerald-600',
 	widespread: 'bg-sky-400 dark:bg-sky-600',

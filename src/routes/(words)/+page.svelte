@@ -10,12 +10,12 @@
 		categoryColors,
 		getWordDefinition,
 		getWordRecognition,
+		normalize,
 		sortLanguages
 	} from '$lib/util';
 	import {
 		categories,
 		language,
-		searchMethod,
 		sitelenMode,
 		sortingMethod
 	} from '$lib/stores';
@@ -36,7 +36,7 @@
 	let search = '';
 	let selectedWord: Word | null = null;
 
-	$: fixedSearch = search.trim().toLowerCase();
+	$: fixedSearch = normalize(search);
 
 	$: shownCategories = $categories
 		.filter(category => category.shown)
@@ -67,6 +67,8 @@
 		return categoryIndex[a.usage_category] - categoryIndex[b.usage_category];
 	};
 
+	let filteredWords: Word[] = [];
+
 	$: genericSorter =
 		$sortingMethod === 'alphabetical'
 			? azSorter
@@ -74,66 +76,69 @@
 			? recognitionSorter
 			: combinedSorter;
 
-	let filteredWords: Word[] = [];
-
 	$: genericFilter = (word: Word) =>
 		shownCategories.includes(word.usage_category) &&
 		shownBooks.includes(word.book);
 
-	$: if ($searchMethod === 'term') {
-		filteredWords = words
-			.filter(genericFilter)
-			.filter(
-				word =>
-					word.word.toLowerCase().includes(fixedSearch) ||
-					distance(word.word, search) <= 1
-			)
+	$: genericFilteredWords = words.filter(genericFilter);
+
+	const scoreMatch = (content: string | undefined) => {
+		if (!content) return 0;
+
+		const includes = content.includes(fixedSearch);
+		const dist = distance(fixedSearch, content);
+		const maxDist = content.length / 3;
+
+		if (!includes && dist > maxDist) return 0;
+
+		let score = 1;
+
+		if (dist <= maxDist) {
+			score += ((maxDist - dist) / maxDist) * 2;
+		}
+
+		if (includes) {
+			score += 1;
+		}
+
+		return score;
+	};
+
+	$: searchFilter = (word: Word) => {
+		if (!search) return true;
+
+		return (
+			scoreMatch(word.word) ||
+			scoreMatch(getWordDefinition(word, $language)) ||
+			scoreMatch(word.ku_data) ||
+			scoreMatch(word.etymology) ||
+			scoreMatch(word.source_language) ||
+			scoreMatch(word.creator) ||
+			scoreMatch(word.commentary)
+		);
+	};
+
+	$: scoreSearch = (word: Word) => {
+		let score = 0;
+
+		score += scoreMatch(word.word) * 100;
+		score += scoreMatch(getWordDefinition(word, $language)) * 50;
+		score += scoreMatch(word.ku_data) * 40;
+		score += scoreMatch(word.etymology) * 30;
+		score += scoreMatch(word.source_language) * 20;
+		score += scoreMatch(word.creator) * 10;
+		score += scoreMatch(word.commentary) * 5;
+
+		return score;
+	};
+
+	$: if (search) {
+		filteredWords = genericFilteredWords
+			.filter(searchFilter)
 			.sort(genericSorter)
-			.sort((a, b) => {
-				if (fixedSearch === '') return 0;
-				if (a.word.toLowerCase() === fixedSearch) return -1;
-				if (b.word.toLowerCase() === fixedSearch) return 1;
-				const aContains = a.word.toLowerCase().includes(fixedSearch);
-				const bContains = b.word.toLowerCase().includes(fixedSearch);
-				if (aContains && bContains) return 0;
-				if (aContains && !bContains) return -1;
-				if (!aContains && bContains) return 1;
-				return distance(a.word, search) - distance(b.word, search);
-			});
-	} else if ($searchMethod === 'definition') {
-		filteredWords = words
-			.filter(genericFilter)
-			.filter(
-				word =>
-					getWordDefinition(word, $language)
-						.toLowerCase()
-						.includes(fixedSearch) ||
-					word.ku_data?.toLowerCase().includes(fixedSearch)
-			)
-			.sort(genericSorter);
-	} else if ($searchMethod === 'creator') {
-		filteredWords = words
-			.filter(genericFilter)
-			.filter(word => word.creator)
-			.filter(
-				word =>
-					word.creator?.toLowerCase().includes(fixedSearch) ||
-					distance(word.creator!.toLowerCase(), search) <= 1
-			)
-			.sort(genericSorter);
-	} else if ($searchMethod === 'origin') {
-		filteredWords = words
-			.filter(genericFilter)
-			.filter(word => word.source_language)
-			.filter(
-				word =>
-					word.source_language?.toLowerCase().includes(fixedSearch) ||
-					distance(word.source_language!.toLowerCase(), search) <= 1 ||
-					word.etymology?.toLowerCase().includes(fixedSearch)
-			)
-			.sort(genericSorter);
+			.sort((a, b) => scoreSearch(b) - scoreSearch(a));
 	} else {
-		filteredWords = words.filter(genericFilter);
+		filteredWords = genericFilteredWords.sort(genericSorter);
 	}
 
 	$: missingDefinitions = Object.values(
@@ -296,16 +301,6 @@
 <div class="mt-2 flex flex-wrap gap-2">
 	<Select
 		options={[
-			{ label: 'Search by Toki Pona', value: 'term' },
-			{ label: 'Search by Definition', value: 'definition' },
-			{ label: 'Search by Creator', value: 'creator' },
-			{ label: 'Search by Origin', value: 'origin' }
-		]}
-		bind:value={$searchMethod}
-	/>
-
-	<Select
-		options={[
 			{ label: 'Sort A-Z by Usage', value: 'combined' },
 			{ label: 'Sort by Usage', value: 'recognition' },
 			{ label: 'Sort Alphabetically', value: 'alphabetical' }
@@ -345,19 +340,10 @@
 {/if}
 
 <p class="mt-2 faded">
-	{filteredWords.length} / {words.length}
+	{filteredWords.length} / {genericFilteredWords.length}
 </p>
 
-<Search
-	placeholder={$searchMethod === 'term'
-		? 'nimi...'
-		: $searchMethod === 'definition'
-		? 'definition...'
-		: $searchMethod === 'creator'
-		? 'creator...'
-		: 'language or etymology...'}
-	bind:value={search}
-/>
+<Search placeholder="o lukin..." bind:value={search} />
 
 <Grid width={detailed ? '30rem' : '24rem'}>
 	{#each filteredWords as word (word.word)}

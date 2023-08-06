@@ -60,10 +60,6 @@ export const categories = savedWritable(
 	value => value.some(({ shown }) => shown)
 );
 
-export const searchMethod = savedWritable<
-	'term' | 'definition' | 'creator' | 'origin'
->('searchMethod', 'term');
-
 export const sortingMethod = savedWritable<
 	'alphabetical' | 'recognition' | 'combined'
 >('sortingMethod', 'combined');
