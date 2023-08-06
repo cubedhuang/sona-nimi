@@ -4,6 +4,7 @@
 
 	import type { PageData } from './$types';
 
+	import { outclick } from '$lib/actions/outclick';
 	import type { BookName, UsageCategory, Word } from '$lib/types';
 	import {
 		bookColors,
@@ -233,10 +234,13 @@
 		{#if moreOptions}
 			<div
 				transition:fly|local={{ y: 4, duration: 300 }}
-				on:click|stopPropagation
-				on:touchstart|passive|stopPropagation
-				on:keydown|stopPropagation
-				aria-hidden="true"
+				use:outclick
+				on:outclick={() => {
+					// delay to make clicking on the button also close
+					requestAnimationFrame(() => {
+						moreOptions = false;
+					});
+				}}
 				class="absolute top-full mt-2 p-2 w-max
 					hidden lg:flex flex-wrap gap-1 sm:gap-x-2 sm:gap-y-1
 					bg-white border-gray-200 border rounded-lg shadow-lg
@@ -256,10 +260,6 @@
 
 {#if moreOptions}
 	<div
-		on:click|stopPropagation
-		on:touchstart|passive|stopPropagation
-		on:keydown|stopPropagation
-		aria-hidden="true"
 		class="mt-2 p-2 flex lg:hidden items-start justify-between gap-2 border border-gray-400 rounded-lg
 			dark:border-gray-800"
 	>
