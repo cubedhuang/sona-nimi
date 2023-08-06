@@ -110,9 +110,14 @@
 }
 
 @layer components {
+	.focusable {
+		@apply border border-gray-200 rounded-lg overflow-hidden select-none focus:border-gray-400 focus:outline-none transition-colors
+			dark:bg-black dark:border-gray-800 dark:focus:border-gray-700;
+	}
+
 	.interactable {
-		@apply cursor-pointer border border-gray-200 rounded-lg overflow-hidden select-none hocus:border-gray-400 focus:outline-none transition-colors
-			dark:bg-black dark:border-gray-800 dark:hocus:border-gray-700;
+		@apply focusable cursor-pointer
+			hocus:border-gray-400 dark:hocus:border-gray-700;
 	}
 
 	.faded {
