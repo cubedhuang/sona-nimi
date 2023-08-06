@@ -167,8 +167,8 @@
 </p>
 
 <p
-	class="max-w-prose p-4 bg-gray-50 border-gray-200 border rounded-lg shadow-lg
-		dark:border-gray-800 dark:bg-gray-900 mt-2"
+	class="mt-4 mb-6 max-w-prose p-4 bg-gray-50 border-gray-200 border rounded-lg shadow-lg
+		dark:border-gray-800 dark:bg-gray-900"
 >
 	The
 	<a
