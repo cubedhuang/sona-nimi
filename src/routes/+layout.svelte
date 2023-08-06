@@ -1,5 +1,5 @@
 <script lang="ts">
-	import '../app.css';
+	import '../app.postcss';
 
 	import { onMount } from 'svelte';
 	import { fly } from 'svelte/transition';
