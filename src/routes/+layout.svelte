@@ -4,6 +4,8 @@
 	import { onMount } from 'svelte';
 	import { fly } from 'svelte/transition';
 
+	import NProgress from 'nprogress';
+
 	import { page } from '$app/stores';
 	import { dev } from '$app/environment';
 	import { afterNavigate, beforeNavigate } from '$app/navigation';
@@ -23,12 +25,24 @@
 
 	let opened = false;
 
+	let nProgressTimeout: NodeJS.Timeout;
+
 	// disable smooth scroll on navigation
 	beforeNavigate(() => {
 		document.documentElement.style.scrollBehavior = 'auto';
+
+		clearTimeout(nProgressTimeout);
+
+		nProgressTimeout = setTimeout(() => {
+			NProgress.start();
+			console.log('starting nprogress');
+		}, 150);
 	});
 	afterNavigate(() => {
 		document.documentElement.style.scrollBehavior = 'smooth';
+
+		clearTimeout(nProgressTimeout);
+		NProgress.done();
 	});
 
 	// BeforeInstallPromptEvent doesn't have a type definition :(
@@ -47,18 +61,24 @@
 				deferredPrompt = true;
 			}, 500);
 		}
+
+		NProgress.configure({
+			showSpinner: false
+		});
 	});
 </script>
 
 <svelte:head>
 	<script>
-		const darkModeValue = localStorage.getItem('darkMode');
+		{
+			const darkModeValue = localStorage.getItem('darkMode');
 
-		if (darkModeValue !== null) {
-			document.documentElement.classList.toggle(
-				'dark',
-				darkModeValue === 'true'
-			);
+			if (darkModeValue !== null) {
+				document.documentElement.classList.toggle(
+					'dark',
+					darkModeValue === 'true'
+				);
+			}
 		}
 	</script>
 </svelte:head>
@@ -201,3 +221,33 @@
 		<slot />
 	</div>
 </div>
+
+<style lang="postcss">
+	:global(#nprogress) {
+		pointer-events: none;
+	}
+
+	:global(#nprogress .bar) {
+		background: theme('colors.blue.500');
+
+		position: fixed;
+		z-index: 99999;
+		top: 0;
+		left: 0;
+
+		width: 100%;
+		height: 2px;
+	}
+
+	:global(#nprogress .peg) {
+		display: block;
+		position: absolute;
+		right: 0px;
+		width: 100px;
+		height: 100%;
+		box-shadow: 0 0 10px theme('colors.blue.500'),
+			0 0 5px theme('colors.blue.500');
+		opacity: 1;
+		transform: rotate(3deg) translate(0px, -4px);
+	}
+</style>
