@@ -30,6 +30,11 @@ export interface Credit {
 }
 
 export interface Word {
+	/**
+	 * Not in the Linku object, but added for keying
+	 */
+	id: string;
+
 	word: string;
 	/**
 	 * Maps from language code to definition

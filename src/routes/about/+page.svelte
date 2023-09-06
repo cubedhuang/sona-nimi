@@ -38,8 +38,8 @@
 		toki a! mi
 		<Link href="https://github.com/cubedhuang/">jan Tani</Link> li pali e ni. jan
 		<Link href="https://github.com/woflydev/">woflydev</Link> li pona e ni kepeken
-		ilo Progressive Web Application. jan ale li ken
-		<Link href="https://github.com/cubedhuang/sona-nimi">pona e pali ni</Link>!
+		ilo Progressive Web Application. sina wile pona e lipu ni la,
+		<Link href="https://github.com/cubedhuang/sona-nimi">o ni</Link> lon ilo GitHub!
 	</p>
 
 	<p class="mt-2">
@@ -79,26 +79,6 @@
 		kepeken ilo
 		<Link href="https://vite-pwa-org.netlify.app/">Vite PWA</Link>.
 	</p>
-
-	<p class="mt-2">
-		lipu ni li ante lili tan
-		<Link href="https://linku.la">lipu Linku</Link>. mi ante e nimi ni:
-	</p>
-
-	<ul class="mt-2 ml-4 list-disc">
-		<li>
-			jan lon ma lili li kepeken e nimi
-			<Link href="/inta">inta</Link>,
-			<Link href="/kana">kana</Link>,
-			<Link href="/sole">sole</Link>,
-			<Link href="/ta">ta</Link>. ni li sin tan pilin Powa.
-		</li>
-		<li>
-			nimi <Link href="/anta">anta</Link>,
-			<Link href="/iseki">iseki</Link>,
-			<Link href="/nowi">nowi</Link> li sin.
-		</li>
-	</ul>
 {:else}
 	<h1 class="mt-4 text-4xl">about &ndash; nimi.li</h1>
 
@@ -106,8 +86,10 @@
 		Hi! I'm <Link href="https://github.com/cubedhuang/">jan Tani</Link>, and I
 		made this project. Thanks to
 		<Link href="https://github.com/woflydev/">woflydev</Link>
-		for making this a Progressive Web Application. This is
-		<Link href="https://github.com/cubedhuang/sona-nimi">open source</Link>!
+		for making this a Progressive Web Application. This is an
+		<Link href="https://github.com/cubedhuang/sona-nimi">
+			open source project on GitHub</Link
+		>!
 	</p>
 
 	<p class="mt-2">
@@ -148,25 +130,4 @@
 		<Link href="https://tailwindcss.com">TailwindCSS</Link>, and
 		<Link href="https://vite-pwa-org.netlify.app/">Vite PWA</Link>.
 	</p>
-
-	<p class="mt-2">
-		A few changes were made from the definitions in
-		<Link href="https://linku.la">lipu Linku</Link>:
-	</p>
-
-	<ul class="mt-2 ml-4 list-disc">
-		<li>
-			A few words predominant in the ma lili community were added:
-			<Link href="/inta">inta</Link>,
-			<Link href="/kana">kana</Link>,
-			<Link href="/sole">sole</Link>, and
-			<Link href="/ta">ta</Link>.
-			<span class="italic">(Thanks pilin Powa!)</span>
-		</li>
-		<li>
-			<Link href="/anta">anta</Link>,
-			<Link href="/iseki">iseki</Link>, and
-			<Link href="/nowi">nowi</Link> were added.
-		</li>
-	</ul>
 {/if}

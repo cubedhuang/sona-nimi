@@ -306,7 +306,7 @@
 
 <p class="mt-2 flex flex-wrap gap-1">
 	{#each words as word}
-		<Link href="/{word.word}">
+		<Link href="/{word.id}">
 			{word.word}
 		</Link>
 	{/each}

@@ -28,12 +28,12 @@
 	}
 </script>
 
-<Details bind:value={possibleWord} key={word => word.word} let:value={word}>
+<Details bind:value={possibleWord} key={word => word.id} let:value={word}>
 	<div class="flex items-end">
 		<h2 class="text-2xl">{word.word}</h2>
 
 		<div class="ml-auto flex items-center gap-2">
-			<a href="/{word.word}" class="px-2 py-1 interactable">more</a>
+			<a href="/{word.id}" class="px-2 py-1 interactable">more</a>
 
 			{#if word.audio?.['jan_lakuse']}
 				<audio src={word.audio['jan_lakuse']} bind:this={audio} />

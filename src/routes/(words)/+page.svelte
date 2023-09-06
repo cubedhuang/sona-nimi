@@ -172,25 +172,6 @@
 	Click on a word to read more!
 </p>
 
-<p
-	class="mt-4 mb-6 max-w-prose p-4 bg-gray-50 border-gray-200 border rounded-lg shadow-lg
-		dark:border-gray-800 dark:bg-gray-900"
->
-	The
-	<a
-		href="https://linku.la/wile"
-		target="_blank"
-		rel="noopener noreferrer"
-		class="text-blue-500 hocus:text-blue-600 transition-colors"
-	>
-		2023 Linku word survey
-	</a>
-	is now open!
-	<strong>nimi.li</strong>
-	relies on the data collected by this survey to provide definitions and describe
-	the community's usage of words. Please take a moment to fill it out!
-</p>
-
 <div class="mt-4 flex flex-wrap gap-1 sm:gap-x-2 sm:gap-y-1">
 	{#each $categories as category}
 		<ColoredCheckbox
@@ -346,12 +327,12 @@
 <Search placeholder="o lukin..." bind:value={search} />
 
 <Grid width={detailed ? '30rem' : '24rem'}>
-	{#each filteredWords as word (word.word)}
+	{#each filteredWords as word (word.id)}
 		<WordSpace
 			{word}
 			{detailed}
 			on:click={() => {
-				if (selectedWord?.word === word.word) selectedWord = null;
+				if (selectedWord?.id === word.id) selectedWord = null;
 				else selectedWord = word;
 			}}
 		/>
