@@ -27,10 +27,6 @@
 			<h2 class="text-xl">{word.word}</h2>
 
 			<p class="faded">
-				{#if word.musi}
-					<span class="text-pink-400">musi</span>
-					&middot;
-				{/if}
 				{word.usage_category} &middot;
 				{getWordDisplayRecognition(word)}
 				{#if word.book !== 'none'}

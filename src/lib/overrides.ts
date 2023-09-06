@@ -1,48 +1,5 @@
 import type { Word } from './types';
 
-export const musi = [
-	'kijetesantakalu',
-	'epiku',
-	'kokosila',
-	'omekapo',
-	'yupekosi',
-	'wuwojiti',
-	'sutopatikuna',
-	'kulijo',
-	'omekalike',
-	'owe',
-	'Pingo',
-	'kalamARR',
-	'polinpin',
-	'jonke',
-	'okepuma',
-	'pa',
-	'samu',
-	'wasoweli',
-	'yutu',
-	'alente',
-	'loka',
-	'ojuta',
-	'umesu',
-	'itomi',
-	'jans',
-	'kalijopilale',
-	'poni',
-	'sikomo',
-	'slape',
-	'suke',
-	'kutopoma',
-	'toma',
-	'nimisin',
-	'nja',
-	'kamalawala',
-	'wawajete',
-	'kisa',
-	'lokon',
-	'mulapisu',
-	'konsi'
-];
-
 export const overrides: Record<string, Partial<Word>> = {};
 
 export const newWords: Word[] = [

@@ -99,13 +99,6 @@
 			<Link href="/nowi">nowi</Link> li sin.
 		</li>
 	</ul>
-
-	<p class="mt-2">
-		kin la, lipu ni li jo e kulupu <span class="text-pink-400">musi</span>. nimi
-		lon kulupu musi li sama nimi
-		<Link href="/itomi">itomi</Link>
-		sama nimi <Link href="/itomi">okepuma</Link>.
-	</p>
 {:else}
 	<h1 class="mt-4 text-4xl">about &ndash; nimi.li</h1>
 
@@ -176,14 +169,4 @@
 			<Link href="/nowi">nowi</Link> were added.
 		</li>
 	</ul>
-
-	<p class="mt-2">
-		This website also marks some words with a
-		<span class="text-pink-400">musi</span>
-		tag. Words with the tag are often considered unused in serious or toki pona taso
-		contexts, like
-		<Link href="/itomi">itomi</Link>
-		and
-		<Link href="/okepuma">okepuma</Link>.
-	</p>
 {/if}

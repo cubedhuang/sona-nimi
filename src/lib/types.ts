@@ -89,12 +89,6 @@ export interface Word {
 	 * Only a few language codes (en, fr, de, eo)
 	 */
 	pu_verbatim?: Record<string, string>;
-
-	/**
-	 * This property is not in Linku but it's an added tag for words
-	 * which generally aren't used in serious contexts or toki pona taso
-	 */
-	musi?: boolean;
 }
 
 export interface Font {

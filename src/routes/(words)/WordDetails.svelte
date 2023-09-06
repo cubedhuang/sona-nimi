@@ -68,10 +68,6 @@
 	</div>
 
 	<p class="faded">
-		{#if word.musi}
-			<span class="text-pink-400">musi</span>
-			&middot;
-		{/if}
 		{word.usage_category} &middot;
 		{getWordDisplayRecognition(word)}
 		{#if word.book !== 'none'}
@@ -81,14 +77,6 @@
 			&middot; {word.coined_year}
 		{/if}
 	</p>
-
-	{#if word.musi}
-		<p class="mt-2 faded text-sm">
-			This word is often considered <span class="text-pink-400">musi</span>,
-			indicating that it's sometimes not used in more serious contexts or in
-			toki pona taso conversation. However, it may still be useful to know.
-		</p>
-	{/if}
 
 	<p class="mt-2">
 		{getWordDefinition(word, $language)}
