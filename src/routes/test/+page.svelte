@@ -302,12 +302,10 @@
 
 <h3 class="mt-4 text-2xl">links</h3>
 
-<p class="mt-2">these links will make everything prerendered</p>
-
 <p class="mt-2 flex flex-wrap gap-1">
 	{#each words as word}
 		<Link href="/{word.id}">
-			{word.word}
+			{word.id}
 		</Link>
 	{/each}
 </p>

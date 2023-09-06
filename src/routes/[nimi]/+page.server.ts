@@ -4,8 +4,6 @@ import { distance } from 'fastest-levenshtein';
 
 import type { PageServerLoad } from './$types';
 
-export const prerender = 'auto';
-
 export const load = (async ({ fetch, params }) => {
 	const data: Linku = await fetch('/data/linku').then(res => res.json());
 
