@@ -20,18 +20,18 @@ export const usageCategories = [
 export const categoryColors: Record<UsageCategory, string> = {
 	core: 'bg-emerald-400 dark:bg-emerald-600',
 	widespread: 'bg-sky-400 dark:bg-sky-600',
-	common: 'bg-violet-400 dark:bg-violet-600',
-	uncommon: 'bg-yellow-500 dark:bg-yellow-600',
-	rare: 'bg-red-500 dark:bg-red-600',
+	common: 'bg-yellow-400 dark:bg-yellow-600',
+	uncommon: 'bg-orange-400 dark:bg-orange-600',
+	rare: 'bg-rose-500 dark:bg-rose-600',
 	obscure: 'bg-fuchsia-400 dark:bg-fuchsia-600',
-	marginal: 'bg-zinc-500 dark:bg-zinc-500'
+	marginal: 'bg-gray-400 dark:bg-gray-600'
 };
 
 export const bookColors: Record<BookName, string> = {
 	pu: categoryColors.core,
 	'ku suli': categoryColors.widespread,
 	'ku lili': categoryColors.common,
-	none: categoryColors.obscure
+	none: categoryColors.marginal
 };
 
 export function sortLanguages(languages: Record<string, Language>) {
