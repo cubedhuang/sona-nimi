@@ -217,9 +217,9 @@
 		</div>
 	</nav>
 
-	<div class="pt-4 sm:pt-8 pb-24">
+	<main class="pt-4 sm:pt-8 pb-24">
 		<slot />
-	</div>
+	</main>
 </div>
 
 <style lang="postcss">
