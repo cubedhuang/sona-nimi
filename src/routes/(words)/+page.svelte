@@ -271,6 +271,7 @@
 
 <div class="mt-2 flex flex-wrap gap-1 sm:gap-x-2 sm:gap-y-1">
 	<Select
+		name="Sorting Method"
 		options={[
 			{ label: 'Sort A-Z by Usage', value: 'combined' },
 			{ label: 'Sort by Usage', value: 'recognition' },
@@ -280,6 +281,7 @@
 	/>
 
 	<Select
+		name="Language"
 		options={sortLanguages(data.languages).map(([code, language]) => {
 			return { label: language.name_endonym, value: code };
 		})}
@@ -287,6 +289,7 @@
 	/>
 
 	<Select
+		name="sitelen type"
 		options={[
 			{ label: 'sitelen pona', value: 'pona' },
 			{ label: 'sitelen sitelen', value: 'sitelen' },

@@ -128,6 +128,7 @@
 
 <div class="mt-2 flex flex-wrap gap-2">
 	<Select
+		name="Search Method"
 		options={[
 			{ label: 'Search with Toki Pona', value: 'term' },
 			{ label: 'Search with Definition', value: 'definition' }
@@ -136,6 +137,7 @@
 	/>
 
 	<Select
+		name="Sorting Method"
 		options={[
 			{ label: 'Sort by Usage', value: 'recognition' },
 			{ label: 'Sort Alphabetically', value: 'alphabetical' }

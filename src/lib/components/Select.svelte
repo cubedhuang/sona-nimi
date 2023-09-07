@@ -6,16 +6,21 @@
 		value: T;
 	}[];
 
+	export let name: string;
 	export let value: T;
 </script>
 
-<select bind:value class="appearance-none px-2 py-0.5 interactable">
-	{#each options as option}
-		<option value={option.value} selected={option.value === value}>
-			{option.label}
-		</option>
-	{/each}
-</select>
+<label class="contents">
+	<span class="sr-only">{name}</span>
+
+	<select bind:value class="appearance-none pl-2 py-0.5 interactable">
+		{#each options as option}
+			<option value={option.value} selected={option.value === value}>
+				{option.label}
+			</option>
+		{/each}
+	</select>
+</label>
 
 <style lang="postcss">
 	select {
