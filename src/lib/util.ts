@@ -23,40 +23,28 @@ export const bookColors: Record<BookName, string> = {
 	none: categoryColors.obscure
 };
 
+const priorities = [
+	'core',
+	'widespread',
+	'common',
+	'uncommon',
+	'rare',
+	'obscure'
+] as const;
+
 export function sortLanguages(languages: Record<string, Language>) {
-	// Sort by completeness percent for each usage category
 	return Object.entries(languages)
 		.sort((a, b) => a[1].name_endonym.localeCompare(b[1].name_endonym))
-		.sort(
-			(a, b) =>
-				Number(b[1].completeness_percent.obscure) -
-				Number(a[1].completeness_percent.obscure)
-		)
-		.sort(
-			(a, b) =>
-				Number(b[1].completeness_percent.rare) -
-				Number(a[1].completeness_percent.rare)
-		)
-		.sort(
-			(a, b) =>
-				Number(b[1].completeness_percent.uncommon) -
-				Number(a[1].completeness_percent.uncommon)
-		)
-		.sort(
-			(a, b) =>
-				Number(b[1].completeness_percent.common) -
-				Number(a[1].completeness_percent.common)
-		)
-		.sort(
-			(a, b) =>
-				Number(b[1].completeness_percent.widespread) -
-				Number(a[1].completeness_percent.widespread)
-		)
-		.sort(
-			(a, b) =>
-				Number(b[1].completeness_percent.core) -
-				Number(a[1].completeness_percent.core)
-		);
+		.sort((a, b) => {
+			for (const priority of priorities) {
+				const diff =
+					Number(b[1].completeness_percent[priority]) -
+					Number(a[1].completeness_percent[priority]);
+				if (diff !== 0) return diff;
+			}
+
+			return 0;
+		});
 }
 
 export function getWordDefinition(word: Word, language: string): string {

@@ -60,6 +60,19 @@ export const categories = savedWritable(
 	value => value.some(({ shown }) => shown)
 );
 
+categories.subscribe($categories => {
+	if ($categories.length !== Object.keys(categoryColors).length) {
+		for (const category of Object.keys(categoryColors)) {
+			if (!$categories.some(({ name }) => name === category)) {
+				$categories.push({
+					name: category as UsageCategory,
+					shown: false
+				});
+			}
+		}
+	}
+});
+
 export const sortingMethod = savedWritable<
 	'alphabetical' | 'recognition' | 'combined'
 >('sortingMethod', 'combined');
