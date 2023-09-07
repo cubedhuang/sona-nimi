@@ -2,7 +2,7 @@ import { browser } from '$app/environment';
 import { writable, type Writable } from 'svelte/store';
 
 import type { UsageCategory } from './types';
-import { categoryColors } from './util';
+import { usageCategories } from './util';
 
 function savedWritable<T>(
 	key: string,
@@ -53,7 +53,7 @@ if (browser) {
 
 export const categories = savedWritable(
 	'categories',
-	Object.keys(categoryColors).map(category => ({
+	usageCategories.map(category => ({
 		name: category as UsageCategory,
 		shown: ['core', 'widespread'].includes(category)
 	})),
@@ -61,8 +61,8 @@ export const categories = savedWritable(
 );
 
 categories.subscribe($categories => {
-	if ($categories.length !== Object.keys(categoryColors).length) {
-		for (const category of Object.keys(categoryColors)) {
+	if ($categories.length !== usageCategories.length) {
+		for (const category of usageCategories) {
 			if (!$categories.some(({ name }) => name === category)) {
 				$categories.push({
 					name: category as UsageCategory,

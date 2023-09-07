@@ -7,6 +7,15 @@ export const normalize = (str: string) =>
 		.toLowerCase()
 		.trim();
 
+export const usageCategories = [
+	'core',
+	'widespread',
+	'common',
+	'uncommon',
+	'rare',
+	'obscure'
+] as const;
+
 export const categoryColors: Record<UsageCategory, string> = {
 	core: 'bg-emerald-400 dark:bg-emerald-600',
 	widespread: 'bg-sky-400 dark:bg-sky-600',
@@ -23,23 +32,14 @@ export const bookColors: Record<BookName, string> = {
 	none: categoryColors.obscure
 };
 
-const priorities = [
-	'core',
-	'widespread',
-	'common',
-	'uncommon',
-	'rare',
-	'obscure'
-] as const;
-
 export function sortLanguages(languages: Record<string, Language>) {
 	return Object.entries(languages)
 		.sort((a, b) => a[1].name_endonym.localeCompare(b[1].name_endonym))
 		.sort((a, b) => {
-			for (const priority of priorities) {
+			for (const category of usageCategories) {
 				const diff =
-					Number(b[1].completeness_percent[priority]) -
-					Number(a[1].completeness_percent[priority]);
+					Number(b[1].completeness_percent[category]) -
+					Number(a[1].completeness_percent[category]);
 				if (diff !== 0) return diff;
 			}
 

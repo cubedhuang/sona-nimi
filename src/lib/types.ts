@@ -1,10 +1,10 @@
 export type UsageCategory =
-	| 'obscure'
-	| 'rare'
-	| 'uncommon'
-	| 'common'
+	| 'core'
 	| 'widespread'
-	| 'core';
+	| 'common'
+	| 'uncommon'
+	| 'rare'
+	| 'obscure';
 export type BookName = 'pu' | 'ku suli' | 'ku lili' | 'none';
 export type CoinedEra = 'pre-pu' | 'post-pu' | 'post-ku';
 export type Tag = 'pre-pu ALT' | 'nimi nanpa';
