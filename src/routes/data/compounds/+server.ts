@@ -3,10 +3,15 @@ import type { RequestHandler } from './$types';
 
 import type { Compound, CompoundData } from '$lib/types';
 import glyphs from './glyphs.json';
+import { dev } from '$app/environment';
 
 export const prerender = true;
 
 export const GET = (async ({ fetch }) => {
+	if (dev) {
+		process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+	}
+
 	const regex = /^(.+?): \["?(.+?)"?\]/gm;
 
 	const rawData = await fetch('https://tokipona.org/compounds.txt').then(res =>

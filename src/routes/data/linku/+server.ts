@@ -1,6 +1,7 @@
 import { json } from '@sveltejs/kit';
 import type { Linku, Word } from '$lib/types';
 import { getWordRecognition } from '$lib/util';
+import { dev } from '$app/environment';
 
 import type { RequestHandler } from './$types';
 
@@ -150,6 +151,10 @@ const additions: Word[] = [
 ];
 
 export const GET = (async ({ fetch }) => {
+	if (dev) {
+		process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+	}
+
 	const data = (await fetch('https://linku.la/jasima/data.json').then(res =>
 		res.json()
 	)) as Linku;
