@@ -301,7 +301,7 @@
 	<ColoredCheckbox
 		bind:checked={detailed}
 		label="Detailed View"
-		color="bg-blue-500 dark:bg-white"
+		color="bg-blue-500"
 	/>
 </div>
 
