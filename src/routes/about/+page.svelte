@@ -2,6 +2,17 @@
 	import Link from '$lib/components/Link.svelte';
 
 	let tokiPona = true;
+
+	const additions = [
+		'inta',
+		'kana',
+		'sole',
+		'ta',
+		'iseki',
+		'nowi',
+		'aku',
+		'anta'
+	];
 </script>
 
 <svelte:head>
@@ -32,9 +43,9 @@
 </p>
 
 {#if tokiPona}
-	<h1 class="mt-4 text-4xl">sona &ndash; nimi.li</h1>
+	<h1>sona &ndash; nimi.li</h1>
 
-	<p class="mt-2">
+	<p>
 		toki a! mi
 		<Link href="https://github.com/cubedhuang/">jan Tani</Link> li pali e ni. jan
 		<Link href="https://github.com/woflydev/">woflydev</Link> li pona e ni kepeken
@@ -42,12 +53,11 @@
 		<Link href="https://github.com/cubedhuang/sona-nimi">o ni</Link> lon ilo GitHub!
 	</p>
 
-	<p class="mt-2">
-		pali <span class="font-bold">nimi.li</span> li kepeken pali pona mute tan jan
-		ante:
+	<p>
+		pali <b>nimi.li</b> li kepeken pali pona mute tan jan ante:
 	</p>
 
-	<ul class="mt-2 ml-4 list-disc">
+	<ul>
 		<li>
 			ni li kepeken sona pi
 			<Link href="https://linku.la/about/jasima/">jasima Linku</Link> tawa nimi wan.
@@ -67,9 +77,9 @@
 		</li>
 	</ul>
 
-	<h2 class="mt-4 text-3xl">lipu ni</h2>
+	<h2>lipu ni</h2>
 
-	<p class="mt-2">
+	<p>
 		mi pali e lipu ni kepeken ilo
 		<Link href="https://kit.svelte.dev">SvelteKit</Link>
 		kepeken ilo
@@ -79,10 +89,27 @@
 		kepeken ilo
 		<Link href="https://vite-pwa-org.netlify.app/">Vite PWA</Link>.
 	</p>
-{:else}
-	<h1 class="mt-4 text-4xl">about &ndash; nimi.li</h1>
 
-	<p class="mt-2">
+	<h3>ante</h3>
+
+	<p>
+		lipu Linku la, lipu ni li ante. mi tu e kulupu nimi Obscure tawa ni: nimi
+		suli ni li awen lon kulupu Obscure. nimi lili ni li kama lon kulupu
+		Marginal. mi la, ante ni li pona tan ni: kulupu Linku li sin taso e nimi sin
+		suli. taso, nimi mute li kama lili, li awen lon lipu. nimi ni li suli ala, o
+		ante tan nimi ante.
+	</p>
+
+	<p>
+		nimi lili li lon ala lipu Linku. kulupu sin ni la, nimi ni li sin:
+		{#each additions as addition, i}
+			{#if i !== 0}, {/if}
+			<Link href="/{addition}">{addition}</Link>{/each}.
+	</p>
+{:else}
+	<h1>about &ndash; nimi.li</h1>
+
+	<p>
 		Hi! I'm <Link href="https://github.com/cubedhuang/">jan Tani</Link>, and I
 		made this project. Thanks to
 		<Link href="https://github.com/woflydev/">woflydev</Link>
@@ -92,12 +119,12 @@
 		>!
 	</p>
 
-	<p class="mt-2">
-		<span class="font-bold">nimi.li</span> was built with data from many amazing
-		projects. Thanks to all of the following projects for their work:
+	<p>
+		<b>nimi.li</b> was built with data from many amazing projects. Thanks to all
+		of the following projects for their work:
 	</p>
 
-	<ul class="mt-2 ml-4 list-disc">
+	<ul>
 		<li>
 			The
 			<Link href="https://linku.la/about/jasima/">jasima Linku</Link>
@@ -121,13 +148,54 @@
 		</li>
 	</ul>
 
-	<h2 class="mt-4 text-3xl">this website</h2>
+	<h2>this website</h2>
 
-	<p class="mt-2">
+	<p>
 		This website was built with
 		<Link href="https://kit.svelte.dev">SvelteKit</Link>,
 		<Link href="https://www.typescriptlang.org">TypeScript</Link>,
 		<Link href="https://tailwindcss.com">TailwindCSS</Link>, and
 		<Link href="https://vite-pwa-org.netlify.app/">Vite PWA</Link>.
 	</p>
+
+	<h3>differences</h3>
+
+	<p>
+		This website has a few differences from Linku. I've split the Obscure
+		category into the Obscure and Marginal categories, with the obscure usage
+		category containing words with 2-5% usage and the marginal usage category
+		containing words with 0-1% usage. I made this change because Linku only adds
+		words when they reach the 2% usage threshold, but older words that have
+		declined in usage remain, and I wanted to separate those words from the rest
+		of the obscure words.
+	</p>
+
+	<p>
+		I've also added a few words to the marginal category that aren't on Linku:
+		{#each additions as addition, i}
+			{#if i !== 0}, {/if}
+			<Link href="/{addition}">{addition}</Link>{/each}.
+	</p>
 {/if}
+
+<style lang="postcss">
+	h1 {
+		@apply mt-4 text-4xl;
+	}
+
+	h2 {
+		@apply mt-4 text-3xl;
+	}
+
+	h3 {
+		@apply mt-4 text-xl;
+	}
+
+	p {
+		@apply mt-2;
+	}
+
+	ul {
+		@apply mt-2 ml-4 list-disc;
+	}
+</style>

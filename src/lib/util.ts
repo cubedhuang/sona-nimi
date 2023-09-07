@@ -13,7 +13,8 @@ export const usageCategories = [
 	'common',
 	'uncommon',
 	'rare',
-	'obscure'
+	'obscure',
+	'marginal'
 ] as const;
 
 export const categoryColors: Record<UsageCategory, string> = {
@@ -22,7 +23,8 @@ export const categoryColors: Record<UsageCategory, string> = {
 	common: 'bg-violet-400 dark:bg-violet-600',
 	uncommon: 'bg-yellow-500 dark:bg-yellow-600',
 	rare: 'bg-red-500 dark:bg-red-600',
-	obscure: 'bg-zinc-500 dark:bg-zinc-600'
+	obscure: 'bg-zinc-500 dark:bg-zinc-500',
+	marginal: 'bg-pink-300 dark:bg-pink-200'
 };
 
 export const bookColors: Record<BookName, string> = {

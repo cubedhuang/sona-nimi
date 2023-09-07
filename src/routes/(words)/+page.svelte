@@ -12,7 +12,8 @@
 		getWordDefinition,
 		getWordRecognition,
 		normalize,
-		sortLanguages
+		sortLanguages,
+		usageCategories
 	} from '$lib/util';
 	import {
 		categories,
@@ -51,14 +52,9 @@
 
 	let detailed = false;
 
-	const categoryIndex: Record<UsageCategory, number> = {
-		core: 0,
-		widespread: 1,
-		common: 2,
-		uncommon: 3,
-		rare: 4,
-		obscure: 5
-	};
+	const categoryIndex = Object.fromEntries(
+		usageCategories.map((category, index) => [category, index] as const)
+	) as Record<UsageCategory, number>;
 
 	const azSorter = (a: Word, b: Word) => a.word.localeCompare(b.word);
 	const recognitionSorter = (a: Word, b: Word) =>
@@ -181,12 +177,6 @@
 		/>
 	{/each}
 
-	<ColoredCheckbox
-		bind:checked={detailed}
-		label="sona mute"
-		color="bg-pink-400"
-	/>
-
 	<div class="relative flex justify-center">
 		<button
 			on:click={() => {
@@ -222,7 +212,7 @@
 						moreOptions = false;
 					});
 				}}
-				class="absolute top-full mt-2 p-2 w-max
+				class="z-10 absolute top-full mt-2 p-2 w-max
 					hidden lg:flex flex-wrap gap-1 sm:gap-x-2 sm:gap-y-1
 					bg-white border-gray-200 border rounded-lg shadow-lg
 					dark:border-gray-800 dark:bg-black"
@@ -279,7 +269,7 @@
 	</div>
 {/if}
 
-<div class="mt-2 flex flex-wrap gap-2">
+<div class="mt-2 flex flex-wrap gap-1 sm:gap-x-2 sm:gap-y-1">
 	<Select
 		options={[
 			{ label: 'Sort A-Z by Usage', value: 'combined' },
@@ -303,6 +293,12 @@
 			{ label: 'sitelen Emosi', value: 'emosi' }
 		]}
 		bind:value={$sitelenMode}
+	/>
+
+	<ColoredCheckbox
+		bind:checked={detailed}
+		label="Detailed View"
+		color="bg-blue-500 dark:bg-white"
 	/>
 </div>
 

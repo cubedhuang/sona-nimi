@@ -4,7 +4,9 @@ export type UsageCategory =
 	| 'common'
 	| 'uncommon'
 	| 'rare'
-	| 'obscure';
+	| 'obscure'
+	// not in Linku
+	| 'marginal';
 export type BookName = 'pu' | 'ku suli' | 'ku lili' | 'none';
 export type CoinedEra = 'pre-pu' | 'post-pu' | 'post-ku';
 export type Tag = 'pre-pu ALT' | 'nimi nanpa';
