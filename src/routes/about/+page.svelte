@@ -163,7 +163,7 @@
 	<p>
 		This website has a few differences from Linku. I've split the Obscure
 		category into the Obscure and Marginal categories, with the obscure usage
-		category containing words with 2-5% usage and the marginal usage category
+		category containing words with 2-9% usage and the marginal usage category
 		containing words with 0-1% usage. I made this change because Linku only adds
 		words when they reach the 2% usage threshold, but older words that have
 		declined in usage remain, and I wanted to separate those words from the rest
