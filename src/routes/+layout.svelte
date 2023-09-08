@@ -21,7 +21,7 @@
 	const commonClasses =
 		'p-2 rounded-lg sm:rounded-t-none border sm:border-t-0 border-gray-200 dark:border-gray-800 transition-colors';
 	const hoverableClasses =
-		'focus:outline-none hocus:border-gray-400 dark:hocus:border-gray-700';
+		'outline-none focus-visible:outline-gray-500 hocus:border-gray-400 dark:hocus:border-gray-700';
 
 	let opened = false;
 
@@ -115,7 +115,7 @@
 				}}
 				on:touchstart|passive|stopPropagation
 				class="{commonClasses} {hoverableClasses} cursor-pointer"
-				title="menu"
+				aria-label="open navigation"
 			>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
@@ -160,7 +160,7 @@
 					}}
 					transition:fly={{ y: -4, duration: 300 }}
 					class="{commonClasses} {hoverableClasses}"
-					title="install as app"
+					aria-label="install as app"
 				>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
@@ -179,9 +179,13 @@
 				</button>
 			{/if}
 
-			<label class="{commonClasses} {hoverableClasses} cursor-pointer">
-				<input type="checkbox" class="hidden" bind:checked={$darkMode} />
-
+			<button
+				class="{commonClasses} {hoverableClasses} cursor-pointer"
+				on:click={() => ($darkMode = !$darkMode)}
+				role="checkbox"
+				aria-checked={$darkMode}
+				aria-label="toggle dark mode"
+			>
 				{#if $darkMode}
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
@@ -213,7 +217,7 @@
 						/>
 					</svg>
 				{/if}
-			</label>
+			</button>
 		</div>
 	</nav>
 

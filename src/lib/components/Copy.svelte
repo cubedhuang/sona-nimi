@@ -12,7 +12,7 @@
 
 <button
 	class="relative p-1 flex justify-center interactable overflow-visible"
-	title="copy"
+	aria-label="copy ucsur"
 	on:click={() => {
 		navigator.clipboard.writeText(value);
 

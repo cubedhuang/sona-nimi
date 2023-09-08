@@ -184,7 +184,7 @@
 			}}
 			class="p-0.5 interactable lg:block"
 			class:hidden={moreOptions}
-			title="more"
+			aria-label="more options"
 		>
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
@@ -249,7 +249,7 @@
 				moreOptions = false;
 			}}
 			class="shrink-0 p-0.5 interactable"
-			title="close"
+			aria-label="close options"
 		>
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
