@@ -55,7 +55,8 @@
 			common: 0,
 			uncommon: 0,
 			rare: 0,
-			obscure: 0
+			obscure: 0,
+			marginal: 0
 		} satisfies Record<UsageCategory, number>
 	);
 
