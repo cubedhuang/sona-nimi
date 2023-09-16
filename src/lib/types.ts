@@ -33,22 +33,98 @@ export interface Credit {
 
 export interface Word {
 	/**
-	 * Not in the Linku object, but added for keying
+	 * A unique identifier for the word which is often the word, but may have an integer suffix if the word has been coined multiple times.
+	 *
+	 * Not in the jasima object, but added for keying.
 	 */
 	id: string;
-
+	/**
+	 * The word as it would be written in toki pona using sitelen Lasina.
+	 */
 	word: string;
 	/**
-	 * Maps from language code to definition
+	 * A list of latin character strings that convert to all alternates for a given word. Usually identical to [word]; see "akesi".
 	 */
-	def: Record<string, string>;
-	book: BookName;
-	commentary?: string;
 	sitelen_pona?: string;
-	sitelen_pona_etymology?: string;
-
 	/**
-	 * Maps from date to string of percentage used
+	 * The unicode codepoint assigned to the word.
+	 */
+	ucsur?: string;
+	/**
+	 * Human-readable description of the origin of the sitelen pona.
+	 */
+	sitelen_pona_etymology?: string;
+	/**
+	 * URL to an image of the sitelen sitelen for the word.
+	 */
+	sitelen_sitelen?: string;
+	/**
+	 * The emoji corresponding to the word in sitelen Emosi.
+	 */
+	sitelen_emosi?: string;
+	/**
+	 * URLs to the luka pona sign being demonstrated.
+	 */
+	luka_pona?: {
+		mp4: string;
+		gif: string;
+	};
+	/**
+	 * URLs to the audio of the word being spoken by authors.
+	 */
+	audio?: Record<string, string>;
+	/**
+	 * The "era" the word was created in, relative to the publishing of the Toki Pona books.
+	 */
+	coined_era?: CoinedEra;
+	/**
+	 * The year the word was coined.
+	 */
+	coined_year?: string;
+	/**
+	 * What Toki Pona book the word was first documented in.
+	 */
+	book: BookName;
+	/**
+	 * The word's popularity. `marginal` is added by nimi.li.
+	 */
+	usage_category: UsageCategory;
+	/**
+	 * The language(s) the word derives from.
+	 */
+	source_language?: string;
+	/**
+	 * A human-readable description of the word's etymology(ies), including the original word(s), definition(s), and other metadata.
+	 */
+	etymology?: string;
+	etymology_data: {
+		/**
+		 * List of languages the word derives from, split on `;`.
+		 */
+		langs: string;
+		/**
+		 * List of words the word derives from, split on `;`.
+		 */
+		words: string;
+		/**
+		 * List of alternate writings or indicated pronunciations for the words in `words`, split on `;`.
+		 */
+		alts: string;
+		/**
+		 * List of definitions for the words in `words`, split on `;`.
+		 */
+		defs: string;
+	};
+	/**
+	 * The name of the word's creator.
+	 */
+	creator?: string;
+	/**
+	 * Usage data from Toki Pona Dictionary (ku), indicated with a superscript number, split on `,`.
+	 */
+	ku_data?: string;
+	/**
+	 * Maps from YYYY-MM date to a string containing the Integer percentage of survey respondents who recognize and use the word as of the date.
 	 *
 	 * Linku never gives a null value here, but it's in the type so overrides
 	 * can be added without recognition being required.
@@ -56,46 +132,37 @@ export interface Word {
 	 * @example { '2022-08': '99' }
 	 */
 	recognition: Record<string, string> | null;
-
 	/**
-	 * Unicode
+	 * Definition of the word as written by its original author. Defer to `pu_verbatim` if that is defined.
 	 */
-	ucsur?: string;
+	author_verbatim?: string;
 	/**
-	 * Image URL
+	 * Link to the original source of the word's definition.
 	 */
-	sitelen_sitelen?: string;
+	author_verbatim_source?: string;
 	/**
-	 * Emoji character
-	 */
-	sitelen_emosi?: string;
-	luka_pona?: {
-		mp4: string;
-		gif: string;
-	};
-	/**
-	 * URLs to audio files from different speakers
-	 */
-	audio?: Record<string, string>;
-	coined_year?: string;
-	coined_era?: CoinedEra;
-	usage_category: UsageCategory;
-	source_language?: string;
-	etymology?: string;
-	creator?: string;
-	ku_data?: string;
-
-	/**
-	 * Other words, separated by commas
-	 */
-	see_also?: string;
-
-	tags?: Tag;
-
-	/**
-	 * Only a few language codes (en, fr, de, eo)
+	 * Definition of the word in [language_code] as written in the corresponding translation of Toki Pona: The Language of Good.
+	 *
+	 * Only a few language codes are available: `en`, `fr`, `de`, `eo`
 	 */
 	pu_verbatim?: Record<string, string>;
+	/**
+	 * A list of words related to this word, split on `,`.
+	 */
+	see_also?: string;
+	/**
+	 * Human-readable extra information about the word, such as historical usage, replacement, or clarifications.
+	 */
+	commentary?: string;
+	/**
+	 * Maps from language code to definition
+	 */
+	def: Record<string, string>;
+
+	/**
+	 * Undocumented in jasima.
+	 */
+	tags?: Tag;
 }
 
 export interface Font {
