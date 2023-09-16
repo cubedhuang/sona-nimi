@@ -13,28 +13,12 @@
 	$: linku = data.linku;
 	$: words = Object.values(linku.data);
 
-	const keys: (keyof Word)[] = [
-		'word',
-		'def',
-		'book',
-		'commentary',
-		'sitelen_pona',
-		'sitelen_pona_etymology',
-		'recognition',
-		'ucsur',
-		'sitelen_sitelen',
-		'sitelen_emosi',
-		'luka_pona',
-		'audio',
-		'coined_year',
-		'coined_era',
-		'usage_category',
-		'source_language',
-		'etymology',
-		'creator',
-		'ku_data',
-		'see_also'
-	];
+	$: keys = words.reduce((acc, word) => {
+		Object.keys(word).forEach(key => {
+			if (!acc.includes(key as keyof Word)) acc.push(key as keyof Word);
+		});
+		return acc;
+	}, [] as (keyof Word)[]);
 
 	$: frequencies = keys.map(key => {
 		const values = words.map(word => word[key]);
@@ -43,6 +27,10 @@
 
 		return { key, count: existing.length, unique };
 	});
+
+	$: nearCompleteKeys = frequencies
+		.filter(({ count }) => count > words.length - 20 && count < words.length)
+		.map(({ key }) => key);
 
 	$: usageCategoryFrequencies = words.reduce(
 		(acc, word) => {
@@ -207,7 +195,7 @@
 	</tbody>
 </table>
 
-<p class="mt-2">
+<!-- <p class="mt-2">
 	missing source_language:
 	{words
 		.filter(w => !w.source_language)
@@ -241,7 +229,21 @@
 		.filter(w => !w.sitelen_pona)
 		.map(w => w.word)
 		.join(', ')}
-</p>
+</p> -->
+
+<h3 class="mt-4 mb-2 text-2xl">near complete keys</h3>
+
+{#each nearCompleteKeys as key}
+	<p>
+		missing {key}:
+		{#each words.filter(w => !w[key]) as word, i}
+			{#if i > 0}, {/if}
+			<Link href="/{word.id}">
+				{word.word}
+			</Link>
+		{/each}
+	</p>
+{/each}
 
 <h3 class="mt-4 text-2xl">more stats</h3>
 
