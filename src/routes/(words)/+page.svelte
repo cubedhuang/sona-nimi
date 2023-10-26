@@ -28,6 +28,7 @@
 	import Search from '$lib/components/Search.svelte';
 	import Select from '$lib/components/Select.svelte';
 	import WordDetails from './WordDetails.svelte';
+	import WordEntry from './WordEntry.svelte';
 	import WordSpace from './WordSpace.svelte';
 
 	export let data: PageData;
@@ -328,18 +329,32 @@
 
 <Search placeholder="o lukin..." bind:value={search} />
 
-<Grid width={$viewMode === 'detailed' ? '30rem' : '24rem'}>
-	{#each filteredWords as word (word.id)}
-		<WordSpace
-			{word}
-			detailed={$viewMode === 'detailed'}
-			on:click={() => {
-				if (selectedWord?.id === word.id) selectedWord = null;
-				else selectedWord = word;
-			}}
-		/>
-	{/each}
-</Grid>
+{#if $viewMode !== 'compact'}
+	<Grid width={$viewMode === 'detailed' ? '30rem' : '24rem'}>
+		{#each filteredWords as word (word.id)}
+			<WordSpace
+				{word}
+				detailed={$viewMode === 'detailed'}
+				on:click={() => {
+					if (selectedWord?.id === word.id) selectedWord = null;
+					else selectedWord = word;
+				}}
+			/>
+		{/each}
+	</Grid>
+{:else}
+	<div class="mt-4 grid">
+		{#each filteredWords as word (word.id)}
+			<WordEntry
+				{word}
+				on:click={() => {
+					if (selectedWord?.id === word.id) selectedWord = null;
+					else selectedWord = word;
+				}}
+			/>
+		{/each}
+	</div>
+{/if}
 
 {#if !filteredWords.length}
 	<p>wile sina la, nimi li lon ala!</p>
