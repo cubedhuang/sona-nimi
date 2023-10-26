@@ -94,6 +94,32 @@
 		@apply font-display;
 	}
 
+	@keyframes highlight-light {
+		0% {
+			@apply bg-blue-100;
+		}
+		100% {
+			@apply bg-white;
+		}
+	}
+
+	@keyframes highlight-dark {
+		0% {
+			@apply bg-slate-900;
+		}
+		100% {
+			@apply bg-black;
+		}
+	}
+
+	:target {
+		animation: highlight-light 3s ease-in-out;
+	}
+
+	.dark :target {
+		animation: highlight-dark 3s ease-in-out;
+	}
+
 	.no-transition {
 		transition: none !important;
 	}

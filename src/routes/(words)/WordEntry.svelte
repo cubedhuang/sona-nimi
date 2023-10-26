@@ -10,7 +10,7 @@
 	export let word: Word;
 </script>
 
-<p class="flex gap-1">
+<p class="flex gap-1" id={word.id}>
 	{#if $sitelenMode === 'pona'}
 		{#if word.sitelen_pona}
 			<span class="font-pona text-xl"
