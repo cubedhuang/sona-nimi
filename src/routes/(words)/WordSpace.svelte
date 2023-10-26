@@ -21,7 +21,7 @@
 		: def;
 </script>
 
-<Space on:click id={word.word}>
+<Space on:click id={word.id}>
 	<div class="flex gap-2 justify-between">
 		<div>
 			<h2 class="text-xl">{word.word}</h2>
