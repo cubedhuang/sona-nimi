@@ -77,7 +77,7 @@
 		shownCategories.includes(word.usage_category) &&
 		shownBooks.includes(word.book);
 
-	$: genericFilteredWords = words.filter(genericFilter);
+	$: genericFilteredWords = words.filter(genericFilter).sort(genericSorter);
 
 	const scoreMatch = (content: string | undefined) => {
 		if (!content) return 0;
@@ -132,10 +132,9 @@
 	$: if (search) {
 		filteredWords = genericFilteredWords
 			.filter(searchFilter)
-			.sort(genericSorter)
 			.sort((a, b) => scoreSearch(b) - scoreSearch(a));
 	} else {
-		filteredWords = genericFilteredWords.sort(genericSorter);
+		filteredWords = genericFilteredWords;
 	}
 
 	$: missingDefinitions = Object.values(
@@ -310,7 +309,7 @@
 </div>
 
 {#if missingDefinitions}
-	<p class="mt-4">
+	<p class="mt-2">
 		<span class="font-bold">o lukin a!</span>
 		kon pi
 		{data.languages[$language].name_toki_pona}
