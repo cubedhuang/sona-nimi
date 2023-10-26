@@ -27,6 +27,16 @@ export const categoryColors: Record<UsageCategory, string> = {
 	marginal: 'bg-gray-400 dark:bg-gray-600'
 };
 
+export const categoryTextColors: Record<UsageCategory, string> = {
+	core: 'text-emerald-600 dark:text-emerald-400',
+	widespread: 'text-sky-600 dark:text-sky-400',
+	common: 'text-yellow-600 dark:text-yellow-400',
+	uncommon: 'text-orange-600 dark:text-orange-400',
+	rare: 'text-rose-600 dark:text-rose-400',
+	obscure: 'text-fuchsia-600 dark:text-fuchsia-400',
+	marginal: 'text-gray-600 dark:text-gray-300'
+};
+
 export const bookColors: Record<BookName, string> = {
 	pu: categoryColors.core,
 	'ku suli': categoryColors.widespread,
