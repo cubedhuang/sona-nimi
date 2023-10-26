@@ -19,7 +19,8 @@
 		categories,
 		language,
 		sitelenMode,
-		sortingMethod
+		sortingMethod,
+		viewMode
 	} from '$lib/stores';
 
 	import ColoredCheckbox from '$lib/components/ColoredCheckbox.svelte';
@@ -49,8 +50,6 @@
 		shown: true
 	}));
 	$: shownBooks = books.filter(book => book.shown).map(book => book.name);
-
-	let detailed = false;
 
 	const categoryIndex = Object.fromEntries(
 		usageCategories.map((category, index) => [category, index] as const)
@@ -271,6 +270,16 @@
 
 <div class="mt-2 flex flex-wrap gap-1 sm:gap-x-2 sm:gap-y-1">
 	<Select
+		name="View"
+		options={[
+			{ label: 'Normal View', value: 'normal' },
+			{ label: 'Detailed View', value: 'detailed' },
+			{ label: 'Compact View', value: 'compact' }
+		]}
+		bind:value={$viewMode}
+	/>
+
+	<Select
 		name="Sorting Method"
 		options={[
 			{ label: 'Sort A-Z by Usage', value: 'combined' },
@@ -297,12 +306,6 @@
 		]}
 		bind:value={$sitelenMode}
 	/>
-
-	<ColoredCheckbox
-		bind:checked={detailed}
-		label="Detailed View"
-		color="bg-blue-500"
-	/>
 </div>
 
 {#if missingDefinitions}
@@ -325,11 +328,11 @@
 
 <Search placeholder="o lukin..." bind:value={search} />
 
-<Grid width={detailed ? '30rem' : '24rem'}>
+<Grid width={$viewMode === 'detailed' ? '30rem' : '24rem'}>
 	{#each filteredWords as word (word.id)}
 		<WordSpace
 			{word}
-			{detailed}
+			detailed={$viewMode === 'detailed'}
 			on:click={() => {
 				if (selectedWord?.id === word.id) selectedWord = null;
 				else selectedWord = word;
