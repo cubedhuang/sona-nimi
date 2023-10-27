@@ -13,26 +13,26 @@
 <p class="flex gap-1" id={word.id}>
 	{#if $sitelenMode === 'pona'}
 		{#if word.sitelen_pona}
-			<span class="font-pona text-xl"
+			<span class="shrink-0 font-pona text-xl"
 				>{word.sitelen_pona?.split(' ', 1)[0]}</span
 			>
 		{:else}
-			<span class="w-5" />
+			<span class="shrink-0 w-5" />
 		{/if}
 	{:else if $sitelenMode === 'sitelen'}
 		{#if word.sitelen_sitelen}
 			<img
 				src={word.sitelen_sitelen}
 				alt="{word.word} sitelen sitelen"
-				class="my-0.5 w-6 h-6 dark:invert"
+				class="shrink-0 my-0.5 w-6 h-6 dark:invert"
 			/>
 		{:else}
-			<span class="w-6" />
+			<span class="shrink-0 w-6" />
 		{/if}
 	{:else if word.sitelen_emosi}
-		<span class="text-xl w-6">{word.sitelen_emosi}</span>
+		<span class="shrink-0 text-xl w-6">{word.sitelen_emosi}</span>
 	{:else}
-		<span class="w-6" />
+		<span class="shrink-0 w-6" />
 	{/if}
 
 	<span class="ml-0.5 mt-0.5">
