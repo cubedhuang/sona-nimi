@@ -143,7 +143,12 @@
 								{route.name}
 							</span>
 						{:else}
-							<a href={route.href} class="p-2">
+							<a
+								href={route.href}
+								class="p-2"
+								on:click|stopPropagation
+								on:touchstart|passive|stopPropagation
+							>
 								{route.name}
 							</a>
 						{/if}
