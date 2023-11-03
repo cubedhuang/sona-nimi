@@ -13,9 +13,10 @@
 
 {#if collapsible}
 	<button
-		class="inline faded underline underline-offset-2 decoration-transparent hocus-visible:decoration-current transition"
+		class="faded underline underline-offset-2 decoration-transparent hocus-visible:decoration-current transition"
+		class:ml-1={expanded}
 		on:click={() => (expanded = !expanded)}
 	>
-		{expanded ? 'show less' : '...more'}
+		{expanded ? 'less' : '...more'}
 	</button>
 {/if}

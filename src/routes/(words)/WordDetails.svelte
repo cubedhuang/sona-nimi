@@ -90,7 +90,7 @@
 
 	{#if word.ku_data}
 		<p class="mt-2">
-			<Collapsible content={word.ku_data} length={100} />
+			<Collapsible content={word.ku_data} length={250} />
 		</p>
 	{/if}
 
