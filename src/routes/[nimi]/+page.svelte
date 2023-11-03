@@ -170,7 +170,7 @@
 			{/if}
 		</div>
 
-		<div class="box">
+		<div class:box={word.sitelen_pona || word.ucsur}>
 			{#if word.sitelen_pona}
 				<h2 class="text-lg">sitelen pona</h2>
 
@@ -218,7 +218,7 @@
 			{/if}
 		</div>
 
-		<div class="box">
+		<div class:box={word.audio || word.luka_pona}>
 			{#if word.audio}
 				{@const audios = Object.entries(word.audio)}
 
