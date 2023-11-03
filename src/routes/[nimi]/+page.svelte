@@ -8,9 +8,10 @@
 	} from '$lib/util';
 	import { language } from '$lib/stores';
 
+	import AudioPlayer from './AudioPlayer.svelte';
+	import Collapsible from '$lib/components/Collapsible.svelte';
 	import Copy from '$lib/components/Copy.svelte';
 	import Link from '$lib/components/Link.svelte';
-	import AudioPlayer from './AudioPlayer.svelte';
 
 	export let data: PageData;
 
@@ -87,7 +88,7 @@
 			{#if word.ku_data}
 				<h2 class="mt-4 text-lg">lipu ku translations</h2>
 				<p class="mt-2">
-					{word.ku_data}
+					<Collapsible content={word.ku_data} length={250} />
 				</p>
 			{/if}
 

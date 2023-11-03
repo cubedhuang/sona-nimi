@@ -9,6 +9,7 @@
 		getWordDisplayRecognition
 	} from '$lib/util';
 
+	import Collapsible from '$lib/components/Collapsible.svelte';
 	import Copy from '$lib/components/Copy.svelte';
 	import Details from '$lib/components/Details.svelte';
 	import Link from '$lib/components/Link.svelte';
@@ -89,7 +90,7 @@
 
 	{#if word.ku_data}
 		<p class="mt-2">
-			{word.ku_data}
+			<Collapsible content={word.ku_data} length={100} />
 		</p>
 	{/if}
 
