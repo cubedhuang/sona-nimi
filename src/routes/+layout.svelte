@@ -92,7 +92,7 @@
 	}}
 />
 
-<div class="px-8 lg:px-16 max-w-screen-2xl m-auto font-text">
+<div class="px-4 sm:px-8 lg:px-16 max-w-screen-2xl m-auto font-text">
 	<nav class="pt-4 sm:pt-0 flex justify-between">
 		<div class="hidden sm:flex gap-2">
 			{#each routes as route}

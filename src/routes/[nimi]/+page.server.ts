@@ -22,7 +22,7 @@ export const load = (async ({ fetch, params }) => {
 			.slice(0, 10)
 			.map(({ word }) => word);
 
-		if (params.nimi.length >= 15) {
+		if (params.nimi.length >= 10) {
 			if (params.nimi.length >= 10) closest.pop();
 			closest.push('kijetesantakalu');
 		}
