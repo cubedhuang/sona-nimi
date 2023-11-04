@@ -49,8 +49,8 @@
 		toki a! mi
 		<Link href="https://github.com/cubedhuang/">jan Tani</Link> li pali e ni. jan
 		<Link href="https://github.com/woflydev/">woflydev</Link> li pona e ni kepeken
-		ilo Progressive Web Application. sina wile pona e lipu ni la,
-		<Link href="https://github.com/cubedhuang/sona-nimi">o ni</Link> lon ilo GitHub!
+		ilo Progressive Web Application. sina wile pona e lipu ni la, o ni lon
+		<Link href="https://github.com/cubedhuang/sona-nimi">ilo GitHub</Link>!
 	</p>
 
 	<p>
