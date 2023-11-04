@@ -43,7 +43,7 @@
 </svelte:head>
 
 {#if word}
-	<div class="mt-6 flex items-center gap-2 justify-between">
+	<div class="flex items-center gap-2 justify-between">
 		<h1 class="text-4xl">{word.word}</h1>
 
 		<a href="/" class="inline-block p-2 interactable" aria-label="home">
