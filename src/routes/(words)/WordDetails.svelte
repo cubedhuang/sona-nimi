@@ -137,7 +137,7 @@
 		</span>
 
 		{#if word.sitelen_pona_etymology}
-			<p>
+			<p class="faded">
 				{word.sitelen_pona_etymology}
 			</p>
 		{/if}
