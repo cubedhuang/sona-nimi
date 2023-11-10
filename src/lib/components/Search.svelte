@@ -10,6 +10,8 @@
 	let stick = false;
 
 	onMount(() => {
+		searchBar?.focus();
+
 		const observer = new IntersectionObserver(
 			([e]) => (stick = e.intersectionRatio < 1),
 			{ threshold: [1] }
@@ -19,6 +21,17 @@
 		return () => observer.disconnect();
 	});
 </script>
+
+<svelte:window
+	on:keydown={e => {
+		if (searchBar === document.activeElement && e.key === 'Escape') {
+			value = '';
+			searchBar.blur();
+		} else if (/^[a-z]$/i.test(e.key)) {
+			searchBar.focus();
+		}
+	}}
+/>
 
 <div
 	bind:this={div}
