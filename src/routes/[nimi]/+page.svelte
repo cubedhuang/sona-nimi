@@ -236,11 +236,15 @@
 				<h2 class="text-lg" class:mt-4={word.audio}>luka pona</h2>
 
 				<p class="mt-2">
-					<img
-						src={word.luka_pona.gif}
-						alt="luka pona for {word.word}"
-						class="rounded-lg"
-					/>
+					<video
+						src={word.luka_pona.mp4}
+						class="rounded-lg w-full max-w-sm"
+						autoplay
+						loop
+						muted
+					>
+						<track kind="captions" />
+					</video>
 				</p>
 				<p class="mt-2">
 					<Link href={word.luka_pona.gif}>gif</Link>
