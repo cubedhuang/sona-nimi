@@ -24,6 +24,7 @@
 	} from '$lib/stores';
 
 	import ColoredCheckbox from '$lib/components/ColoredCheckbox.svelte';
+	import GlyphEntry from './GlyphEntry.svelte';
 	import Grid from '$lib/components/Grid.svelte';
 	import Search from '$lib/components/Search.svelte';
 	import Select from '$lib/components/Select.svelte';
@@ -274,7 +275,8 @@
 		options={[
 			{ label: 'Normal View', value: 'normal' },
 			{ label: 'Detailed View', value: 'detailed' },
-			{ label: 'Compact View', value: 'compact' }
+			{ label: 'Compact View', value: 'compact' },
+			{ label: 'Glyph View', value: 'glyphs' }
 		]}
 		bind:value={$viewMode}
 	/>
@@ -313,7 +315,7 @@
 		<span class="font-bold">o lukin a!</span>
 		kon pi
 		{data.languages[$language].name_toki_pona}
-		li lon nimi ale ala. kon ni li kepeken toki Inli.
+		li lon ala ale. nimi ni la, toki Inli li lon.
 	</p>
 	<p>
 		<span class="font-bold">Warning!</span>
@@ -328,7 +330,31 @@
 
 <Search placeholder="o lukin..." bind:value={search} />
 
-{#if $viewMode !== 'compact'}
+{#if $viewMode === 'compact'}
+	<div class="mt-4 grid">
+		{#each filteredWords as word (word.id)}
+			<WordEntry
+				{word}
+				on:click={() => {
+					if (selectedWord?.id === word.id) selectedWord = null;
+					else selectedWord = word;
+				}}
+			/>
+		{/each}
+	</div>
+{:else if $viewMode === 'glyphs'}
+	<div class="mt-4 grid gap-4 glyphs">
+		{#each filteredWords as word (word.id)}
+			<GlyphEntry
+				{word}
+				on:click={() => {
+					if (selectedWord?.id === word.id) selectedWord = null;
+					else selectedWord = word;
+				}}
+			/>
+		{/each}
+	</div>
+{:else}
 	<Grid width={$viewMode === 'detailed' ? '30rem' : '24rem'}>
 		{#each filteredWords as word (word.id)}
 			<WordSpace
@@ -341,18 +367,6 @@
 			/>
 		{/each}
 	</Grid>
-{:else}
-	<div class="mt-4 grid">
-		{#each filteredWords as word (word.id)}
-			<WordEntry
-				{word}
-				on:click={() => {
-					if (selectedWord?.id === word.id) selectedWord = null;
-					else selectedWord = word;
-				}}
-			/>
-		{/each}
-	</div>
 {/if}
 
 {#if !filteredWords.length}
@@ -378,3 +392,9 @@
 		}
 	}}
 />
+
+<style lang="postcss">
+	.glyphs {
+		grid-template-columns: repeat(auto-fill, minmax(theme('width.24'), 1fr));
+	}
+</style>

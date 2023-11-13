@@ -18,6 +18,11 @@ module.exports = {
 		plugin(function ({ addVariant }) {
 			addVariant('hocus', ['&:hover', '&:focus']);
 			addVariant('hocus-visible', ['&:hover', '&:focus-visible']);
+			addVariant('group-hocus', ['.group:hover &', '.group:focus &']);
+			addVariant('group-hocus-visible', [
+				'.group:hover &',
+				'.group:focus-visible &'
+			]);
 		})
 	]
 };

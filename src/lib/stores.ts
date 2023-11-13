@@ -84,7 +84,6 @@ export const sitelenMode = savedWritable<'pona' | 'sitelen' | 'emosi'>(
 	'pona'
 );
 
-export const viewMode = savedWritable<'normal' | 'detailed' | 'compact'>(
-	'viewMode',
-	'normal'
-);
+export const viewMode = savedWritable<
+	'normal' | 'detailed' | 'compact' | 'glyphs'
+>('viewMode', 'normal');
