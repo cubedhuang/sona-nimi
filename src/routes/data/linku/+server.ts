@@ -22,6 +22,11 @@ const additions: Word[] = [
 			'A particle that allows the speaker to specify the level of information they have about a situation. As a modifier, it means "at least" or "definitely", indicating knowledge of one thing but not necessarily other things.',
 		etymology: "ainda 'still, yet, even'",
 		source_language: 'Portuguese',
+		etymology_data: {
+			langs: 'Portuguese',
+			words: 'ainda',
+			defs: 'still, yet, even'
+		},
 		see_also: 'kin, taso'
 	},
 	{
@@ -41,6 +46,12 @@ const additions: Word[] = [
 			'Serves as a non-deprecated, neutral-connotation, and polysemous variant of words like oni, powe, or jume.',
 		etymology: "ಕನ kana 'dream'",
 		source_language: 'Tulu',
+		etymology_data: {
+			langs: 'Tulu',
+			words: 'ಕನ',
+			alts: 'kana',
+			defs: 'dream'
+		},
 		see_also: 'oni, powe, jume'
 	},
 	{
@@ -57,7 +68,12 @@ const additions: Word[] = [
 		creator: 'waso Netun',
 		commentary: 'May refer to a state prior to a kama.',
 		etymology: "soler 'to use to, to tend to'",
-		source_language: 'Spanish'
+		source_language: 'Spanish',
+		etymology_data: {
+			langs: 'Spanish',
+			words: 'soler',
+			defs: 'to use to, to tend to'
+		}
 	},
 	{
 		id: 'ta',
@@ -75,7 +91,10 @@ const additions: Word[] = [
 		commentary:
 			'Follows a semantically consistent pattern of "SUBJ li PV ta PRED" = "SUBJ li PV e [SUBJ li PRED]" or "[SUBJ li PRED] li PV". The top and bottom lines of the sitelen pona may be extended to the left around the pre-predicate word(s).',
 		etymology: 'a priori',
-		source_language: '∅'
+		source_language: '∅',
+		etymology_data: {
+			langs: 'a priori'
+		}
 	},
 	{
 		id: 'iseki',
@@ -94,6 +113,11 @@ const additions: Word[] = [
 			'Intended as an alt for namako that removes the "additional, extra" definition. used to emphasize that these details are core to something, and not superfluous.',
 		etymology: "çiçek and çiçeği 'flower, blossom'",
 		source_language: 'Turkish',
+		etymology_data: {
+			langs: 'Turkish',
+			words: 'çiçek, çiçeği',
+			defs: 'flower, blossom'
+		},
 		see_also: 'namako'
 	},
 	{
@@ -114,6 +138,11 @@ const additions: Word[] = [
 		etymology:
 			"nối 'to join, to add, to unite, to connect; to continue, to carry on, to perpetuate'",
 		source_language: 'Vietnamese',
+		etymology_data: {
+			langs: 'Vietnamese',
+			words: 'nối',
+			defs: 'to join, to add, to unite, to connect; to continue, to carry on, to perpetuate'
+		},
 		see_also: 'esun'
 	},
 	{
@@ -130,7 +159,12 @@ const additions: Word[] = [
 		usage_category: 'obscure',
 		creator: 'kulupu Solali',
 		etymology: "acru 'sour'",
-		source_language: 'Romanian'
+		source_language: 'Romanian',
+		etymology_data: {
+			langs: 'Romanian',
+			words: 'acru',
+			defs: 'sour'
+		}
 	},
 	{
 		id: 'anta',
@@ -146,7 +180,13 @@ const additions: Word[] = [
 		usage_category: 'obscure',
 		creator: 'ilo Powa',
 		etymology: "油 anda 'oil'",
-		source_language: 'Okinawan'
+		source_language: 'Okinawan',
+		etymology_data: {
+			langs: 'Okinawan',
+			words: '油',
+			alts: 'anda',
+			defs: 'oil'
+		}
 	}
 ];
 

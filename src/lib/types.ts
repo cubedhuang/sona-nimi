@@ -105,15 +105,15 @@ export interface Word {
 		/**
 		 * List of words the word derives from, split on `;`.
 		 */
-		words: string;
+		words?: string;
 		/**
 		 * List of alternate writings or indicated pronunciations for the words in `words`, split on `;`.
 		 */
-		alts: string;
+		alts?: string;
 		/**
 		 * List of definitions for the words in `words`, split on `;`.
 		 */
-		defs: string;
+		defs?: string;
 	};
 	/**
 	 * The name of the word's creator.
