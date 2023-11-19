@@ -355,7 +355,7 @@
 		{/each}
 	</div>
 {:else}
-	<Grid width={$viewMode === 'detailed' ? '30rem' : '24rem'}>
+	<Grid width={$viewMode === 'detailed' ? '24rem' : '20rem'}>
 		{#each filteredWords as word (word.id)}
 			<WordSpace
 				{word}
