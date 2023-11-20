@@ -173,7 +173,7 @@
 			{/if}
 
 			<button
-				class="max-lg:hidden {commonClasses} {hoverableClasses} cursor-pointer"
+				class="max-xl:hidden {commonClasses} {hoverableClasses} cursor-pointer"
 				on:click={() => {
 					if ($screenWidth === 'full') {
 						$screenWidth = 'large';
@@ -181,7 +181,9 @@
 						$screenWidth = 'full';
 					}
 				}}
-				aria-hidden="true"
+				role="checkbox"
+				aria-checked={$screenWidth === 'full'}
+				aria-label="toggle full width"
 			>
 				{#if $screenWidth === 'large'}
 					<svg
