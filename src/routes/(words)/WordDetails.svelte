@@ -132,7 +132,7 @@
 	{#if word.sitelen_pona}
 		<h3 class="mt-2 text-lg">sitelen pona</h3>
 
-		<span class="font-medium font-pona text-4xl">
+		<span class="font-pona text-4xl">
 			{word.sitelen_pona}
 		</span>
 

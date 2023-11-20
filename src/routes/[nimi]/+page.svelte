@@ -156,7 +156,7 @@
 				</p>
 
 				{#if word.creator}
-					<p class="mt-1">
+					<p class="mt-1 italic">
 						<span class="faded">by</span>
 						{word.creator}
 					</p>
@@ -175,7 +175,7 @@
 			{#if word.sitelen_pona}
 				<h2 class="text-lg">sitelen pona</h2>
 
-				<span class="mt-2 font-medium font-pona text-7xl">
+				<span class="mt-2 font-pona text-7xl">
 					{word.sitelen_pona}
 				</span>
 

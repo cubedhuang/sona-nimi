@@ -78,7 +78,7 @@
 />
 
 <div
-	class="px-4 sm:px-8 lg:px-16 m-auto font-text"
+	class="px-4 sm:px-8 lg:px-16 m-auto"
 	class:max-w-screen-xl={$screenWidth === 'large'}
 >
 	<nav class="pt-4 sm:pt-0 flex justify-between">

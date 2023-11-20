@@ -54,7 +54,7 @@
 					</p>
 				{/if}
 				{#if word.creator}
-					<p class="faded">
+					<p class="italic">
 						{word.creator}
 					</p>
 				{/if}

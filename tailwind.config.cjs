@@ -8,8 +8,8 @@ module.exports = {
 	theme: {
 		extend: {
 			fontFamily: {
+				sans: ['"Inter"', ...defaultTheme.fontFamily.sans],
 				pona: ['"Fairfax Pona HD"', ...defaultTheme.fontFamily.sans],
-				text: ['"SFProText"', ...defaultTheme.fontFamily.sans],
 				display: ['"SFRounded"', ...defaultTheme.fontFamily.sans]
 			}
 		}

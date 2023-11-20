@@ -143,7 +143,7 @@
 
 <h2 class="mt-4 text-3xl" data-sveltekit-preload-data="off">
 	<Link href="/data/linku">linku data</Link>
-	<span class="font-text text-sm faded">
+	<span class="font-sans text-sm faded">
 		({words.length})
 	</span>
 </h2>
@@ -315,7 +315,7 @@
 
 <h2 class="mt-4 text-3xl" data-sveltekit-preload-data="off">
 	<Link href="/data/compounds">compounds</Link>
-	<span class="font-text text-sm faded">
+	<span class="font-sans text-sm faded">
 		({compounds.length})
 	</span>
 </h2>
