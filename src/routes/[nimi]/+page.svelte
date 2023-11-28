@@ -128,7 +128,7 @@
 
 				{#if word.recognition}
 					<button
-						class="p-1 ml-1 -m-1 faded cursor-pointer"
+						class="p-1 ml-1 -m-1 faded cursor-pointer rounded-full hocus-visible:text-white transition"
 						on:click={() => (showHistory = !showHistory)}
 					>
 						<svg
