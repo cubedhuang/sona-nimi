@@ -77,3 +77,13 @@ export function getWordDisplayRecognition(word: Word) {
 	if (recognition === -1) return 'unknown';
 	return `${recognition}%`;
 }
+
+export function getUsageCategoryFromPercent(percent: number): UsageCategory {
+	if (percent >= 90) return 'core';
+	if (percent >= 70) return 'widespread';
+	if (percent >= 50) return 'common';
+	if (percent >= 20) return 'uncommon';
+	if (percent >= 10) return 'rare';
+	if (percent >= 2) return 'obscure';
+	return 'marginal';
+}

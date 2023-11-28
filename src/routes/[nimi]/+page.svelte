@@ -1,8 +1,12 @@
 <script lang="ts">
+	import { fly } from 'svelte/transition';
+
 	import type { PageData } from './$types';
 
+	import { outclick } from '$lib/actions/outclick';
 	import {
 		categoryTextColors,
+		getUsageCategoryFromPercent,
 		getWordDefinition,
 		getWordDisplayRecognition
 	} from '$lib/util';
@@ -18,6 +22,8 @@
 	$: word = data;
 
 	$: puData = word.pu_verbatim?.[$language] || word.pu_verbatim?.['en'];
+
+	let showHistory = false;
 </script>
 
 <svelte:head>
@@ -112,7 +118,7 @@
 		<div class="box">
 			<h2 class="text-lg">usage</h2>
 
-			<p class="mt-2 flex flex-col gap-1">
+			<p class="relative mt-2 flex items-center">
 				<span>
 					<b class={categoryTextColors[word.usage_category]}>
 						{word.usage_category} &middot; {getWordDisplayRecognition(word)}
@@ -120,25 +126,73 @@
 					<span class="faded">usage</span>
 				</span>
 
-				<span>
-					<span class="faded">found in</span>
-					<b>
-						{word.book}
-					</b>
-				</span>
+				{#if word.recognition}
+					<button
+						class="p-1 ml-1 -m-1 faded cursor-pointer"
+						on:click={() => (showHistory = !showHistory)}
+					>
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							viewBox="0 0 20 20"
+							fill="currentColor"
+							class="w-5 h-5"
+						>
+							<path
+								fill-rule="evenodd"
+								d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a.75.75 0 000 1.5h.253a.25.25 0 01.244.304l-.459 2.066A1.75 1.75 0 0010.747 15H11a.75.75 0 000-1.5h-.253a.25.25 0 01-.244-.304l.459-2.066A1.75 1.75 0 009.253 9H9z"
+								clip-rule="evenodd"
+							/>
+						</svg>
+					</button>
+				{/if}
 
-				{#if word.coined_era}
-					<span>
-						<span class="faded">coined</span>
-						<b>
-							{word.coined_era}
-							{#if word.coined_year}
-								({word.coined_year})
-							{/if}
-						</b>
-					</span>
+				{#if showHistory && word.recognition}
+					{@const dates = Object.keys(word.recognition).sort()}
+
+					<div
+						class="absolute left-0 top-full mt-1 flex gap-4 p-4 border border-gray-200 dark:border-gray-800 rounded-lg bg-white dark:bg-black shadow-lg"
+						transition:fly|local={{ duration: 150, y: -4 }}
+						use:outclick
+						on:outclick={() => {
+							// delay to make clicking on the button also close
+							requestAnimationFrame(() => {
+								showHistory = false;
+							});
+						}}
+					>
+						{#each dates as date (date)}
+							{@const recognition = Number(word.recognition[date])}
+							{@const usageCategory = getUsageCategoryFromPercent(recognition)}
+
+							<span class="flex flex-col">
+								<b class={categoryTextColors[usageCategory]}>
+									{recognition}%
+								</b>
+								<span class="faded text-xs">{date}</span>
+							</span>
+						{/each}
+					</div>
 				{/if}
 			</p>
+
+			<p class="mt-1">
+				<span class="faded">found in</span>
+				<b>
+					{word.book}
+				</b>
+			</p>
+
+			{#if word.coined_era}
+				<p class="mt-1">
+					<span class="faded">coined</span>
+					<b>
+						{word.coined_era}
+						{#if word.coined_year}
+							&middot; {word.coined_year}
+						{/if}
+					</b>
+				</p>
+			{/if}
 
 			{#if word.creator || word.etymology}
 				<h2 class="mt-4 text-lg">origin</h2>
