@@ -250,9 +250,11 @@
 					{/if}
 				</div>
 
-				<p class="mt-2">
-					{word.author_verbatim}
-				</p>
+				{#each word.author_verbatim.split('\n') as line, i}
+					<p class:mt-2={i === 0}>
+						{line}
+					</p>
+				{/each}
 			{/if}
 
 			{#if word.commentary}
