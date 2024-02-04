@@ -195,9 +195,9 @@ export const GET = (async ({ fetch }) => {
 		process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 	}
 
-	const data = (await fetch('https://linku.la/jasima/data.json').then(res =>
-		res.json()
-	)) as Linku;
+	const data = (await fetch(
+		'https://raw.githubusercontent.com/lipu-linku/jasima/main/data.json'
+	).then(res => res.json())) as Linku;
 
 	for (const key of Object.keys(data.data)) {
 		data.data[key].id = key;
