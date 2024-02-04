@@ -213,10 +213,5 @@ export const GET = (async ({ fetch }) => {
 		}
 	}
 
-	data.data['su'].def.en =
-		'interacting with the official Toki Pona story book series by Sonja Lang';
-	data.data['su'].commentary =
-		'Only one book, The Wonderful Wizard of Oz, has been released so far. The name may be a pun on the transliteration of the land of Oz as "ma Osu." For ways to buy a copy of the book, visit the official Toki Pona website.';
-
 	return json(data);
 }) satisfies RequestHandler;
