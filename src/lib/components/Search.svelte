@@ -24,6 +24,10 @@
 
 <svelte:window
 	on:keydown={e => {
+		if (e.ctrlKey || e.metaKey || e.altKey) {
+			return;
+		}
+
 		if (searchBar === document.activeElement && e.key === 'Escape') {
 			value = '';
 			searchBar.blur();
