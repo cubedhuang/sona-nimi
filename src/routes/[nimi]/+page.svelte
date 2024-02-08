@@ -16,6 +16,7 @@
 	import Collapsible from '$lib/components/Collapsible.svelte';
 	import Copy from '$lib/components/Copy.svelte';
 	import Link from '$lib/components/Link.svelte';
+	import LipamankaData from '$lib/components/LipamankaData.svelte';
 
 	export let data: PageData;
 
@@ -91,8 +92,14 @@
 				</p>
 			{/if}
 
+			{#if word.lipamanka}
+				<div class="mt-4">
+					<LipamankaData {word} />
+				</div>
+			{/if}
+
 			{#if word.ku_data}
-				<h2 class="mt-4 text-lg">lipu ku translations</h2>
+				<h2 class="mt-4 text-lg">ku translations</h2>
 				<p class="mt-2">
 					<Collapsible content={word.ku_data} length={250} />
 				</p>

@@ -190,6 +190,41 @@ const additions: Word[] = [
 	}
 ];
 
+async function applyLipamanka(
+	words: Record<string, Word>,
+	fetcher: typeof fetch
+) {
+	const rawText = await fetcher('https://lipamanka.gay/essays/dictionary').then(
+		res => res.text()
+	);
+
+	const rawDictionary = rawText
+		.split('<h2 id="the-dictionary">The Dictionary</h2>')[1]
+		.split('<br><br><br>', 1)[0]
+		.trim();
+
+	for (const entry of rawDictionary.split('<h3 id="')) {
+		if (!entry) {
+			continue;
+		}
+
+		const [word, ...rest] = entry.split('">');
+
+		const def = rest
+			.join('">')
+			.slice(word.length + '</h3>'.length)
+			.trim();
+
+		if (word === 'mije and meli') {
+			words.mije.lipamanka = def;
+			words.meli.lipamanka = def;
+			continue;
+		}
+
+		words[word].lipamanka = def;
+	}
+}
+
 export const GET = (async ({ fetch, setHeaders }) => {
 	if (dev) {
 		process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
@@ -212,6 +247,8 @@ export const GET = (async ({ fetch, setHeaders }) => {
 			word.usage_category = 'marginal';
 		}
 	}
+
+	await applyLipamanka(data.data, fetch);
 
 	setHeaders({
 		'Cache-Control': 's-maxage=86400'

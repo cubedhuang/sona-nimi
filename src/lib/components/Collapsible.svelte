@@ -23,6 +23,10 @@
 		}}
 		bind:this={button}
 	>
-		{expanded ? 'less' : '...more'}
+		{#if expanded}
+			less
+		{:else}
+			&hellip;more
+		{/if}
 	</button>
 {/if}

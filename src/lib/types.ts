@@ -163,6 +163,11 @@ export interface Word {
 	 * Undocumented in jasima.
 	 */
 	tags?: Tag;
+
+	/**
+	 * Not in jasima, scraped from lipamanka's dictionary
+	 */
+	lipamanka?: string;
 }
 
 export interface Font {

@@ -47,33 +47,34 @@
 
 	<p>
 		toki a! mi
-		<Link href="https://github.com/cubedhuang/">jan Tani</Link> li pali e ni. jan
-		<Link href="https://github.com/woflydev/">woflydev</Link> li pona e ni kepeken
-		ilo Progressive Web Application. sina wile pona e lipu ni la, o ni lon
+		<Link href="https://github.com/cubedhuang/">ilo Tani</Link> li pali e ni. jan
+		<Link href="https://github.com/woflydev/">woflydev</Link> li ilo PWA e lipu ni.
+		sina wile ante pona e lipu ni la, o kepeken
 		<Link href="https://github.com/cubedhuang/sona-nimi">ilo GitHub</Link>!
 	</p>
 
 	<p>
-		pali <b>nimi.li</b> li kepeken pali pona mute tan jan ante:
+		pali <b>nimi.li</b> la,
 	</p>
 
 	<ul>
 		<li>
-			ni li kepeken sona pi
-			<Link href="https://linku.la/about/jasima/">jasima Linku</Link> tawa nimi wan.
+			<Link href="https://linku.la/about/">ijo Linku</Link> en
+			<Link href="https://lipamanka.gay/essays/dictionary">lipu lipamanka</Link>
+			li kama e sona nimi.
 		</li>
 
 		<li>
-			ni li kepeken
-			<Link href="https://tokipona.org/compounds.txt">kulupu nimi ni</Link>
-			tan jan Sonja tawa kulupu nimi.
+			<Link href="https://tokipona.org/compounds.txt">lipu nimi</Link>
+			pi jan Sonja li kama e kulupu nimi.
 		</li>
 
 		<li>
-			ni li kepeken sitelen
+			sitelen
 			<Link href="https://www.kreativekorp.com/software/fonts/fairfaxponahd/">
 				Fairfax Pona HD
-			</Link> tawa sitelen pona lon lipu.
+			</Link>
+			li sitelen pona e nimi.
 		</li>
 	</ul>
 
@@ -92,12 +93,13 @@
 
 	<h3>ante</h3>
 
+	<p>lipu Linku la, lipu ni li ante.</p>
+	<p>mi wan e sona Linku e sona lipamanka.</p>
 	<p>
-		lipu Linku la, lipu ni li ante. mi tu e kulupu nimi Obscure tawa ni: nimi
-		suli ni li awen lon kulupu Obscure. nimi lili ni li kama lon kulupu
-		Marginal. mi la, ante ni li pona tan ni: kulupu Linku li sin taso e nimi sin
-		suli. taso, nimi mute li kama lili, li awen lon lipu. nimi ni li suli ala, o
-		ante tan nimi ante.
+		mi tu e kulupu nimi Obscure tawa ni: nimi suli ni li awen lon kulupu
+		Obscure. nimi lili ni li kama lon kulupu Marginal. mi la, ante ni li pona
+		tan ni: kulupu Linku li sin taso e nimi sin suli. taso, nimi mute li kama
+		lili, li awen lon lipu. nimi ni li suli ala, o ante tan nimi ante.
 	</p>
 
 	<p>
@@ -126,9 +128,10 @@
 
 	<ul>
 		<li>
-			The
-			<Link href="https://linku.la/about/jasima/">jasima Linku</Link>
-			public API is used for all of data with the vocabulary.
+			<Link href="https://linku.la/about/">Linku</Link>'s public API and <Link
+				href="https://lipamanka.gay/essays/dictionary"
+				>lipamanka's semantic space dictionary</Link
+			> is used for all of data with the vocabulary.
 		</li>
 
 		<li>
@@ -160,14 +163,18 @@
 
 	<h3>differences</h3>
 
+	<p>This website has a few differences from Linku.</p>
 	<p>
-		This website has a few differences from Linku. I've split the Obscure
-		category into the Obscure and Marginal categories, with the obscure usage
-		category containing words with 2-9% usage and the marginal usage category
-		containing words with 0-1% usage. I made this change because Linku only adds
-		words when they reach the 2% usage threshold, but older words that have
-		declined in usage remain, and I wanted to separate those words from the rest
-		of the obscure words.
+		I'm combining lipamanka's dictionary data in the interface to provide
+		additional context for core words.
+	</p>
+	<p>
+		I've split the Obscure category into the Obscure and Marginal categories,
+		with the obscure usage category containing words with 2-9% usage and the
+		marginal usage category containing words with 0-1% usage. I made this change
+		because Linku only adds words when they reach the 2% usage threshold, but
+		older words that have declined in usage remain, and I wanted to separate
+		those words from the rest of the obscure words.
 	</p>
 
 	<p>

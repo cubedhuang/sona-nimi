@@ -13,6 +13,7 @@
 	import Copy from '$lib/components/Copy.svelte';
 	import Details from '$lib/components/Details.svelte';
 	import Link from '$lib/components/Link.svelte';
+	import LipamankaData from '$lib/components/LipamankaData.svelte';
 	import X from '$lib/components/X.svelte';
 
 	const dispatch = createEventDispatcher<{
@@ -88,12 +89,6 @@
 		{getWordDefinition(word, $language)}
 	</p>
 
-	{#if word.ku_data}
-		<p class="mt-2">
-			<Collapsible content={word.ku_data} length={250} />
-		</p>
-	{/if}
-
 	{#if word.see_also}
 		{@const words = word.see_also.split(', ')}
 
@@ -109,6 +104,20 @@
 					}}>{other}</Link
 				>
 			{/each}
+		</p>
+	{/if}
+
+	{#if word.lipamanka}
+		<div class="mt-2">
+			<LipamankaData {word} />
+		</div>
+	{/if}
+
+	{#if word.ku_data}
+		<h3 class="mt-2 text-lg">ku translations</h3>
+
+		<p>
+			<Collapsible content={word.ku_data} length={120} />
 		</p>
 	{/if}
 
