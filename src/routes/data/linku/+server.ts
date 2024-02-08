@@ -190,7 +190,7 @@ const additions: Word[] = [
 	}
 ];
 
-export const GET = (async ({ fetch }) => {
+export const GET = (async ({ fetch, setHeaders }) => {
 	if (dev) {
 		process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 	}
@@ -212,6 +212,10 @@ export const GET = (async ({ fetch }) => {
 			word.usage_category = 'marginal';
 		}
 	}
+
+	setHeaders({
+		'Cache-Control': 's-maxage=86400'
+	});
 
 	return json(data);
 }) satisfies RequestHandler;
