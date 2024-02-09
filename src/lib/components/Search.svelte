@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import X from './X.svelte';
+
+	import XMark from './icons/XMark.svelte';
 
 	export let placeholder: string;
 	export let value = '';
@@ -63,8 +64,9 @@
 				value = '';
 				searchBar.focus();
 			}}
+			aria-label="clear search"
 		>
-			<X />
+			<XMark />
 		</button>
 	{/if}
 </div>

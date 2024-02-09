@@ -6,7 +6,7 @@
 
 	import Details from '$lib/components/Details.svelte';
 	import Link from '$lib/components/Link.svelte';
-	import X from '$lib/components/X.svelte';
+	import XMark from '$lib/components/icons/XMark.svelte';
 
 	export let data: PageData;
 
@@ -130,7 +130,7 @@
 				detailsOpen = false;
 			}}
 		>
-			<X />
+			<XMark />
 		</button>
 	</div>
 

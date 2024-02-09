@@ -12,9 +12,10 @@
 	import Collapsible from '$lib/components/Collapsible.svelte';
 	import Copy from '$lib/components/Copy.svelte';
 	import Details from '$lib/components/Details.svelte';
+	import ExternalLink from '$lib/components/icons/ExternalLink.svelte';
 	import Link from '$lib/components/Link.svelte';
 	import LipamankaData from '$lib/components/LipamankaData.svelte';
-	import X from '$lib/components/X.svelte';
+	import XMark from '$lib/components/icons/XMark.svelte';
 
 	const dispatch = createEventDispatcher<{
 		refer: string;
@@ -68,8 +69,9 @@
 				on:click={() => {
 					possibleWord = null;
 				}}
+				aria-label="close popup"
 			>
-				<X />
+				<XMark />
 			</button>
 		</div>
 	</div>
@@ -114,7 +116,19 @@
 	{/if}
 
 	{#if word.ku_data}
-		<h3 class="mt-2 text-lg">ku translations</h3>
+		<h3 class="mt-2 text-lg flex items-center">
+			ku translations
+
+			<a
+				class="icon-interactable"
+				href="https://tokipona.org/nimi_pu.txt"
+				target="_blank"
+				rel="noopener noreferrer"
+				aria-label="source"
+			>
+				<ExternalLink />
+			</a>
+		</h3>
 
 		<p>
 			<Collapsible content={word.ku_data} length={120} />

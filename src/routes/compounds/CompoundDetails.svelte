@@ -3,7 +3,7 @@
 
 	import Details from '$lib/components/Details.svelte';
 	import Link from '$lib/components/Link.svelte';
-	import X from '$lib/components/X.svelte';
+	import XMark from '$lib/components/icons/XMark.svelte';
 
 	let possibleCompound: Compound | null;
 	export { possibleCompound as compound };
@@ -22,8 +22,9 @@
 			on:click={() => {
 				possibleCompound = null;
 			}}
+			aria-label="close popup"
 		>
-			<X />
+			<XMark />
 		</button>
 	</div>
 

@@ -15,6 +15,7 @@
 	import AudioPlayer from './AudioPlayer.svelte';
 	import Collapsible from '$lib/components/Collapsible.svelte';
 	import Copy from '$lib/components/Copy.svelte';
+	import ExternalLink from '$lib/components/icons/ExternalLink.svelte';
 	import Link from '$lib/components/Link.svelte';
 	import LipamankaData from '$lib/components/LipamankaData.svelte';
 
@@ -99,7 +100,19 @@
 			{/if}
 
 			{#if word.ku_data}
-				<h2 class="mt-4 text-lg">ku translations</h2>
+				<h2 class="mt-4 text-lg flex items-center">
+					ku translations
+					<a
+						class="icon-interactable"
+						href="https://tokipona.org/nimi_pu.txt"
+						target="_blank"
+						rel="noopener noreferrer"
+						aria-label="source"
+					>
+						<ExternalLink />
+					</a>
+				</h2>
+
 				<p class="mt-2">
 					<Collapsible content={word.ku_data} length={250} />
 				</p>
@@ -135,7 +148,7 @@
 
 				{#if word.recognition}
 					<button
-						class="p-1 ml-1 -m-1 faded hocus-visible:text-gray-800 dark:hocus-visible:text-white transition"
+						class="icon-interactable"
 						on:click={() => (showHistory = !showHistory)}
 					>
 						<svg
