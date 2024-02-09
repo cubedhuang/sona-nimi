@@ -5,15 +5,16 @@
 	import type { PageData } from './$types';
 
 	import { outclick } from '$lib/actions/outclick';
-	import type { BookName, UsageCategory, Word } from '$lib/types';
+	import type { BookName, Word } from '$lib/types';
 	import {
+		azWordSort,
 		bookColors,
 		categoryColors,
+		combinedWordSort,
 		getWordDefinition,
-		getWordRecognition,
 		normalize,
-		sortLanguages,
-		usageCategories
+		recognitionWordSort,
+		sortLanguages
 	} from '$lib/util';
 	import {
 		categories,
@@ -53,26 +54,14 @@
 	}));
 	$: shownBooks = books.filter(book => book.shown).map(book => book.name);
 
-	const categoryIndex = Object.fromEntries(
-		usageCategories.map((category, index) => [category, index] as const)
-	) as Record<UsageCategory, number>;
-
-	const azSorter = (a: Word, b: Word) => a.word.localeCompare(b.word);
-	const recognitionSorter = (a: Word, b: Word) =>
-		getWordRecognition(b) - getWordRecognition(a);
-	const combinedSorter = (a: Word, b: Word) => {
-		if (a.usage_category === b.usage_category) return azSorter(a, b);
-		return categoryIndex[a.usage_category] - categoryIndex[b.usage_category];
-	};
-
 	let filteredWords: Word[] = [];
 
 	$: genericSorter =
 		$sortingMethod === 'alphabetical'
-			? azSorter
+			? azWordSort
 			: $sortingMethod === 'recognition'
-			? recognitionSorter
-			: combinedSorter;
+			? recognitionWordSort
+			: combinedWordSort;
 
 	$: genericFilter = (word: Word) =>
 		shownCategories.includes(word.usage_category) &&

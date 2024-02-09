@@ -44,6 +44,23 @@ export const bookColors: Record<BookName, string> = {
 	none: categoryColors.marginal
 };
 
+export const categoryIndex = Object.fromEntries(
+	usageCategories.map((category, index) => [category, index] as const)
+) as Record<UsageCategory, number>;
+
+export function azWordSort(a: Word, b: Word) {
+	return a.word.localeCompare(b.word);
+}
+
+export function recognitionWordSort(a: Word, b: Word) {
+	return getWordRecognition(b) - getWordRecognition(a);
+}
+
+export function combinedWordSort(a: Word, b: Word) {
+	if (a.usage_category === b.usage_category) return azWordSort(a, b);
+	return categoryIndex[a.usage_category] - categoryIndex[b.usage_category];
+}
+
 export function sortLanguages(languages: Record<string, Language>) {
 	return Object.entries(languages)
 		.sort((a, b) => a[1].name_endonym.localeCompare(b[1].name_endonym))

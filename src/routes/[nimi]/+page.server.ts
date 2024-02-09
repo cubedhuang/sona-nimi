@@ -4,14 +4,18 @@ import { distance } from 'fastest-levenshtein';
 
 import type { PageServerLoad } from './$types';
 
+import { combinedWordSort } from '$lib/util';
+
 export const load = (async ({ fetch, params }) => {
 	const data: Linku = await fetch('/data/linku').then(res => res.json());
 
 	const word = data.data[params.nimi];
+	const words = Object.values(data.data).sort(combinedWordSort);
+	const index = words.indexOf(word);
 
 	if (!word) {
-		const closest = Object.keys(data.data)
-			.map(word => ({
+		const closest = words
+			.map(({ word }) => ({
 				word,
 				distance: distance(word, params.nimi)
 			}))
@@ -33,5 +37,9 @@ export const load = (async ({ fetch, params }) => {
 		});
 	}
 
-	return word;
+	return {
+		word,
+		next: words[(index + 1) % words.length].id,
+		previous: words[(index - 1 + words.length) % words.length].id
+	};
 }) satisfies PageServerLoad;
