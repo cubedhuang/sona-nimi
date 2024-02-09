@@ -7,7 +7,7 @@ import { dev } from '$app/environment';
 
 export const prerender = true;
 
-export const GET = (async ({ fetch }) => {
+export const GET = (async ({ fetch, setHeaders }) => {
 	if (dev) {
 		process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 	}
@@ -55,6 +55,8 @@ export const GET = (async ({ fetch }) => {
 			return data;
 		})
 	);
+
+	setHeaders({ 'Cache-Control': 's-maxage=31536000' });
 
 	return json(data);
 }) satisfies RequestHandler;
