@@ -32,11 +32,11 @@
 		.filter(
 			compound =>
 				compound.compound.includes(fixedSearch) ||
-				distance(compound.compound, fixedSearch) <= 1 ||
+				distance(compound.compound, fixedSearch) <= 2 ||
 				Object.keys(compound.uses).some(
 					use =>
 						use.includes(fixedSearch) ||
-						distance(use, fixedSearch) <= 1
+						distance(use, fixedSearch) <= 2
 				)
 		)
 		.sort((a, b) => {
