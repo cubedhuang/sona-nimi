@@ -14,14 +14,16 @@
 	const fixLinks: Action<HTMLDivElement> = node => {
 		const update = () => {
 			for (const a of node.getElementsByTagName('a')) {
-				const href = a.getAttribute('href')!;
+				const href = a.getAttribute('href');
 
-				if (href.startsWith('/')) {
+				if (href?.startsWith('/')) {
 					a.href = 'https://lipamanka.gay' + href;
 				}
 
 				a.target = '_blank';
 				a.rel = 'noopener noreferrer';
+
+				a.classList.add('link');
 			}
 
 			for (const button of node.getElementsByTagName('button')) {
@@ -50,14 +52,11 @@
 </h3>
 
 <div class="lipamanka text-sm grid" use:fixLinks>
+	<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 	{@html word.lipamanka}
 </div>
 
 <style lang="postcss">
-	:global(.lipamanka a) {
-		@apply text-blue-500 hocus-visible:text-blue-600 transition-colors outline-none outline-offset-4 focus-visible:outline-current rounded;
-	}
-
 	:global(.lipamanka p:not(:last-child)) {
 		@apply mb-2;
 	}

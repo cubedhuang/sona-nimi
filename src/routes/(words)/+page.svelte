@@ -301,7 +301,7 @@
 
 {#if missingDefinitions}
 	<p class="mt-2">
-		<span class="font-bold">o lukin a!</span>
+		<span class="font-bold">o sona a!</span>
 		kon pi
 		{data.languages[$language].name_toki_pona}
 		li lon ala ale. nimi ni la, toki Inli li lon.
@@ -317,7 +317,7 @@
 	{filteredWords.length} / {genericFilteredWords.length}
 </p>
 
-<Search placeholder="o lukin..." bind:value={search} />
+<Search placeholder="o alasa..." bind:value={search} />
 
 {#if $viewMode === 'compact'}
 	<div class="mt-4 grid">

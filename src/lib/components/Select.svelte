@@ -1,4 +1,6 @@
 <script lang="ts">
+	// ESLint doesn't recognize Svelte's generic types
+	// eslint-disable-next-line no-undef
 	type T = $$Generic;
 
 	export let options: {

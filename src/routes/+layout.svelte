@@ -13,8 +13,8 @@
 	import { darkMode, screenWidth } from '$lib/stores';
 
 	const routes = [
-		{ name: 'vocabulary', href: '/' },
-		{ name: 'compounds', href: '/compounds' },
+		{ name: 'dictionary', href: '/' },
+		{ name: 'ilo ku', href: '/ilo-ku' },
 		{ name: 'about', href: '/about' }
 	];
 
@@ -25,6 +25,8 @@
 
 	let opened = false;
 
+	// ESLint doesn't recognize NodeJS.Timeout
+	// eslint-disable-next-line no-undef
 	let nProgressTimeout: NodeJS.Timeout;
 
 	// disable smooth scroll on navigation

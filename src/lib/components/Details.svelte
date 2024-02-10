@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { fly } from 'svelte/transition';
 
+	// ESLint doesn't recognize Svelte's generic types
+	// eslint-disable-next-line no-undef
 	type T = $$Generic;
 
 	export let value: T | null;

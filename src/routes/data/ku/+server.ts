@@ -7,19 +7,11 @@ import { dev } from '$app/environment';
 
 export const prerender = true;
 
-export const GET = (async ({ fetch, setHeaders }) => {
-	if (dev) {
-		process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
-	}
-
+function parseData(raw: string): CompoundData {
 	const regex = /^(.+?): \["?(.+?)"?\]/gm;
 
-	const rawData = await fetch('https://tokipona.org/compounds.txt').then(res =>
-		res.text()
-	);
-
-	const data: CompoundData = Object.fromEntries(
-		[...rawData.matchAll(regex)].map(match => {
+	return Object.fromEntries(
+		[...raw.matchAll(regex)].map(match => {
 			const [, compound, rawUses] = match;
 
 			const uses = Object.fromEntries(
@@ -55,6 +47,34 @@ export const GET = (async ({ fetch, setHeaders }) => {
 			return data;
 		})
 	);
+}
+
+export const GET = (async ({ fetch, setHeaders }) => {
+	if (dev) {
+		process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+	}
+
+	const pages = [
+		'https://tokipona.org/compounds.txt',
+		'https://tokipona.org/nimi_pu.txt',
+		'https://tokipona.org/nimi_pi_pu_ala.txt'
+	];
+
+	const datas = await Promise.all(
+		pages.map(page => fetch(page).then(res => res.text()))
+	).then(rawDatas => rawDatas.map(parseData));
+
+	const data: CompoundData = datas.reduce((acc, data) => {
+		for (const [compound, compoundData] of Object.entries(data)) {
+			if (acc[compound]) {
+				acc[compound].uses = { ...acc[compound].uses, ...compoundData.uses };
+			} else {
+				acc[compound] = compoundData;
+			}
+		}
+
+		return acc;
+	}, {});
 
 	setHeaders({ 'Cache-Control': 's-maxage=31536000' });
 
