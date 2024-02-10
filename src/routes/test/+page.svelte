@@ -200,42 +200,6 @@
 	</tbody>
 </table>
 
-<!-- <p class="mt-2">
-	missing source_language:
-	{words
-		.filter(w => !w.source_language)
-		.map(w => w.word)
-		.join(', ')}
-</p>
-<p>
-	missing etymology:
-	{words
-		.filter(w => !w.etymology)
-		.map(w => w.word)
-		.join(', ')}
-</p>
-<p>
-	missing coined_era:
-	{words
-		.filter(w => !w.coined_era)
-		.map(w => w.word)
-		.join(', ')}
-</p>
-<p>
-	missing creator:
-	{words
-		.filter(w => !w.creator)
-		.map(w => w.word)
-		.join(', ')}
-</p>
-<p>
-	missing sitelen_pona:
-	{words
-		.filter(w => !w.sitelen_pona)
-		.map(w => w.word)
-		.join(', ')}
-</p> -->
-
 <h3 class="mt-4 mb-2 text-2xl">near complete keys</h3>
 
 {#each nearCompleteKeys as key}
