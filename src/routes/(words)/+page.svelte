@@ -144,7 +144,10 @@
 
 	<meta property="og:title" content="nimi.li" />
 	<meta property="og:author" content="jan Tani" />
-	<meta property="og:description" content="interactive toki pona dictionary" />
+	<meta
+		property="og:description"
+		content="interactive toki pona dictionary"
+	/>
 	<meta property="og:url" content="https://nimi.li/" />
 	<meta property="og:site_name" content="nimi.li" />
 	<meta property="og:type" content="website" />
@@ -209,7 +212,9 @@
 				{#each books as book}
 					<ColoredCheckbox
 						bind:checked={book.shown}
-						label={book.name === 'none' ? 'no book' : `nimi ${book.name}`}
+						label={book.name === 'none'
+							? 'no book'
+							: `nimi ${book.name}`}
 						color={bookColors[book.name]}
 					/>
 				{/each}
@@ -227,7 +232,9 @@
 			{#each books as book}
 				<ColoredCheckbox
 					bind:checked={book.shown}
-					label={book.name === 'none' ? 'no book' : `nimi ${book.name}`}
+					label={book.name === 'none'
+						? 'no book'
+						: `nimi ${book.name}`}
 					color={bookColors[book.name]}
 				/>
 			{/each}
@@ -372,7 +379,8 @@
 			$categories = $categories.map(category => ({
 				...category,
 				shown:
-					category.shown || category.name === data.data[e.detail].usage_category
+					category.shown ||
+					category.name === data.data[e.detail].usage_category
 			}));
 			books = books.map(book => ({
 				...book,
@@ -384,6 +392,9 @@
 
 <style lang="postcss">
 	.glyphs {
-		grid-template-columns: repeat(auto-fill, minmax(theme('width.24'), 1fr));
+		grid-template-columns: repeat(
+			auto-fill,
+			minmax(theme('width.24'), 1fr)
+		);
 	}
 </style>

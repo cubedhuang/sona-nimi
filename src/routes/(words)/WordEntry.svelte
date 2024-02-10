@@ -36,7 +36,10 @@
 	{/if}
 
 	<span class="ml-0.5 mt-0.5">
-		<button on:click class="font-bold hocus-visible:text-blue-500 transition">
+		<button
+			on:click
+			class="font-bold hocus-visible:text-blue-500 transition"
+		>
 			{word.word}
 		</button>
 

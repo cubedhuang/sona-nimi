@@ -91,7 +91,10 @@
 						{route.name}
 					</span>
 				{:else}
-					<a href={route.href} class="{commonClasses} {hoverableClasses}">
+					<a
+						href={route.href}
+						class="{commonClasses} {hoverableClasses}"
+					>
 						{route.name}
 					</a>
 				{/if}

@@ -20,7 +20,8 @@ export const load = (async ({ fetch, params }) => {
 				distance: distance(word, params.nimi)
 			}))
 			.filter(
-				({ word, distance }) => distance < 3 || word.startsWith(params.nimi)
+				({ word, distance }) =>
+					distance < 3 || word.startsWith(params.nimi)
 			)
 			.sort((a, b) => a.distance - b.distance)
 			.slice(0, 10)

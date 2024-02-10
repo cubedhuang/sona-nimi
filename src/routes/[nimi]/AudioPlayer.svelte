@@ -4,7 +4,9 @@
 
 	$: displayName = name
 		.split('_')
-		.map((name, i) => (i === 0 ? name : name[0].toUpperCase() + name.slice(1)))
+		.map((name, i) =>
+			i === 0 ? name : name[0].toUpperCase() + name.slice(1)
+		)
 		.join(' ');
 
 	let audio: HTMLAudioElement | null = null;

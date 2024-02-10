@@ -27,7 +27,10 @@
 
 	<meta property="og:title" content="about – nimi.li" />
 	<meta property="og:author" content="jan Tani and woflydev" />
-	<meta property="og:description" content="interactive toki pona dictionary" />
+	<meta
+		property="og:description"
+		content="interactive toki pona dictionary"
+	/>
 	<meta property="og:url" content="https://nimi.li/about" />
 	<meta property="og:site_name" content="nimi.li" />
 	<meta property="og:type" content="website" />
@@ -48,10 +51,13 @@
 
 		<p>
 			toki a! mi
-			<Link href="https://github.com/cubedhuang/">ilo Tani</Link> li pali e ni. jan
-			<Link href="https://github.com/woflydev/">woflydev</Link> li ilo PWA e lipu
-			ni. sina wile ante pona e lipu ni la, o kepeken
-			<Link href="https://github.com/cubedhuang/sona-nimi">ilo GitHub</Link>!
+			<Link href="https://github.com/cubedhuang/">ilo Tani</Link> li pali e
+			ni. jan
+			<Link href="https://github.com/woflydev/">woflydev</Link> li ilo PWA
+			e lipu ni. sina wile ante pona e lipu ni la, o kepeken
+			<Link href="https://github.com/cubedhuang/sona-nimi"
+				>ilo GitHub</Link
+			>!
 		</p>
 
 		<p>
@@ -68,13 +74,17 @@
 			</li>
 
 			<li>
-				<Link href="https://tokipona.org/compounds.txt">sona ku lili</Link>
+				<Link href="https://tokipona.org/compounds.txt"
+					>sona ku lili</Link
+				>
 				pi jan Sonja li kama e ilo ku.
 			</li>
 
 			<li>
 				sitelen
-				<Link href="https://www.kreativekorp.com/software/fonts/fairfaxponahd/">
+				<Link
+					href="https://www.kreativekorp.com/software/fonts/fairfaxponahd/"
+				>
 					Fairfax Pona HD
 				</Link>
 				li sitelen pona e nimi.
@@ -100,9 +110,10 @@
 		<p>mi wan e sona Linku e sona lipamanka.</p>
 		<p>
 			mi tu e kulupu nimi Obscure tawa ni: nimi suli ni li awen lon kulupu
-			Obscure. nimi lili ni li kama lon kulupu Marginal. mi la, ante ni li pona
-			tan ni: kulupu Linku li sin taso e nimi sin suli. taso, nimi mute li kama
-			lili, li awen lon lipu. nimi ni li suli ala, o ante tan nimi ante.
+			Obscure. nimi lili ni li kama lon kulupu Marginal. mi la, ante ni li
+			pona tan ni: kulupu Linku li sin taso e nimi sin suli. taso, nimi
+			mute li kama lili, li awen lon lipu. nimi ni li suli ala, o ante tan
+			nimi ante.
 		</p>
 
 		<p>
@@ -115,8 +126,8 @@
 		<h1>about &ndash; nimi.li</h1>
 
 		<p>
-			Hi! I'm <Link href="https://github.com/cubedhuang/">jan Tani</Link>, and I
-			made this project. Thanks to
+			Hi! I'm <Link href="https://github.com/cubedhuang/">jan Tani</Link>,
+			and I made this project. Thanks to
 			<Link href="https://github.com/woflydev/">woflydev</Link>
 			for making this a Progressive Web Application. This is an
 			<Link href="https://github.com/cubedhuang/sona-nimi">
@@ -125,14 +136,14 @@
 		</p>
 
 		<p>
-			<b>nimi.li</b> was built with data from many amazing projects. Thanks to all
-			of the following projects for their work:
+			<b>nimi.li</b> was built with data from many amazing projects. Thanks
+			to all of the following projects for their work:
 		</p>
 
 		<ul>
 			<li>
-				<Link href="https://linku.la/about/">Linku</Link>'s public API and <Link
-					href="https://lipamanka.gay/essays/dictionary"
+				<Link href="https://linku.la/about/">Linku</Link>'s public API
+				and <Link href="https://lipamanka.gay/essays/dictionary"
 					>lipamanka's semantic space dictionary</Link
 				> is used for all of data with the vocabulary.
 			</li>
@@ -147,7 +158,9 @@
 
 			<li>
 				The
-				<Link href="https://www.kreativekorp.com/software/fonts/fairfaxponahd/">
+				<Link
+					href="https://www.kreativekorp.com/software/fonts/fairfaxponahd/"
+				>
 					Fairfax Pona HD
 				</Link>
 				font is used for sitelen pona displayed on the site.
@@ -168,20 +181,22 @@
 
 		<p>This website has a few differences from Linku.</p>
 		<p>
-			I'm combining lipamanka's dictionary data in the interface to provide
-			additional context for core words.
+			I'm combining lipamanka's dictionary data in the interface to
+			provide additional context for core words.
 		</p>
 		<p>
-			I've split the Obscure category into the Obscure and Marginal categories,
-			with the obscure usage category containing words with 2-9% usage and the
-			marginal usage category containing words with 0-1% usage. I made this
-			change because Linku only adds words when they reach the 2% usage
-			threshold, but older words that have declined in usage remain, and I
-			wanted to separate those words from the rest of the obscure words.
+			I've split the Obscure category into the Obscure and Marginal
+			categories, with the obscure usage category containing words with
+			2-9% usage and the marginal usage category containing words with
+			0-1% usage. I made this change because Linku only adds words when
+			they reach the 2% usage threshold, but older words that have
+			declined in usage remain, and I wanted to separate those words from
+			the rest of the obscure words.
 		</p>
 
 		<p>
-			I've also added a few words to the marginal category that aren't on Linku:
+			I've also added a few words to the marginal category that aren't on
+			Linku:
 			{#each additions as addition, i}
 				{#if i !== 0}, {/if}
 				<Link href="/{addition}">{addition}</Link>{/each}.

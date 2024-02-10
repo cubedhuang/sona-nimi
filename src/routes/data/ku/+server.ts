@@ -67,7 +67,10 @@ export const GET = (async ({ fetch, setHeaders }) => {
 	const data: CompoundData = datas.reduce((acc, data) => {
 		for (const [compound, compoundData] of Object.entries(data)) {
 			if (acc[compound]) {
-				acc[compound].uses = { ...acc[compound].uses, ...compoundData.uses };
+				acc[compound].uses = {
+					...acc[compound].uses,
+					...compoundData.uses
+				};
 			} else {
 				acc[compound] = compoundData;
 			}

@@ -25,7 +25,10 @@
 		<ul class="mt-2 flex flex-wrap gap-1">
 			{#each $page.error?.closest as word}
 				<li>
-					<a href="/{word}" class="inline-block px-2 py-1 interactable">
+					<a
+						href="/{word}"
+						class="inline-block px-2 py-1 interactable"
+					>
 						{word}
 					</a>
 				</li>

@@ -194,9 +194,9 @@ async function applyLipamanka(
 	words: Record<string, Word>,
 	fetcher: typeof fetch
 ) {
-	const rawText = await fetcher('https://lipamanka.gay/essays/dictionary').then(
-		res => res.text()
-	);
+	const rawText = await fetcher(
+		'https://lipamanka.gay/essays/dictionary'
+	).then(res => res.text());
 
 	const rawDictionary = rawText
 		.split('<h2 id="the-dictionary">The Dictionary</h2>')[1]

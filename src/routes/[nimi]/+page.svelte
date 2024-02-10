@@ -168,7 +168,9 @@
 				<div class="mt-2">
 					{#each puData.split('\n') as line}
 						{@const partOfSpeech = line.split(' ')[0]}
-						{@const definition = line.slice(partOfSpeech.length + 1)}
+						{@const definition = line.slice(
+							partOfSpeech.length + 1
+						)}
 
 						<p class="mt-1">
 							<span class="faded shrink-0">{partOfSpeech}</span>
@@ -185,7 +187,9 @@
 			<p class="relative mt-2 flex items-center">
 				<span>
 					<b class={categoryTextColors[word.usage_category]}>
-						{word.usage_category} &middot; {getWordDisplayRecognition(word)}
+						{word.usage_category} &middot; {getWordDisplayRecognition(
+							word
+						)}
 					</b>
 					<span class="faded">usage</span>
 				</span>
@@ -225,8 +229,11 @@
 						}}
 					>
 						{#each dates as date (date)}
-							{@const recognition = Number(word.recognition[date])}
-							{@const usageCategory = getUsageCategoryFromPercent(recognition)}
+							{@const recognition = Number(
+								word.recognition[date]
+							)}
+							{@const usageCategory =
+								getUsageCategoryFromPercent(recognition)}
 
 							<span class="flex flex-col">
 								<b class={categoryTextColors[usageCategory]}>

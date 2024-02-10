@@ -34,7 +34,9 @@
 				compound.compound.includes(fixedSearch) ||
 				distance(compound.compound, fixedSearch) <= 1 ||
 				Object.keys(compound.uses).some(
-					use => use.includes(fixedSearch) || distance(use, fixedSearch) <= 1
+					use =>
+						use.includes(fixedSearch) ||
+						distance(use, fixedSearch) <= 1
 				)
 		)
 		.sort((a, b) => {
@@ -68,7 +70,10 @@
 
 	<meta property="og:title" content="ilo ku – nimi.li" />
 	<meta property="og:author" content="jan Tani" />
-	<meta property="og:description" content="interactive toki pona dictionary" />
+	<meta
+		property="og:description"
+		content="interactive toki pona dictionary"
+	/>
 	<meta property="og:url" content="https://nimi.li/ilo-ku" />
 	<meta property="og:site_name" content="nimi.li" />
 	<meta property="og:type" content="website" />
@@ -95,10 +100,10 @@
 	<p>
 		<span class="font-bold">Warning!</span>
 		There are no hard-set compound phrases in Toki Pona. This is by design! Part
-		of the goal of the language is for you to break down your surroundings from your
-		own viewpoint and describe things dynamically, not use the same phrase to mean
-		the same thing all the time. Think about what the topic means to you, and consider
-		what is important about it.
+		of the goal of the language is for you to break down your surroundings from
+		your own viewpoint and describe things dynamically, not use the same phrase
+		to mean the same thing all the time. Think about what the topic means to
+		you, and consider what is important about it.
 	</p>
 
 	<footer class="mt-2">

@@ -29,7 +29,9 @@
 	});
 
 	$: nearCompleteKeys = frequencies
-		.filter(({ count }) => count > words.length - 20 && count < words.length)
+		.filter(
+			({ count }) => count > words.length - 20 && count < words.length
+		)
 		.map(({ key }) => key);
 
 	$: usageCategoryFrequencies = words.reduce(
@@ -99,7 +101,10 @@
 
 	<meta property="og:title" content="super secret testing page – nimi.li" />
 	<meta property="og:author" content="jan Tani" />
-	<meta property="og:description" content="interactive toki pona dictionary" />
+	<meta
+		property="og:description"
+		content="interactive toki pona dictionary"
+	/>
 	<meta property="og:url" content="https://nimi.li/test" />
 	<meta property="og:site_name" content="nimi.li" />
 	<meta property="og:type" content="website" />
@@ -169,8 +174,8 @@
 				<td>
 					<span class="flex items-center gap-2">
 						<span
-							class="w-2 h-2 rounded-full {count === words.length &&
-							count === unique
+							class="w-2 h-2 rounded-full {count ===
+								words.length && count === unique
 								? 'bg-green-500'
 								: count === words.length
 								? 'bg-blue-500'
@@ -259,7 +264,11 @@
 			<tr>
 				<td>
 					<span class="flex items-center gap-2">
-						<span class="w-2 h-2 rounded-full {getCategoryColor(category)}" />
+						<span
+							class="w-2 h-2 rounded-full {getCategoryColor(
+								category
+							)}"
+						/>
 						{category}
 					</span>
 				</td>

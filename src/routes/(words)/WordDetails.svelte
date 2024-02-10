@@ -191,7 +191,9 @@
 			{word.ucsur}
 
 			<Copy
-				value={String.fromCodePoint(parseInt(word.ucsur?.slice(2) ?? '', 16))}
+				value={String.fromCodePoint(
+					parseInt(word.ucsur?.slice(2) ?? '', 16)
+				)}
 			/>
 		</p>
 	{/if}
