@@ -13,13 +13,13 @@
 		"format": "prettier --plugin-search-dir . --write ."
 	},
 	"dependencies": {
-		"@types/nprogress": "^0.2.3",
 		"fastest-levenshtein": "^1.0.16",
 		"nprogress": "^0.2.0"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-cloudflare": "^2.3.3",
 		"@sveltejs/kit": "^1.27.6",
+		"@types/nprogress": "^0.2.3",
 		"@typescript-eslint/eslint-plugin": "^5.62.0",
 		"@typescript-eslint/parser": "^5.62.0",
 		"@vite-pwa/sveltekit": "^0.1.3",
