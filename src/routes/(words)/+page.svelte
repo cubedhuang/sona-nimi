@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { fly } from 'svelte/transition';
-	import { distance } from 'fastest-levenshtein';
 
 	import type { PageData } from './$types';
 
@@ -11,11 +10,10 @@
 		bookColors,
 		categoryColors,
 		combinedWordSort,
-		getWordDefinition,
-		normalize,
 		recognitionWordSort,
 		sortLanguages
 	} from '$lib/util';
+	import { filter } from '$lib/search';
 	import {
 		categories,
 		language,
@@ -43,8 +41,6 @@
 	let search = '';
 	let selectedWord: Word | null = null;
 
-	$: fixedSearch = normalize(search);
-
 	$: shownCategories = $categories
 		.filter(category => category.shown)
 		.map(category => category.name);
@@ -54,8 +50,6 @@
 		shown: true
 	}));
 	$: shownBooks = books.filter(book => book.shown).map(book => book.name);
-
-	let filteredWords: Word[] = [];
 
 	$: genericSorter =
 		$sortingMethod === 'alphabetical'
@@ -70,63 +64,7 @@
 
 	$: genericFilteredWords = words.filter(genericFilter).sort(genericSorter);
 
-	const scoreMatch = (content: string | undefined) => {
-		if (!content) return 0;
-
-		const includes = content.includes(fixedSearch);
-		const dist = distance(fixedSearch, content);
-		const maxDist = content.length / 3;
-
-		if (!includes && dist > maxDist) return 0;
-
-		let score = 1;
-
-		if (dist <= maxDist) {
-			score += ((maxDist - dist) / maxDist) * 2;
-		}
-
-		if (includes) {
-			score += 1;
-		}
-
-		return score;
-	};
-
-	$: searchFilter = (word: Word) => {
-		if (!search) return true;
-
-		return (
-			scoreMatch(word.word) ||
-			scoreMatch(getWordDefinition(word, $language)) ||
-			scoreMatch(word.ku_data) ||
-			scoreMatch(word.etymology) ||
-			scoreMatch(word.source_language) ||
-			scoreMatch(word.creator) ||
-			scoreMatch(word.commentary)
-		);
-	};
-
-	$: scoreSearch = (word: Word) => {
-		let score = 0;
-
-		score += scoreMatch(word.word) * 100;
-		score += scoreMatch(getWordDefinition(word, $language)) * 50;
-		score += scoreMatch(word.ku_data) * 40;
-		score += scoreMatch(word.etymology) * 30;
-		score += scoreMatch(word.source_language) * 20;
-		score += scoreMatch(word.creator) * 10;
-		score += scoreMatch(word.commentary) * 5;
-
-		return score;
-	};
-
-	$: if (search) {
-		filteredWords = genericFilteredWords
-			.filter(searchFilter)
-			.sort((a, b) => scoreSearch(b) - scoreSearch(a));
-	} else {
-		filteredWords = genericFilteredWords;
-	}
+	$: filteredWords = filter(genericFilteredWords, search, $language);
 
 	$: missingDefinitions = Object.values(
 		data.languages[$language].completeness_percent
