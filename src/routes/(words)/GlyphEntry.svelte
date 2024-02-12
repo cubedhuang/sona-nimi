@@ -12,7 +12,7 @@
 	$: def = getWordDefinition(word, $language);
 </script>
 
-<div class="flex flex-col items-center">
+<div class="flex flex-col items-center" id={word.id}>
 	<button class="contents group" on:click>
 		{#if $sitelenMode === 'pona'}
 			{#if word.sitelen_pona}
