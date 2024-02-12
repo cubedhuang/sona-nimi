@@ -11,11 +11,11 @@
 			<img
 				src={word.luka_pona?.gif}
 				alt="{word.word} luka pona"
-				class="rounded-lg w-full"
+				class="rounded-lg w-full aspect-video bg-blue-100 dark:bg-blue-900"
 			/>
 		{:else}
 			<div
-				class="h-full min-h-[4rem] bg-gray-100 dark:bg-gray-900 rounded-lg"
+				class="h-full aspect-video bg-gray-100 dark:bg-gray-900 rounded-lg"
 			>
 				<p class="sr-only">no luka pona available</p>
 			</div>
