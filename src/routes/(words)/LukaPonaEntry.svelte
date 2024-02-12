@@ -12,6 +12,7 @@
 				src={word.luka_pona?.gif}
 				alt="{word.word} luka pona"
 				class="rounded-lg w-full aspect-video bg-blue-100 dark:bg-blue-950"
+				loading="lazy"
 			/>
 		{:else}
 			<div
