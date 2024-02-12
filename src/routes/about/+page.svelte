@@ -18,7 +18,7 @@
 <svelte:head>
 	<title>about &ndash; nimi.li</title>
 
-	<meta name="author" content="jan Tani" />
+	<meta name="author" content="ilo Tani" />
 	<meta name="description" content="interactive toki pona dictionary" />
 	<meta
 		name="keywords"
@@ -26,7 +26,7 @@
 	/>
 
 	<meta property="og:title" content="about – nimi.li" />
-	<meta property="og:author" content="jan Tani and woflydev" />
+	<meta property="og:author" content="ilo Tani and woflydev" />
 	<meta
 		property="og:description"
 		content="interactive toki pona dictionary"
@@ -126,7 +126,7 @@
 		<h1>about &ndash; nimi.li</h1>
 
 		<p>
-			Hi! I'm <Link href="https://github.com/cubedhuang/">jan Tani</Link>,
+			Hi! I'm <Link href="https://github.com/cubedhuang/">ilo Tani</Link>,
 			and I made this project. Thanks to
 			<Link href="https://github.com/woflydev/">woflydev</Link>
 			for making this a Progressive Web Application. This is an

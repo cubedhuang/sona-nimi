@@ -31,7 +31,7 @@
 <svelte:head>
 	<title>{word.word} &ndash; nimi.li</title>
 
-	<meta name="author" content="jan Tani" />
+	<meta name="author" content="ilo Tani" />
 	<meta name="description" content={word.def.en} />
 	<meta
 		name="keywords"
@@ -39,7 +39,7 @@
 	/>
 
 	<meta property="og:title" content={word.word} />
-	<meta property="og:author" content="jan Tani" />
+	<meta property="og:author" content="ilo Tani" />
 	<meta property="og:description" content={word.def.en} />
 	<meta property="og:url" content="https://nimi.li/{word.word}" />
 	<meta

@@ -73,7 +73,7 @@
 <svelte:head>
 	<title>nimi.li</title>
 
-	<meta name="author" content="jan Tani" />
+	<meta name="author" content="ilo Tani" />
 	<meta name="description" content="interactive toki pona dictionary" />
 	<meta
 		name="keywords"
@@ -81,7 +81,7 @@
 	/>
 
 	<meta property="og:title" content="nimi.li" />
-	<meta property="og:author" content="jan Tani" />
+	<meta property="og:author" content="ilo Tani" />
 	<meta
 		property="og:description"
 		content="interactive toki pona dictionary"
