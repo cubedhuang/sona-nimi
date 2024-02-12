@@ -194,9 +194,13 @@ async function applyLipamanka(
 	words: Record<string, Word>,
 	fetcher: typeof fetch
 ) {
-	const rawText = await fetcher(
-		'https://lipamanka.gay/essays/dictionary'
-	).then(res => res.text());
+	const rawText = await fetcher('https://lipamanka.gay/essays/dictionary')
+		.then(res => res.text())
+		.catch(() => '');
+
+	if (!rawText) {
+		return;
+	}
 
 	const rawDictionary = rawText
 		.split('<h2 id="the-dictionary">The Dictionary</h2>')[1]
@@ -248,7 +252,11 @@ export const GET = (async ({ fetch, setHeaders }) => {
 		}
 	}
 
-	await applyLipamanka(data.data, fetch);
+	try {
+		await applyLipamanka(data.data, fetch);
+	} catch {
+		console.error('Failed to apply lipamanka data');
+	}
 
 	setHeaders({
 		'Cache-Control': 's-maxage=86400'
