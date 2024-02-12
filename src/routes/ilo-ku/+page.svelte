@@ -79,7 +79,7 @@
 	<meta property="og:type" content="website" />
 </svelte:head>
 
-<h1 class="text-4xl">ilo ku &ndash; nimi.li</h1>
+<h1 class="text-4xl">ilo ku</h1>
 
 <p class="mt-2">
 	<span class="font-bold">ilo ku</span> lets you explore the

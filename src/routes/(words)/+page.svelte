@@ -25,10 +25,9 @@
 	import ColoredCheckbox from '$lib/components/ColoredCheckbox.svelte';
 	import GlyphEntry from './GlyphEntry.svelte';
 	import Grid from '$lib/components/Grid.svelte';
-	import LukaPonaEntry from './LukaPonaEntry.svelte';
 	import Search from '$lib/components/Search.svelte';
 	import Select from '$lib/components/Select.svelte';
-	import WordDetails from './WordDetails.svelte';
+	import WordDetails from '$lib/components/WordDetails.svelte';
 	import WordEntry from './WordEntry.svelte';
 	import WordSpace from './WordSpace.svelte';
 
@@ -211,8 +210,7 @@
 			{ label: 'Normal View', value: 'normal' },
 			{ label: 'Detailed View', value: 'detailed' },
 			{ label: 'Compact View', value: 'compact' },
-			{ label: 'Glyph View', value: 'glyphs' },
-			{ label: 'Luka Pona View', value: 'lp' }
+			{ label: 'Glyph View', value: 'glyphs' }
 		]}
 		bind:value={$viewMode}
 	/>
@@ -290,18 +288,6 @@
 			/>
 		{/each}
 	</div>
-{:else if $viewMode === 'lp'}
-	<div class="mt-4 grid gap-4 lp">
-		{#each filteredWords as word (word.id)}
-			<LukaPonaEntry
-				{word}
-				on:click={() => {
-					if (selectedWord?.id === word.id) selectedWord = null;
-					else selectedWord = word;
-				}}
-			/>
-		{/each}
-	</div>
 {:else}
 	<Grid width={$viewMode === 'detailed' ? '24rem' : '20rem'}>
 		{#each filteredWords as word (word.id)}
@@ -347,13 +333,6 @@
 		grid-template-columns: repeat(
 			auto-fill,
 			minmax(theme('width.24'), 1fr)
-		);
-	}
-
-	.lp {
-		grid-template-columns: repeat(
-			auto-fill,
-			minmax(theme('width.48'), 1fr)
 		);
 	}
 </style>
