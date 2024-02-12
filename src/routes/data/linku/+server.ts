@@ -219,7 +219,7 @@ async function applyLipamanka(
 			.slice(word.length + '</h3>'.length)
 			.trim();
 
-		if (word === 'mije and meli') {
+		if (word === 'mije-and-meli') {
 			words.mije.lipamanka = def;
 			words.meli.lipamanka = def;
 			continue;

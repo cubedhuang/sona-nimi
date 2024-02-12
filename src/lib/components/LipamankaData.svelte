@@ -8,7 +8,7 @@
 
 	$: href =
 		word.word === 'mije' || word.word === 'meli'
-			? 'https://lipamanka.gay/essays/dictionary#mije and meli'
+			? 'https://lipamanka.gay/essays/dictionary#mije-and-meli'
 			: `https://lipamanka.gay/essays/dictionary#${word.word}`;
 
 	const fixLinks: Action<HTMLDivElement> = node => {
