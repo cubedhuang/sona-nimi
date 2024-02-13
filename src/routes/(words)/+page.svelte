@@ -74,7 +74,7 @@
 	<title>nimi.li</title>
 
 	<meta name="author" content="ilo Tani" />
-	<meta name="description" content="interactive toki pona dictionary" />
+	<meta name="description" content="Interactive Toki Pona dictionary." />
 	<meta
 		name="keywords"
 		content="toki pona, toki pona dictionary, dictionary, nimi"
@@ -84,9 +84,10 @@
 	<meta property="og:author" content="ilo Tani" />
 	<meta
 		property="og:description"
-		content="interactive toki pona dictionary"
+		content="Interactive Toki Pona dictionary."
 	/>
 	<meta property="og:url" content="https://nimi.li/" />
+	<meta property="og:image" content="https://nimi.li/favicon.png" />
 	<meta property="og:site_name" content="nimi.li" />
 	<meta property="og:type" content="website" />
 </svelte:head>
@@ -94,7 +95,7 @@
 <h1 class="text-4xl">nimi.li</h1>
 
 <p class="mt-2">
-	<span class="font-bold">nimi.li</span> is an interactive toki pona dictionary.
+	<span class="font-bold">nimi.li</span> is an interactive Toki Pona dictionary.
 	Click on a word to read more!
 </p>
 

@@ -62,7 +62,10 @@
 	<title>ilo ku &ndash; nimi.li</title>
 
 	<meta name="author" content="ilo Tani" />
-	<meta name="description" content="interactive toki pona dictionary" />
+	<meta
+		name="description"
+		content="ilo ku lets you explore the public subset of Toki Pona Dictionary."
+	/>
 	<meta
 		name="keywords"
 		content="toki pona, toki pona dictionary, dictionary, nimi, compounds, ku, ilo ku, compound expressions"
@@ -72,9 +75,10 @@
 	<meta property="og:author" content="ilo Tani" />
 	<meta
 		property="og:description"
-		content="interactive toki pona dictionary"
+		content="ilo ku lets you explore the public subset of Toki Pona Dictionary."
 	/>
 	<meta property="og:url" content="https://nimi.li/ilo-ku" />
+	<meta property="og:image" content="https://nimi.li/favicon.png" />
 	<meta property="og:site_name" content="nimi.li" />
 	<meta property="og:type" content="website" />
 </svelte:head>

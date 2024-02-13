@@ -39,7 +39,7 @@ export interface Word {
 	 */
 	id: string;
 	/**
-	 * The word as it would be written in toki pona using sitelen Lasina.
+	 * The word as it would be written in Toki Pona using sitelen Lasina.
 	 */
 	word: string;
 	/**
