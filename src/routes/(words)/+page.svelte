@@ -291,7 +291,7 @@
 		{/each}
 	</div>
 {:else if $viewMode === 'detailed'}
-	<div class="mt-4 grid gap-4 lg:grid-cols-2">
+	<Grid width="26rem">
 		{#each filteredWords as word (word.id)}
 			<DetailedWordEntry
 				{word}
@@ -301,7 +301,7 @@
 				}}
 			/>
 		{/each}
-	</div>
+	</Grid>
 {:else}
 	<Grid width="20rem">
 		{#each filteredWords as word (word.id)}

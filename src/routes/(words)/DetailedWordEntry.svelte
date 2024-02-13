@@ -52,7 +52,7 @@
 		</div>
 	</div>
 
-	<div class="mt-2 mb-auto text-center flex gap-2">
+	<div class="mt-1 text-center flex gap-2">
 		<div class="w-9 shrink-0 flex flex-col items-end text-right">
 			{#if word.sitelen_pona}
 				{#each word.sitelen_pona.split(' ') as sitelen}
