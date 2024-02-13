@@ -23,6 +23,7 @@
 	} from '$lib/stores';
 
 	import ColoredCheckbox from '$lib/components/ColoredCheckbox.svelte';
+	import DetailedWordEntry from './DetailedWordEntry.svelte';
 	import GlyphEntry from './GlyphEntry.svelte';
 	import Grid from '$lib/components/Grid.svelte';
 	import Search from '$lib/components/Search.svelte';
@@ -289,12 +290,23 @@
 			/>
 		{/each}
 	</div>
+{:else if $viewMode === 'detailed'}
+	<div class="mt-4 grid gap-4 lg:grid-cols-2">
+		{#each filteredWords as word (word.id)}
+			<DetailedWordEntry
+				{word}
+				on:click={() => {
+					if (selectedWord?.id === word.id) selectedWord = null;
+					else selectedWord = word;
+				}}
+			/>
+		{/each}
+	</div>
 {:else}
-	<Grid width={$viewMode === 'detailed' ? '24rem' : '20rem'}>
+	<Grid width="20rem">
 		{#each filteredWords as word (word.id)}
 			<WordSpace
 				{word}
-				detailed={$viewMode === 'detailed'}
 				on:click={() => {
 					if (selectedWord?.id === word.id) selectedWord = null;
 					else selectedWord = word;

@@ -5,7 +5,7 @@
 <button
 	on:click
 	{id}
-	class="relative w-full overflow-hidden grid p-4 text-left hover:scale-[1.02] interactable transition"
+	class="relative w-full overflow-hidden flex flex-col items-stretch p-4 text-left hover:scale-[1.02] interactable transition"
 >
 	<slot />
 </button>
