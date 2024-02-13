@@ -1,6 +1,5 @@
 <script lang="ts">
 	import type { Word } from '$lib/types';
-	import { categoryTextColors, getWordDisplayRecognition } from '$lib/util';
 
 	export let word: Word;
 </script>

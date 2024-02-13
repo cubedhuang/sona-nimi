@@ -34,7 +34,7 @@
 		content="toki pona, toki pona dictionary, dictionary, nimi, luka pona, sign language, toki pona sign language, toki pona sign language dictionary"
 	/>
 
-	<meta property="og:title" content="ilo ku – nimi.li" />
+	<meta property="og:title" content="luka pona – nimi.li" />
 	<meta property="og:author" content="ilo Tani" />
 	<meta
 		property="og:description"
