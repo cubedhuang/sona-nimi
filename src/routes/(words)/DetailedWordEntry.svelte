@@ -5,7 +5,7 @@
 		getWordDefinition,
 		getWordDisplayRecognition
 	} from '$lib/util';
-	import { language } from '$lib/stores';
+	import { language, sitelenMode } from '$lib/stores';
 	import Space from '$lib/components/Space.svelte';
 
 	export let word: Word;
@@ -74,7 +74,13 @@
 		</div>
 
 		<div class="w-9 shrink-0">
-			{#if word.sitelen_sitelen}
+			{#if $sitelenMode === 'emosi'}
+				{#if word.sitelen_emosi}
+					<span class="text-3xl w-9 text-center">
+						{word.sitelen_emosi}
+					</span>
+				{/if}
+			{:else if word.sitelen_sitelen}
 				<img
 					src={word.sitelen_sitelen}
 					alt="{word.word} sitelen sitelen"
