@@ -10,11 +10,6 @@
 	import Space from '$lib/components/Space.svelte';
 
 	export let word: Word;
-
-	const maxLength = 120;
-	$: def = getWordDefinition(word, $language);
-	$: ellipsizedDef =
-		def.length > maxLength ? def.slice(0, maxLength) + '...' : def;
 </script>
 
 <Space on:click id={word.id}>
@@ -33,7 +28,9 @@
 				{/if}
 			</p>
 
-			<p>{ellipsizedDef}</p>
+			<p class="line-clamp-3">
+				{getWordDefinition(word, $language)}
+			</p>
 		</div>
 
 		{#if $sitelenMode === 'pona'}
