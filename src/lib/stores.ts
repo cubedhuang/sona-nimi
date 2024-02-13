@@ -94,3 +94,5 @@ export const screenWidth = savedWritable<'full' | 'large'>(
 	'screenWidth',
 	'large'
 );
+
+export const autoplay = savedWritable('autoplay', false);

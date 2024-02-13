@@ -2,10 +2,11 @@
 	import type { PageData } from './$types';
 
 	import type { Word } from '$lib/types';
-	import { azWordSort } from '$lib/util';
+	import { azWordSort, categoryColors } from '$lib/util';
 	import { filter } from '$lib/search';
-	import { categories, language } from '$lib/stores';
+	import { autoplay, language } from '$lib/stores';
 
+	import ColoredCheckbox from '$lib/components/ColoredCheckbox.svelte';
 	import LukaPonaEntry from './LukaPonaEntry.svelte';
 	import Search from '$lib/components/Search.svelte';
 	import WordDetails from '$lib/components/WordDetails.svelte';
@@ -53,7 +54,15 @@
 
 <p class="mt-2">Explore and search for <b>Luka Pona</b> signs.</p>
 
-<p class="mt-4 faded">
+<div class="mt-4 flex flex-wrap gap-1 sm:gap-x-2 sm:gap-y-1">
+	<ColoredCheckbox
+		bind:checked={$autoplay}
+		label="Play Videos Automatically"
+		color={categoryColors['core']}
+	/>
+</div>
+
+<p class="mt-2 faded">
 	{filteredWords.length} / {genericFilteredWords.length}
 </p>
 
