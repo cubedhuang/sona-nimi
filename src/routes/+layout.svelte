@@ -38,7 +38,6 @@
 
 		nProgressTimeout = setTimeout(() => {
 			NProgress.start();
-			console.log('starting nprogress');
 		}, 150);
 	});
 	afterNavigate(() => {
