@@ -17,7 +17,10 @@ function parseData(raw: string): CompoundData {
 			const uses = Object.fromEntries(
 				rawUses.split(', ').map(rawUse => {
 					const parts = rawUse.split(' ');
-					const count = Number(parts.pop());
+					const end = parts.pop() ?? '';
+					const count = parseInt(
+						end.endsWith('"') ? end.slice(0, -1) : end
+					);
 					const use = parts.join(' ');
 
 					return [use, count];
