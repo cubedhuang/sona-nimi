@@ -32,7 +32,7 @@
 			</p>
 		{/if}
 
-		<b class="group-hocus-visible:text-blue-500 transition">
+		<b class="group-hv:text-blue-500 transition">
 			{word.word}
 		</b>
 	</button>

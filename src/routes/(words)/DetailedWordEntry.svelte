@@ -62,7 +62,7 @@
 		</div>
 
 		<div class="w-full">
-			<h2 class="text-3xl group-hocus-visible:text-blue-500 transition">
+			<h2 class="text-3xl group-hv:text-blue-500 transition">
 				{word.word}
 			</h2>
 

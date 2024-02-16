@@ -22,7 +22,7 @@
 	const commonClasses =
 		'p-2 rounded-lg sm:rounded-t-none border sm:border-t-0 border-gray-200 dark:border-gray-800 transition-colors';
 	const hoverableClasses =
-		'outline-none focus-visible:outline-gray-500 hocus-visible:border-gray-400 dark:hocus-visible:border-gray-700';
+		'outline-none focus-visible:outline-gray-500 hv:border-gray-400 dark:hv:border-gray-700';
 
 	let opened = false;
 

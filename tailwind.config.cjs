@@ -16,10 +16,10 @@ module.exports = {
 	},
 	plugins: [
 		plugin(function ({ addVariant }) {
-			addVariant('hocus', ['&:hover', '&:focus']);
-			addVariant('hocus-visible', ['&:hover', '&:focus-visible']);
-			addVariant('group-hocus', ['.group:hover &', '.group:focus &']);
-			addVariant('group-hocus-visible', [
+			addVariant('hf', ['&:hover', '&:focus']);
+			addVariant('hv', ['&:hover', '&:focus-visible']);
+			addVariant('group-hf', ['.group:hover &', '.group:focus &']);
+			addVariant('group-hv', [
 				'.group:hover &',
 				'.group:focus-visible &'
 			]);

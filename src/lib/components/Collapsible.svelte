@@ -15,7 +15,7 @@
 
 {#if collapsible}
 	<button
-		class="faded underline underline-offset-2 decoration-transparent hocus-visible:decoration-current outline-none outline-offset-4 focus-visible:outline-gray-500 rounded transition"
+		class="faded underline underline-offset-2 decoration-transparent hv:decoration-current outline-none outline-offset-4 focus-visible:outline-gray-500 rounded transition"
 		class:block={expanded}
 		on:click={() => {
 			expanded = !expanded;

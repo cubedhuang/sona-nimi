@@ -298,7 +298,7 @@
 							target="_blank"
 							rel="noopener noreferrer"
 							aria-label="source"
-							class="faded hocus-visible:text-gray-800 dark:hocus-visible:text-white transition"
+							class="faded hv:text-gray-800 dark:hv:text-white transition"
 						>
 							<svg
 								xmlns="http://www.w3.org/2000/svg"

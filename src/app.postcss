@@ -141,12 +141,12 @@
 
 	.interactable {
 		@apply focusable cursor-pointer
-			hocus-visible:border-gray-400 dark:hocus-visible:border-gray-700
+			hv:border-gray-400 dark:hv:border-gray-700
 			focus-visible:outline-gray-500;
 	}
 
 	.icon-interactable {
-		@apply p-1 ml-1 -m-1 faded hocus-visible:text-gray-800 dark:hocus-visible:text-white transition;
+		@apply p-1 ml-1 -m-1 faded hv:text-gray-800 dark:hv:text-white transition;
 	}
 
 	.faded {
@@ -154,8 +154,8 @@
 	}
 
 	.link {
-		@apply text-blue-500 hocus-visible:text-blue-600 transition-colors outline-none outline-offset-4 focus-visible:outline-current rounded
-			underline underline-offset-4 decoration-transparent hocus-visible:decoration-current
-			dark:text-blue-400 dark:hocus-visible:text-blue-500;
+		@apply text-blue-500 hv:text-blue-600 transition-colors outline-none outline-offset-4 focus-visible:outline-current rounded
+			underline underline-offset-4 decoration-transparent hv:decoration-current
+			dark:text-blue-400 dark:hv:text-blue-500;
 	}
 }
