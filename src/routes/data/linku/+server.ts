@@ -1,9 +1,7 @@
 import { json } from '@sveltejs/kit';
+import { dev } from '$app/environment';
 import type { Linku, Word } from '$lib/types';
 import { getWordRecognition } from '$lib/util';
-import { dev } from '$app/environment';
-
-import type { RequestHandler } from './$types';
 
 const additions: Word[] = [
 	{
@@ -229,7 +227,7 @@ async function applyLipamanka(
 	}
 }
 
-export const GET = (async ({ fetch, setHeaders }) => {
+export async function GET({ fetch, setHeaders }) {
 	if (dev) {
 		process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 	}
@@ -263,4 +261,4 @@ export const GET = (async ({ fetch, setHeaders }) => {
 	});
 
 	return json(data);
-}) satisfies RequestHandler;
+}

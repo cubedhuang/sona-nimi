@@ -1,8 +1,6 @@
 import type { Linku } from '$lib/types';
 
-import type { RequestHandler } from './$types';
-
-export const GET = (async ({ fetch }) => {
+export async function GET({ fetch }) {
 	const data: Linku = await fetch('/data/linku').then(res => res.json());
 	const words = Object.keys(data.data);
 
@@ -11,7 +9,7 @@ export const GET = (async ({ fetch }) => {
 			'Content-Type': 'application/xml'
 		}
 	});
-}) satisfies RequestHandler;
+}
 
 const render = (words: string[]) =>
 	`<?xml version="1.0" encoding="UTF-8"?>

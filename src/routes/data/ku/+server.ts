@@ -1,9 +1,8 @@
 import { json } from '@sveltejs/kit';
-import type { RequestHandler } from './$types';
-
-import type { Compound, CompoundData } from '$lib/types';
-import glyphs from './glyphs.json';
 import { dev } from '$app/environment';
+import type { Compound, CompoundData } from '$lib/types';
+
+import glyphs from './glyphs.json';
 
 export const prerender = true;
 
@@ -52,7 +51,7 @@ function parseData(raw: string): CompoundData {
 	);
 }
 
-export const GET = (async ({ fetch, setHeaders }) => {
+export async function GET({ fetch, setHeaders }) {
 	if (dev) {
 		process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 	}
@@ -85,4 +84,4 @@ export const GET = (async ({ fetch, setHeaders }) => {
 	setHeaders({ 'Cache-Control': 's-maxage=31536000' });
 
 	return json(data);
-}) satisfies RequestHandler;
+}

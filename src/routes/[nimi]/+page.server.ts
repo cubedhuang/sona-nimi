@@ -1,12 +1,9 @@
 import { error } from '@sveltejs/kit';
 import type { Linku } from '$lib/types';
+import { combinedWordSort } from '$lib/util';
 import { distance } from 'fastest-levenshtein';
 
-import type { PageServerLoad } from './$types';
-
-import { combinedWordSort } from '$lib/util';
-
-export const load = (async ({ fetch, params }) => {
+export async function load({ fetch, params }) {
 	const data: Linku = await fetch('/data/linku').then(res => res.json());
 
 	const word = data.data[params.nimi];
@@ -43,4 +40,4 @@ export const load = (async ({ fetch, params }) => {
 		next: words[(index + 1) % words.length].id,
 		previous: words[(index - 1 + words.length) % words.length].id
 	};
-}) satisfies PageServerLoad;
+}
