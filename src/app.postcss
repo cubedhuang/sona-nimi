@@ -48,21 +48,22 @@
 	}
 
 	html {
-		scroll-padding-top: 4rem;
+		scroll-padding-top: theme(width.16);
 		scroll-behavior: smooth;
-
-		scrollbar-width: thin;
-
-		--scrollbar-bg: #fff;
-		--scrollbar-thumb: #0004;
-
-		scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-bg);
 		scrollbar-gutter: stable;
+
+		--scrollbar-bg: theme(colors.white);
+		--scrollbar-thumb: theme(colors.gray.400);
 	}
 
 	html,
 	body {
 		overscroll-behavior-y: none;
+	}
+
+	* {
+		scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-bg);
+		scrollbar-width: thin;
 	}
 
 	::-webkit-scrollbar {
@@ -78,8 +79,8 @@
 	}
 
 	html.dark {
-		--scrollbar-bg: #000;
-		--scrollbar-thumb: #fff4;
+		--scrollbar-bg: theme(colors.black);
+		--scrollbar-thumb: theme(colors.gray.600);
 
 		color-scheme: dark;
 	}
