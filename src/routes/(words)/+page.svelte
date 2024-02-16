@@ -25,7 +25,6 @@
 	import ColoredCheckbox from '$lib/components/ColoredCheckbox.svelte';
 	import DetailedWordEntry from './DetailedWordEntry.svelte';
 	import GlyphEntry from './GlyphEntry.svelte';
-	import Grid from '$lib/components/Grid.svelte';
 	import Search from '$lib/components/Search.svelte';
 	import Select from '$lib/components/Select.svelte';
 	import WordDetails from '$lib/components/WordDetails.svelte';
@@ -279,7 +278,7 @@
 		{/each}
 	</div>
 {:else if $viewMode === 'glyphs'}
-	<div class="mt-4 grid gap-4 glyphs">
+	<div class="mt-4 grid gap-4 grid-cols-fill-24">
 		{#each filteredWords as word (word.id)}
 			<GlyphEntry
 				{word}
@@ -291,7 +290,7 @@
 		{/each}
 	</div>
 {:else if $viewMode === 'detailed'}
-	<Grid width="26rem">
+	<div class="mt-4 grid gap-4 grid-cols-fill-96">
 		{#each filteredWords as word (word.id)}
 			<DetailedWordEntry
 				{word}
@@ -301,9 +300,9 @@
 				}}
 			/>
 		{/each}
-	</Grid>
+	</div>
 {:else}
-	<Grid width="20rem">
+	<div class="mt-4 grid gap-4 grid-cols-fill-80">
 		{#each filteredWords as word (word.id)}
 			<WordSpace
 				{word}
@@ -313,7 +312,7 @@
 				}}
 			/>
 		{/each}
-	</Grid>
+	</div>
 {/if}
 
 {#if !filteredWords.length}
@@ -340,12 +339,3 @@
 		}
 	}}
 />
-
-<style lang="postcss">
-	.glyphs {
-		grid-template-columns: repeat(
-			auto-fill,
-			minmax(theme('width.24'), 1fr)
-		);
-	}
-</style>

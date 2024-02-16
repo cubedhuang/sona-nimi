@@ -4,13 +4,12 @@
 	import type { PageData } from './$types';
 
 	import type { Compound } from '$lib/types';
+	import { normalize } from '$lib/util';
 
 	import CompoundDetails from './CompoundDetails.svelte';
 	import CompoundSpace from './CompoundSpace.svelte';
-	import Grid from '$lib/components/Grid.svelte';
 	import Link from '$lib/components/Link.svelte';
 	import Search from '$lib/components/Search.svelte';
-	import { normalize } from '$lib/util';
 
 	export let data: PageData;
 
@@ -121,7 +120,7 @@
 
 <Search placeholder="o alasa..." bind:value={search} />
 
-<Grid width="16rem">
+<div class="mt-4 grid gap-4 grid-cols-fill-64">
 	{#each filteredCompounds as compound (compound.compound)}
 		<CompoundSpace
 			{compound}
@@ -132,6 +131,6 @@
 			}}
 		/>
 	{/each}
-</Grid>
+</div>
 
 <CompoundDetails bind:compound={selectedCompound} />

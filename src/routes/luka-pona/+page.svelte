@@ -70,7 +70,7 @@
 
 <Search placeholder="o alasa..." bind:value={search} />
 
-<div class="mt-4 grid gap-4 lp">
+<div class="mt-4 grid gap-4 grid-cols-fill-64">
 	{#each filteredWords as word (word.id)}
 		<LukaPonaEntry
 			{word}
@@ -95,12 +95,3 @@
 		}
 	}}
 />
-
-<style lang="postcss">
-	.lp {
-		grid-template-columns: repeat(
-			auto-fill,
-			minmax(theme('width.64'), 1fr)
-		);
-	}
-</style>

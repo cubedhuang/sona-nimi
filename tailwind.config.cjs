@@ -15,7 +15,7 @@ module.exports = {
 		}
 	},
 	plugins: [
-		plugin(function ({ addVariant }) {
+		plugin(({ addVariant }) => {
 			addVariant('hf', ['&:hover', '&:focus']);
 			addVariant('hv', ['&:hover', '&:focus-visible']);
 			addVariant('group-hf', ['.group:hover &', '.group:focus &']);
@@ -23,6 +23,16 @@ module.exports = {
 				'.group:hover &',
 				'.group:focus-visible &'
 			]);
+		}),
+		plugin(({ matchUtilities, theme }) => {
+			matchUtilities(
+				{
+					'grid-cols-fill': size => ({
+						gridTemplateColumns: `repeat(auto-fill, minmax(${size}, 1fr))`
+					})
+				},
+				{ values: theme('width') }
+			);
 		})
 	]
 };
