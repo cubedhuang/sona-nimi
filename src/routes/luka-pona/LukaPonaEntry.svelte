@@ -67,17 +67,6 @@
 		container.addEventListener('touchend', handleLeave, {
 			passive: true
 		});
-
-		return () => {
-			container.removeEventListener('mouseenter', handleEnter);
-			container.removeEventListener('mouseleave', handleLeave);
-			container.removeEventListener('focus', handleEnter);
-			container.removeEventListener('blur', handleLeave);
-			container.removeEventListener('touchstart', handleEnter);
-			container.removeEventListener('touchend', handleLeave);
-
-			img?.removeEventListener('load', onload);
-		};
 	});
 </script>
 
