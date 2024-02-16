@@ -55,8 +55,8 @@
 		$sortingMethod === 'alphabetical'
 			? azWordSort
 			: $sortingMethod === 'recognition'
-			? recognitionWordSort
-			: combinedWordSort;
+				? recognitionWordSort
+				: combinedWordSort;
 
 	$: genericFilter = (word: Word) =>
 		shownCategories.includes(word.usage_category) &&

@@ -13,12 +13,16 @@
 	$: linku = data.linku;
 	$: words = Object.values(linku.data);
 
-	$: keys = words.reduce((acc, word) => {
-		Object.keys(word).forEach(key => {
-			if (!acc.includes(key as keyof Word)) acc.push(key as keyof Word);
-		});
-		return acc;
-	}, [] as (keyof Word)[]);
+	$: keys = words.reduce(
+		(acc, word) => {
+			Object.keys(word).forEach(key => {
+				if (!acc.includes(key as keyof Word))
+					acc.push(key as keyof Word);
+			});
+			return acc;
+		},
+		[] as (keyof Word)[]
+	);
 
 	$: frequencies = keys.map(key => {
 		const values = words.map(word => word[key]);
@@ -84,11 +88,14 @@
 
 	$: compounds = Object.values(data.compounds);
 
-	$: glyphFrequencies = compounds.reduce((acc, compound) => {
-		acc[compound.glyphs?.length ?? 0] ??= 0;
-		acc[compound.glyphs?.length ?? 0]++;
-		return acc;
-	}, [] as Record<number, number>);
+	$: glyphFrequencies = compounds.reduce(
+		(acc, compound) => {
+			acc[compound.glyphs?.length ?? 0] ??= 0;
+			acc[compound.glyphs?.length ?? 0]++;
+			return acc;
+		},
+		[] as Record<number, number>
+	);
 
 	let detailsOpen = false;
 </script>
@@ -179,10 +186,10 @@
 								words.length && count === unique
 								? 'bg-green-500'
 								: count === words.length
-								? 'bg-blue-500'
-								: count > words.length - 20
-								? 'bg-yellow-500'
-								: 'bg-red-500'}"
+									? 'bg-blue-500'
+									: count > words.length - 20
+										? 'bg-yellow-500'
+										: 'bg-red-500'}"
 						/>
 
 						{key}
@@ -207,7 +214,8 @@
 	<p>
 		missing {key}:
 		{#each words.filter(w => !w[key]) as word, i}
-			{#if i > 0}, {/if}
+			{#if i > 0},
+			{/if}
 			<Link href="/{word.id}">
 				{word.word}
 			</Link>

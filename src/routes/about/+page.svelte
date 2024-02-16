@@ -117,7 +117,8 @@
 		<p>
 			nimi lili li lon ala lipu Linku. kulupu sin ni la, nimi ni li sin:
 			{#each additions as addition, i}
-				{#if i !== 0}, {/if}
+				{#if i !== 0},
+				{/if}
 				<Link href="/{addition}">{addition}</Link>{/each}.
 		</p>
 	{:else}
@@ -196,7 +197,8 @@
 			I've also added a few words to the marginal category that aren't on
 			Linku:
 			{#each additions as addition, i}
-				{#if i !== 0}, {/if}
+				{#if i !== 0},
+				{/if}
 				<Link href="/{addition}">{addition}</Link>{/each}.
 		</p>
 	{/if}
