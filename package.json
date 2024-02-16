@@ -13,7 +13,7 @@
 		"format": "prettier --write ."
 	},
 	"dependencies": {
-		"@kulupu-linku/sona": "^0.1.7",
+		"@kulupu-linku/sona": "^0.1.8",
 		"fastest-levenshtein": "^1.0.16",
 		"nprogress": "^0.2.0"
 	},
