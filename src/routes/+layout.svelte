@@ -276,27 +276,14 @@
 	}
 
 	:global(#nprogress .bar) {
-		background: theme('colors.blue.500');
-
-		position: fixed;
-		z-index: 99999;
-		top: 0;
-		left: 0;
-
-		width: 100%;
-		height: 2px;
+		@apply fixed top-0 left-0 w-full h-0.5 bg-blue-500 z-50;
 	}
 
 	:global(#nprogress .peg) {
-		display: block;
-		position: absolute;
-		right: 0px;
-		width: 100px;
-		height: 100%;
-		box-shadow:
-			0 0 10px theme('colors.blue.500'),
-			0 0 5px theme('colors.blue.500');
-		opacity: 1;
+		@apply block absolute right-0 w-24 h-full opacity-100;
+
+		box-shadow: 0 0 theme(width.2) theme(colors.blue.500),
+			0 0 theme(width.1) theme(colors.blue.500);
 		transform: rotate(3deg) translate(0px, -4px);
 	}
 </style>
