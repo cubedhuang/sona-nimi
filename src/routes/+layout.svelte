@@ -282,7 +282,8 @@
 	:global(#nprogress .peg) {
 		@apply block absolute right-0 w-24 h-full opacity-100;
 
-		box-shadow: 0 0 theme(width.2) theme(colors.blue.500),
+		box-shadow:
+			0 0 theme(width.2) theme(colors.blue.500),
 			0 0 theme(width.1) theme(colors.blue.500);
 		transform: rotate(3deg) translate(0px, -4px);
 	}
