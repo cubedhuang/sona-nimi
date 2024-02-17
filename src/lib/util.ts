@@ -126,8 +126,8 @@ export function getUsageCategoryFromPercent(percent: number): UsageCategory {
 	return 'obscure';
 }
 
-export function getWordLink(id: string, $language: string) {
-	if ($language === 'en') return `/${id}`;
+export function getWordLink(id: string, $language: string | undefined) {
+	if (!$language || $language === 'en') return `/${id}`;
 
 	return `/${id}/${$language}`;
 }
