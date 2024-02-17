@@ -1,14 +1,18 @@
 <script lang="ts">
-	import type { Word } from '$lib/types';
+	import type { LocalizedWord } from '@kulupu-linku/sona';
+
 	import {
 		categoryColors,
-		getWordDefinition,
-		getWordDisplayRecognition
+		getWordDisplayRecognition,
+		getWordEtymology,
+		getWordTranslation
 	} from '$lib/util';
 	import { language, sitelenMode } from '$lib/stores';
 	import Space from '$lib/components/Space.svelte';
 
-	export let word: Word;
+	export let word: LocalizedWord;
+
+	$: translation = getWordTranslation(word, $language);
 </script>
 
 <Space on:click id={word.id}>
@@ -21,7 +25,7 @@
 			{/if}
 			{#if word.etymology}
 				<p class="text-xs break-all line-clamp-1">
-					{word.etymology}
+					{getWordEtymology(word, $language)}
 				</p>
 			{/if}
 		</div>
@@ -35,11 +39,12 @@
 		</p>
 
 		<div class="text-right">
-			{#if word.creator}
+			{#if word.creator.length}
 				<p class="break-all line-clamp-1">
-					{word.creator}
+					{word.creator.join(', ')}
 				</p>
 			{/if}
+
 			{#if word.coined_era}
 				<p class="text-xs break-all line-clamp-1">
 					{word.coined_era}
@@ -54,11 +59,9 @@
 
 	<div class="mt-1 text-center flex gap-2">
 		<div class="w-9 shrink-0 flex flex-col items-end text-right">
-			{#if word.sitelen_pona}
-				{#each word.sitelen_pona.split(' ') as sitelen}
-					<p class="font-pona text-4xl">{sitelen}</p>
-				{/each}
-			{/if}
+			{#each word.representations?.ligatures ?? [] as sitelen}
+				<p class="font-pona text-4xl">{sitelen}</p>
+			{/each}
 		</div>
 
 		<div class="w-full">
@@ -66,23 +69,23 @@
 				{word.word}
 			</h2>
 
-			<p class="mt-1">{getWordDefinition(word, $language)}</p>
+			<p class="mt-1">{translation.definition}</p>
 
-			{#if word.commentary}
-				<p class="mt-2 faded text-sm">{word.commentary}</p>
+			{#if translation.commentary}
+				<p class="mt-2 faded text-sm">{translation.commentary}</p>
 			{/if}
 		</div>
 
 		<div class="w-9 shrink-0">
 			{#if $sitelenMode === 'emosi'}
-				{#if word.sitelen_emosi}
+				{#if word.representations?.sitelen_emosi}
 					<span class="text-3xl w-9 text-center">
-						{word.sitelen_emosi}
+						{word.representations.sitelen_emosi}
 					</span>
 				{/if}
-			{:else if word.sitelen_sitelen}
+			{:else if word.representations?.sitelen_sitelen}
 				<img
-					src={word.sitelen_sitelen}
+					src={word.representations.sitelen_sitelen}
 					alt="{word.word} sitelen sitelen"
 					class="ml-auto w-9 h-9 dark:invert"
 				/>

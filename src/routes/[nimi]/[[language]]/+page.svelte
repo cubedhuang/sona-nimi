@@ -1,29 +1,37 @@
 <script lang="ts">
 	import { fly } from 'svelte/transition';
 
+	import type { LocalizedWord } from '@kulupu-linku/sona';
+
+	import { page } from '$app/stores';
+
 	import type { PageData } from './$types';
 
 	import { outclick } from '$lib/actions/outclick';
 	import {
 		categoryTextColors,
 		getUsageCategoryFromPercent,
-		getWordDefinition,
-		getWordDisplayRecognition
+		getWordDisplayRecognition,
+		getWordEtymology,
+		getWordTranslation
 	} from '$lib/util';
-	import { language } from '$lib/stores';
 
 	import AudioPlayer from './AudioPlayer.svelte';
-	import Collapsible from '$lib/components/Collapsible.svelte';
 	import Copy from '$lib/components/Copy.svelte';
 	import ExternalLink from '$lib/components/icons/ExternalLink.svelte';
+	import KuData from '$lib/components/KuData.svelte';
 	import Link from '$lib/components/Link.svelte';
 	import LipamankaData from '$lib/components/LipamankaData.svelte';
 
 	export let data: PageData;
 
+	$: language = $page.params.language;
 	$: word = data.word;
+	$: translation = getWordTranslation(word, language);
 
-	$: puData = word.pu_verbatim?.[$language] || word.pu_verbatim?.['en'];
+	$: puData =
+		word.pu_verbatim?.[language as keyof LocalizedWord['pu_verbatim']] ||
+		word.pu_verbatim?.en;
 
 	let showHistory = false;
 </script>
@@ -32,7 +40,7 @@
 	<title>{word.word} &ndash; nimi.li</title>
 
 	<meta name="author" content="ilo Tani" />
-	<meta name="description" content={word.def.en} />
+	<meta name="description" content={translation.definition} />
 	<meta
 		name="keywords"
 		content="toki pona, toki pona dictionary, dictionary, nimi, {word.word}"
@@ -40,8 +48,11 @@
 
 	<meta property="og:title" content={word.word} />
 	<meta property="og:author" content="ilo Tani" />
-	<meta property="og:description" content={word.def.en} />
-	<meta property="og:url" content="https://nimi.li/{word.word}" />
+	<meta property="og:description" content={translation.definition} />
+	<meta
+		property="og:url"
+		content="https://nimi.li/{word.word}{language ? '/' + language : ''}"
+	/>
 	<meta
 		property="og:image"
 		content="https://sitelen.nimi.li/img/{word.word}.png"
@@ -120,26 +131,24 @@
 		<div class="box">
 			<h2 class="text-lg">meaning</h2>
 			<p class="mt-2">
-				{getWordDefinition(word, $language)}
+				{translation.definition}
 			</p>
 
-			{#if word.see_also}
+			{#if word.see_also.length}
 				<h2 class="mt-4 text-lg">see also</h2>
 
-				{@const words = word.see_also.split(', ')}
-
 				<p class="mt-2">
-					{#each words as other, i (other)}
+					{#each word.see_also as other, i (other)}
 						<!-- Formatting here is weird to prevent additional spaces between commas -->
 						<Link href="/{other}">{other}</Link
-						>{#if i < words.length - 1}{', '}{/if}
+						>{#if i < word.see_also.length - 1}{', '}{/if}
 					{/each}
 				</p>
 			{/if}
 
-			{#if word.lipamanka}
+			{#if data.lipamanka}
 				<div class="mt-4">
-					<LipamankaData {word} />
+					<LipamankaData {word} content={data.lipamanka} />
 				</div>
 			{/if}
 
@@ -158,7 +167,7 @@
 				</h2>
 
 				<p class="mt-2">
-					<Collapsible content={word.ku_data} length={250} />
+					<KuData data={word.ku_data} />
 				</p>
 			{/if}
 
@@ -194,7 +203,7 @@
 					<span class="faded">usage</span>
 				</span>
 
-				{#if word.recognition}
+				{#if word.usage}
 					<button
 						class="icon-interactable"
 						on:click={() => (showHistory = !showHistory)}
@@ -214,8 +223,8 @@
 					</button>
 				{/if}
 
-				{#if showHistory && word.recognition}
-					{@const dates = Object.keys(word.recognition).sort()}
+				{#if showHistory && word.usage}
+					{@const dates = Object.keys(word.usage).sort()}
 
 					<div
 						class="absolute left-0 top-full mt-1 flex gap-4 p-4 border border-gray-200 dark:border-gray-800 rounded-lg bg-white dark:bg-black shadow-lg"
@@ -229,15 +238,13 @@
 						}}
 					>
 						{#each dates as date (date)}
-							{@const recognition = Number(
-								word.recognition[date]
-							)}
+							{@const usage = Number(word.usage[date])}
 							{@const usageCategory =
-								getUsageCategoryFromPercent(recognition)}
+								getUsageCategoryFromPercent(usage)}
 
 							<span class="flex flex-col">
 								<b class={categoryTextColors[usageCategory]}>
-									{recognition}%
+									{usage}%
 								</b>
 								<span class="faded text-xs">{date}</span>
 							</span>
@@ -265,27 +272,21 @@
 				</p>
 			{/if}
 
-			{#if word.creator || word.etymology}
-				<h2 class="mt-4 text-lg">origin</h2>
+			<h2 class="mt-4 text-lg">origin</h2>
 
-				<p class="mt-2">
-					{#if word.etymology}
-						{word.source_language}
-						<span class="faded">
-							&middot;
-							{word.etymology}
-						</span>
-					{:else}
-						a priori
-					{/if}
-				</p>
-
-				{#if word.creator}
-					<p class="mt-1 italic">
-						<span class="faded">by</span>
-						{word.creator}
-					</p>
+			<p class="mt-2">
+				{word.source_language}
+				{#if word.etymology.length && (word.etymology[0].word || word.etymology[0].alt)}
+					&middot;
+					{getWordEtymology(word, language)}
 				{/if}
+			</p>
+
+			{#if word.creator.length}
+				<p class="mt-1 italic">
+					<span class="faded">by</span>
+					{word.creator.join(', ')}
+				</p>
 			{/if}
 
 			{#if word.author_verbatim}
@@ -328,81 +329,90 @@
 				{/each}
 			{/if}
 
-			{#if word.commentary}
+			{#if translation.commentary}
 				<h2 class="mt-4 text-lg">commentary</h2>
 				<p class="mt-2">
-					{word.commentary}
+					{translation.commentary}
 				</p>
 			{/if}
 		</div>
 
-		<div class:box={word.sitelen_pona || word.ucsur}>
-			{#if word.sitelen_pona}
+		<div
+			class:box={word.representations?.ligatures?.length ||
+				word.representations?.ucsur}
+		>
+			{#if word.representations?.ligatures?.length}
 				<h2 class="text-lg">sitelen pona</h2>
 
 				<span class="mt-2 font-pona text-7xl">
-					{word.sitelen_pona}
+					{word.representations.ligatures.join(' ')}
 				</span>
 
-				{#if word.sitelen_pona_etymology}
+				{#if translation.sp_etymology}
 					<p class="mt-1 faded">
-						{word.sitelen_pona_etymology}
+						{translation.sp_etymology}
 					</p>
 				{/if}
 			{/if}
 
-			{#if word.sitelen_sitelen}
+			{#if word.representations?.sitelen_sitelen}
 				<h2 class="mt-4 text-lg">sitelen sitelen</h2>
 
 				<img
-					src={word.sitelen_sitelen}
+					src={word.representations.sitelen_sitelen}
 					alt="{word.word} sitelen sitelen"
 					class="mt-2 w-16 h-16 dark:invert"
 				/>
 			{/if}
 
-			{#if word.sitelen_emosi}
+			{#if word.representations?.sitelen_emosi}
 				<h2 class="mt-4 text-lg">sitelen Emosi</h2>
 
 				<p class="mt-2 text-6xl">
-					{word.sitelen_emosi}
+					{word.representations.sitelen_emosi}
 				</p>
 			{/if}
 
-			{#if word.ucsur}
-				<h2 class="text-lg" class:mt-4={word.sitelen_pona}>ucsur</h2>
+			{#if word.representations?.ucsur}
+				<h2
+					class="text-lg"
+					class:mt-4={word.representations.ligatures?.length}
+				>
+					ucsur
+				</h2>
 
 				<p class="flex items-center gap-2">
-					{word.ucsur}
+					{word.representations.ucsur}
 
 					<Copy
 						value={String.fromCodePoint(
-							parseInt(word.ucsur?.slice(2) ?? '', 16)
+							parseInt(
+								word.representations.ucsur?.slice(2) ?? '',
+								16
+							)
 						)}
 					/>
 				</p>
 			{/if}
 		</div>
 
-		<div class:box={word.audio || word.luka_pona}>
-			{#if word.audio}
-				{@const audios = Object.entries(word.audio)}
-
+		<div class:box={word.audio.length || data.lukaPona}>
+			{#if word.audio.length}
 				<h2 class="text-lg">audio</h2>
 
-				{#each audios as [name, src]}
+				{#each word.audio as audio}
 					<p class="mt-2">
-						<AudioPlayer {name} {src} />
+						<AudioPlayer {audio} />
 					</p>
 				{/each}
 			{/if}
 
-			{#if word.luka_pona}
+			{#if data.lukaPona}
 				<h2 class="text-lg" class:mt-4={word.audio}>luka pona</h2>
 
 				<p class="mt-2">
 					<video
-						src={word.luka_pona.mp4}
+						src={data.lukaPona.video.mp4}
 						class="rounded-lg w-full max-w-sm"
 						autoplay
 						loop
@@ -413,9 +423,9 @@
 					</video>
 				</p>
 				<p class="mt-2">
-					<Link href={word.luka_pona.gif}>gif</Link>
+					<Link href={data.lukaPona.video.gif}>gif</Link>
 					&middot;
-					<Link href={word.luka_pona.mp4}>mp4</Link>
+					<Link href={data.lukaPona.video.mp4}>mp4</Link>
 				</p>
 			{/if}
 		</div>

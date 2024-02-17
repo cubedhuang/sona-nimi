@@ -1,22 +1,16 @@
 <script lang="ts">
-	export let name: string;
-	export let src: string;
+	import type { WordAudio } from '@kulupu-linku/sona';
 
-	$: displayName = name
-		.split('_')
-		.map((name, i) =>
-			i === 0 ? name : name[0].toUpperCase() + name.slice(1)
-		)
-		.join(' ');
+	export let audio: WordAudio[number];
 
-	let audio: HTMLAudioElement | null = null;
+	let element: HTMLAudioElement | null = null;
 
 	function play() {
-		audio?.play();
+		element?.play();
 	}
 </script>
 
-<audio {src} bind:this={audio} />
+<audio src={audio.link} bind:this={element} />
 
 <div class="flex gap-2 items-center">
 	<button class="p-1 interactable" on:click={play}>
@@ -36,5 +30,5 @@
 		</svg>
 	</button>
 
-	{displayName}
+	{audio.author}
 </div>

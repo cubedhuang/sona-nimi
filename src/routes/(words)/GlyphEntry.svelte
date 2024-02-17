@@ -1,34 +1,37 @@
 <script lang="ts">
-	import type { Word } from '$lib/types';
+	import type { LocalizedWord } from '@kulupu-linku/sona';
+
 	import {
 		categoryTextColors,
-		getWordDefinition,
-		getWordDisplayRecognition
+		getWordDisplayRecognition,
+		getWordTranslation
 	} from '$lib/util';
 	import { language, sitelenMode } from '$lib/stores';
 
-	export let word: Word;
+	export let word: LocalizedWord;
 
-	$: def = getWordDefinition(word, $language);
+	$: translation = getWordTranslation(word, $language);
 </script>
 
 <div class="flex flex-col items-center" id={word.id}>
 	<button class="contents group" on:click>
 		{#if $sitelenMode === 'pona'}
-			{#if word.sitelen_pona}
-				<p class="font-pona text-4xl">{word.sitelen_pona}</p>
+			{#if word.representations?.ligatures?.length}
+				<p class="font-pona text-4xl">
+					{word.representations.ligatures.join(' ')}
+				</p>
 			{/if}
 		{:else if $sitelenMode === 'sitelen'}
-			{#if word.sitelen_sitelen}
+			{#if word.representations?.sitelen_sitelen}
 				<img
-					src={word.sitelen_sitelen}
+					src={word.representations.sitelen_sitelen}
 					alt="{word.word} sitelen sitelen"
 					class="w-10 h-10 dark:invert"
 				/>
 			{/if}
-		{:else if word.sitelen_emosi}
+		{:else if word.representations?.sitelen_emosi}
 			<p class="text-4xl">
-				{word.sitelen_emosi}
+				{word.representations.sitelen_emosi}
 			</p>
 		{/if}
 
@@ -49,6 +52,6 @@
 	</span>
 
 	<p class="text-xs line-clamp-3 text-center">
-		{def}
+		{translation.definition}
 	</p>
 </div>

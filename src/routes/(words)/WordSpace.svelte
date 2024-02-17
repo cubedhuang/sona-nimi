@@ -1,15 +1,18 @@
 <script lang="ts">
-	import type { Word } from '$lib/types';
+	import type { LocalizedWord } from '@kulupu-linku/sona';
+
 	import {
 		categoryColors,
-		getWordDefinition,
-		getWordDisplayRecognition
+		getWordDisplayRecognition,
+		getWordTranslation
 	} from '$lib/util';
 	import { language, sitelenMode } from '$lib/stores';
 
 	import Space from '$lib/components/Space.svelte';
 
-	export let word: Word;
+	export let word: LocalizedWord;
+
+	$: translation = getWordTranslation(word, $language);
 </script>
 
 <Space on:click id={word.id}>
@@ -29,29 +32,29 @@
 			</p>
 
 			<p class="line-clamp-3">
-				{getWordDefinition(word, $language)}
+				{translation.definition}
 			</p>
 		</div>
 
 		{#if $sitelenMode === 'pona'}
-			{#if word.sitelen_pona}
+			{#if word.representations?.ligatures?.length}
 				<div class="flex flex-col items-end text-right">
-					{#each word.sitelen_pona.split(' ') as sitelen}
+					{#each word.representations.ligatures as sitelen}
 						<p class="font-pona text-4xl">{sitelen}</p>
 					{/each}
 				</div>
 			{/if}
 		{:else if $sitelenMode === 'sitelen'}
-			{#if word.sitelen_sitelen}
+			{#if word.representations?.sitelen_sitelen}
 				<img
-					src={word.sitelen_sitelen}
+					src={word.representations.sitelen_sitelen}
 					alt="{word.word} sitelen sitelen"
 					class="ml-auto w-10 h-10 dark:invert"
 				/>
 			{/if}
-		{:else if word.sitelen_emosi}
+		{:else if word.representations?.sitelen_emosi}
 			<p class="ml-auto text-3xl text-right">
-				{word.sitelen_emosi}
+				{word.representations.sitelen_emosi}
 			</p>
 		{/if}
 

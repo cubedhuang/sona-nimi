@@ -1,10 +1,12 @@
 <script lang="ts">
 	import { fly } from 'svelte/transition';
 
+	import { client } from '@kulupu-linku/sona/client';
+	import type { Book, LocalizedWord } from '@kulupu-linku/sona';
+
 	import type { PageData } from './$types';
 
 	import { outclick } from '$lib/actions/outclick';
-	import type { BookName, Word } from '$lib/types';
 	import {
 		azWordSort,
 		bookColors,
@@ -30,22 +32,23 @@
 	import WordDetails from '$lib/components/WordDetails.svelte';
 	import WordEntry from './WordEntry.svelte';
 	import WordSpace from './WordSpace.svelte';
+	import { onMount } from 'svelte';
 
 	export let data: PageData;
 
-	const words = Object.values(data.data);
+	$: words = Object.values(data.words);
 
 	let moreOptions = false;
 
 	let search = '';
-	let selectedWord: Word | null = null;
+	let selectedWord: LocalizedWord | null = null;
 
 	$: shownCategories = $categories
 		.filter(category => category.shown)
 		.map(category => category.name);
 
 	let books = Object.keys(bookColors).map(book => ({
-		name: book as BookName,
+		name: book as Book,
 		shown: true
 	}));
 	$: shownBooks = books.filter(book => book.shown).map(book => book.name);
@@ -57,7 +60,7 @@
 				? recognitionWordSort
 				: combinedWordSort;
 
-	$: genericFilter = (word: Word) =>
+	$: genericFilter = (word: LocalizedWord) =>
 		shownCategories.includes(word.usage_category) &&
 		shownBooks.includes(word.book);
 
@@ -65,9 +68,34 @@
 
 	$: filteredWords = filter(genericFilteredWords, search, $language);
 
-	$: missingDefinitions = Object.values(
-		data.languages[$language].completeness_percent
-	).some(percent => percent !== '100');
+	// $: missingDefinitions = Object.values(
+	// 	data.languages[$language].completeness_percent
+	// ).some(percent => percent !== '100');
+	let missingDefinitions = false;
+
+	let fetchedTranslations = ['en'];
+
+	$: if (!fetchedTranslations.includes($language)) {
+		fetchTranslation();
+	}
+
+	async function fetchTranslation() {
+		const words = await client.v1.words
+			.$get({ query: { lang: $language } })
+			.then(res => res.json());
+
+		for (const word of Object.values(words)) {
+			data.words[word.id].translations[$language] =
+				word.translations[$language];
+		}
+
+		fetchedTranslations.push($language);
+		fetchedTranslations = fetchedTranslations;
+	}
+
+	onMount(() => {
+		fetchTranslation();
+	});
 </script>
 
 <svelte:head>
@@ -228,8 +256,11 @@
 
 	<Select
 		name="Language"
-		options={sortLanguages(data.languages).map(([code, language]) => {
-			return { label: language.name_endonym, value: code };
+		options={sortLanguages(data.languages).map(language => {
+			return {
+				label: language.name.endonym ?? language.name.en,
+				value: language.id
+			};
 		})}
 		bind:value={$language}
 	/>
@@ -249,12 +280,13 @@
 	<p class="mt-2">
 		<span class="font-bold">o sona a!</span>
 		kon pi
-		{data.languages[$language].name_toki_pona}
+		{data.languages[$language].name.tok ??
+			data.languages[$language].name.en}
 		li lon ala ale. nimi ni la, toki Inli li lon.
 	</p>
 	<p>
 		<span class="font-bold">Warning!</span>
-		Some words are missing {data.languages[$language].name_english} translations.
+		Some words are missing {data.languages[$language].name.en} translations.
 		These are replaced with English translations.
 	</p>
 {/if}
@@ -322,6 +354,7 @@
 
 <WordDetails
 	bind:word={selectedWord}
+	lipamanka={data.lipamanka[selectedWord?.id ?? '']}
 	on:refer={e => {
 		if (!filteredWords.some(word => word.word === e.detail)) {
 			search = '';
@@ -330,11 +363,11 @@
 				...category,
 				shown:
 					category.shown ||
-					category.name === data.data[e.detail].usage_category
+					category.name === data.words[e.detail].usage_category
 			}));
 			books = books.map(book => ({
 				...book,
-				shown: book.shown || book.name === data.data[e.detail].book
+				shown: book.shown || book.name === data.words[e.detail].book
 			}));
 		}
 	}}

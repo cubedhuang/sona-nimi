@@ -1,4 +1,9 @@
-import type { BookName, Language, UsageCategory, Word } from './types';
+import type {
+	Book,
+	Language,
+	LocalizedWord,
+	UsageCategory
+} from '@kulupu-linku/sona';
 
 export const normalize = (str: string) =>
 	str
@@ -13,8 +18,7 @@ export const usageCategories = [
 	'common',
 	'uncommon',
 	'rare',
-	'obscure',
-	'marginal'
+	'obscure'
 ] as const;
 
 export const categoryColors: Record<UsageCategory, string> = {
@@ -23,8 +27,7 @@ export const categoryColors: Record<UsageCategory, string> = {
 	common: 'bg-yellow-400 dark:bg-yellow-600',
 	uncommon: 'bg-orange-400 dark:bg-orange-600',
 	rare: 'bg-rose-500 dark:bg-rose-600',
-	obscure: 'bg-fuchsia-400 dark:bg-fuchsia-600',
-	marginal: 'bg-gray-400 dark:bg-gray-600'
+	obscure: 'bg-gray-400 dark:bg-gray-600'
 };
 
 export const categoryTextColors: Record<UsageCategory, string> = {
@@ -33,63 +36,78 @@ export const categoryTextColors: Record<UsageCategory, string> = {
 	common: 'text-yellow-600 dark:text-yellow-400',
 	uncommon: 'text-orange-600 dark:text-orange-400',
 	rare: 'text-rose-600 dark:text-rose-400',
-	obscure: 'text-fuchsia-600 dark:text-fuchsia-400',
-	marginal: 'text-gray-600 dark:text-gray-300'
+	obscure: 'text-gray-600 dark:text-gray-400'
 };
 
-export const bookColors: Record<BookName, string> = {
+export const bookColors: Record<Book, string> = {
 	pu: categoryColors.core,
 	'ku suli': categoryColors.widespread,
 	'ku lili': categoryColors.common,
-	none: categoryColors.marginal
+	none: categoryColors.obscure
 };
 
 export const categoryIndex = Object.fromEntries(
 	usageCategories.map((category, index) => [category, index] as const)
 ) as Record<UsageCategory, number>;
 
-export function azWordSort(a: Word, b: Word) {
+export function azWordSort(a: LocalizedWord, b: LocalizedWord) {
 	return a.word.localeCompare(b.word);
 }
 
-export function recognitionWordSort(a: Word, b: Word) {
+export function recognitionWordSort(a: LocalizedWord, b: LocalizedWord) {
 	return getWordRecognition(b) - getWordRecognition(a);
 }
 
-export function combinedWordSort(a: Word, b: Word) {
+export function combinedWordSort(a: LocalizedWord, b: LocalizedWord) {
 	if (a.usage_category === b.usage_category) return azWordSort(a, b);
 	return categoryIndex[a.usage_category] - categoryIndex[b.usage_category];
 }
 
 export function sortLanguages(languages: Record<string, Language>) {
-	return Object.entries(languages)
-		.sort((a, b) => a[1].name_endonym.localeCompare(b[1].name_endonym))
-		.sort((a, b) => {
-			for (const category of usageCategories) {
-				const diff =
-					Number(b[1].completeness_percent[category]) -
-					Number(a[1].completeness_percent[category]);
-				if (diff !== 0) return diff;
+	return Object.entries(languages).map(([id, language]) => ({
+		...language,
+		id
+	}));
+}
+
+export function getWordTranslation(word: LocalizedWord, $language: string) {
+	return word.translations[$language] ?? word.translations.en;
+}
+
+export function getWordEtymology(word: LocalizedWord, $language: string) {
+	const translation = getWordTranslation(word, $language);
+
+	return word.etymology
+		.map(({ word, alt }, index) => {
+			const { definition } = translation.etymology[index];
+
+			let output = '';
+
+			if (word) {
+				output += word + ' ';
 			}
 
-			return 0;
-		});
+			if (alt) {
+				output += alt + ' ';
+			}
+
+			if (definition) {
+				output += `‘${definition}’`;
+			}
+
+			return output.trim();
+		})
+		.join(', ');
 }
 
-export function getWordDefinition(word: Word, language: string): string {
-	return word.def[language] ?? word.def.en;
-}
-
-export function getWordRecognition(word: Word) {
-	if (word.recognition === null) return -1;
-
-	const dates = Object.keys(word.recognition).sort();
+export function getWordRecognition(word: LocalizedWord) {
+	const dates = Object.keys(word.usage).sort();
 	const latest = dates[dates.length - 1];
 
-	return Number(word.recognition[latest]);
+	return Number(word.usage[latest]);
 }
 
-export function getWordDisplayRecognition(word: Word) {
+export function getWordDisplayRecognition(word: LocalizedWord) {
 	const recognition = getWordRecognition(word);
 	if (recognition === -1) return 'unknown';
 	return `${recognition}%`;
@@ -101,6 +119,5 @@ export function getUsageCategoryFromPercent(percent: number): UsageCategory {
 	if (percent >= 50) return 'common';
 	if (percent >= 20) return 'uncommon';
 	if (percent >= 10) return 'rare';
-	if (percent >= 2) return 'obscure';
-	return 'marginal';
+	return 'obscure';
 }

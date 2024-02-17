@@ -1,7 +1,8 @@
-import { browser } from '$app/environment';
 import { writable, type Writable } from 'svelte/store';
+import type { UsageCategory } from '@kulupu-linku/sona';
 
-import type { UsageCategory } from './types';
+import { browser } from '$app/environment';
+
 import { usageCategories } from './util';
 
 function savedWritable<T>(
@@ -64,14 +65,18 @@ export const categories = savedWritable(
 
 categories.subscribe($categories => {
 	if ($categories.length !== usageCategories.length) {
-		for (const category of usageCategories) {
-			if (!$categories.some(({ name }) => name === category)) {
-				$categories.push({
+		for (let i = 0; i < usageCategories.length; i++) {
+			const category = usageCategories[i];
+
+			if ($categories[i]?.name !== category) {
+				$categories.splice(i, 0, {
 					name: category as UsageCategory,
 					shown: false
 				});
 			}
 		}
+
+		$categories.splice(usageCategories.length);
 	}
 });
 
