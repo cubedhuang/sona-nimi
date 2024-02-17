@@ -70,9 +70,14 @@
 	let fetchedTranslations = ['en'];
 
 	$: missingDefinitions =
+		$language !== 'en' &&
+		$language !== 'eng' &&
 		fetchedTranslations.includes($language) &&
 		genericFilteredWords.some(
-			word => !word.translations[$language]?.definition
+			word =>
+				!word.translations[$language]?.definition ||
+				word.translations[$language].definition ===
+					word.translations.en.definition
 		);
 
 	$: if (!fetchedTranslations.includes($language)) {
