@@ -74,17 +74,21 @@ export function getWordTranslation(word: LocalizedWord, $language: string) {
 	return word.translations[$language] ?? word.translations.en;
 }
 
-export function getWordEtymology(word: LocalizedWord, $language: string) {
+export function getWordEtymologies(word: LocalizedWord, $language: string) {
 	const translation = getWordTranslation(word, $language);
 
 	return word.etymology
-		.map(({ word, alt }, index) => {
-			const { definition } = translation.etymology[index];
+		.map(({ word: sourceWord, alt }, index) => {
+			const { definition, language } = translation.etymology[index];
 
 			let output = '';
 
-			if (word) {
-				output += word + ' ';
+			if (index !== 0 || word.source_language.startsWith('multiple')) {
+				output += language + ' ';
+			}
+
+			if (sourceWord) {
+				output += sourceWord + ' ';
 			}
 
 			if (alt) {
@@ -120,4 +124,10 @@ export function getUsageCategoryFromPercent(percent: number): UsageCategory {
 	if (percent >= 20) return 'uncommon';
 	if (percent >= 10) return 'rare';
 	return 'obscure';
+}
+
+export function getWordLink(id: string, $language: string) {
+	if ($language === 'en') return `/${id}`;
+
+	return `/${id}/${$language}`;
 }

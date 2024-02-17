@@ -4,7 +4,7 @@
 	import {
 		categoryColors,
 		getWordDisplayRecognition,
-		getWordEtymology,
+		getWordEtymologies,
 		getWordTranslation
 	} from '$lib/util';
 	import { language, sitelenMode } from '$lib/stores';
@@ -18,14 +18,13 @@
 <Space on:click id={word.id}>
 	<div class="grid grid-cols-3 faded">
 		<div>
-			{#if word.source_language}
-				<p class="break-all line-clamp-1">
-					{word.source_language}
-				</p>
-			{/if}
+			<p class="break-all line-clamp-1">
+				{word.source_language}
+			</p>
+
 			{#if word.etymology}
 				<p class="text-xs break-all line-clamp-1">
-					{getWordEtymology(word, $language)}
+					{getWordEtymologies(word, $language)}
 				</p>
 			{/if}
 		</div>

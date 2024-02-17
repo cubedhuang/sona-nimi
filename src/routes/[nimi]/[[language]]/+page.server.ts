@@ -1,9 +1,13 @@
 import { client } from '@kulupu-linku/sona/client';
-import { error } from '@sveltejs/kit';
+import { error, redirect } from '@sveltejs/kit';
 import { combinedWordSort } from '$lib/util';
 import { distance } from 'fastest-levenshtein';
 
 export async function load({ fetch, params }) {
+	if (params.language === 'en') {
+		throw redirect(301, `/${params.nimi}`);
+	}
+
 	const [data, lukaPona, lipamanka] = await Promise.all([
 		client.v1.words
 			.$get({ query: { lang: params.language ?? 'en' } }, { fetch })

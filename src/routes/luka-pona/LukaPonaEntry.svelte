@@ -1,11 +1,13 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import type { SignVideo } from '@kulupu-linku/sona';
+
 	import { browser } from '$app/environment';
 
-	import type { Word } from '$lib/types';
 	import { autoplay } from '$lib/stores';
 
-	export let word: Word;
+	export let word: string;
+	export let video: SignVideo;
 
 	let img: HTMLImageElement;
 	let canvas: HTMLCanvasElement;
@@ -56,7 +58,7 @@
 
 <button
 	class="text-left group outline-none focus-visible:outline-gray-500"
-	id={word.id}
+	id={word}
 	on:click
 	on:mouseenter={handleEnter}
 	on:mouseleave={handleLeave}
@@ -65,27 +67,25 @@
 	on:touchstart={handleEnter}
 	on:touchend={handleLeave}
 >
-	{#if word.luka_pona?.gif}
-		<div class="relative">
-			<canvas
-				aria-hidden="true"
-				bind:this={canvas}
-				class="rounded-lg w-full aspect-video bg-gray-100 dark:bg-gray-900"
-			/>
+	<div class="relative">
+		<canvas
+			aria-hidden="true"
+			bind:this={canvas}
+			class="rounded-lg w-full aspect-video bg-gray-100 dark:bg-gray-900"
+		/>
 
-			<img
-				src={word.luka_pona?.gif}
-				alt="{word.word} luka pona"
-				class="absolute top-0 left-0 z-10 rounded-lg w-full aspect-video bg-gray-100 dark:bg-gray-900"
-				class:opacity-0={!$autoplay}
-				loading="lazy"
-				bind:this={img}
-				on:load|once={handleLoaded}
-			/>
-		</div>
-	{/if}
+		<img
+			src={video.gif}
+			alt="{word} luka pona"
+			class="absolute top-0 left-0 z-10 rounded-lg w-full aspect-video bg-gray-100 dark:bg-gray-900"
+			class:opacity-0={!$autoplay}
+			loading="lazy"
+			bind:this={img}
+			on:load|once={handleLoaded}
+		/>
+	</div>
 
 	<b class="block mt-2 group-hover:text-blue-500 transition">
-		{word.word}
+		{word}
 	</b>
 </button>

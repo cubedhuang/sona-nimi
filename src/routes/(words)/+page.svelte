@@ -65,15 +65,15 @@
 		shownBooks.includes(word.book);
 
 	$: genericFilteredWords = words.filter(genericFilter).sort(genericSorter);
-
 	$: filteredWords = filter(genericFilteredWords, search, $language);
 
-	// $: missingDefinitions = Object.values(
-	// 	data.languages[$language].completeness_percent
-	// ).some(percent => percent !== '100');
-	let missingDefinitions = false;
-
 	let fetchedTranslations = ['en'];
+
+	$: missingDefinitions =
+		fetchedTranslations.includes($language) &&
+		genericFilteredWords.some(
+			word => !word.translations[$language]?.definition
+		);
 
 	$: if (!fetchedTranslations.includes($language)) {
 		fetchTranslation();

@@ -64,7 +64,7 @@
 
 		<ul>
 			<li>
-				<Link href="https://linku.la/about/">ijo Linku</Link> en
+				<Link href="https://linku.la/about/">sona Linku</Link> en
 				<Link href="https://lipamanka.gay/essays/dictionary"
 					>lipu lipamanka</Link
 				>

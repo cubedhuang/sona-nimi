@@ -12,7 +12,8 @@
 		categoryTextColors,
 		getUsageCategoryFromPercent,
 		getWordDisplayRecognition,
-		getWordEtymology,
+		getWordEtymologies,
+		getWordLink,
 		getWordTranslation
 	} from '$lib/util';
 
@@ -27,7 +28,9 @@
 
 	$: language = $page.params.language;
 	$: word = data.word;
+
 	$: translation = getWordTranslation(word, language);
+	$: etymology = getWordEtymologies(word, language);
 
 	$: puData =
 		word.pu_verbatim?.[language as keyof LocalizedWord['pu_verbatim']] ||
@@ -51,7 +54,7 @@
 	<meta property="og:description" content={translation.definition} />
 	<meta
 		property="og:url"
-		content="https://nimi.li/{word.word}{language ? '/' + language : ''}"
+		content="https://nimi.li{getWordLink(word.id, language)}"
 	/>
 	<meta
 		property="og:image"
@@ -67,7 +70,7 @@
 
 		<div class="flex gap-2">
 			<a
-				href="/{data.previous}"
+				href={getWordLink(data.previous, language)}
 				class="inline-block p-2 interactable"
 				aria-label="previous word"
 			>
@@ -88,7 +91,7 @@
 			</a>
 
 			<a
-				href="/{data.next}"
+				href={getWordLink(data.next, language)}
 				class="inline-block p-2 interactable"
 				aria-label="next word"
 			>
@@ -139,9 +142,8 @@
 
 				<p class="mt-2">
 					{#each word.see_also as other, i (other)}
-						<!-- Formatting here is weird to prevent additional spaces between commas -->
-						<Link href="/{other}">{other}</Link
-						>{#if i < word.see_also.length - 1}{', '}{/if}
+						{#if i > 0},{/if}
+						<Link href={getWordLink(other, language)}>{other}</Link>
 					{/each}
 				</p>
 			{/if}
@@ -276,9 +278,9 @@
 
 			<p class="mt-2">
 				{word.source_language}
-				{#if word.etymology.length && (word.etymology[0].word || word.etymology[0].alt)}
-					&middot;
-					{getWordEtymology(word, language)}
+
+				{#if etymology}
+					&middot; {etymology}
 				{/if}
 			</p>
 

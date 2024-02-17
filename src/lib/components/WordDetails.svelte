@@ -6,7 +6,8 @@
 	import {
 		categoryColors,
 		getWordDisplayRecognition,
-		getWordEtymology,
+		getWordEtymologies,
+		getWordLink,
 		getWordTranslation
 	} from '$lib/util';
 
@@ -25,7 +26,7 @@
 	let possibleWord: LocalizedWord | null;
 	export { possibleWord as word };
 
-	export let lipamanka: string | undefined;
+	export let lipamanka: string | undefined = undefined;
 
 	let audio: HTMLAudioElement | null = null;
 
@@ -38,12 +39,18 @@
 
 <Details bind:value={possibleWord} key={word => word.id} let:value={word}>
 	{@const translation = getWordTranslation(word, $language)}
+	{@const etymology = getWordEtymologies(word, $language)}
 
 	<div class="flex items-end">
 		<h2 class="text-2xl">{word.word}</h2>
 
 		<div class="ml-auto flex items-center gap-2">
-			<a href="/{word.id}" class="px-2 py-1 interactable">more</a>
+			<a
+				href={getWordLink(word.id, $language)}
+				class="px-2 py-1 interactable"
+			>
+				more
+			</a>
 
 			{#if audioUrl}
 				<audio src={audioUrl} bind:this={audio} />
@@ -139,9 +146,9 @@
 
 	<p>
 		{word.source_language}
-		{#if word.etymology.length && (word.etymology[0].word || word.etymology[0].alt)}
-			&middot;
-			{getWordEtymology(word, $language)}
+
+		{#if etymology}
+			&middot; {etymology}
 		{/if}
 	</p>
 

@@ -1,5 +1,8 @@
 <script lang="ts">
 	import { page } from '$app/stores';
+
+	import { language } from '$lib/stores';
+	import { getWordLink } from '$lib/util';
 </script>
 
 <svelte:head>
@@ -26,7 +29,7 @@
 			{#each $page.error?.closest as word}
 				<li>
 					<a
-						href="/{word}"
+						href={getWordLink(word, $language)}
 						class="inline-block px-2 py-1 interactable"
 					>
 						{word}
