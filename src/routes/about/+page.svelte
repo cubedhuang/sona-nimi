@@ -153,7 +153,7 @@
 		<h3>differences</h3>
 
 		<p>
-			Almost all data on this website is directly from <b>sona Linku</b>.
+			Almost all data on this website is directly from sona Linku.
 			However, I'm also directly scraping lipamanka's semantic space
 			dictionary to make them immediately available.
 		</p>
