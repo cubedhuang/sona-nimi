@@ -9,8 +9,6 @@
 	$: usesString = uses
 		.map(([use]) => use.replaceAll(' (', '\u00a0('))
 		.join(', ');
-	$: ellipsized =
-		usesString.length > 100 ? usesString.slice(0, 100) + '...' : usesString;
 </script>
 
 <Space on:click id={compound.compound}>
@@ -20,8 +18,8 @@
 
 			<p class="faded">{uses[0][1]}%</p>
 
-			<p>
-				{ellipsized}
+			<p class="line-clamp-3">
+				{usesString}
 			</p>
 		</div>
 
