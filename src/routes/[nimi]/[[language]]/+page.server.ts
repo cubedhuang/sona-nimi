@@ -9,9 +9,10 @@ export async function load({ fetch, params }) {
 	}
 
 	const [data, lukaPona, lipamanka] = await Promise.all([
-		client.v1.words
-			.$get({ query: { lang: params.language ?? 'en' } }, { fetch })
-			.then(res => res.json()),
+		client.v1.words.$get(
+			{ query: { lang: params.language ?? 'en' } },
+			{ fetch }
+		),
 		client.v1.luka_pona.signs
 			.$get({ query: { lang: params.language ?? 'en' } }, { fetch })
 			.then(res => res.json()),
@@ -20,8 +21,14 @@ export async function load({ fetch, params }) {
 		>
 	]);
 
-	const word = data[params.nimi];
-	const words = Object.values(data).sort(combinedWordSort);
+	if (!data.ok) {
+		throw error(404, { message: 'Language not found' });
+	}
+
+	const wordData = await data.json();
+
+	const word = wordData[params.nimi];
+	const words = Object.values(wordData);
 	const index = words.indexOf(word);
 
 	if (!word) {
@@ -49,13 +56,15 @@ export async function load({ fetch, params }) {
 		});
 	}
 
+	const sortedWords = words.sort(combinedWordSort);
+
 	return {
 		word,
 		lukaPona: Object.values(lukaPona).find(
 			word => params.nimi === word.definition
 		),
 		lipamanka: lipamanka[params.nimi],
-		next: words[(index + 1) % words.length].id,
-		previous: words[(index - 1 + words.length) % words.length].id
+		next: sortedWords[(index + 1) % words.length].id,
+		previous: sortedWords[(index - 1 + words.length) % words.length].id
 	};
 }
