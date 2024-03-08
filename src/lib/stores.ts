@@ -1,9 +1,9 @@
 import { writable, type Writable } from 'svelte/store';
-import type { UsageCategory } from '@kulupu-linku/sona';
 
 import { browser } from '$app/environment';
 
 import { usageCategories } from './util';
+import type { UsageCategory } from '@kulupu-linku/sona/utils';
 
 function savedWritable<T>(
 	key: string,
@@ -56,29 +56,16 @@ if (browser) {
 
 export const categories = savedWritable(
 	'categories',
-	usageCategories.map(category => ({
-		name: category as UsageCategory,
-		shown: ['core', 'widespread'].includes(category)
-	})),
-	value => value.some(({ shown }) => shown)
+	usageCategories
+		.filter(u => u !== 'sandbox')
+		.map(category => ({
+			name: category as UsageCategory,
+			shown: ['core', 'common'].includes(category)
+		})),
+	value =>
+		value.some(({ shown }) => shown) &&
+		value.length === usageCategories.length - 1
 );
-
-categories.subscribe($categories => {
-	if ($categories.length !== usageCategories.length) {
-		for (let i = 0; i < usageCategories.length; i++) {
-			const category = usageCategories[i];
-
-			if ($categories[i]?.name !== category) {
-				$categories.splice(i, 0, {
-					name: category as UsageCategory,
-					shown: false
-				});
-			}
-		}
-
-		$categories.splice(usageCategories.length);
-	}
-});
 
 export const sortingMethod = savedWritable<
 	'alphabetical' | 'recognition' | 'combined'

@@ -9,12 +9,13 @@ export async function load({ fetch, params }) {
 	}
 
 	const [data, lukaPona, lipamanka] = await Promise.all([
-		client.v1.words.$get(
-			{ query: { lang: params.language ?? 'en' } },
-			{ fetch }
-		),
-		client.v1.luka_pona.signs
-			.$get({ query: { lang: params.language ?? 'en' } }, { fetch })
+		client({ fetch }).v1.words.$get({
+			query: { lang: params.language ?? 'en' }
+		}),
+		client({ fetch })
+			.v1.luka_pona.signs.$get({
+				query: { lang: params.language ?? 'en' }
+			})
 			.then(res => res.json()),
 		fetch('/data/lipamanka').then(res => res.json()) as Promise<
 			Record<string, string>

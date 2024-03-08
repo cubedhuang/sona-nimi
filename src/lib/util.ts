@@ -1,9 +1,5 @@
-import type {
-	Book,
-	Language,
-	LocalizedWord,
-	UsageCategory
-} from '@kulupu-linku/sona';
+import type { Language, LocalizedWord } from '@kulupu-linku/sona';
+import type { Book, UsageCategory } from '@kulupu-linku/sona/utils';
 
 export const normalize = (str: string) =>
 	str
@@ -14,34 +10,31 @@ export const normalize = (str: string) =>
 
 export const usageCategories = [
 	'core',
-	'widespread',
 	'common',
 	'uncommon',
-	'rare',
-	'obscure'
-] as const;
+	'obscure',
+	'sandbox'
+] as const satisfies UsageCategory[];
 
 export const categoryColors: Record<UsageCategory, string> = {
 	core: 'bg-emerald-400 dark:bg-emerald-600',
-	widespread: 'bg-sky-400 dark:bg-sky-600',
-	common: 'bg-yellow-400 dark:bg-yellow-600',
-	uncommon: 'bg-orange-400 dark:bg-orange-600',
-	rare: 'bg-rose-500 dark:bg-rose-600',
-	obscure: 'bg-gray-400 dark:bg-gray-600'
+	common: 'bg-sky-400 dark:bg-sky-600',
+	uncommon: 'bg-yellow-400 dark:bg-yellow-600',
+	obscure: 'bg-fuchsia-400 dark:bg-fuchsia-600',
+	sandbox: 'bg-gray-400 dark:bg-gray-600'
 };
 
 export const categoryTextColors: Record<UsageCategory, string> = {
 	core: 'text-emerald-600 dark:text-emerald-400',
-	widespread: 'text-sky-600 dark:text-sky-400',
-	common: 'text-yellow-600 dark:text-yellow-400',
-	uncommon: 'text-orange-600 dark:text-orange-400',
-	rare: 'text-rose-600 dark:text-rose-400',
-	obscure: 'text-gray-600 dark:text-gray-400'
+	common: 'text-sky-600 dark:text-sky-400',
+	uncommon: 'text-yellow-600 dark:text-yellow-400',
+	obscure: 'text-fuchsia-600 dark:text-fuchsia-400',
+	sandbox: 'text-gray-600 dark:text-gray-400'
 };
 
 export const bookColors: Record<Book, string> = {
 	pu: categoryColors.core,
-	'ku suli': categoryColors.widespread,
+	'ku suli': categoryColors.common,
 	'ku lili': categoryColors.common,
 	none: categoryColors.obscure
 };
@@ -74,7 +67,10 @@ export function getWordTranslation(word: LocalizedWord, $language: string) {
 	return word.translations[$language] ?? word.translations.en;
 }
 
-export function getWordEtymologies(word: LocalizedWord, $language: string) {
+export function getShortWordEtymologies(
+	word: LocalizedWord,
+	$language: string
+) {
 	const translation = getWordTranslation(word, $language);
 
 	return word.etymology
@@ -119,11 +115,10 @@ export function getWordDisplayRecognition(word: LocalizedWord) {
 
 export function getUsageCategoryFromPercent(percent: number): UsageCategory {
 	if (percent >= 90) return 'core';
-	if (percent >= 70) return 'widespread';
-	if (percent >= 50) return 'common';
-	if (percent >= 20) return 'uncommon';
-	if (percent >= 10) return 'rare';
-	return 'obscure';
+	if (percent >= 60) return 'common';
+	if (percent >= 30) return 'uncommon';
+	if (percent >= 2) 'obscure';
+	return 'sandbox';
 }
 
 export function getWordLink(id: string, $language: string | undefined) {

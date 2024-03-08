@@ -6,7 +6,7 @@
 	import {
 		categoryColors,
 		getWordDisplayRecognition,
-		getWordEtymologies,
+		getShortWordEtymologies,
 		getWordLink,
 		getWordTranslation
 	} from '$lib/util';
@@ -39,7 +39,7 @@
 
 <Details bind:value={possibleWord} key={word => word.id} let:value={word}>
 	{@const translation = getWordTranslation(word, $language)}
-	{@const etymology = getWordEtymologies(word, $language)}
+	{@const etymology = getShortWordEtymologies(word, $language)}
 
 	<div class="flex items-end">
 		<h2 class="text-2xl">{word.word}</h2>

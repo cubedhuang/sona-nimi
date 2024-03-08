@@ -4,7 +4,7 @@
 	import {
 		categoryColors,
 		getWordDisplayRecognition,
-		getWordEtymologies,
+		getShortWordEtymologies,
 		getWordTranslation
 	} from '$lib/util';
 	import { language, sitelenMode } from '$lib/stores';
@@ -24,7 +24,7 @@
 
 			{#if word.etymology}
 				<p class="text-xs break-all line-clamp-1">
-					{getWordEtymologies(word, $language)}
+					{getShortWordEtymologies(word, $language)}
 				</p>
 			{/if}
 		</div>

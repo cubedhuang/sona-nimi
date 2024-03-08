@@ -1,8 +1,9 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
 	import { fly } from 'svelte/transition';
 
-	import { client } from '@kulupu-linku/sona/client';
-	import type { Book, LocalizedWord } from '@kulupu-linku/sona';
+	import type { LocalizedWord } from '@kulupu-linku/sona';
+	import type { Book } from '@kulupu-linku/sona/utils';
 
 	import type { PageData } from './$types';
 
@@ -32,7 +33,6 @@
 	import WordDetails from '$lib/components/WordDetails.svelte';
 	import WordEntry from './WordEntry.svelte';
 	import WordSpace from './WordSpace.svelte';
-	import { onMount } from 'svelte';
 
 	export let data: PageData;
 
@@ -85,9 +85,9 @@
 	}
 
 	async function fetchTranslation() {
-		const words = await client.v1.words
-			.$get({ query: { lang: $language } })
-			.then(res => res.json());
+		const words = (await fetch('/data/linku').then(res =>
+			res.json()
+		)) as Record<string, LocalizedWord>;
 
 		for (const word of Object.values(words)) {
 			data.words[word.id].translations[$language] =

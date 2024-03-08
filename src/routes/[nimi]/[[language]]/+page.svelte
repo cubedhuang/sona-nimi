@@ -12,7 +12,6 @@
 		categoryTextColors,
 		getUsageCategoryFromPercent,
 		getWordDisplayRecognition,
-		getWordEtymologies,
 		getWordLink,
 		getWordTranslation
 	} from '$lib/util';
@@ -30,7 +29,6 @@
 	$: word = data.word;
 
 	$: translation = getWordTranslation(word, language);
-	$: etymology = getWordEtymologies(word, language);
 
 	$: puData =
 		word.pu_verbatim?.[language as keyof LocalizedWord['pu_verbatim']] ||
@@ -276,13 +274,20 @@
 
 			<h2 class="mt-4 text-lg">origin</h2>
 
-			<p class="mt-2">
-				{word.source_language}
-
-				{#if etymology}
-					&middot; {etymology}
-				{/if}
-			</p>
+			{#each word.etymology as { word: sourceWord, alt }, i}
+				{@const { definition, language } = translation.etymology[i]}
+				<p class:mt-2={i === 0}>
+					{language}
+					{#if sourceWord}
+						&middot;
+						{sourceWord}
+						{#if alt}
+							{alt}
+						{/if}
+						&lsquo;{definition}&rsquo;
+					{/if}
+				</p>
+			{/each}
 
 			{#if word.creator.length}
 				<p class="mt-1 italic">
