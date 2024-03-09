@@ -34,14 +34,14 @@
 		{/if}
 	{:else if $sitelenMode === 'jelo'}
 		{#if word.representations?.sitelen_jelo}
-			<span class="shrink-0 text-xl w-6">
+			<span class="shrink-0 text-xl w-6 text-right">
 				{word.representations.sitelen_jelo[0]}
 			</span>
 		{:else}
 			<span class="shrink-0 w-6" />
 		{/if}
 	{:else if word.representations?.sitelen_emosi}
-		<span class="shrink-0 text-xl w-6">
+		<span class="shrink-0 text-xl w-6 text-right">
 			{word.representations.sitelen_emosi}
 		</span>
 	{:else}
