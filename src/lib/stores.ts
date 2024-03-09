@@ -73,7 +73,7 @@ export const sortingMethod = savedWritable<
 
 export const language = savedWritable('language', 'en');
 
-export const sitelenMode = savedWritable<'pona' | 'sitelen' | 'emosi'>(
+export const sitelenMode = savedWritable<'pona' | 'sitelen' | 'jelo' | 'emosi'>(
 	'sitelenMode',
 	'pona'
 );

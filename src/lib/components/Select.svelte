@@ -15,7 +15,11 @@
 <label class="contents">
 	<span class="sr-only">{name}</span>
 
-	<select bind:value class="appearance-none pl-2 py-0.5 interactable">
+	<select
+		bind:value
+		on:change
+		class="appearance-none pl-2 py-0.5 interactable"
+	>
 		{#each options as option}
 			<option value={option.value} selected={option.value === value}>
 				{option.label}

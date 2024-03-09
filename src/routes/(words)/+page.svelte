@@ -81,25 +81,31 @@
 		);
 
 	$: if (!fetchedTranslations.includes($language)) {
-		fetchTranslation();
+		setTranslation($language);
 	}
 
-	async function fetchTranslation() {
-		const words = (await fetch('/data/linku').then(res =>
+	async function setTranslation(lang: string) {
+		if (fetchedTranslations.includes(lang)) {
+			$language = lang;
+			return;
+		}
+
+		const words = (await fetch(`/data/linku?lang=${lang}`).then(res =>
 			res.json()
 		)) as Record<string, LocalizedWord>;
 
 		for (const word of Object.values(words)) {
-			data.words[word.id].translations[$language] =
-				word.translations[$language];
+			data.words[word.id].translations[lang] = word.translations[lang];
 		}
 
-		fetchedTranslations.push($language);
+		fetchedTranslations.push(lang);
 		fetchedTranslations = fetchedTranslations;
+
+		$language = lang;
 	}
 
 	onMount(() => {
-		fetchTranslation();
+		setTranslation($language);
 	});
 </script>
 
@@ -267,7 +273,13 @@
 				value: language.id
 			};
 		})}
-		bind:value={$language}
+		value={$language}
+		on:change={e => {
+			// @ts-expect-error The type of e is only Event, not ChangeEvent
+			const lang = e.target.value;
+
+			setTranslation(lang);
+		}}
 	/>
 
 	<Select
@@ -275,6 +287,7 @@
 		options={[
 			{ label: 'sitelen pona', value: 'pona' },
 			{ label: 'sitelen sitelen', value: 'sitelen' },
+			{ label: 'sitelen jelo', value: 'jelo' },
 			{ label: 'sitelen Emosi', value: 'emosi' }
 		]}
 		bind:value={$sitelenMode}

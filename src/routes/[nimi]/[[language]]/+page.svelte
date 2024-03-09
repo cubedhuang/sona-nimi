@@ -372,6 +372,14 @@
 				/>
 			{/if}
 
+			{#if word.representations?.sitelen_jelo}
+				<h2 class="mt-4 text-lg">sitelen jelo</h2>
+
+				<p class="mt-2 text-6xl">
+					{word.representations.sitelen_jelo.join('')}
+				</p>
+			{/if}
+
 			{#if word.representations?.sitelen_emosi}
 				<h2 class="mt-4 text-lg">sitelen Emosi</h2>
 

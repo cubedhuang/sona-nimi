@@ -76,7 +76,13 @@
 		</div>
 
 		<div class="w-9 shrink-0">
-			{#if $sitelenMode === 'emosi'}
+			{#if $sitelenMode === 'jelo'}
+				{#if word.representations?.sitelen_jelo}
+					{#each word.representations.sitelen_jelo.slice(0, 3) as sitelen}
+						<p class="text-3xl">{sitelen}</p>
+					{/each}
+				{/if}
+			{:else if $sitelenMode === 'emosi'}
 				{#if word.representations?.sitelen_emosi}
 					<span class="text-3xl w-9 text-center">
 						{word.representations.sitelen_emosi}

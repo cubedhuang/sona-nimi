@@ -96,10 +96,7 @@
 	>. Click on an expression to see more!
 </p>
 
-<blockquote
-	class="my-4 p-4 border rounded-lg border-blue-200 bg-blue-50
-		dark:border-gray-800 dark:bg-gray-900 leading-relaxed"
->
+<blockquote class="my-4 p-4 leading-relaxed alert">
 	<p>
 		<span class="font-bold">Warning!</span>
 		There are no hard-set compound phrases in Toki Pona. This is by design! Part

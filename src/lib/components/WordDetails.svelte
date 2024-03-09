@@ -5,6 +5,7 @@
 	import { language } from '$lib/stores';
 	import {
 		categoryColors,
+		categoryTextColors,
 		getWordDisplayRecognition,
 		getShortWordEtymologies,
 		getWordLink,
@@ -96,6 +97,21 @@
 		{/if}
 	</p>
 
+	{#if word.usage_category === 'obscure'}
+		<p class="mt-2 faded text-sm">
+			This word is
+			<span class={categoryTextColors.obscure}>obscure</span>, so most
+			speakers will not understand it.
+		</p>
+	{/if}
+
+	{#if word.deprecated}
+		<p class="my-4 p-4 alert">
+			This word is
+			<b>deprecated by its creator</b>, and its use is discouraged.
+		</p>
+	{/if}
+
 	<p class="mt-2">
 		{translation.definition}
 	</p>
@@ -182,11 +198,11 @@
 		/>
 	{/if}
 
-	{#if word.representations?.sitelen_emosi}
-		<h3 class="mt-2 text-lg">sitelen Emosi</h3>
+	{#if word.representations?.sitelen_jelo}
+		<h3 class="mt-2 text-lg">sitelen jelo</h3>
 
 		<p class="text-3xl">
-			{word.representations.sitelen_emosi}
+			{word.representations.sitelen_jelo.join('')}
 		</p>
 	{/if}
 

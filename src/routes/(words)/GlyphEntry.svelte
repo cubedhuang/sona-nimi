@@ -17,9 +17,11 @@
 	<button class="contents group" on:click>
 		{#if $sitelenMode === 'pona'}
 			{#if word.representations?.ligatures?.length}
-				<p class="font-pona text-4xl">
-					{word.representations.ligatures.join(' ')}
+				<p class="font-pona text-4xl whitespace-nowrap">
+					{word.representations.ligatures.slice(0, 3).join(' ')}
 				</p>
+			{:else}
+				<span class="h-10" />
 			{/if}
 		{:else if $sitelenMode === 'sitelen'}
 			{#if word.representations?.sitelen_sitelen}
@@ -28,6 +30,14 @@
 					alt="{word.word} sitelen sitelen"
 					class="w-10 h-10 dark:invert"
 				/>
+			{:else}
+				<span class="h-10" />
+			{/if}
+		{:else if $sitelenMode === 'jelo'}
+			{#if word.representations?.sitelen_jelo}
+				<p class="text-4xl">
+					{word.representations.sitelen_jelo.slice(0, 3).join('')}
+				</p>
 			{/if}
 		{:else if word.representations?.sitelen_emosi}
 			<p class="text-4xl">

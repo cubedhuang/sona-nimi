@@ -3,11 +3,11 @@ import { client } from '@kulupu-linku/sona/client';
 
 export async function load({ fetch }) {
 	const [words, lukaPona] = await Promise.all([
-		client.v1.words
-			.$get({ query: { lang: 'en' } }, { fetch })
+		client({ fetch })
+			.v1.words.$get({ query: { lang: 'en' } })
 			.then(res => res.json()),
-		client.v1.luka_pona.signs
-			.$get({ query: { lang: 'en' } }, { fetch })
+		client({ fetch })
+			.v1.luka_pona.signs.$get({ query: { lang: 'en' } })
 			.then(res => res.json())
 	]);
 

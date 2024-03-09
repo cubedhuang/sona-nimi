@@ -38,7 +38,7 @@
 
 		{#if $sitelenMode === 'pona'}
 			{#if word.representations?.ligatures?.length}
-				<div class="flex flex-col items-end text-right">
+				<div class="flex flex-col items-end text-right shrink-0">
 					{#each word.representations.ligatures as sitelen}
 						<p class="font-pona text-4xl">{sitelen}</p>
 					{/each}
@@ -49,11 +49,21 @@
 				<img
 					src={word.representations.sitelen_sitelen}
 					alt="{word.word} sitelen sitelen"
-					class="ml-auto w-10 h-10 dark:invert"
+					class="ml-auto w-10 h-10 shrink-0 dark:invert"
 				/>
 			{/if}
+		{:else if $sitelenMode === 'jelo'}
+			{#if word.representations?.sitelen_jelo}
+				<div class="shrink-0">
+					{#each word.representations.sitelen_jelo.slice(0, 3) as sitelen}
+						<p class="ml-auto text-3xl text-right">
+							{sitelen}
+						</p>
+					{/each}
+				</div>
+			{/if}
 		{:else if word.representations?.sitelen_emosi}
-			<p class="ml-auto text-3xl text-right">
+			<p class="ml-auto text-3xl text-right shrink-0">
 				{word.representations.sitelen_emosi}
 			</p>
 		{/if}
