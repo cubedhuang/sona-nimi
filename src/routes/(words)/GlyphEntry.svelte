@@ -38,11 +38,15 @@
 				<p class="text-4xl">
 					{word.representations.sitelen_jelo.slice(0, 3).join('')}
 				</p>
+			{:else}
+				<span class="h-10" />
 			{/if}
 		{:else if word.representations?.sitelen_emosi}
 			<p class="text-4xl">
 				{word.representations.sitelen_emosi}
 			</p>
+		{:else}
+			<span class="h-10" />
 		{/if}
 
 		<b class="group-hv:text-blue-500 transition">
