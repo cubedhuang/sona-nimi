@@ -3,9 +3,8 @@
 
 	import type { PageData } from './$types';
 
-	import { azWordSort } from '$lib/util';
 	import { filter } from '$lib/search';
-	import { categories, language, sitelenMode, viewMode } from '$lib/stores';
+	import { language, sitelenMode, viewMode } from '$lib/stores';
 
 	import Search from '$lib/components/Search.svelte';
 	import Select from '$lib/components/Select.svelte';
