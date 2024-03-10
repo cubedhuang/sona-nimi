@@ -35,7 +35,7 @@ export const categoryTextColors: Record<UsageCategory, string> = {
 export const bookColors: Record<Book, string> = {
 	pu: categoryColors.core,
 	'ku suli': categoryColors.common,
-	'ku lili': categoryColors.common,
+	'ku lili': categoryColors.uncommon,
 	none: categoryColors.obscure
 };
 
