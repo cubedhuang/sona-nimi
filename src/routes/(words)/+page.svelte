@@ -297,10 +297,10 @@
 {#if missingDefinitions}
 	<p class="mt-2">
 		<span class="font-bold">o sona a!</span>
-		kon pi
+		toki kon ale pi
 		{data.languages[$language].name.tok ??
 			data.languages[$language].name.en}
-		li lon ala ale. nimi ni la, toki Inli li lon.
+		li lon ala. nimi ni la, toki Inli li lon.
 	</p>
 	<p>
 		<span class="font-bold">Warning!</span>
