@@ -92,8 +92,8 @@
 
 		<p>
 			poka ale la, sona pi lipu ni li sama sona Linku. taso, mi wan e sona
-			Linku e sona lipamanka tawa ni: jan li ken lukin sona lipamanka lon
-			lipu ni.
+			Linku e sona lipamanka la jan li ken lukin sona lipamanka lon lipu
+			ni.
 		</p>
 	{:else}
 		<h1>about &ndash; nimi.li</h1>
