@@ -422,7 +422,7 @@
 				{/each}
 			{/if}
 
-			{#if data.lukaPona}
+			{#if data.lukaPona?.video.mp4}
 				<h2 class="text-lg" class:mt-4={word.audio}>luka pona</h2>
 
 				<p class="mt-2">
