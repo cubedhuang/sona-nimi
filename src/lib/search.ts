@@ -24,79 +24,44 @@ export function filter(
 				score += scoreMatch(item);
 			}
 
-			return score;
+			return score / content.length;
 		}
 
-		const includes = content.includes(search);
-		const dist = distance(search, content);
-		const maxDist = content.length / 3;
+		const normalized = normalize(content);
 
-		if (!includes && dist > maxDist) return 0;
-
-		let score = 1;
-
-		if (dist <= maxDist) {
-			score += ((maxDist - dist) / maxDist) * 2;
-		}
+		const includes = normalized.includes(search);
 
 		if (includes) {
-			score += 1;
+			return content === search ? 10 : 1;
 		}
 
-		return score;
-	}
+		const distanceScore =
+			distance(normalized, search) / (normalized.length + 1);
 
-	function searchFilter(word: LocalizedWord) {
-		if (!search) return true;
-
-		const translation = getWordTranslation(word, $language);
-
-		if (word.ku_data) {
-			if (scoreMatch(Object.keys(word.ku_data)) > 0) {
-				return true;
-			}
+		if (distanceScore > 0.3) {
+			return 0;
 		}
 
-		if (translation.etymology) {
-			for (const etymology of translation.etymology) {
-				if (scoreMatch(etymology.language) > 0) {
-					return true;
-				}
-
-				if (scoreMatch(etymology.definition) > 0) {
-					return true;
-				}
-			}
-		}
-
-		return (
-			scoreMatch(word.word) ||
-			scoreMatch(translation.definition) ||
-			scoreMatch(word.source_language) ||
-			scoreMatch(word.creator) ||
-			scoreMatch(translation.commentary)
-		);
+		return 1 - distanceScore;
 	}
 
 	function scoreSearch(word: LocalizedWord) {
-		let score = 0;
-
 		const translation = getWordTranslation(word, $language);
 
-		score += scoreMatch(word.word) * 100;
-		score += scoreMatch(translation.definition) * 50;
-		score += scoreMatch(word.source_language) * 20;
-		score += scoreMatch(word.creator) * 10;
-		score += scoreMatch(translation.commentary) * 5;
+		let score =
+			scoreMatch(word.word) * 500 +
+			scoreMatch(translation.definition) * 50 +
+			scoreMatch(word.source_language) * 20 +
+			scoreMatch(word.creator) * 20;
 
 		if (word.ku_data) {
-			score += scoreMatch(Object.keys(word.ku_data)) * 20;
+			score += scoreMatch(Object.keys(word.ku_data)) * 10;
 		}
 
 		if (translation.etymology) {
 			for (const etymology of translation.etymology) {
 				score += scoreMatch(etymology.language) * 10;
-				score += scoreMatch(etymology.definition) * 5;
+				score += scoreMatch(etymology.definition) * 10;
 			}
 		}
 
@@ -104,6 +69,8 @@ export function filter(
 	}
 
 	return words
-		.filter(searchFilter)
-		.sort((a, b) => scoreSearch(b) - scoreSearch(a));
+		.map(word => [word, scoreSearch(word)] as const)
+		.filter(([, score]) => score > 0)
+		.sort((a, b) => b[1] - a[1])
+		.map(([word]) => word);
 }
