@@ -14,9 +14,9 @@
 
 	const routes = [
 		{ name: 'dictionary', href: '/' },
-		{ name: 'sandbox', href: '/sandbox' },
 		{ name: 'luka pona', href: '/luka-pona' },
 		{ name: 'ilo ku', href: '/ilo-ku' },
+		{ name: 'sandbox', href: '/sandbox' },
 		{ name: 'about', href: '/about' }
 	];
 
