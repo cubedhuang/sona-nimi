@@ -7,7 +7,6 @@
 		categoryColors,
 		categoryTextColors,
 		getWordDisplayRecognition,
-		getShortWordEtymologies,
 		getWordLink,
 		getWordTranslation
 	} from '$lib/util';
