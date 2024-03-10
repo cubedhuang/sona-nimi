@@ -27,21 +27,15 @@
 	<title>sandbox &ndash; nimi.li</title>
 
 	<meta name="author" content="ilo Tani" />
-	<meta
-		name="description"
-		content="Find and explore Linku's nimisin sandbox."
-	/>
+	<meta name="description" content="Explore Linku's sandbox." />
 	<meta
 		name="keywords"
 		content="toki pona, toki pona dictionary, dictionary, nimi, sandbox"
 	/>
 
-	<meta property="og:title" content="luka pona – nimi.li" />
+	<meta property="og:title" content="sandbox – nimi.li" />
 	<meta property="og:author" content="ilo Tani" />
-	<meta
-		property="og:description"
-		content="Find and explore Linku's nimisin sandbox."
-	/>
+	<meta property="og:description" content="Explore Linku's sandbox." />
 	<meta property="og:url" content="https://nimi.li/sandbox" />
 	<meta property="og:image" content="https://nimi.li/favicon.png" />
 	<meta property="og:site_name" content="nimi.li" />
@@ -51,10 +45,10 @@
 <h1 class="text-4xl">sandbox</h1>
 
 <p class="mt-2 leading-relaxed">
-	Find and explore Linku's nimisin <b>sandbox</b>. These words are not notable
-	enough to be added to the main dictionary but are still documented, either
-	for historical reasons or in case usage of a word rises before the next
-	survey.
+	Explore Linku's <b>sandbox</b>. These words are not notable enough to be
+	added to the main dictionary, but are documented here for several reasons. A
+	word may have been part of the main dictionary before but fallen out of use,
+	or be too new to have been surveyed before.
 </p>
 
 <div class="mt-4 flex flex-wrap gap-1 sm:gap-x-2 sm:gap-y-1">
