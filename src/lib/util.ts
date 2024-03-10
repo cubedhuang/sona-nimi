@@ -29,7 +29,7 @@ export const categoryTextColors: Record<UsageCategory, string> = {
 	common: 'text-sky-600 dark:text-sky-400',
 	uncommon: 'text-yellow-600 dark:text-yellow-400',
 	obscure: 'text-fuchsia-600 dark:text-fuchsia-400',
-	sandbox: 'text-gray-600 dark:text-gray-400'
+	sandbox: 'text-gray-600 dark:text-gray-300'
 };
 
 export const bookColors: Record<Book, string> = {

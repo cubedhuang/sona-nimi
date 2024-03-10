@@ -3,8 +3,6 @@
 
 	export let word: LocalizedWord;
 	export let translation: WordTranslation;
-
-	let className = '';
 </script>
 
 {#if word.source_language.startsWith('multiple')}
@@ -23,7 +21,9 @@
 			{#if alt}
 				{alt}
 			{/if}
-			&lsquo;{definition}&rsquo;
+			{#if definition !== sourceWord}
+				&lsquo;{definition}&rsquo;
+			{/if}
 		{/if}
 	</p>
 {/each}

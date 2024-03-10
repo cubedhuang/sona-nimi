@@ -98,11 +98,16 @@
 		{/if}
 	</p>
 
-	{#if word.usage_category === 'obscure'}
+	{#if word.usage_category === 'obscure' || word.usage_category === 'sandbox'}
 		<p class="mt-2 faded text-sm">
 			This word is
-			<span class={categoryTextColors.obscure}>obscure</span>, so most
-			speakers will not understand it.
+			{#if word.usage_category === 'sandbox'}
+				in the
+				<b class={categoryTextColors.sandbox}>sandbox</b>,
+			{:else}
+				<b class={categoryTextColors.obscure}>obscure</b>,
+			{/if}
+			so most speakers will not understand it.
 		</p>
 	{/if}
 

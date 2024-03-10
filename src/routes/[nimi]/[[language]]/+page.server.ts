@@ -30,9 +30,33 @@ export async function load({ fetch, params }) {
 
 	const word = wordData[params.nimi];
 	const words = Object.values(wordData);
-	const index = words.indexOf(word);
 
 	if (!word) {
+		const sandbox = await client({ fetch })
+			.v1.sandbox.$get({
+				query: { lang: 'en' }
+			})
+			.then(res => res.json());
+
+		const sandboxWords = Object.values(sandbox);
+		const sandboxWord = sandbox[params.nimi];
+		const index = sandboxWords.indexOf(sandboxWord);
+
+		if (sandboxWord) {
+			if (params.language) {
+				throw redirect(301, `/${params.nimi}`);
+			}
+
+			return {
+				word: sandboxWord,
+				next:
+					index === sandboxWords.length - 1
+						? undefined
+						: sandboxWords[index + 1].id,
+				previous: index === 0 ? undefined : sandboxWords[index - 1].id
+			};
+		}
+
 		const closest = words
 			.map(({ word }) => ({
 				word,
@@ -58,6 +82,7 @@ export async function load({ fetch, params }) {
 	}
 
 	const sortedWords = words.sort(combinedWordSort);
+	const index = sortedWords.indexOf(word);
 
 	return {
 		word,
@@ -65,7 +90,8 @@ export async function load({ fetch, params }) {
 			word => params.nimi === word.definition
 		),
 		lipamanka: lipamanka[params.nimi],
-		next: sortedWords[(index + 1) % words.length].id,
-		previous: sortedWords[(index - 1 + words.length) % words.length].id
+		next:
+			index === words.length - 1 ? undefined : sortedWords[index + 1].id,
+		previous: index === 0 ? undefined : sortedWords[index - 1].id
 	};
 }

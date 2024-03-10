@@ -26,13 +26,10 @@
 	} from '$lib/stores';
 
 	import ColoredCheckbox from '$lib/components/ColoredCheckbox.svelte';
-	import DetailedWordEntry from './DetailedWordEntry.svelte';
-	import GlyphEntry from './GlyphEntry.svelte';
 	import Search from '$lib/components/Search.svelte';
 	import Select from '$lib/components/Select.svelte';
 	import WordDetails from '$lib/components/WordDetails.svelte';
-	import WordEntry from './WordEntry.svelte';
-	import WordSpace from './WordSpace.svelte';
+	import WordView from '$lib/components/WordView.svelte';
 
 	export let data: PageData;
 
@@ -315,55 +312,13 @@
 
 <Search placeholder="o alasa..." bind:value={search} />
 
-{#if $viewMode === 'compact'}
-	<div class="mt-4 grid">
-		{#each filteredWords as word (word.id)}
-			<WordEntry
-				{word}
-				on:click={() => {
-					if (selectedWord?.id === word.id) selectedWord = null;
-					else selectedWord = word;
-				}}
-			/>
-		{/each}
-	</div>
-{:else if $viewMode === 'glyphs'}
-	<div class="mt-4 grid gap-4 grid-cols-fill-24">
-		{#each filteredWords as word (word.id)}
-			<GlyphEntry
-				{word}
-				on:click={() => {
-					if (selectedWord?.id === word.id) selectedWord = null;
-					else selectedWord = word;
-				}}
-			/>
-		{/each}
-	</div>
-{:else if $viewMode === 'detailed'}
-	<div class="mt-4 grid gap-4 grid-cols-fill-96">
-		{#each filteredWords as word (word.id)}
-			<DetailedWordEntry
-				{word}
-				on:click={() => {
-					if (selectedWord?.id === word.id) selectedWord = null;
-					else selectedWord = word;
-				}}
-			/>
-		{/each}
-	</div>
-{:else}
-	<div class="mt-4 grid gap-4 grid-cols-fill-80">
-		{#each filteredWords as word (word.id)}
-			<WordSpace
-				{word}
-				on:click={() => {
-					if (selectedWord?.id === word.id) selectedWord = null;
-					else selectedWord = word;
-				}}
-			/>
-		{/each}
-	</div>
-{/if}
+<WordView
+	words={filteredWords}
+	on:select={e => {
+		if (selectedWord?.id === e.detail.id) selectedWord = null;
+		else selectedWord = e.detail;
+	}}
+/>
 
 {#if !filteredWords.length}
 	<p>wile sina la, nimi li lon ala!</p>
