@@ -18,6 +18,7 @@
 	import KuData from './KuData.svelte';
 	import Link from '$lib/components/Link.svelte';
 	import LipamankaData from '$lib/components/LipamankaData.svelte';
+	import WordEtymology from './WordEtymology.svelte';
 	import XMark from '$lib/components/icons/XMark.svelte';
 
 	const dispatch = createEventDispatcher<{
@@ -160,19 +161,7 @@
 
 	<h3 class="mt-2 text-lg">origin</h3>
 
-	<p>
-		{word.source_language}
-
-		{#if etymology}
-			&middot; {etymology}
-		{/if}
-	</p>
-
-	{#if word.creator.length}
-		<p class="italic">
-			{word.creator.join(', ')}
-		</p>
-	{/if}
+	<WordEtymology {word} {translation} />
 
 	{#if word.representations?.ligatures?.length}
 		<h3 class="mt-2 text-lg">sitelen pona</h3>

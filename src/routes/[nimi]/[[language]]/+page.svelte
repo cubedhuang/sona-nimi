@@ -22,6 +22,7 @@
 	import KuData from '$lib/components/KuData.svelte';
 	import Link from '$lib/components/Link.svelte';
 	import LipamankaData from '$lib/components/LipamankaData.svelte';
+	import WordEtymology from '$lib/components/WordEtymology.svelte';
 
 	export let data: PageData;
 
@@ -182,7 +183,9 @@
 						)}
 
 						<p class="mt-1">
-							<span class="faded shrink-0">{partOfSpeech}</span>
+							<span class="faded text-sm shrink-0"
+								>{partOfSpeech}</span
+							>
 							{definition}
 						</p>
 					{/each}
@@ -274,27 +277,9 @@
 
 			<h2 class="mt-4 text-lg">origin</h2>
 
-			{#each word.etymology as { word: sourceWord, alt }, i}
-				{@const { definition, language } = translation.etymology[i]}
-				<p class:mt-2={i === 0}>
-					{language}
-					{#if sourceWord}
-						&middot;
-						{sourceWord}
-						{#if alt}
-							{alt}
-						{/if}
-						&lsquo;{definition}&rsquo;
-					{/if}
-				</p>
-			{/each}
-
-			{#if word.creator.length}
-				<p class="mt-1 italic">
-					<span class="faded">by</span>
-					{word.creator.join(', ')}
-				</p>
-			{/if}
+			<div class="mt-2">
+				<WordEtymology {word} {translation} />
+			</div>
 
 			{#if word.author_verbatim}
 				<div class="flex mt-4 items-center gap-2">
