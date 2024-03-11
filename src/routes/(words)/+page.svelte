@@ -246,7 +246,7 @@
 		options={[
 			{ label: 'Normal View', value: 'normal' },
 			{ label: 'Detailed View', value: 'detailed' },
-			{ label: 'Compact View', value: 'compact' },
+			{ label: 'List View', value: 'compact' },
 			{ label: 'Glyph View', value: 'glyphs' }
 		]}
 		bind:value={$viewMode}
