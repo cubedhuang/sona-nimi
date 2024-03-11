@@ -22,6 +22,7 @@
 	import KuData from '$lib/components/KuData.svelte';
 	import Link from '$lib/components/Link.svelte';
 	import LipamankaData from '$lib/components/LipamankaData.svelte';
+	import Wikipedia from '$lib/components/icons/Wikipedia.svelte';
 	import WordEtymology from '$lib/components/WordEtymology.svelte';
 
 	export let data: PageData;
@@ -67,53 +68,66 @@
 	<h1 class="text-4xl mr-auto">{word.word}</h1>
 
 	<div class="flex gap-2">
-		{#if data.previous}
+		{#if word.resources?.sona_pona}
 			<a
-				href={getWordLink(data.previous, language)}
-				class="inline-block p-2 interactable"
-				aria-label="previous word"
+				href={word.resources.sona_pona}
+				target="_blank"
+				rel="noreferrer noopener"
+				class="p-2 interactable"
 			>
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					fill="none"
-					viewBox="0 0 24 24"
-					stroke-width="1.5"
-					stroke="currentColor"
-					class="w-6 h-6"
-				>
-					<path
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"
-					/>
-				</svg>
+				<Wikipedia />
 			</a>
 		{/if}
 
-		{#if data.next}
-			<a
-				href={getWordLink(data.next, language)}
-				class="inline-block p-2 interactable"
-				aria-label="next word"
+		<svelte:element
+			this={data.previous ? 'a' : 'button'}
+			href={data.previous
+				? getWordLink(data.previous, language)
+				: undefined}
+			class="p-2 interactable"
+			disabled={!data.previous}
+			aria-label="previous word"
+		>
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				fill="none"
+				viewBox="0 0 24 24"
+				stroke-width="1.5"
+				stroke="currentColor"
+				class="w-6 h-6"
 			>
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					fill="none"
-					viewBox="0 0 24 24"
-					stroke-width="1.5"
-					stroke="currentColor"
-					class="w-6 h-6"
-				>
-					<path
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
-					/>
-				</svg>
-			</a>
-		{/if}
+				<path
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"
+				/>
+			</svg>
+		</svelte:element>
 
-		<a href="/" class="inline-block p-2 interactable" aria-label="home">
+		<svelte:element
+			this={data.next ? 'a' : 'button'}
+			href={data.next ? getWordLink(data.next, language) : undefined}
+			class="p-2 interactable"
+			disabled={!data.next}
+			aria-label="next word"
+		>
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				fill="none"
+				viewBox="0 0 24 24"
+				stroke-width="1.5"
+				stroke="currentColor"
+				class="w-6 h-6"
+			>
+				<path
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
+				/>
+			</svg>
+		</svelte:element>
+
+		<a href="/" class="p-2 interactable" aria-label="home">
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
 				fill="none"
@@ -134,14 +148,14 @@
 
 {#if word.usage_category === 'obscure' || word.usage_category === 'sandbox'}
 	<p class="mt-4">
-		This word is
 		{#if word.usage_category === 'sandbox'}
-			in the
-			<b class={categoryTextColors.sandbox}>sandbox</b>,
+			This word is in the
+			<b>sandbox</b>, so almost no speakers will understand it.
 		{:else}
-			<b class={categoryTextColors.obscure}>obscure</b>,
+			This word is
+			<b class={categoryTextColors.obscure}>obscure</b>, so most speakers
+			will not understand it.
 		{/if}
-		so most speakers will not understand it.
 	</p>
 {/if}
 

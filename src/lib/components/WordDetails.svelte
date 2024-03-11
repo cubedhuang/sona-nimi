@@ -17,6 +17,7 @@
 	import KuData from './KuData.svelte';
 	import Link from '$lib/components/Link.svelte';
 	import LipamankaData from '$lib/components/LipamankaData.svelte';
+	import Wikipedia from './icons/Wikipedia.svelte';
 	import WordEtymology from './WordEtymology.svelte';
 	import XMark from '$lib/components/icons/XMark.svelte';
 
@@ -51,6 +52,17 @@
 			>
 				more
 			</a>
+
+			{#if word.resources?.sona_pona}
+				<a
+					href={word.resources.sona_pona}
+					target="_blank"
+					rel="noreferrer noopener"
+					class="p-1 interactable"
+				>
+					<Wikipedia />
+				</a>
+			{/if}
 
 			{#if audioUrl}
 				<audio src={audioUrl} bind:this={audio} />
@@ -98,14 +110,15 @@
 
 	{#if word.usage_category === 'obscure' || word.usage_category === 'sandbox'}
 		<p class="mt-2 faded text-sm">
-			This word is
 			{#if word.usage_category === 'sandbox'}
-				in the
-				<b class={categoryTextColors.sandbox}>sandbox</b>,
+				This word is in the
+				<b class={categoryTextColors.sandbox}>sandbox</b>, so almost no
+				speakers will understand it.
 			{:else}
-				<b class={categoryTextColors.obscure}>obscure</b>,
+				This word is
+				<b class={categoryTextColors.obscure}>obscure</b>, so most
+				speakers will not understand it.
 			{/if}
-			so most speakers will not understand it.
 		</p>
 	{/if}
 
