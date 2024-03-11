@@ -320,10 +320,7 @@
 	}}
 />
 
-{#if !filteredWords.length}
-	<p>wile sina la, nimi li lon ala!</p>
-	<p class="faded">Your query didn't match any words!</p>
-{/if}
+
 
 <WordDetails
 	bind:word={selectedWord}
