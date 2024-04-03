@@ -3,7 +3,7 @@ import { error, redirect } from '@sveltejs/kit';
 import { combinedWordSort } from '$lib/util';
 import { distance } from 'fastest-levenshtein';
 
-export async function load({ fetch, params }) {
+export async function load({ fetch, params, setHeaders }) {
 	if (params.language === 'en') {
 		throw redirect(301, `/${params.nimi}`);
 	}
@@ -47,6 +47,8 @@ export async function load({ fetch, params }) {
 				throw redirect(301, `/${params.nimi}`);
 			}
 
+			setHeaders({ 'Cache-Control': 's-maxage=3600' });
+
 			return {
 				word: sandboxWord,
 				next:
@@ -83,6 +85,8 @@ export async function load({ fetch, params }) {
 
 	const sortedWords = words.sort(combinedWordSort);
 	const index = sortedWords.indexOf(word);
+
+	setHeaders({ 'Cache-Control': 's-maxage=3600' });
 
 	return {
 		word,

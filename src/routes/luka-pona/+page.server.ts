@@ -1,7 +1,7 @@
 import type { LocalizedSign, SignVideo } from '@kulupu-linku/sona';
 import { client } from '@kulupu-linku/sona/client';
 
-export async function load({ fetch }) {
+export async function load({ fetch, setHeaders }) {
 	const [words, lukaPona] = await Promise.all([
 		client({ fetch })
 			.v1.words.$get({ query: { lang: 'en' } })
@@ -21,6 +21,8 @@ export async function load({ fetch }) {
 
 			return [sign.definition, sign.video] as [string, SignVideo];
 		});
+
+	setHeaders({ 'Cache-Control': 's-maxage=3600' });
 
 	return { words, signs: Object.fromEntries(signs) };
 }

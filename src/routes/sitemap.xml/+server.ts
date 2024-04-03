@@ -3,10 +3,12 @@ import { text } from '@sveltejs/kit';
 
 export async function GET({ fetch }) {
 	const [words, languages] = [
-		await client.v1.words
-			.$get({ query: { lang: 'en' } }, { fetch })
+		await client({ fetch })
+			.v1.words.$get({ query: { lang: 'en' } })
 			.then(res => res.json()),
-		await client.v1.languages.$get({}, { fetch }).then(res => res.json())
+		await client({ fetch })
+			.v1.languages.$get({})
+			.then(res => res.json())
 	];
 
 	return text(render(Object.keys(words), Object.keys(languages)), {
