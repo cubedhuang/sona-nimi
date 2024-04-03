@@ -1,5 +1,28 @@
-import type { Linku } from '$lib/types';
+import type { LocalizedSign, SignVideo } from '@kulupu-linku/sona';
+import { client } from '@kulupu-linku/sona/client';
 
-export function load({ fetch }) {
-	return fetch('/data/linku').then(res => res.json()) as Promise<Linku>;
+export async function load({ fetch, setHeaders }) {
+	const [words, lukaPona] = await Promise.all([
+		client({ fetch })
+			.v1.words.$get({ query: { lang: 'en' } })
+			.then(res => res.json()),
+		client({ fetch })
+			.v1.luka_pona.signs.$get({ query: { lang: 'en' } })
+			.then(res => res.json())
+	]);
+
+	const lukaPonaData = Object.values(lukaPona);
+
+	const signs = Object.keys(words)
+		.map(word => lukaPonaData.find(sign => sign.definition === word))
+		.filter(sign => sign)
+		.map(sign => {
+			sign = sign as LocalizedSign;
+
+			return [sign.definition, sign.video] as [string, SignVideo];
+		});
+
+	setHeaders({ 'Cache-Control': 's-maxage=3600' });
+
+	return { words, signs: Object.fromEntries(signs) };
 }

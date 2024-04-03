@@ -1,18 +1,7 @@
 <script lang="ts">
 	import Link from '$lib/components/Link.svelte';
 
-	let tokiPona = true;
-
-	const additions = [
-		'inta',
-		'kana',
-		'sole',
-		'ta',
-		'iseki',
-		'nowi',
-		'aku',
-		'anta'
-	];
+	let pona = true;
 </script>
 
 <svelte:head>
@@ -35,16 +24,13 @@
 </svelte:head>
 
 <p>
-	<button
-		class="px-2 py-1 interactable"
-		on:click={() => (tokiPona = !tokiPona)}
-	>
-		{tokiPona ? 'use English' : 'o toki pona'}
+	<button class="px-2 py-1 interactable" on:click={() => (pona = !pona)}>
+		{pona ? 'use English' : 'o toki pona'}
 	</button>
 </p>
 
 <div class="leading-relaxed">
-	{#if tokiPona}
+	{#if pona}
 		<h1>sona &ndash; nimi.li</h1>
 
 		<p>
@@ -64,7 +50,7 @@
 
 		<ul>
 			<li>
-				<Link href="https://linku.la/about/">ijo Linku</Link> en
+				<Link href="https://linku.la/about/">sona Linku</Link> en
 				<Link href="https://lipamanka.gay/essays/dictionary"
 					>lipu lipamanka</Link
 				>
@@ -104,22 +90,10 @@
 
 		<h3>ante</h3>
 
-		<p>lipu Linku la, lipu ni li ante.</p>
-		<p>mi wan e sona Linku e sona lipamanka.</p>
 		<p>
-			mi tu e kulupu nimi Obscure tawa ni: nimi suli ni li awen lon kulupu
-			Obscure. nimi lili ni li kama lon kulupu Marginal. mi la, ante ni li
-			pona tan ni: kulupu Linku li sin taso e nimi sin suli. taso, nimi
-			mute li kama lili, li awen lon lipu. nimi ni li suli ala, o ante tan
-			nimi ante.
-		</p>
-
-		<p>
-			nimi lili li lon ala lipu Linku. kulupu sin ni la, nimi ni li sin:
-			{#each additions as addition, i}
-				{#if i !== 0},
-				{/if}
-				<Link href="/{addition}">{addition}</Link>{/each}.
+			poka ale la, sona pi lipu ni li sama sona Linku. taso, mi wan e sona
+			Linku e sona lipamanka la jan li ken lukin sona lipamanka lon lipu
+			ni.
 		</p>
 	{:else}
 		<h1>about &ndash; nimi.li</h1>
@@ -178,28 +152,10 @@
 
 		<h3>differences</h3>
 
-		<p>This website has a few differences from Linku.</p>
 		<p>
-			I'm combining lipamanka's dictionary data in the interface to
-			provide additional context for core words.
-		</p>
-		<p>
-			I've split the Obscure category into the Obscure and Marginal
-			categories, with the obscure usage category containing words with
-			2-9% usage and the marginal usage category containing words with
-			0-1% usage. I made this change because Linku only adds words when
-			they reach the 2% usage threshold, but older words that have
-			declined in usage remain, and I wanted to separate those words from
-			the rest of the obscure words.
-		</p>
-
-		<p>
-			I've also added a few words to the marginal category that aren't on
-			Linku:
-			{#each additions as addition, i}
-				{#if i !== 0},
-				{/if}
-				<Link href="/{addition}">{addition}</Link>{/each}.
+			Almost all data on this website is directly from sona Linku.
+			However, I'm also directly scraping lipamanka's semantic space
+			dictionary to make them immediately available.
 		</p>
 	{/if}
 </div>

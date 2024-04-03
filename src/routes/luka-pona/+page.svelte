@@ -1,7 +1,8 @@
 <script lang="ts">
+	import type { LocalizedWord } from '@kulupu-linku/sona';
+
 	import type { PageData } from './$types';
 
-	import type { Word } from '$lib/types';
 	import { azWordSort, categoryColors } from '$lib/util';
 	import { filter } from '$lib/search';
 	import { autoplay, language } from '$lib/stores';
@@ -13,13 +14,13 @@
 
 	export let data: PageData;
 
-	const words = Object.values(data.data);
+	$: words = Object.values(data.words);
 
 	let search = '';
-	let selectedWord: Word | null = null;
+	let selectedWord: LocalizedWord | null = null;
 
 	$: genericFilteredWords = words
-		.filter(word => word.luka_pona)
+		.filter(word => data.signs[word.id])
 		.sort(azWordSort);
 
 	$: filteredWords = filter(genericFilteredWords, search, $language);
@@ -73,7 +74,8 @@
 <div class="mt-4 grid gap-4 grid-cols-fill-64">
 	{#each filteredWords as word (word.id)}
 		<LukaPonaEntry
-			{word}
+			word={word.id}
+			video={data.signs[word.id]}
 			on:click={() => {
 				if (selectedWord?.id === word.id) selectedWord = null;
 				else selectedWord = word;

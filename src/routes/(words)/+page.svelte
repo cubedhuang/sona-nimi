@@ -1,10 +1,13 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
 	import { fly } from 'svelte/transition';
+
+	import type { LocalizedWord } from '@kulupu-linku/sona';
+	import type { Book } from '@kulupu-linku/sona/utils';
 
 	import type { PageData } from './$types';
 
 	import { outclick } from '$lib/actions/outclick';
-	import type { BookName, Word } from '$lib/types';
 	import {
 		azWordSort,
 		bookColors,
@@ -23,29 +26,26 @@
 	} from '$lib/stores';
 
 	import ColoredCheckbox from '$lib/components/ColoredCheckbox.svelte';
-	import DetailedWordEntry from './DetailedWordEntry.svelte';
-	import GlyphEntry from './GlyphEntry.svelte';
 	import Search from '$lib/components/Search.svelte';
 	import Select from '$lib/components/Select.svelte';
 	import WordDetails from '$lib/components/WordDetails.svelte';
-	import WordEntry from './WordEntry.svelte';
-	import WordSpace from './WordSpace.svelte';
+	import WordView from '$lib/components/WordView.svelte';
 
 	export let data: PageData;
 
-	const words = Object.values(data.data);
+	$: words = Object.values(data.words);
 
 	let moreOptions = false;
 
 	let search = '';
-	let selectedWord: Word | null = null;
+	let selectedWord: LocalizedWord | null = null;
 
 	$: shownCategories = $categories
 		.filter(category => category.shown)
 		.map(category => category.name);
 
 	let books = Object.keys(bookColors).map(book => ({
-		name: book as BookName,
+		name: book as Book,
 		shown: true
 	}));
 	$: shownBooks = books.filter(book => book.shown).map(book => book.name);
@@ -57,17 +57,53 @@
 				? recognitionWordSort
 				: combinedWordSort;
 
-	$: genericFilter = (word: Word) =>
+	$: genericFilter = (word: LocalizedWord) =>
 		shownCategories.includes(word.usage_category) &&
 		shownBooks.includes(word.book);
 
 	$: genericFilteredWords = words.filter(genericFilter).sort(genericSorter);
-
 	$: filteredWords = filter(genericFilteredWords, search, $language);
 
-	$: missingDefinitions = Object.values(
-		data.languages[$language].completeness_percent
-	).some(percent => percent !== '100');
+	let fetchedTranslations = ['en'];
+
+	$: missingDefinitions =
+		$language !== 'en' &&
+		$language !== 'eng' &&
+		fetchedTranslations.includes($language) &&
+		genericFilteredWords.some(
+			word =>
+				!word.translations[$language]?.definition ||
+				word.translations[$language].definition ===
+					word.translations.en.definition
+		);
+
+	$: if (!fetchedTranslations.includes($language)) {
+		setTranslation($language);
+	}
+
+	async function setTranslation(lang: string) {
+		if (fetchedTranslations.includes(lang)) {
+			$language = lang;
+			return;
+		}
+
+		const words = (await fetch(`/data/linku?lang=${lang}`).then(res =>
+			res.json()
+		)) as Record<string, LocalizedWord>;
+
+		for (const word of Object.values(words)) {
+			data.words[word.id].translations[lang] = word.translations[lang];
+		}
+
+		fetchedTranslations.push(lang);
+		fetchedTranslations = fetchedTranslations;
+
+		$language = lang;
+	}
+
+	onMount(() => {
+		setTranslation($language);
+	});
 </script>
 
 <svelte:head>
@@ -210,7 +246,7 @@
 		options={[
 			{ label: 'Normal View', value: 'normal' },
 			{ label: 'Detailed View', value: 'detailed' },
-			{ label: 'Compact View', value: 'compact' },
+			{ label: 'List View', value: 'compact' },
 			{ label: 'Glyph View', value: 'glyphs' }
 		]}
 		bind:value={$viewMode}
@@ -228,10 +264,19 @@
 
 	<Select
 		name="Language"
-		options={sortLanguages(data.languages).map(([code, language]) => {
-			return { label: language.name_endonym, value: code };
+		options={sortLanguages(data.languages).map(language => {
+			return {
+				label: language.name.endonym ?? language.name.en,
+				value: language.id
+			};
 		})}
-		bind:value={$language}
+		value={$language}
+		on:change={e => {
+			// @ts-expect-error The type of e is only Event, not ChangeEvent
+			const lang = e.target.value;
+
+			setTranslation(lang);
+		}}
 	/>
 
 	<Select
@@ -239,6 +284,7 @@
 		options={[
 			{ label: 'sitelen pona', value: 'pona' },
 			{ label: 'sitelen sitelen', value: 'sitelen' },
+			{ label: 'sitelen jelo', value: 'jelo' },
 			{ label: 'sitelen Emosi', value: 'emosi' }
 		]}
 		bind:value={$sitelenMode}
@@ -248,13 +294,14 @@
 {#if missingDefinitions}
 	<p class="mt-2">
 		<span class="font-bold">o sona a!</span>
-		kon pi
-		{data.languages[$language].name_toki_pona}
-		li lon ala ale. nimi ni la, toki Inli li lon.
+		toki kon ale pi
+		{data.languages[$language].name.tok ??
+			data.languages[$language].name.en}
+		li lon ala. nimi ni la, toki Inli li lon.
 	</p>
 	<p>
 		<span class="font-bold">Warning!</span>
-		Some words are missing {data.languages[$language].name_english} translations.
+		Some words are missing {data.languages[$language].name.en} translations.
 		These are replaced with English translations.
 	</p>
 {/if}
@@ -265,63 +312,19 @@
 
 <Search placeholder="o alasa..." bind:value={search} />
 
-{#if $viewMode === 'compact'}
-	<div class="mt-4 grid">
-		{#each filteredWords as word (word.id)}
-			<WordEntry
-				{word}
-				on:click={() => {
-					if (selectedWord?.id === word.id) selectedWord = null;
-					else selectedWord = word;
-				}}
-			/>
-		{/each}
-	</div>
-{:else if $viewMode === 'glyphs'}
-	<div class="mt-4 grid gap-4 grid-cols-fill-24">
-		{#each filteredWords as word (word.id)}
-			<GlyphEntry
-				{word}
-				on:click={() => {
-					if (selectedWord?.id === word.id) selectedWord = null;
-					else selectedWord = word;
-				}}
-			/>
-		{/each}
-	</div>
-{:else if $viewMode === 'detailed'}
-	<div class="mt-4 grid gap-4 grid-cols-fill-96">
-		{#each filteredWords as word (word.id)}
-			<DetailedWordEntry
-				{word}
-				on:click={() => {
-					if (selectedWord?.id === word.id) selectedWord = null;
-					else selectedWord = word;
-				}}
-			/>
-		{/each}
-	</div>
-{:else}
-	<div class="mt-4 grid gap-4 grid-cols-fill-80">
-		{#each filteredWords as word (word.id)}
-			<WordSpace
-				{word}
-				on:click={() => {
-					if (selectedWord?.id === word.id) selectedWord = null;
-					else selectedWord = word;
-				}}
-			/>
-		{/each}
-	</div>
-{/if}
+<WordView
+	words={filteredWords}
+	on:select={e => {
+		if (selectedWord?.id === e.detail.id) selectedWord = null;
+		else selectedWord = e.detail;
+	}}
+/>
 
-{#if !filteredWords.length}
-	<p>wile sina la, nimi li lon ala!</p>
-	<p class="faded">Your query didn't match any words!</p>
-{/if}
+
 
 <WordDetails
 	bind:word={selectedWord}
+	lipamanka={data.lipamanka[selectedWord?.id ?? '']}
 	on:refer={e => {
 		if (!filteredWords.some(word => word.word === e.detail)) {
 			search = '';
@@ -330,11 +333,11 @@
 				...category,
 				shown:
 					category.shown ||
-					category.name === data.data[e.detail].usage_category
+					category.name === data.words[e.detail].usage_category
 			}));
 			books = books.map(book => ({
 				...book,
-				shown: book.shown || book.name === data.data[e.detail].book
+				shown: book.shown || book.name === data.words[e.detail].book
 			}));
 		}
 	}}

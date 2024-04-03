@@ -1,19 +1,23 @@
 <script lang="ts">
-	export let content: string;
-	export let length: number;
+	import { onMount } from 'svelte';
 
-	$: collapsible = content.length > length;
+	let span: HTMLSpanElement;
+	let expandable = false;
+
+	onMount(() => {
+		expandable = span.scrollHeight > span.clientHeight;
+	});
 
 	let expanded = false;
-
-	$: shownContent = expanded ? content : content.slice(0, length);
 
 	let button: HTMLButtonElement;
 </script>
 
-{shownContent}
+<span class:line-clamp-2={!expanded} bind:this={span}>
+	<slot />
+</span>
 
-{#if collapsible}
+{#if expandable}
 	<button
 		class="faded underline underline-offset-2 decoration-transparent hv:decoration-current outline-none outline-offset-4 focus-visible:outline-gray-500 rounded transition"
 		class:block={expanded}
@@ -26,7 +30,7 @@
 		{#if expanded}
 			less
 		{:else}
-			&hellip;more
+			more
 		{/if}
 	</button>
 {/if}

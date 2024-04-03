@@ -1,8 +1,9 @@
-import { browser } from '$app/environment';
 import { writable, type Writable } from 'svelte/store';
 
-import type { UsageCategory } from './types';
+import { browser } from '$app/environment';
+
 import { usageCategories } from './util';
+import type { UsageCategory } from '@kulupu-linku/sona/utils';
 
 function savedWritable<T>(
 	key: string,
@@ -55,25 +56,16 @@ if (browser) {
 
 export const categories = savedWritable(
 	'categories',
-	usageCategories.map(category => ({
-		name: category as UsageCategory,
-		shown: ['core', 'widespread'].includes(category)
-	})),
-	value => value.some(({ shown }) => shown)
+	usageCategories
+		.filter(u => u !== 'sandbox')
+		.map(category => ({
+			name: category as UsageCategory,
+			shown: ['core', 'common'].includes(category)
+		})),
+	value =>
+		value.some(({ shown }) => shown) &&
+		value.length === usageCategories.length - 1
 );
-
-categories.subscribe($categories => {
-	if ($categories.length !== usageCategories.length) {
-		for (const category of usageCategories) {
-			if (!$categories.some(({ name }) => name === category)) {
-				$categories.push({
-					name: category as UsageCategory,
-					shown: false
-				});
-			}
-		}
-	}
-});
 
 export const sortingMethod = savedWritable<
 	'alphabetical' | 'recognition' | 'combined'
@@ -81,7 +73,7 @@ export const sortingMethod = savedWritable<
 
 export const language = savedWritable('language', 'en');
 
-export const sitelenMode = savedWritable<'pona' | 'sitelen' | 'emosi'>(
+export const sitelenMode = savedWritable<'pona' | 'sitelen' | 'jelo' | 'emosi'>(
 	'sitelenMode',
 	'pona'
 );

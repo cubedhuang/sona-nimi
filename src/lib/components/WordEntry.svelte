@@ -1,36 +1,49 @@
 <script lang="ts">
-	import type { Word } from '$lib/types';
+	import type { LocalizedWord } from '@kulupu-linku/sona';
+
 	import {
 		categoryTextColors,
-		getWordDefinition,
-		getWordDisplayRecognition
+		getWordDisplayRecognition,
+		getWordTranslation
 	} from '$lib/util';
 	import { language, sitelenMode } from '$lib/stores';
 
-	export let word: Word;
+	export let word: LocalizedWord;
+
+	$: translation = getWordTranslation(word, $language);
 </script>
 
 <p class="flex gap-1" id={word.id}>
 	{#if $sitelenMode === 'pona'}
-		{#if word.sitelen_pona}
+		{#if word.representations?.ligatures?.length}
 			<span class="shrink-0 font-pona text-xl"
-				>{word.sitelen_pona?.split(' ', 1)[0]}</span
+				>{word.representations.ligatures[0]}</span
 			>
 		{:else}
 			<span class="shrink-0 w-5" />
 		{/if}
 	{:else if $sitelenMode === 'sitelen'}
-		{#if word.sitelen_sitelen}
+		{#if word.representations?.sitelen_sitelen}
 			<img
-				src={word.sitelen_sitelen}
+				src={word.representations.sitelen_sitelen}
 				alt="{word.word} sitelen sitelen"
 				class="shrink-0 my-0.5 w-6 h-6 dark:invert"
 			/>
 		{:else}
 			<span class="shrink-0 w-6" />
 		{/if}
-	{:else if word.sitelen_emosi}
-		<span class="shrink-0 text-xl w-6">{word.sitelen_emosi}</span>
+	{:else if $sitelenMode === 'jelo'}
+		{#if word.representations?.sitelen_jelo}
+			<span class="shrink-0 text-xl w-6 text-right">
+				{word.representations.sitelen_jelo[0]}
+			</span>
+		{:else}
+			<span class="shrink-0 w-6" />
+		{/if}
+	{:else if word.representations?.sitelen_emosi}
+		<span class="shrink-0 text-xl w-6 text-right">
+			{word.representations.sitelen_emosi}
+		</span>
 	{:else}
 		<span class="shrink-0 w-6" />
 	{/if}
@@ -50,6 +63,6 @@
 			{/if}
 		</span>
 
-		{getWordDefinition(word, $language)}
+		{translation.definition}
 	</span>
 </p>

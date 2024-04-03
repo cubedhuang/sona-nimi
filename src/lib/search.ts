@@ -1,66 +1,76 @@
+import type { LocalizedWord } from '@kulupu-linku/sona';
 import { distance } from 'fastest-levenshtein';
 
-import type { Word } from './types';
-import { getWordDefinition, normalize } from './util';
+import { getWordTranslation, normalize } from './util';
 
-export function filter(words: Word[], search: string, $language: string) {
+export function filter(
+	words: LocalizedWord[],
+	search: string,
+	$language: string
+) {
 	search = normalize(search);
 
 	if (!search) {
 		return words;
 	}
 
-	function scoreMatch(content: string | undefined) {
+	function scoreMatch(content: string | string[] | undefined) {
 		if (!content) return 0;
 
-		const includes = content.includes(search);
-		const dist = distance(search, content);
-		const maxDist = content.length / 3;
+		if (Array.isArray(content)) {
+			let score = 0;
 
-		if (!includes && dist > maxDist) return 0;
+			for (const item of content) {
+				score += scoreMatch(item);
+			}
 
-		let score = 1;
-
-		if (dist <= maxDist) {
-			score += ((maxDist - dist) / maxDist) * 2;
+			return score / content.length;
 		}
+
+		const normalized = normalize(content);
+
+		const includes = normalized.includes(search);
 
 		if (includes) {
-			score += 1;
+			return content === search ? 10 : 1;
 		}
 
-		return score;
+		const distanceScore =
+			distance(normalized, search) / (normalized.length + 1);
+
+		if (distanceScore > 0.3) {
+			return 0;
+		}
+
+		return 1 - distanceScore;
 	}
 
-	function searchFilter(word: Word) {
-		if (!search) return true;
+	function scoreSearch(word: LocalizedWord) {
+		const translation = getWordTranslation(word, $language);
 
-		return (
-			scoreMatch(word.word) ||
-			scoreMatch(getWordDefinition(word, $language)) ||
-			scoreMatch(word.ku_data) ||
-			scoreMatch(word.etymology) ||
-			scoreMatch(word.source_language) ||
-			scoreMatch(word.creator) ||
-			scoreMatch(word.commentary)
-		);
-	}
+		let score =
+			scoreMatch(word.word) * 500 +
+			scoreMatch(translation.definition) * 50 +
+			scoreMatch(word.source_language) * 20 +
+			scoreMatch(word.creator) * 20;
 
-	function scoreSearch(word: Word) {
-		let score = 0;
+		if (word.ku_data) {
+			score += scoreMatch(Object.keys(word.ku_data)) * 10;
+		}
 
-		score += scoreMatch(word.word) * 100;
-		score += scoreMatch(getWordDefinition(word, $language)) * 50;
-		score += scoreMatch(word.ku_data) * 40;
-		score += scoreMatch(word.etymology) * 30;
-		score += scoreMatch(word.source_language) * 20;
-		score += scoreMatch(word.creator) * 10;
-		score += scoreMatch(word.commentary) * 5;
+		if (translation.etymology) {
+			for (const etymology of translation.etymology) {
+				score += scoreMatch(etymology.language) * 10;
+				score += scoreMatch(etymology.definition) * 10;
+			}
+		}
 
 		return score;
 	}
 
 	return words
-		.filter(searchFilter)
-		.sort((a, b) => scoreSearch(b) - scoreSearch(a));
+		.map(word => [word, scoreSearch(word)] as const)
+		.filter(([, score]) => score > 0)
+		.sort((a, b) => b[1] - a[1])
+		.map(([word]) => word);
 }

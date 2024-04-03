@@ -1,10 +1,11 @@
 <script lang="ts">
-	import type { Word } from '$lib/types';
 	import type { Action } from 'svelte/action';
 
 	import ExternalLink from './icons/ExternalLink.svelte';
+	import type { LocalizedWord } from '@kulupu-linku/sona';
 
-	export let word: Word;
+	export let word: LocalizedWord;
+	export let content: string;
 
 	$: href =
 		word.word === 'mije' || word.word === 'meli'
@@ -53,7 +54,7 @@
 
 <div class="lipamanka text-sm grid" use:fixLinks>
 	<!-- eslint-disable-next-line svelte/no-at-html-tags -->
-	{@html word.lipamanka}
+	{@html content}
 </div>
 
 <style lang="postcss">
