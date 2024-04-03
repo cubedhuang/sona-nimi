@@ -102,6 +102,9 @@ export function getShortWordEtymologies(
 
 export function getWordRecognition(word: LocalizedWord) {
 	const dates = Object.keys(word.usage).sort();
+
+	if (dates.length === 0) return -1;
+
 	const latest = dates[dates.length - 1];
 
 	return Number(word.usage[latest]);

@@ -241,7 +241,7 @@
 				<span class="faded">usage</span>
 			</span>
 
-			{#if word.usage}
+			{#if Object.keys(word.usage).length}
 				<button
 					class="icon-interactable"
 					on:click={() => (showHistory = !showHistory)}
@@ -294,7 +294,7 @@
 		<p class="mt-1">
 			<span class="faded">found in</span>
 			<b>
-				{word.book}
+				{word.book === 'none' ? 'no book' : word.book}
 			</b>
 		</p>
 

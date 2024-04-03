@@ -1,14 +1,11 @@
 <script lang="ts">
 	import type { LocalizedWord } from '@kulupu-linku/sona';
 
-	import {
-		categoryColors,
-		getWordDisplayRecognition,
-		getWordTranslation
-	} from '$lib/util';
+	import { categoryColors, getWordTranslation } from '$lib/util';
 	import { language, sitelenMode } from '$lib/stores';
 
 	import Space from '$lib/components/Space.svelte';
+	import WordUsageSummary from './WordUsageSummary.svelte';
 
 	export let word: LocalizedWord;
 
@@ -21,14 +18,7 @@
 			<h2 class="text-xl">{word.word}</h2>
 
 			<p class="faded">
-				{word.usage_category} &middot;
-				{getWordDisplayRecognition(word)}
-				{#if word.book !== 'none'}
-					&middot; {word.book}
-				{/if}
-				{#if word.coined_year}
-					&middot; {word.coined_year}
-				{/if}
+				<WordUsageSummary {word} />
 			</p>
 
 			<p class="line-clamp-3">

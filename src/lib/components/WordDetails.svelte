@@ -6,7 +6,6 @@
 	import {
 		categoryColors,
 		categoryTextColors,
-		getWordDisplayRecognition,
 		getWordLink,
 		getWordTranslation
 	} from '$lib/util';
@@ -19,6 +18,7 @@
 	import LipamankaData from '$lib/components/LipamankaData.svelte';
 	import Wikipedia from './icons/Wikipedia.svelte';
 	import WordEtymology from './WordEtymology.svelte';
+	import WordUsageSummary from './WordUsageSummary.svelte';
 	import XMark from '$lib/components/icons/XMark.svelte';
 
 	const dispatch = createEventDispatcher<{
@@ -98,14 +98,7 @@
 	</div>
 
 	<p class="faded">
-		{word.usage_category} &middot;
-		{getWordDisplayRecognition(word)}
-		{#if word.book !== 'none'}
-			&middot; {word.book}
-		{/if}
-		{#if word.coined_year}
-			&middot; {word.coined_year}
-		{/if}
+		<WordUsageSummary {word} />
 	</p>
 
 	{#if word.usage_category === 'obscure' || word.usage_category === 'sandbox'}
