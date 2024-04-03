@@ -1,47 +1,35 @@
 /// <reference lib="webworker" />
+/// <reference types="@sveltejs/kit" />
 
 import { build, files, version } from '$service-worker';
 
-const worker = self as unknown as ServiceWorkerGlobalScope;
+declare const self: ServiceWorkerGlobalScope;
 
 const CACHE = `cache-${version}`;
 const ASSETS = [...build, ...files];
 
-worker.addEventListener('install', event => {
-	async function cacheFiles() {
+self.addEventListener('install', event => {
+	async function addFilesToCache() {
 		const cache = await caches.open(CACHE);
 		await cache.addAll(ASSETS);
-
-		return worker.skipWaiting();
 	}
 
-	event.waitUntil(cacheFiles());
+	event.waitUntil(addFilesToCache());
 });
 
-worker.addEventListener('activate', event => {
-	async function cacheFiles() {
-		// Delete old caches
+self.addEventListener('activate', event => {
+	async function deleteOldCaches() {
 		const keys = await caches.keys();
-		await Promise.all(
-			keys.filter(key => key !== CACHE).map(key => caches.delete(key))
-		);
 
-		// If files are not cached, add them to the cache
-		const cache = await caches.open(CACHE);
-		const cached = await cache.keys();
-		const cachedUrls = cached.map(request => request.url);
-		const expectedUrls = ASSETS.map(
-			url => new URL(url, worker.location.href).href
-		);
-		const expected = expectedUrls.filter(url => !cachedUrls.includes(url));
+		const old = keys.filter(key => key !== CACHE);
 
-		await cache.addAll(expected);
+		await Promise.all(old.map(key => caches.delete(key)));
 	}
 
-	event.waitUntil(cacheFiles());
+	event.waitUntil(deleteOldCaches());
 });
 
-worker.addEventListener('fetch', event => {
+self.addEventListener('fetch', event => {
 	if (event.request.method !== 'GET') return;
 
 	async function respond() {
@@ -49,21 +37,35 @@ worker.addEventListener('fetch', event => {
 		const cache = await caches.open(CACHE);
 
 		if (ASSETS.includes(url.pathname)) {
-			return cache.match(event.request);
+			const response = await cache.match(event.request);
+
+			if (response) {
+				return response;
+			}
 		}
 
 		try {
 			const response = await fetch(event.request);
+
+			if (!(response instanceof Response)) {
+				throw new Error('bad response');
+			}
 
 			if (response.status === 200) {
 				cache.put(event.request, response.clone());
 			}
 
 			return response;
-		} catch {
-			return cache.match(event.request);
+		} catch (err) {
+			const response = await cache.match(event.request);
+
+			if (response) {
+				return response;
+			}
+
+			throw err;
 		}
 	}
 
-	event.respondWith(respond() as Promise<Response>);
+	event.respondWith(respond());
 });
