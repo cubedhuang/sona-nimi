@@ -127,7 +127,11 @@
 			</svg>
 		</svelte:element>
 
-		<a href="/" class="p-2 interactable" aria-label="home">
+		<a
+			href={word.usage_category === 'sandbox' ? '/sandbox' : '/'}
+			class="p-2 interactable"
+			aria-label="home"
+		>
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
 				fill="none"
