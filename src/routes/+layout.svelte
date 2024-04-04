@@ -127,8 +127,8 @@
 
 			{#if opened}
 				<div
-					transition:fly={{ y: 12, duration: 300 }}
-					class="absolute top-full mt-2 flex flex-col bg-white border border-gray-200 divide-y divide-gray-200 rounded-lg shadow-lg
+					transition:fly={{ y: 4, duration: 300 }}
+					class="z-10 absolute top-full mt-2 flex flex-col bg-white border border-gray-200 divide-y divide-gray-200 rounded-lg shadow-lg
 						dark:bg-black dark:border-gray-800 dark:divide-gray-800"
 				>
 					{#each routes as route}
