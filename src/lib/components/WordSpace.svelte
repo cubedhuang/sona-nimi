@@ -24,6 +24,10 @@
 			<p class="line-clamp-3">
 				{translation.definition}
 			</p>
+
+			{#if word.usage_category === 'sandbox' && word.creator.length}
+				<p class="mt-1 faded italic">by {word.creator.join(', ')}</p>
+			{/if}
 		</div>
 
 		{#if $sitelenMode === 'pona'}

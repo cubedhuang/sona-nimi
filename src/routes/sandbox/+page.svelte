@@ -44,10 +44,16 @@
 <h1 class="text-4xl">sandbox</h1>
 
 <p class="mt-2 leading-relaxed">
-	Explore Linku's <b>sandbox</b>. These words are not notable enough to be
-	added to the main dictionary, but are documented here for several reasons. A
-	word may have been part of the main dictionary before but fallen out of use,
-	or be too new to have been surveyed before.
+	Explore Linku's <b>sandbox</b>, a collection of proposed words which are
+	<i>not actively in use</i>. Some of these words are of value to the
+	community as pieces of culture, essentially memes. Some reflect early drafts
+	of Toki Pona. Many are one-off jokes, created and abandoned immediately.
+</p>
+
+<p class="my-4 p-4 leading-relaxed alert">
+	<span class="font-bold">Warning!</span>
+	If you are a learner, <em>stick to the main dictionary</em>. These words
+	will not help you speak the language.
 </p>
 
 <div class="mt-4 flex flex-wrap gap-1 sm:gap-x-2 sm:gap-y-1">
