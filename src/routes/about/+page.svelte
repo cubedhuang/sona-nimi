@@ -92,7 +92,7 @@
 
 		<p>
 			poka ale la, sona pi lipu ni li sama sona Linku. taso, mi wan e sona
-			Linku e sona lipamanka la jan li ken lukin sona lipamanka lon lipu
+			Linku e sona lipamanka la jan li ken lukin e sona lipamanka lon lipu
 			ni.
 		</p>
 	{:else}
