@@ -38,9 +38,9 @@
 			<Link href="https://github.com/cubedhuang/">ilo Tani</Link> li pali e
 			ni. jan
 			<Link href="https://github.com/woflydev/">woflydev</Link> li ilo PWA
-			e lipu ni. sina wile ante pona e lipu ni la, o kepeken
+			e lipu ni. sina wile ante pona e lipu ni la, o kepeken ilo
 			<Link href="https://github.com/cubedhuang/sona-nimi"
-				>ilo GitHub</Link
+				>GitHub</Link
 			>!
 		</p>
 
