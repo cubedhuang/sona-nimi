@@ -22,7 +22,7 @@
 
 {#if value}
 	<div
-		class="z-20 fixed top-0 bottom-0 right-0 w-full"
+		class="z-20 fixed bottom-0 right-0 w-full md:top-0 md:w-0"
 		transition:fly|local={{ y: 16, duration: 300 }}
 	>
 		{#key key(value)}
