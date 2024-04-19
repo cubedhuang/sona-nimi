@@ -9,7 +9,7 @@ module.exports = {
 		extend: {
 			fontFamily: {
 				sans: ['"Inter"', ...defaultTheme.fontFamily.sans],
-				pona: ['"Fairfax Pona HD"', ...defaultTheme.fontFamily.sans],
+				pona: ['"ssk"', ...defaultTheme.fontFamily.sans],
 				display: ['"SFRounded"', ...defaultTheme.fontFamily.sans]
 			}
 		}
