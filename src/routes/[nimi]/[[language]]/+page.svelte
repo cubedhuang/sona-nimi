@@ -459,8 +459,10 @@
 				</video>
 			</p>
 			<p class="mt-2">
-				<Link href={data.lukaPona.video.gif}>gif</Link>
-				&middot;
+				{#if data.lukaPona.video.gif}
+					<Link href={data.lukaPona.video.gif}>gif</Link>
+					&middot;
+				{/if}
 				<Link href={data.lukaPona.video.mp4}>mp4</Link>
 			</p>
 		{/if}
