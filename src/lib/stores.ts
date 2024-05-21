@@ -71,7 +71,11 @@ export const sortingMethod = savedWritable<
 	'alphabetical' | 'recognition' | 'combined'
 >('sortingMethod', 'combined');
 
-export const language = savedWritable('language', 'en');
+export const language = savedWritable(
+	'language',
+	'en',
+	lang => lang !== 'eng' // removes Definition Rework language
+);
 
 export const sitelenMode = savedWritable<'pona' | 'sitelen' | 'jelo' | 'emosi'>(
 	'sitelenMode',
