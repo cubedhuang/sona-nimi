@@ -32,7 +32,7 @@
 
 {#if word.creator.length}
 	<p class="italic">
-		by
+		coined by
 		{word.creator.join(', ')}
 	</p>
 {/if}
