@@ -5,7 +5,7 @@ import { browser } from '$app/environment';
 import { usageCategories } from './util';
 import type { UsageCategory } from '@kulupu-linku/sona/utils';
 
-function savedWritable<T>(
+function persisted<T>(
 	key: string,
 	initialValue: T,
 	validator?: (value: T) => boolean
@@ -14,8 +14,17 @@ function savedWritable<T>(
 
 	if (browser) {
 		const json = localStorage.getItem(key);
-		if (json !== null && (!validator || validator(JSON.parse(json)))) {
-			set(JSON.parse(json));
+
+		if (json !== null) {
+			const parsed = JSON.parse(json);
+
+			if (key === 'darkMode') {
+				console.log(validator?.(parsed));
+			}
+
+			if (!validator || validator(parsed)) {
+				set(parsed);
+			}
 		}
 	}
 
@@ -31,21 +40,28 @@ function savedWritable<T>(
 	};
 }
 
-export const darkMode = savedWritable(
-	'darkMode',
-	browser ? window.matchMedia('(prefers-color-scheme: dark)').matches : true
+export const theme = persisted<'system' | 'dark' | 'light'>(
+	'theme',
+	'system',
+	value => ['system', 'dark', 'light'].includes(value)
 );
 
 if (browser) {
-	darkMode.subscribe(value => {
-		localStorage.setItem('darkMode', value.toString());
+	theme.subscribe(value => {
+		const isDark =
+			value === 'dark' ||
+			(value === 'system' &&
+				window.matchMedia('(prefers-color-scheme: dark)').matches);
 
-		if (document.documentElement.classList.contains('dark') === value) {
+		const isCurrentlyDark =
+			document.documentElement.classList.contains('dark');
+
+		if (isDark === isCurrentlyDark) {
 			return;
 		}
 
 		document.documentElement.classList.add('no-transition');
-		document.documentElement.classList.toggle('dark', value);
+		document.documentElement.classList.toggle('dark', isDark);
 
 		// Force a reflow to make sure the transition is triggered
 		document.documentElement.offsetWidth;
@@ -54,7 +70,7 @@ if (browser) {
 	});
 }
 
-export const categories = savedWritable(
+export const categories = persisted(
 	'categories',
 	usageCategories
 		.filter(u => u !== 'sandbox')
@@ -67,28 +83,26 @@ export const categories = savedWritable(
 		value.length === usageCategories.length - 1
 );
 
-export const sortingMethod = savedWritable<
+export const sortingMethod = persisted<
 	'alphabetical' | 'recognition' | 'combined'
 >('sortingMethod', 'combined');
 
-export const language = savedWritable(
+export const language = persisted(
 	'language',
 	'en',
 	lang => lang !== 'eng' // removes Definition Rework language
 );
 
-export const sitelenMode = savedWritable<'pona' | 'sitelen' | 'jelo' | 'emosi'>(
+export const sitelenMode = persisted<'pona' | 'sitelen' | 'jelo' | 'emosi'>(
 	'sitelenMode',
 	'pona'
 );
 
-export const viewMode = savedWritable<
-	'normal' | 'detailed' | 'compact' | 'glyphs'
->('viewMode', 'normal');
-
-export const screenWidth = savedWritable<'full' | 'large'>(
-	'screenWidth',
-	'large'
+export const viewMode = persisted<'normal' | 'detailed' | 'compact' | 'glyphs'>(
+	'viewMode',
+	'normal'
 );
 
-export const autoplay = savedWritable('autoplay', false);
+export const screenWidth = persisted<'full' | 'large'>('screenWidth', 'large');
+
+export const autoplay = persisted('autoplay', false);

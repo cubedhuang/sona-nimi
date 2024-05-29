@@ -10,7 +10,9 @@
 	import { dev } from '$app/environment';
 	import { afterNavigate, beforeNavigate } from '$app/navigation';
 
-	import { darkMode, screenWidth } from '$lib/stores';
+	import { screenWidth } from '$lib/stores';
+
+	import ThemeSelector from './ThemeSelector.svelte';
 
 	const routes = [
 		{ name: 'dictionary', href: '/' },
@@ -19,11 +21,6 @@
 		{ name: 'sandbox', href: '/sandbox' },
 		{ name: 'about', href: '/about' }
 	];
-
-	const commonClasses =
-		'p-2 rounded-lg sm:rounded-t-none border sm:border-t-0 border-gray-200 dark:border-gray-800 transition-colors';
-	const hoverableClasses =
-		'outline-none focus-visible:outline-gray-500 hv:border-gray-400 dark:hv:border-gray-700';
 
 	let opened = false;
 
@@ -88,14 +85,11 @@
 		<div class="hidden sm:flex gap-2">
 			{#each routes as route}
 				{#if $page.url.pathname === route.href}
-					<span class="{commonClasses} faded cursor-default">
+					<span class="nav-item faded cursor-default">
 						{route.name}
 					</span>
 				{:else}
-					<a
-						href={route.href}
-						class="{commonClasses} {hoverableClasses}"
-					>
+					<a href={route.href} class="nav-item-interactive">
 						{route.name}
 					</a>
 				{/if}
@@ -108,7 +102,7 @@
 					opened = !opened;
 				}}
 				on:touchstart|passive|stopPropagation
-				class="{commonClasses} {hoverableClasses} cursor-pointer"
+				class="nav-item-interactive cursor-pointer"
 				aria-label="open navigation"
 			>
 				<svg
@@ -158,7 +152,7 @@
 						deferredPrompt.prompt();
 					}}
 					transition:fly={{ y: -4, duration: 300 }}
-					class="{commonClasses} {hoverableClasses}"
+					class="nav-item-interactive"
 					aria-label="install as app"
 				>
 					<svg
@@ -179,7 +173,7 @@
 			{/if}
 
 			<button
-				class="max-xl:hidden {commonClasses} {hoverableClasses} cursor-pointer"
+				class="max-xl:hidden nav-item-interactive cursor-pointer"
 				on:click={() => {
 					if ($screenWidth === 'full') {
 						$screenWidth = 'large';
@@ -224,45 +218,7 @@
 				{/if}
 			</button>
 
-			<button
-				class="{commonClasses} {hoverableClasses} cursor-pointer"
-				on:click={() => ($darkMode = !$darkMode)}
-				role="checkbox"
-				aria-checked={$darkMode}
-				aria-label="toggle dark mode"
-			>
-				{#if $darkMode}
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						fill="none"
-						viewBox="0 0 24 24"
-						stroke-width="1.5"
-						stroke="currentColor"
-						class="w-6 h-6"
-					>
-						<path
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"
-						/>
-					</svg>
-				{:else}
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						fill="none"
-						viewBox="0 0 24 24"
-						stroke-width="1.5"
-						stroke="currentColor"
-						class="w-6 h-6"
-					>
-						<path
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"
-						/>
-					</svg>
-				{/if}
-			</button>
+			<ThemeSelector />
 		</div>
 	</nav>
 

@@ -39,16 +39,16 @@
 		/>
 
 		<script>
-			const darkModeValue =
-				localStorage.getItem('darkMode') ||
-				window
-					.matchMedia('(prefers-color-scheme: dark)')
-					.matches.toString();
+			{
+				const themeValue = JSON.parse(localStorage.getItem('theme'));
+				const isDark =
+					themeValue === 'dark' ||
+					((themeValue === null || themeValue === 'system') &&
+						window.matchMedia('(prefers-color-scheme: dark)')
+							.matches);
 
-			document.documentElement.classList.toggle(
-				'dark',
-				darkModeValue === 'true'
-			);
+				document.documentElement.classList.toggle('dark', isDark);
+			}
 		</script>
 
 		%sveltekit.head%

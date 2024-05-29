@@ -168,4 +168,12 @@
 			underline underline-offset-4 decoration-transparent hv:decoration-current
 			dark:text-blue-400 dark:hv:text-blue-500;
 	}
+
+	.nav-item {
+		@apply p-2 rounded-lg sm:rounded-t-none border sm:border-t-0 border-gray-200 dark:border-gray-800 transition-colors;
+	}
+
+	.nav-item-interactive {
+		@apply nav-item outline-none focus-visible:outline-gray-500 hv:border-gray-400 dark:hv:border-gray-700;
+	}
 }
