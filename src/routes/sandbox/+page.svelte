@@ -20,10 +20,10 @@
 	let search = '';
 	let selectedWord: LocalizedWord | null = null;
 
-	let sortingMethod: 'alphabetical' | 'recognition' = 'alphabetical';
+	let sortingMethod: 'alphabetical' | 'recognition' = 'recognition';
 
 	$: genericSorter =
-		sortingMethod === 'alphabetical' ? azWordSort : recognitionWordSort;
+		sortingMethod === 'recognition' ? azWordSort : recognitionWordSort;
 
 	$: sortedWords = words.sort(genericSorter);
 	$: filteredWords = filter(sortedWords, search, $language);
@@ -79,8 +79,8 @@
 	<Select
 		name="Sorting Method"
 		options={[
-			{ label: 'Sort Alphabetically', value: 'alphabetical' },
-			{ label: 'Sort by Usage', value: 'recognition' }
+			{ label: 'Sort by Usage', value: 'recognition' },
+			{ label: 'Sort Alphabetically', value: 'alphabetical' }
 		]}
 		bind:value={sortingMethod}
 	/>
