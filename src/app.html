@@ -39,8 +39,17 @@
 		/>
 
 		<script>
+			// @ts-check
 			{
-				const themeValue = JSON.parse(localStorage.getItem('theme'));
+				/** @type {string | null} */
+				let themeValue;
+				try {
+					let value = localStorage.getItem('theme');
+					themeValue = value ? JSON.parse(value) : null;
+				} catch {
+					themeValue = null;
+				}
+
 				const isDark =
 					themeValue === 'dark' ||
 					((themeValue === null || themeValue === 'system') &&
