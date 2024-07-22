@@ -118,7 +118,8 @@
 	{#if word.deprecated}
 		<p class="my-4 p-4 alert">
 			This word is
-			<b>deprecated by its creator</b>, and its use is discouraged.
+			<strong>deprecated by its creator</strong>, and its use is
+			discouraged.
 		</p>
 	{/if}
 

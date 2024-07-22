@@ -54,7 +54,7 @@
 <h1 class="text-4xl">luka pona</h1>
 
 <p class="mt-2">
-	Explore <b>Luka Pona</b> signs. Hover over a sign to view it!
+	Explore <strong>Luka Pona</strong> signs. Hover over a sign to view it!
 </p>
 
 <div class="mt-4 flex flex-wrap gap-1 sm:gap-x-2 sm:gap-y-1">

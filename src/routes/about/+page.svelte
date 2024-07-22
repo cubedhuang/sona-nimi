@@ -39,13 +39,11 @@
 			ni. jan
 			<Link href="https://github.com/woflydev/">woflydev</Link> li ilo PWA
 			e lipu ni. sina wile ante pona e lipu ni la, o kepeken ilo
-			<Link href="https://github.com/cubedhuang/sona-nimi"
-				>GitHub</Link
-			>!
+			<Link href="https://github.com/cubedhuang/sona-nimi">GitHub</Link>!
 		</p>
 
 		<p>
-			pali <b>nimi.li</b> la,
+			pali <strong>nimi.li</strong> la,
 		</p>
 
 		<ul>
@@ -109,8 +107,8 @@
 		</p>
 
 		<p>
-			<b>nimi.li</b> was built with data from many amazing projects. Thanks
-			to all of the following projects for their work:
+			<strong>nimi.li</strong> was built with data from many amazing projects.
+			Thanks to all of the following projects for their work:
 		</p>
 
 		<ul>

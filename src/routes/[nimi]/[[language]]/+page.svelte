@@ -154,11 +154,11 @@
 	<p class="mt-4">
 		{#if word.usage_category === 'sandbox'}
 			This word is in the
-			<b>sandbox</b>, so almost no speakers will understand it.
+			<strong>sandbox</strong>, so almost no speakers will understand it.
 		{:else}
 			This word is
-			<b class={categoryTextColors.obscure}>obscure</b>, so most speakers
-			will not understand it.
+			<strong class={categoryTextColors.obscure}>obscure</strong>, so most
+			speakers will not understand it.
 		{/if}
 	</p>
 {/if}
@@ -168,7 +168,8 @@
 		{#if word.deprecated}
 			<p class="mb-4 p-4 alert">
 				This word is
-				<b>deprecated by its creator</b>, and its use is discouraged.
+				<strong>deprecated by its creator</strong>, and its use is
+				discouraged.
 			</p>
 		{/if}
 
@@ -297,20 +298,20 @@
 
 		<p class="mt-1">
 			<span class="faded">found in</span>
-			<b>
+			<strong>
 				{word.book === 'none' ? 'no book' : word.book}
-			</b>
+			</strong>
 		</p>
 
 		{#if word.coined_era}
 			<p class="mt-1">
 				<span class="faded">coined</span>
-				<b>
+				<strong>
 					{word.coined_era}
 					{#if word.coined_year}
 						&middot; {word.coined_year}
 					{/if}
-				</b>
+				</strong>
 			</p>
 		{/if}
 
