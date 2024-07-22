@@ -16,13 +16,15 @@ function persisted<T>(
 		const json = localStorage.getItem(key);
 
 		if (json !== null) {
-			const parsed = JSON.parse(json);
+			let parsed: T | null;
 
-			if (key === 'darkMode') {
-				console.log(validator?.(parsed));
+			try {
+				parsed = JSON.parse(json);
+			} catch {
+				parsed = null;
 			}
 
-			if (!validator || validator(parsed)) {
+			if (parsed !== null && (!validator || validator(parsed))) {
 				set(parsed);
 			}
 		}
