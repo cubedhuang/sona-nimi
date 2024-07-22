@@ -16,7 +16,7 @@
 <p class="flex gap-1" id={word.id}>
 	{#if $sitelenMode === 'pona'}
 		{#if word.representations?.ligatures?.length}
-			<span class="shrink-0 font-pona text-xl"
+			<span class="shrink-0 font-pona text-xl w-5"
 				>{word.representations.ligatures[0]}</span
 			>
 		{:else}
