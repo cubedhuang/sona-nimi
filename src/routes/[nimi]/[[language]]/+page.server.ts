@@ -33,9 +33,7 @@ export async function load({ fetch, params, setHeaders }) {
 
 	if (!word) {
 		const sandbox = await client({ fetch })
-			.v1.sandbox.$get({
-				query: { lang: 'en' }
-			})
+			.v1.sandbox.$get({ query: {} })
 			.then(res => res.json());
 
 		const sandboxWords = Object.values(sandbox);
