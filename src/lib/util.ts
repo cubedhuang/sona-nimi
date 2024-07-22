@@ -44,11 +44,14 @@ export const categoryIndex = Object.fromEntries(
 ) as Record<UsageCategory, number>;
 
 export function azWordSort(a: LocalizedWord, b: LocalizedWord) {
-	return a.word.localeCompare(b.word);
+	return a.word.toLowerCase().localeCompare(b.word.toLowerCase());
 }
 
 export function recognitionWordSort(a: LocalizedWord, b: LocalizedWord) {
-	return getWordRecognition(b) - getWordRecognition(a);
+	const result = getWordRecognition(b) - getWordRecognition(a);
+
+	if (result === 0) return azWordSort(a, b);
+	return result;
 }
 
 export function combinedWordSort(a: LocalizedWord, b: LocalizedWord) {

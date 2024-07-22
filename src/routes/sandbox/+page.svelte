@@ -1,16 +1,17 @@
 <script lang="ts">
 	import type { LocalizedWord } from '@kulupu-linku/sona';
 
+	import { goto } from '$app/navigation';
 	import type { PageData } from './$types';
 
 	import { filter } from '$lib/search';
 	import { language, sitelenMode, viewMode } from '$lib/stores';
+	import { azWordSort, recognitionWordSort } from '$lib/util';
 
 	import Search from '$lib/components/Search.svelte';
 	import Select from '$lib/components/Select.svelte';
 	import WordDetails from '$lib/components/WordDetails.svelte';
 	import WordView from '$lib/components/WordView.svelte';
-	import { goto } from '$app/navigation';
 
 	export let data: PageData;
 
@@ -19,7 +20,13 @@
 	let search = '';
 	let selectedWord: LocalizedWord | null = null;
 
-	$: filteredWords = filter(words, search, $language);
+	let sortingMethod: 'alphabetical' | 'recognition' = 'alphabetical';
+
+	$: genericSorter =
+		sortingMethod === 'alphabetical' ? azWordSort : recognitionWordSort;
+
+	$: sortedWords = words.sort(genericSorter);
+	$: filteredWords = filter(sortedWords, search, $language);
 </script>
 
 <svelte:head>
@@ -67,6 +74,15 @@
 			{ label: 'Glyph View', value: 'glyphs' }
 		]}
 		bind:value={$viewMode}
+	/>
+
+	<Select
+		name="Sorting Method"
+		options={[
+			{ label: 'Sort Alphabetically', value: 'alphabetical' },
+			{ label: 'Sort by Usage', value: 'recognition' }
+		]}
+		bind:value={sortingMethod}
 	/>
 
 	<Select

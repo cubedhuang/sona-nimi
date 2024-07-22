@@ -22,7 +22,7 @@
 				{#if alt}
 					{alt}
 				{/if}
-				{#if definition !== sourceWord}
+				{#if definition && definition !== sourceWord}
 					&lsquo;{definition}&rsquo;
 				{/if}
 			{/if}
