@@ -3,7 +3,7 @@ import { client } from '@kulupu-linku/sona/client';
 export async function load({ fetch, setHeaders }) {
 	const [words, languages] = await Promise.all([
 		client({ fetch })
-			.v1.sandbox.$get({ query: { lang: 'en' } })
+			.v1.sandbox.$get({ query: {} })
 			.then(res => res.json()),
 		client({ fetch })
 			.v1.languages.$get()
