@@ -23,7 +23,7 @@
 	let sortingMethod: 'alphabetical' | 'recognition' = 'recognition';
 
 	$: genericSorter =
-		sortingMethod === 'recognition' ? azWordSort : recognitionWordSort;
+		sortingMethod === 'alphabetical' ? azWordSort : recognitionWordSort;
 
 	$: sortedWords = words.sort(genericSorter);
 	$: filteredWords = filter(sortedWords, search, $language);
