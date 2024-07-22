@@ -28,7 +28,7 @@ module.exports = {
 			matchUtilities(
 				{
 					'grid-cols-fill': size => ({
-						gridTemplateColumns: `repeat(auto-fill, minmax(${size}, 1fr))`
+						gridTemplateColumns: `repeat(auto-fill, minmax(minmax(${size}, 1fr)), 100%)`
 					})
 				},
 				{ values: theme('width') }

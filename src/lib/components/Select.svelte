@@ -18,7 +18,7 @@
 	<select
 		bind:value
 		on:change
-		class="appearance-none pl-2 py-0.5 interactable"
+		class="appearance-none pl-2 py-0.5 interactable text-ellipsis max-w-full"
 	>
 		{#each options as option}
 			<option value={option.value} selected={option.value === value}>

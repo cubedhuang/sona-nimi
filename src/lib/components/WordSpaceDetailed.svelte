@@ -64,7 +64,9 @@
 		</div>
 
 		<div class="w-full">
-			<h2 class="text-3xl group-hv:text-blue-500 transition">
+			<h2
+				class="text-3xl group-hv:text-blue-500 transition line-clamp-1 break-all"
+			>
 				{word.word}
 			</h2>
 
