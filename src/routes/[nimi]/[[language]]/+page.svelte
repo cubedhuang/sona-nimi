@@ -1,6 +1,4 @@
 <script lang="ts">
-	import { fly } from 'svelte/transition';
-
 	import type { LocalizedWord } from '@kulupu-linku/sona';
 
 	import { page } from '$app/stores';
@@ -8,6 +6,7 @@
 	import type { PageData } from './$types';
 
 	import { outclick } from '$lib/actions/outclick';
+	import { flyAndScale } from '$lib/transitions';
 	import {
 		categoryTextColors,
 		getUsageCategoryFromPercent,
@@ -267,65 +266,67 @@
 	<div class="box">
 		<h2 class="text-lg">usage</h2>
 
-		<p class="relative mt-2 flex items-center">
-			<span>
+		<div class="mt-2 flex items-center">
+			<p>
 				<b class={categoryTextColors[word.usage_category]}>
 					{word.usage_category} &middot; {getWordDisplayRecognition(
 						word
 					)}
 				</b>
 				<span class="text-muted">usage</span>
-			</span>
+			</p>
 
-			{#if Object.keys(word.usage).length}
-				<button
-					class="icon-interactable"
-					on:click={() => (showHistory = !showHistory)}
-				>
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						viewBox="0 0 20 20"
-						fill="currentColor"
-						class="h-5 w-5"
+			<div class="relative flex items-center">
+				{#if Object.keys(word.usage).length}
+					<button
+						class="icon-interactable"
+						on:click={() => (showHistory = !showHistory)}
 					>
-						<path
-							fill-rule="evenodd"
-							d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a.75.75 0 000 1.5h.253a.25.25 0 01.244.304l-.459 2.066A1.75 1.75 0 0010.747 15H11a.75.75 0 000-1.5h-.253a.25.25 0 01-.244-.304l.459-2.066A1.75 1.75 0 009.253 9H9z"
-							clip-rule="evenodd"
-						/>
-					</svg>
-				</button>
-			{/if}
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							viewBox="0 0 20 20"
+							fill="currentColor"
+							class="h-5 w-5"
+						>
+							<path
+								fill-rule="evenodd"
+								d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a.75.75 0 000 1.5h.253a.25.25 0 01.244.304l-.459 2.066A1.75 1.75 0 0010.747 15H11a.75.75 0 000-1.5h-.253a.25.25 0 01-.244-.304l.459-2.066A1.75 1.75 0 009.253 9H9z"
+								clip-rule="evenodd"
+							/>
+						</svg>
+					</button>
+				{/if}
 
-			{#if showHistory && word.usage}
-				{@const dates = Object.keys(word.usage).sort()}
+				{#if showHistory && word.usage}
+					{@const dates = Object.keys(word.usage).sort()}
 
-				<div
-					class="absolute left-0 top-full mt-1 flex gap-4 rounded-lg border bg-card p-4 shadow-lg"
-					transition:fly|local={{ duration: 150, y: -4 }}
-					use:outclick
-					on:outclick={() => {
-						// delay to make clicking on the button also close
-						requestAnimationFrame(() => {
-							showHistory = false;
-						});
-					}}
-				>
-					{#each dates as date (date)}
-						{@const usage = Number(word.usage[date])}
-						{@const usageCategory =
-							getUsageCategoryFromPercent(usage)}
+					<div
+						class="absolute left-1/2 top-full flex w-max -translate-x-1/2 gap-4 rounded-lg border bg-card p-4 shadow-lg"
+						transition:flyAndScale|local={{ y: -4 }}
+						use:outclick
+						on:outclick={() => {
+							// delay to make clicking on the button also close
+							requestAnimationFrame(() => {
+								showHistory = false;
+							});
+						}}
+					>
+						{#each dates as date (date)}
+							{@const usage = Number(word.usage[date])}
+							{@const usageCategory =
+								getUsageCategoryFromPercent(usage)}
 
-						<span class="flex flex-col">
-							<b class={categoryTextColors[usageCategory]}>
-								{usage}%
-							</b>
-							<span class="text-xs text-muted">{date}</span>
-						</span>
-					{/each}
-				</div>
-			{/if}
-		</p>
+							<span class="flex flex-col">
+								<b class={categoryTextColors[usageCategory]}>
+									{usage}%
+								</b>
+								<span class="text-xs text-muted">{date}</span>
+							</span>
+						{/each}
+					</div>
+				{/if}
+			</div>
+		</div>
 
 		<p class="mt-1">
 			<span class="text-muted">found in</span>
