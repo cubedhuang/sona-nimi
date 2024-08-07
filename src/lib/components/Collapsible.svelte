@@ -5,7 +5,7 @@
 	let expandable = false;
 
 	onMount(() => {
-		expandable = span.scrollHeight > span.clientHeight;
+		expandable = span.scrollHeight > span.clientHeight + 2;
 	});
 
 	let expanded = false;
