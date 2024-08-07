@@ -3,10 +3,15 @@
 
 	export let value: Font;
 	export let name: string;
+
+	$: selected = value === $font;
 </script>
 
 <button
-	class="interactable max-w-full px-4 py-1 transition-colors {value}"
+	class="interactable max-w-full px-4 py-1 transition-colors {value}
+		{selected
+		? 'ring-2 ring-secondary-foreground ring-offset-2 ring-offset-card'
+		: ''}"
 	on:click|stopPropagation
 	on:touchstart|passive|stopPropagation
 	on:click={() => {

@@ -85,7 +85,7 @@
 		<div class="hidden gap-2 sm:flex">
 			{#each routes as route}
 				{#if $page.url.pathname === route.href}
-					<span class="nav-item cursor-default text-muted-foreground">
+					<span class="nav-item cursor-default text-muted">
 						{route.name}
 					</span>
 				{:else}
@@ -126,9 +126,7 @@
 				>
 					{#each routes as route}
 						{#if $page.url.pathname === route.href}
-							<span
-								class="cursor-default p-2 text-muted-foreground"
-							>
+							<span class="cursor-default p-2 text-muted">
 								{route.name}
 							</span>
 						{:else}

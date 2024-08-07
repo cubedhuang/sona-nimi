@@ -16,10 +16,10 @@
 
 	{#if $page.status === 404}
 		<p class="mt-4">lipu ni li lon ala.</p>
-		<p class="text-muted-foreground">this page doesn't exist!</p>
+		<p class="text-muted">this page doesn't exist!</p>
 	{:else}
 		<p class="mt-4">ijo mi li pakala!</p>
-		<p class="text-muted-foreground">whoops, my bad.</p>
+		<p class="text-muted">whoops, my bad.</p>
 	{/if}
 
 	{#if $page.error?.closest?.length}

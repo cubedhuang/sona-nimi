@@ -71,13 +71,13 @@
 		<canvas
 			aria-hidden="true"
 			bind:this={canvas}
-			class="aspect-video w-full rounded-lg bg-muted"
+			class="aspect-video w-full rounded-lg bg-secondary"
 		/>
 
 		<img
 			src={video.gif}
 			alt="{word} luka pona"
-			class="absolute left-0 top-0 z-10 aspect-video w-full rounded-lg bg-muted"
+			class="absolute left-0 top-0 z-10 aspect-video w-full rounded-lg bg-secondary"
 			class:opacity-0={!$autoplay}
 			loading="lazy"
 			bind:this={img}

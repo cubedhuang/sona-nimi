@@ -48,7 +48,7 @@
 		{placeholder}
 		bind:value
 		bind:this={searchBar}
-		class="focusable w-96 max-w-full cursor-auto px-4 py-2"
+		class="focusable w-96 max-w-full cursor-auto px-4 py-2 placeholder:text-muted"
 	/>
 
 	{#if value}

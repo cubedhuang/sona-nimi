@@ -16,7 +16,7 @@
 		<div>
 			<h2 class="text-xl">{compound.compound}</h2>
 
-			<p class="text-muted-foreground">{uses[0][1]}%</p>
+			<p class="text-muted">{uses[0][1]}%</p>
 
 			<p class="line-clamp-3">
 				{usesString}

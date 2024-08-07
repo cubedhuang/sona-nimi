@@ -44,7 +44,7 @@
 		{#each Object.entries(compound.uses) as [use, count]}
 			<p>
 				{use}
-				<span class="text-muted-foreground">
+				<span class="text-muted">
 					&middot; {count}%
 				</span>
 			</p>

@@ -16,10 +16,7 @@
 		class:opacity-30={!checked}
 	/>
 
-	<span
-		class="px-2 py-0.5 transition-colors"
-		class:text-muted-foreground={!checked}
-	>
+	<span class="px-2 py-0.5 transition-colors" class:text-muted={!checked}>
 		{label}
 	</span>
 </button>

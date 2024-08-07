@@ -45,5 +45,5 @@
 
 {#if !words.length}
 	<p>wile sina la, nimi li lon ala!</p>
-	<p class="text-muted-foreground">Your query didn't match any words!</p>
+	<p class="text-muted">Your query didn't match any words!</p>
 {/if}

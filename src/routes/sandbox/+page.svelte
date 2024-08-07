@@ -97,7 +97,7 @@
 	/>
 </div>
 
-<p class="mt-2 text-muted-foreground">
+<p class="mt-2 text-muted">
 	{filteredWords.length} / {words.length}
 </p>
 

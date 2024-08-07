@@ -16,7 +16,7 @@
 </script>
 
 <Space on:click id={word.id}>
-	<div class="grid grid-cols-3 text-muted-foreground">
+	<div class="grid grid-cols-3 text-muted">
 		<div>
 			<p class="line-clamp-1 break-all">
 				{word.source_language}
@@ -29,7 +29,7 @@
 			{/if}
 		</div>
 
-		<p class="mt-auto text-center text-xs text-muted-foreground">
+		<p class="mt-auto text-center text-xs text-muted">
 			{word.usage_category} &middot;
 			{getWordDisplayRecognition(word)}
 			{#if word.book !== 'none'}
@@ -73,7 +73,7 @@
 			<p class="mt-1">{translation.definition}</p>
 
 			{#if translation.commentary}
-				<p class="mt-2 text-sm text-muted-foreground">
+				<p class="mt-2 text-sm text-muted">
 					{translation.commentary}
 				</p>
 			{/if}

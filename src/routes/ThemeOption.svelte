@@ -10,15 +10,17 @@
 </script>
 
 <button
-	class="interactable grid size-16 place-items-center text-lg transition-colors {className}
-		{selected ? 'ring-2 ring-muted-foreground ring-offset-2 ring-offset-card' : ''}"
+	class="interactable grid size-12 place-items-center text-lg transition-colors {className}
+		{selected
+		? 'ring-2 ring-secondary-foreground ring-offset-2 ring-offset-card'
+		: ''}"
 	on:click|stopPropagation
 	on:touchstart|passive|stopPropagation
 	on:click={() => {
 		$theme = value;
 	}}
 	role="option"
-	aria-selected="false"
+	aria-selected={selected}
 	aria-label={value}
 >
 	{#if value === 'system'}

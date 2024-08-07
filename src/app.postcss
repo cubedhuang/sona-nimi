@@ -11,7 +11,7 @@
 		scrollbar-gutter: stable;
 
 		--scrollbar-bg: var(--background);
-		--scrollbar-thumb: var(--muted-foreground);
+		--scrollbar-thumb: var(--muted);
 	}
 
 	html,
@@ -94,7 +94,7 @@
 	}
 
 	.focusable {
-		@apply select-none overflow-hidden rounded-lg border bg-card outline-none transition focus-visible:border-contrast disabled:cursor-default disabled:bg-muted disabled:text-muted-foreground disabled:focus-visible:border-border;
+		@apply select-none overflow-hidden rounded-lg border bg-card outline-none transition focus-visible:border-contrast disabled:cursor-default disabled:bg-secondary disabled:text-muted disabled:focus-visible:border-border;
 	}
 
 	.interactable {
@@ -102,7 +102,7 @@
 	}
 
 	.icon-interactable {
-		@apply -m-1 ml-1 p-1 text-muted-foreground transition hv:text-foreground;
+		@apply -m-1 ml-1 p-1 text-muted transition hv:text-foreground;
 	}
 
 	.alert {

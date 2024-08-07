@@ -53,7 +53,7 @@
 			{word.word}
 		</button>
 
-		<span class="text-xs text-muted-foreground">
+		<span class="text-xs text-muted">
 			<span class={categoryTextColors[word.usage_category]}>
 				{getWordDisplayRecognition(word)}
 			</span>

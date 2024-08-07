@@ -14,21 +14,10 @@ module.exports = {
 				ring: 'var(--ring)',
 				background: 'var(--background)',
 				foreground: 'var(--foreground)',
-				primary: {
-					DEFAULT: 'var(--primary)',
-					foreground: 'var(--primary-foreground)'
-				},
+				muted: 'var(--muted)',
 				secondary: {
 					DEFAULT: 'var(--secondary)',
 					foreground: 'var(--secondary-foreground)'
-				},
-				destructive: {
-					DEFAULT: 'var(--destructive)',
-					foreground: 'var(--destructive-foreground)'
-				},
-				muted: {
-					DEFAULT: 'var(--muted)',
-					foreground: 'var(--muted-foreground)'
 				},
 				accent: {
 					DEFAULT: 'var(--accent)',
@@ -44,7 +33,10 @@ module.exports = {
 				serif: ['"SourceSerif"', ...defaultTheme.fontFamily.serif],
 				mono: ['"IBM Plex Mono"', ...defaultTheme.fontFamily.mono],
 				dyslexic: ['"OpenDyslexic"', ...defaultTheme.fontFamily.sans],
-				atkinson: ['"AtkinsonHyperlegible"', ...defaultTheme.fontFamily.sans],
+				atkinson: [
+					'"AtkinsonHyperlegible"',
+					...defaultTheme.fontFamily.sans
+				],
 				pona: ['"ssk"', ...defaultTheme.fontFamily.sans],
 				display: ['"SFRounded"', ...defaultTheme.fontFamily.sans]
 			}
@@ -59,7 +51,13 @@ module.exports = {
 				'.group:hover &',
 				'.group:focus-visible &'
 			]);
-			addVariant('darkish', ['.dark &', '.dim &', '.warm &']);
+			addVariant('darkish', [
+				'.dark &',
+				'.red &',
+				'.stone &',
+				'.dim &',
+				'.indigo &'
+			]);
 		}),
 		plugin(({ matchUtilities, theme }) => {
 			matchUtilities(

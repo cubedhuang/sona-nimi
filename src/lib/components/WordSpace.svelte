@@ -17,7 +17,7 @@
 		<div>
 			<h2 class="text-xl">{word.word}</h2>
 
-			<p class="text-muted-foreground">
+			<p class="text-muted">
 				<WordUsageSummary {word} />
 			</p>
 
@@ -26,7 +26,7 @@
 			</p>
 
 			{#if word.usage_category === 'sandbox' && word.creator.length}
-				<p class="mt-1 italic text-muted-foreground">
+				<p class="mt-1 italic text-muted">
 					by {word.creator.join(', ')}
 				</p>
 			{/if}

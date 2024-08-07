@@ -97,7 +97,7 @@
 		</div>
 	</div>
 
-	<p class="text-muted-foreground">
+	<p class="text-muted">
 		<WordUsageSummary {word} />
 	</p>
 
@@ -211,7 +211,7 @@
 		</span>
 
 		{#if translation.sp_etymology}
-			<p class="text-muted-foreground">
+			<p class="text-muted">
 				{translation.sp_etymology}
 			</p>
 		{/if}
@@ -250,7 +250,7 @@
 	{/if}
 
 	{#if translation.commentary}
-		<p class="mt-2 text-muted-foreground">
+		<p class="mt-2 text-muted">
 			{translation.commentary}
 		</p>
 	{/if}

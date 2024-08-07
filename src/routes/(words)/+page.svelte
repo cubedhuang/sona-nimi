@@ -304,7 +304,7 @@
 	</p>
 {/if}
 
-<p class="mt-2 text-muted-foreground">
+<p class="mt-2 text-muted">
 	{filteredWords.length} / {genericFilteredWords.length}
 </p>
 

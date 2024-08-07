@@ -48,9 +48,15 @@ export const themes = [
 	'system',
 	'dark',
 	'light',
-	'dim',
 	'orange',
-	'warm'
+	'pink',
+	'purple',
+	'blue',
+	'green',
+	'red',
+	'stone',
+	'dim',
+	'indigo'
 ] as const;
 export type Theme = (typeof themes)[number];
 export const theme = persisted<Theme>('theme', 'system', value =>

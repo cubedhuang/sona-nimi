@@ -254,7 +254,7 @@
 					{@const definition = line.slice(partOfSpeech.length + 1)}
 
 					<p class="mt-1">
-						<span class="shrink-0 text-sm text-muted-foreground"
+						<span class="shrink-0 text-sm text-muted"
 							>{partOfSpeech}</span
 						>
 						{definition}
@@ -274,7 +274,7 @@
 						word
 					)}
 				</b>
-				<span class="text-muted-foreground">usage</span>
+				<span class="text-muted">usage</span>
 			</span>
 
 			{#if Object.keys(word.usage).length}
@@ -320,9 +320,7 @@
 							<b class={categoryTextColors[usageCategory]}>
 								{usage}%
 							</b>
-							<span class="text-xs text-muted-foreground"
-								>{date}</span
-							>
+							<span class="text-xs text-muted">{date}</span>
 						</span>
 					{/each}
 				</div>
@@ -330,7 +328,7 @@
 		</p>
 
 		<p class="mt-1">
-			<span class="text-muted-foreground">found in</span>
+			<span class="text-muted">found in</span>
 			<strong>
 				{word.book === 'none' ? 'no book' : word.book}
 			</strong>
@@ -338,7 +336,7 @@
 
 		{#if word.coined_era}
 			<p class="mt-1">
-				<span class="text-muted-foreground">coined</span>
+				<span class="text-muted">coined</span>
 				<strong>
 					{word.coined_era}
 					{#if word.coined_year}
@@ -364,7 +362,7 @@
 						target="_blank"
 						rel="noopener noreferrer"
 						aria-label="source"
-						class="text-muted-foreground transition hv:text-foreground"
+						class="text-muted transition hv:text-foreground"
 					>
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
@@ -414,7 +412,7 @@
 			</span>
 
 			{#if translation.sp_etymology}
-				<p class="mt-1 text-muted-foreground">
+				<p class="mt-1 text-muted">
 					{translation.sp_etymology}
 				</p>
 			{/if}
