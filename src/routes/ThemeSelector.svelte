@@ -66,6 +66,10 @@
 				<FontOption value="font-serif" name="Source Serif" />
 				<FontOption value="font-mono" name="IBM Plex Mono" />
 				<FontOption value="font-dyslexic" name="OpenDyslexic" />
+				<FontOption
+					value="font-atkinson"
+					name="Atkinson Hyperlegible"
+				/>
 			</div>
 		</div>
 	{/if}

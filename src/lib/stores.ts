@@ -61,7 +61,8 @@ export const fonts = [
 	'font-sans',
 	'font-serif',
 	'font-mono',
-	'font-dyslexic'
+	'font-dyslexic',
+	'font-atkinson'
 ] as const;
 export type Font = (typeof fonts)[number];
 export const font = persisted<Font>('font', 'font-sans', value =>

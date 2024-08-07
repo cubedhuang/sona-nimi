@@ -44,6 +44,7 @@ module.exports = {
 				serif: ['"SourceSerif"', ...defaultTheme.fontFamily.serif],
 				mono: ['"IBM Plex Mono"', ...defaultTheme.fontFamily.mono],
 				dyslexic: ['"OpenDyslexic"', ...defaultTheme.fontFamily.sans],
+				atkinson: ['"AtkinsonHyperlegible"', ...defaultTheme.fontFamily.sans],
 				pona: ['"ssk"', ...defaultTheme.fontFamily.sans],
 				display: ['"SFRounded"', ...defaultTheme.fontFamily.sans]
 			}
