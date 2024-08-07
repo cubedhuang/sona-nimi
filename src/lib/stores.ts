@@ -42,7 +42,14 @@ function persisted<T>(
 	};
 }
 
-export const themes = ['system', 'dark', 'light', 'dim', 'orange'] as const;
+export const themes = [
+	'system',
+	'dark',
+	'light',
+	'dim',
+	'orange',
+	'warm'
+] as const;
 export type Theme = (typeof themes)[number];
 
 export const theme = persisted<Theme>('theme', 'system', value =>
