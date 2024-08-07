@@ -102,25 +102,55 @@
 	</p>
 
 	{#if word.usage_category === 'obscure' || word.usage_category === 'sandbox'}
-		<p class="mt-2 text-sm text-muted-foreground">
-			{#if word.usage_category === 'sandbox'}
-				This word is in the
-				<b class={categoryTextColors.sandbox}>sandbox</b>, so almost no
-				speakers will understand it.
-			{:else}
-				This word is
-				<b class={categoryTextColors.obscure}>obscure</b>, so most
-				speakers will not understand it.
-			{/if}
-		</p>
+		<div class="mt-2 flex items-center gap-2">
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				viewBox="0 0 16 16"
+				fill="currentColor"
+				class="size-4"
+			>
+				<path
+					d="M13.488 2.513a1.75 1.75 0 0 0-2.475 0L6.75 6.774a2.75 2.75 0 0 0-.596.892l-.848 2.047a.75.75 0 0 0 .98.98l2.047-.848a2.75 2.75 0 0 0 .892-.596l4.261-4.262a1.75 1.75 0 0 0 0-2.474Z"
+				/>
+				<path
+					d="M4.75 3.5c-.69 0-1.25.56-1.25 1.25v6.5c0 .69.56 1.25 1.25 1.25h6.5c.69 0 1.25-.56 1.25-1.25V9A.75.75 0 0 1 14 9v2.25A2.75 2.75 0 0 1 11.25 14h-6.5A2.75 2.75 0 0 1 2 11.25v-6.5A2.75 2.75 0 0 1 4.75 2H7a.75.75 0 0 1 0 1.5H4.75Z"
+				/>
+			</svg>
+
+			<p class="text-sm">
+				{#if word.usage_category === 'sandbox'}
+					This word is in the
+					<b>sandbox</b>, so almost no speakers will understand it.
+				{:else}
+					This word is
+					<b class={categoryTextColors.obscure}>obscure</b>, so most
+					speakers will not understand it.
+				{/if}
+			</p>
+		</div>
 	{/if}
 
 	{#if word.deprecated}
-		<p class="alert my-4 p-4">
-			This word is
-			<strong>deprecated by its creator</strong>, and its use is
-			discouraged.
-		</p>
+		<div class="mb-4 mt-2 flex items-center gap-2">
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				viewBox="0 0 16 16"
+				fill="currentColor"
+				class="size-4"
+			>
+				<path
+					fill-rule="evenodd"
+					d="M6.701 2.25c.577-1 2.02-1 2.598 0l5.196 9a1.5 1.5 0 0 1-1.299 2.25H2.804a1.5 1.5 0 0 1-1.3-2.25l5.197-9ZM8 4a.75.75 0 0 1 .75.75v3a.75.75 0 1 1-1.5 0v-3A.75.75 0 0 1 8 4Zm0 8a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z"
+					clip-rule="evenodd"
+				/>
+			</svg>
+
+			<p class="text-sm">
+				This word is
+				<strong>deprecated by its creator</strong>, and its use is
+				discouraged.
+			</p>
+		</div>
 	{/if}
 
 	<p class="mt-2">
