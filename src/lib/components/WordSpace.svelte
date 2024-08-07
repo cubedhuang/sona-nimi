@@ -13,11 +13,11 @@
 </script>
 
 <Space on:click id={word.id}>
-	<div class="flex gap-2 justify-between">
+	<div class="flex justify-between gap-2">
 		<div>
 			<h2 class="text-xl">{word.word}</h2>
 
-			<p class="faded">
+			<p class="text-muted-foreground">
 				<WordUsageSummary {word} />
 			</p>
 
@@ -26,13 +26,15 @@
 			</p>
 
 			{#if word.usage_category === 'sandbox' && word.creator.length}
-				<p class="mt-1 faded italic">by {word.creator.join(', ')}</p>
+				<p class="mt-1 italic text-muted-foreground">
+					by {word.creator.join(', ')}
+				</p>
 			{/if}
 		</div>
 
 		{#if $sitelenMode === 'pona'}
 			{#if word.representations?.ligatures?.length}
-				<div class="flex flex-col items-end text-right shrink-0">
+				<div class="flex shrink-0 flex-col items-end text-right">
 					{#each word.representations.ligatures as sitelen}
 						<p class="font-pona text-4xl">{sitelen}</p>
 					{/each}
@@ -43,27 +45,27 @@
 				<img
 					src={word.representations.sitelen_sitelen}
 					alt="{word.word} sitelen sitelen"
-					class="ml-auto w-10 h-10 shrink-0 dark:invert"
+					class="ml-auto h-10 w-10 shrink-0 dark:invert"
 				/>
 			{/if}
 		{:else if $sitelenMode === 'jelo'}
 			{#if word.representations?.sitelen_jelo}
 				<div class="shrink-0">
 					{#each word.representations.sitelen_jelo.slice(0, 3) as sitelen}
-						<p class="ml-auto text-3xl text-right">
+						<p class="ml-auto text-right text-3xl">
 							{sitelen}
 						</p>
 					{/each}
 				</div>
 			{/if}
 		{:else if word.representations?.sitelen_emosi}
-			<p class="ml-auto text-3xl text-right shrink-0">
+			<p class="ml-auto shrink-0 text-right text-3xl">
 				{word.representations.sitelen_emosi}
 			</p>
 		{/if}
 
 		<span
-			class="absolute -top-3 -left-3 p-3 rounded-full {categoryColors[
+			class="absolute -left-3 -top-3 rounded-full p-3 {categoryColors[
 				word.usage_category
 			]}"
 		/>

@@ -1,67 +1,73 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss/base';
+@import 'fonts.postcss';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
 @layer base {
-	@font-face {
-		font-family: 'ssk';
-		src:
-			url('fonts/sitelenselikiwenmonoasuki.woff2') format('woff2'),
-			url('fonts/sitelenselikiwenmonoasuki.woff') format('woff');
-		font-weight: normal;
-		font-style: normal;
-		font-display: swap;
-	}
-
-	@font-face {
-		font-family: 'SFRounded';
-		src:
-			url('fonts/subset-SFRounded-Bold.woff2') format('woff2'),
-			url('fonts/subset-SFRounded-Bold.woff') format('woff');
-		font-weight: bold;
-		font-style: normal;
-		font-display: swap;
-	}
-
-	@font-face {
-		font-family: 'Inter';
-		font-style: normal;
-		font-weight: 400;
-		font-display: swap;
-		src: url('fonts/Inter-Regular.woff2') format('woff2');
-	}
-
-	@font-face {
-		font-family: 'Inter';
-		font-style: italic;
-		font-weight: 400;
-		font-display: swap;
-		src: url('fonts/Inter-Italic.woff2') format('woff2');
-	}
-
-	@font-face {
-		font-family: 'Inter';
-		font-style: normal;
-		font-weight: 700;
-		font-display: swap;
-		src: url('fonts/Inter-Bold.woff2') format('woff2');
-	}
-
 	html {
 		scroll-padding-top: theme(width.16);
 		scroll-behavior: smooth;
 		scrollbar-gutter: stable;
 
+		color-scheme: light;
+
 		--scrollbar-bg: theme(colors.white);
 		--scrollbar-thumb: theme(colors.gray.400);
+
+		--background: theme(colors.white);
+		--foreground: theme(colors.gray.950);
+
+		--muted: theme(colors.gray.100);
+		--muted-foreground: theme(colors.gray.500);
+
+		--border: theme(colors.gray.200);
+		--contrast: theme(colors.gray.400);
+
+		--primary: theme(colors.gray.900);
+		--primary-foreground: theme(colors.gray.100);
+
+		--secondary: theme(colors.gray.100);
+		--secondary-foreground: theme(colors.gray.900);
+
+		--accent: theme(colors.blue.600);
+		--accent-foreground: theme(colors.blue.50);
+	}
+
+	html.dark {
+		color-scheme: dark;
+
+		--scrollbar-bg: theme(colors.black);
+		--scrollbar-thumb: theme(colors.gray.600);
+
+		--background: theme(colors.black);
+		--foreground: theme(colors.gray.50);
+
+		--muted: theme(colors.gray.800);
+		--muted-foreground: theme(colors.gray.400);
+
+		--border: theme(colors.gray.800);
+		--contrast: theme(colors.gray.700);
+
+		--primary: theme(colors.gray.50);
+		--primary-foreground: theme(colors.gray.900);
+
+		--secondary: theme(colors.gray.900);
+		--secondary-foreground: theme(colors.gray.50);
+
+		--accent: theme(colors.blue.400);
+		--accent-foreground: theme(colors.blue.900);
 	}
 
 	html,
 	body {
+		@apply bg-background text-foreground;
+
 		overscroll-behavior-y: none;
 	}
 
 	* {
+		@apply border-border;
+
 		scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-bg);
 		scrollbar-width: thin;
 	}
@@ -76,13 +82,6 @@
 
 	::-webkit-scrollbar-thumb {
 		background-color: var(--scrollbar-thumb);
-	}
-
-	html.dark {
-		--scrollbar-bg: theme(colors.black);
-		--scrollbar-thumb: theme(colors.gray.600);
-
-		color-scheme: dark;
 	}
 
 	h1,
@@ -110,11 +109,11 @@
 	}
 
 	:target {
-		animation: highlight-light 3s ease-in-out;
+		animation: highlight-light 3s ease-out;
 	}
 
 	.dark :target {
-		animation: highlight-dark 3s ease-in-out;
+		animation: highlight-dark 3s ease-out;
 	}
 
 	.no-transition {
@@ -136,44 +135,30 @@
 
 @layer components {
 	.focusable {
-		@apply border border-gray-200 rounded-lg overflow-hidden select-none focus-visible:border-gray-400 outline-none transition
-			dark:bg-black dark:border-gray-800 dark:focus-visible:border-gray-700
-			disabled:bg-gray-50 disabled:faded disabled:cursor-default disabled:focus-visible:border-gray-200
-			dark:disabled:bg-gray-900 dark:disabled:focus-visible:border-gray-800;
+		@apply select-none overflow-hidden rounded-lg border bg-background outline-none transition focus-visible:border-contrast disabled:cursor-default disabled:bg-muted disabled:text-muted-foreground disabled:focus-visible:border-border;
 	}
 
 	.interactable {
-		@apply focusable cursor-pointer
-			hv:border-gray-400 dark:hv:border-gray-700
-			focus-visible:outline-gray-500
-			disabled:hv:border-gray-200
-			dark:disabled:hv:border-gray-800;
+		@apply focusable cursor-pointer focus-visible:outline-contrast hv:border-contrast disabled:hv:border-border;
 	}
 
 	.icon-interactable {
-		@apply p-1 ml-1 -m-1 faded hv:text-gray-800 dark:hv:text-white transition;
+		@apply -m-1 ml-1 p-1 text-muted-foreground transition hv:text-foreground;
 	}
 
 	.alert {
-		@apply border rounded-lg border-blue-200 bg-blue-50
-			dark:border-gray-800 dark:bg-gray-900;
-	}
-
-	.faded {
-		@apply text-gray-500 dark:text-gray-400;
+		@apply rounded-lg border bg-secondary text-secondary-foreground;
 	}
 
 	.link {
-		@apply text-blue-500 hv:text-blue-600 transition-colors outline-none outline-offset-4 focus-visible:outline-current rounded
-			underline underline-offset-4 decoration-transparent hv:decoration-current
-			dark:text-blue-400 dark:hv:text-blue-500;
+		@apply rounded text-accent underline decoration-transparent underline-offset-4 outline-none outline-offset-4 transition-colors focus-visible:outline-current hv:decoration-current;
 	}
 
 	.nav-item {
-		@apply p-2 rounded-lg sm:rounded-t-none border sm:border-t-0 border-gray-200 dark:border-gray-800 transition-colors;
+		@apply rounded-lg border p-2 transition-colors sm:rounded-t-none sm:border-t-0;
 	}
 
 	.nav-item-interactive {
-		@apply nav-item outline-none focus-visible:outline-gray-500 hv:border-gray-400 dark:hv:border-gray-700;
+		@apply nav-item outline-none focus-visible:outline-contrast hv:border-contrast;
 	}
 }

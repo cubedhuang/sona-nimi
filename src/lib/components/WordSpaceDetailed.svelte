@@ -16,20 +16,20 @@
 </script>
 
 <Space on:click id={word.id}>
-	<div class="grid grid-cols-3 faded">
+	<div class="grid grid-cols-3 text-muted-foreground">
 		<div>
-			<p class="break-all line-clamp-1">
+			<p class="line-clamp-1 break-all">
 				{word.source_language}
 			</p>
 
 			{#if word.etymology}
-				<p class="text-xs break-all line-clamp-1">
+				<p class="line-clamp-1 break-all text-xs">
 					{getShortWordEtymologies(word, $language)}
 				</p>
 			{/if}
 		</div>
 
-		<p class="mt-auto text-center text-xs faded">
+		<p class="mt-auto text-center text-xs text-muted-foreground">
 			{word.usage_category} &middot;
 			{getWordDisplayRecognition(word)}
 			{#if word.book !== 'none'}
@@ -39,13 +39,13 @@
 
 		<div class="text-right">
 			{#if word.creator.length}
-				<p class="break-all line-clamp-1">
+				<p class="line-clamp-1 break-all">
 					{word.creator.join(', ')}
 				</p>
 			{/if}
 
 			{#if word.coined_era}
-				<p class="text-xs break-all line-clamp-1">
+				<p class="line-clamp-1 break-all text-xs">
 					{word.coined_era}
 
 					{#if word.coined_year}
@@ -56,8 +56,8 @@
 		</div>
 	</div>
 
-	<div class="mt-1 text-center flex gap-2">
-		<div class="w-9 shrink-0 flex flex-col items-end text-right">
+	<div class="mt-1 flex gap-2 text-center">
+		<div class="flex w-9 shrink-0 flex-col items-end text-right">
 			{#each word.representations?.ligatures ?? [] as sitelen}
 				<p class="font-pona text-4xl">{sitelen}</p>
 			{/each}
@@ -65,7 +65,7 @@
 
 		<div class="w-full">
 			<h2
-				class="text-3xl group-hv:text-blue-500 transition line-clamp-1 break-all"
+				class="line-clamp-1 break-all text-3xl transition group-hv:text-accent"
 			>
 				{word.word}
 			</h2>
@@ -73,7 +73,9 @@
 			<p class="mt-1">{translation.definition}</p>
 
 			{#if translation.commentary}
-				<p class="mt-2 faded text-sm">{translation.commentary}</p>
+				<p class="mt-2 text-sm text-muted-foreground">
+					{translation.commentary}
+				</p>
 			{/if}
 		</div>
 
@@ -86,7 +88,7 @@
 				{/if}
 			{:else if $sitelenMode === 'emosi'}
 				{#if word.representations?.sitelen_emosi}
-					<span class="text-3xl w-9 text-center">
+					<span class="w-9 text-center text-3xl">
 						{word.representations.sitelen_emosi}
 					</span>
 				{/if}
@@ -94,14 +96,14 @@
 				<img
 					src={word.representations.sitelen_sitelen}
 					alt="{word.word} sitelen sitelen"
-					class="ml-auto w-9 h-9 dark:invert"
+					class="ml-auto h-9 w-9 dark:invert"
 				/>
 			{/if}
 		</div>
 	</div>
 
 	<span
-		class="absolute -top-3 -left-3 p-3 rounded-full {categoryColors[
+		class="absolute -left-3 -top-3 rounded-full p-3 {categoryColors[
 			word.usage_category
 		]}"
 	/>

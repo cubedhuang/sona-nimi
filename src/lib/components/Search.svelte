@@ -40,26 +40,20 @@
 
 <div
 	bind:this={div}
-	class="sticky -top-1 z-10 w-fit max-w-full box-content -mt-2 pt-3 px-2 -mx-2 pb-2 -mb-2 flex gap-1 items-center rounded-b-lg bg-white transition
-		dark:bg-black ring-gray-800"
-	class:bg-opacity-0={!stick}
-	class:dark:bg-opacity-0={!stick}
-	class:shadow-lg={stick}
-	class:bg-opacity-100={stick}
-	class:dark:bg-opacity-100={stick}
-	class:dark:ring-1={stick}
+	class="sticky -top-1 z-10 -mx-2 -mb-2 -mt-2 box-content flex w-fit max-w-full items-center gap-1 rounded-b-lg px-2 pb-2 pt-3 transition
+		{!stick ? 'bg-transparent' : 'bg-background shadow-lg ring-1 ring-border'}"
 >
 	<input
 		type="search"
 		{placeholder}
 		bind:value
 		bind:this={searchBar}
-		class="px-4 py-2 max-w-full w-96 focusable cursor-auto"
+		class="focusable w-96 max-w-full cursor-auto px-4 py-2"
 	/>
 
 	{#if value}
 		<button
-			class="p-2 interactable shrink-0"
+			class="interactable shrink-0 p-2"
 			on:click={() => {
 				value = '';
 				searchBar.focus();

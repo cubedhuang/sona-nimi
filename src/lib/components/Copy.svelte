@@ -11,7 +11,7 @@
 </script>
 
 <button
-	class="relative p-1 flex justify-center interactable overflow-visible"
+	class="interactable relative flex justify-center overflow-visible p-1"
 	aria-label="copy ucsur"
 	on:click={() => {
 		navigator.clipboard.writeText(value);
@@ -29,7 +29,7 @@
 		viewBox="0 0 24 24"
 		stroke-width="1.5"
 		stroke="currentColor"
-		class="w-6 h-6"
+		class="h-6 w-6"
 	>
 		<path
 			stroke-linecap="round"
@@ -42,7 +42,7 @@
 		<div
 			in:fly={{ y: 4, duration: 150 }}
 			out:fade={{ duration: 150 }}
-			class="z-10 absolute w-max bottom-full mb-1 text-xs"
+			class="absolute bottom-full z-10 mb-1 w-max text-xs"
 		>
 			copied!
 		</div>

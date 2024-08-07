@@ -64,8 +64,8 @@
 	<meta property="og:type" content="website" />
 </svelte:head>
 
-<div class="flex items-center gap-2 flex-wrap">
-	<h1 class="text-4xl mr-auto">{word.word}</h1>
+<div class="flex flex-wrap items-center gap-2">
+	<h1 class="mr-auto text-4xl">{word.word}</h1>
 
 	<div class="flex gap-2">
 		{#if word.resources?.sona_pona}
@@ -73,7 +73,7 @@
 				href={word.resources.sona_pona}
 				target="_blank"
 				rel="noreferrer noopener"
-				class="p-2 interactable"
+				class="interactable p-2"
 			>
 				<Wikipedia />
 			</a>
@@ -84,7 +84,7 @@
 			href={data.previous
 				? getWordLink(data.previous, language)
 				: undefined}
-			class="p-2 interactable"
+			class="interactable p-2"
 			disabled={!data.previous}
 			aria-label="previous word"
 		>
@@ -94,7 +94,7 @@
 				viewBox="0 0 24 24"
 				stroke-width="1.5"
 				stroke="currentColor"
-				class="w-6 h-6"
+				class="h-6 w-6"
 			>
 				<path
 					stroke-linecap="round"
@@ -107,7 +107,7 @@
 		<svelte:element
 			this={data.next ? 'a' : 'button'}
 			href={data.next ? getWordLink(data.next, language) : undefined}
-			class="p-2 interactable"
+			class="interactable p-2"
 			disabled={!data.next}
 			aria-label="next word"
 		>
@@ -117,7 +117,7 @@
 				viewBox="0 0 24 24"
 				stroke-width="1.5"
 				stroke="currentColor"
-				class="w-6 h-6"
+				class="h-6 w-6"
 			>
 				<path
 					stroke-linecap="round"
@@ -129,7 +129,7 @@
 
 		<a
 			href={word.usage_category === 'sandbox' ? '/sandbox' : '/'}
-			class="p-2 interactable"
+			class="interactable p-2"
 			aria-label="home"
 		>
 			<svg
@@ -138,7 +138,7 @@
 				viewBox="0 0 24 24"
 				stroke-width="1.5"
 				stroke="currentColor"
-				class="w-6 h-6"
+				class="h-6 w-6"
 			>
 				<path
 					stroke-linecap="round"
@@ -163,10 +163,10 @@
 	</p>
 {/if}
 
-<div class="grid sm:grid-cols-2 mt-6 gap-6">
+<div class="mt-6 grid gap-6 sm:grid-cols-2">
 	<div class="box">
 		{#if word.deprecated}
-			<p class="mb-4 p-4 alert">
+			<p class="alert mb-4 p-4">
 				This word is
 				<strong>deprecated by its creator</strong>, and its use is
 				discouraged.
@@ -196,7 +196,7 @@
 		{/if}
 
 		{#if word.ku_data}
-			<h2 class="mt-4 text-lg flex items-center">
+			<h2 class="mt-4 flex items-center text-lg">
 				ku translations
 				<a
 					class="icon-interactable"
@@ -223,7 +223,7 @@
 					{@const definition = line.slice(partOfSpeech.length + 1)}
 
 					<p class="mt-1">
-						<span class="faded text-sm shrink-0"
+						<span class="shrink-0 text-sm text-muted-foreground"
 							>{partOfSpeech}</span
 						>
 						{definition}
@@ -243,7 +243,7 @@
 						word
 					)}
 				</b>
-				<span class="faded">usage</span>
+				<span class="text-muted-foreground">usage</span>
 			</span>
 
 			{#if Object.keys(word.usage).length}
@@ -255,7 +255,7 @@
 						xmlns="http://www.w3.org/2000/svg"
 						viewBox="0 0 20 20"
 						fill="currentColor"
-						class="w-5 h-5"
+						class="h-5 w-5"
 					>
 						<path
 							fill-rule="evenodd"
@@ -270,7 +270,7 @@
 				{@const dates = Object.keys(word.usage).sort()}
 
 				<div
-					class="absolute left-0 top-full mt-1 flex gap-4 p-4 border border-gray-200 dark:border-gray-800 rounded-lg bg-white dark:bg-black shadow-lg"
+					class="absolute left-0 top-full mt-1 flex gap-4 rounded-lg border bg-background p-4 shadow-lg"
 					transition:fly|local={{ duration: 150, y: -4 }}
 					use:outclick
 					on:outclick={() => {
@@ -289,7 +289,9 @@
 							<b class={categoryTextColors[usageCategory]}>
 								{usage}%
 							</b>
-							<span class="faded text-xs">{date}</span>
+							<span class="text-xs text-muted-foreground"
+								>{date}</span
+							>
 						</span>
 					{/each}
 				</div>
@@ -297,7 +299,7 @@
 		</p>
 
 		<p class="mt-1">
-			<span class="faded">found in</span>
+			<span class="text-muted-foreground">found in</span>
 			<strong>
 				{word.book === 'none' ? 'no book' : word.book}
 			</strong>
@@ -305,7 +307,7 @@
 
 		{#if word.coined_era}
 			<p class="mt-1">
-				<span class="faded">coined</span>
+				<span class="text-muted-foreground">coined</span>
 				<strong>
 					{word.coined_era}
 					{#if word.coined_year}
@@ -322,7 +324,7 @@
 		</div>
 
 		{#if word.author_verbatim}
-			<div class="flex mt-4 items-center gap-2">
+			<div class="mt-4 flex items-center gap-2">
 				<h2 class="text-lg">author verbatim</h2>
 
 				{#if word.author_verbatim_source}
@@ -331,13 +333,13 @@
 						target="_blank"
 						rel="noopener noreferrer"
 						aria-label="source"
-						class="faded hv:text-gray-800 dark:hv:text-white transition"
+						class="text-muted-foreground transition hv:text-foreground"
 					>
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
 							viewBox="0 0 20 20"
 							fill="currentColor"
-							class="w-5 h-5"
+							class="h-5 w-5"
 						>
 							<path
 								fill-rule="evenodd"
@@ -381,7 +383,7 @@
 			</span>
 
 			{#if translation.sp_etymology}
-				<p class="mt-1 faded">
+				<p class="mt-1 text-muted-foreground">
 					{translation.sp_etymology}
 				</p>
 			{/if}
@@ -393,7 +395,7 @@
 			<img
 				src={word.representations.sitelen_sitelen}
 				alt="{word.word} sitelen sitelen"
-				class="mt-2 w-16 h-16 dark:invert"
+				class="mt-2 h-16 w-16 dark:invert"
 			/>
 		{/if}
 
@@ -450,7 +452,7 @@
 			<p class="mt-2">
 				<video
 					src={data.lukaPona.video.mp4}
-					class="rounded-lg w-full max-w-sm"
+					class="w-full max-w-sm rounded-lg"
 					autoplay
 					loop
 					muted
@@ -472,6 +474,6 @@
 
 <style lang="postcss">
 	.box {
-		@apply p-6 border border-gray-200 dark:border-gray-800 rounded-lg;
+		@apply rounded-lg border p-6;
 	}
 </style>

@@ -96,7 +96,7 @@
 	>. Click on an expression to see more!
 </p>
 
-<blockquote class="my-4 p-4 leading-relaxed alert">
+<blockquote class="alert my-4 p-4 leading-relaxed">
 	<p>
 		<span class="font-bold">Warning!</span>
 		There are no hard-set compound phrases in Toki Pona. This is by design! Part
@@ -111,7 +111,7 @@
 	</footer>
 </blockquote>
 
-<p class="mt-2 faded">
+<p class="mt-2 text-muted-foreground">
 	{filteredCompounds.length} / {compounds.length}
 </p>
 

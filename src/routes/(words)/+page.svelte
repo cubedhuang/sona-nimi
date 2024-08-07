@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { fly } from 'svelte/transition';
 
 	import type { LocalizedWord } from '@kulupu-linku/sona';
 	import type { Book } from '@kulupu-linku/sona/utils';
@@ -24,6 +23,7 @@
 		sortingMethod,
 		viewMode
 	} from '$lib/stores';
+	import { flyAndScale } from '$lib/transitions';
 
 	import ColoredCheckbox from '$lib/components/ColoredCheckbox.svelte';
 	import Search from '$lib/components/Search.svelte';
@@ -149,7 +149,7 @@
 			on:click={() => {
 				moreOptions = !moreOptions;
 			}}
-			class="p-0.5 interactable lg:block"
+			class="interactable p-0.5 lg:block"
 			class:hidden={moreOptions}
 			aria-label="more options"
 		>
@@ -159,7 +159,7 @@
 				viewBox="0 0 24 24"
 				stroke-width="1.5"
 				stroke="currentColor"
-				class="w-6 h-6"
+				class="h-6 w-6"
 			>
 				<path
 					stroke-linecap="round"
@@ -171,7 +171,7 @@
 
 		{#if moreOptions}
 			<div
-				transition:fly|local={{ y: 4, duration: 300 }}
+				transition:flyAndScale|local={{ y: -4 }}
 				use:outclick
 				on:outclick={() => {
 					// delay to make clicking on the button also close
@@ -179,10 +179,8 @@
 						moreOptions = false;
 					});
 				}}
-				class="z-10 absolute top-full mt-2 p-2 w-max
-					hidden lg:flex flex-wrap gap-1 sm:gap-x-2 sm:gap-y-1
-					bg-white border-gray-200 border rounded-lg shadow-lg
-					dark:border-gray-800 dark:bg-black"
+				class="absolute top-full z-10 mt-2 hidden w-max flex-wrap gap-1 rounded-lg border bg-background p-2 shadow-lg
+					sm:gap-x-2 sm:gap-y-1 lg:flex"
 			>
 				{#each books as book}
 					<ColoredCheckbox
@@ -200,8 +198,8 @@
 
 {#if moreOptions}
 	<div
-		class="mt-2 p-2 flex lg:hidden items-start justify-between gap-2 border border-gray-400 rounded-lg
-			dark:border-gray-800"
+		class="mt-2 flex items-start justify-between gap-2 rounded-lg border border-contrast p-2
+			lg:hidden"
 	>
 		<div class="flex flex-wrap gap-1 sm:gap-x-2 sm:gap-y-1">
 			{#each books as book}
@@ -219,7 +217,7 @@
 			on:click={() => {
 				moreOptions = false;
 			}}
-			class="shrink-0 p-0.5 interactable"
+			class="interactable shrink-0 p-0.5"
 			aria-label="close options"
 		>
 			<svg
@@ -228,7 +226,7 @@
 				viewBox="0 0 24 24"
 				stroke-width="1.5"
 				stroke="currentColor"
-				class="w-6 h-6"
+				class="h-6 w-6"
 			>
 				<path
 					stroke-linecap="round"
@@ -306,7 +304,7 @@
 	</p>
 {/if}
 
-<p class="mt-2 faded">
+<p class="mt-2 text-muted-foreground">
 	{filteredWords.length} / {genericFilteredWords.length}
 </p>
 
@@ -319,8 +317,6 @@
 		else selectedWord = e.detail;
 	}}
 />
-
-
 
 <WordDetails
 	bind:word={selectedWord}

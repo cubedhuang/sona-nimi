@@ -10,16 +10,16 @@
 </svelte:head>
 
 <div class="py-24">
-	<h1 class="text-5xl sm:text-6xl text-orange-500 dark:text-orange-400">
+	<h1 class="text-5xl text-orange-500 dark:text-orange-400 sm:text-6xl">
 		pakala nanpa {$page.status}!
 	</h1>
 
 	{#if $page.status === 404}
 		<p class="mt-4">lipu ni li lon ala.</p>
-		<p class="faded">this page doesn't exist!</p>
+		<p class="text-muted-foreground">this page doesn't exist!</p>
 	{:else}
 		<p class="mt-4">ijo mi li pakala!</p>
-		<p class="faded">whoops, my bad.</p>
+		<p class="text-muted-foreground">whoops, my bad.</p>
 	{/if}
 
 	{#if $page.error?.closest?.length}
@@ -30,7 +30,7 @@
 				<li>
 					<a
 						href={getWordLink(word, $language)}
-						class="inline-block px-2 py-1 interactable"
+						class="interactable inline-block px-2 py-1"
 					>
 						{word}
 					</a>
@@ -40,7 +40,7 @@
 	{/if}
 
 	<p class="mt-6">
-		<a href="/" class="inline-block px-2 py-1 interactable">
+		<a href="/" class="interactable inline-block px-2 py-1">
 			o tawa lipu suli
 		</a>
 	</p>

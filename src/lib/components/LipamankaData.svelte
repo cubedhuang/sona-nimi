@@ -38,7 +38,7 @@
 	};
 </script>
 
-<h3 class="text-lg flex items-center">
+<h3 class="flex items-center text-lg">
 	semantic space &middot; lipamanka
 
 	<a
@@ -52,7 +52,7 @@
 	</a>
 </h3>
 
-<div class="lipamanka text-sm grid" use:fixLinks>
+<div class="lipamanka grid text-sm" use:fixLinks>
 	<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 	{@html content}
 </div>
@@ -67,6 +67,6 @@
 	}
 
 	:global(.lipamanka button) {
-		@apply my-2 py-1 px-2 w-fit;
+		@apply my-2 w-fit px-2 py-1;
 	}
 </style>

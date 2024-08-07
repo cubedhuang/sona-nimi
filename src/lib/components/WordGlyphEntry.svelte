@@ -14,10 +14,10 @@
 </script>
 
 <div class="flex flex-col items-center" id={word.id}>
-	<button class="contents group" on:click>
+	<button class="group contents" on:click>
 		{#if $sitelenMode === 'pona'}
 			{#if word.representations?.ligatures?.length}
-				<p class="font-pona text-4xl whitespace-nowrap">
+				<p class="whitespace-nowrap font-pona text-4xl">
 					{word.representations.ligatures.slice(0, 3).join(' ')}
 				</p>
 			{:else}
@@ -28,7 +28,7 @@
 				<img
 					src={word.representations.sitelen_sitelen}
 					alt="{word.word} sitelen sitelen"
-					class="w-10 h-10 dark:invert"
+					class="h-10 w-10 dark:invert"
 				/>
 			{:else}
 				<span class="h-10" />
@@ -49,12 +49,12 @@
 			<span class="h-10" />
 		{/if}
 
-		<b class="group-hv:text-blue-500 transition">
+		<b class="transition group-hv:text-accent">
 			{word.word}
 		</b>
 	</button>
 
-	<span class="text-xs faded">
+	<span class="text-xs text-muted-foreground">
 		<span class={categoryTextColors[word.usage_category]}>
 			{getWordDisplayRecognition(word)}
 		</span>
@@ -65,7 +65,7 @@
 		{/if}
 	</span>
 
-	<p class="text-xs line-clamp-3 text-center">
+	<p class="line-clamp-3 text-center text-xs">
 		{translation.definition}
 	</p>
 </div>

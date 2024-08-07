@@ -12,11 +12,11 @@
 </script>
 
 <Space on:click id={compound.compound}>
-	<div class="flex gap-2 justify-between">
+	<div class="flex justify-between gap-2">
 		<div>
 			<h2 class="text-xl">{compound.compound}</h2>
 
-			<p class="faded">{uses[0][1]}%</p>
+			<p class="text-muted-foreground">{uses[0][1]}%</p>
 
 			<p class="line-clamp-3">
 				{usesString}
@@ -26,7 +26,7 @@
 		{#if compound.glyphs?.length}
 			<div class="flex flex-col items-end text-right">
 				{#each compound.glyphs as glyph}
-					<p class="font-pona text-4xl whitespace-nowrap">{glyph}</p>
+					<p class="whitespace-nowrap font-pona text-4xl">{glyph}</p>
 				{/each}
 			</div>
 		{/if}

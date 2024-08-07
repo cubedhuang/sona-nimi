@@ -48,7 +48,7 @@
 		<div class="ml-auto flex items-center gap-2">
 			<a
 				href={getWordLink(word.id, $language)}
-				class="px-2 py-1 interactable"
+				class="interactable px-2 py-1"
 			>
 				more
 			</a>
@@ -58,7 +58,7 @@
 					href={word.resources.sona_pona}
 					target="_blank"
 					rel="noreferrer noopener"
-					class="p-1 interactable"
+					class="interactable p-1"
 				>
 					<Wikipedia />
 				</a>
@@ -67,14 +67,14 @@
 			{#if audioUrl}
 				<audio src={audioUrl} bind:this={audio} />
 
-				<button class="p-1 interactable" on:click={play}>
+				<button class="interactable p-1" on:click={play}>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						fill="none"
 						viewBox="0 0 24 24"
 						stroke-width="1.5"
 						stroke="currentColor"
-						class="w-6 h-6"
+						class="h-6 w-6"
 					>
 						<path
 							stroke-linecap="round"
@@ -86,7 +86,7 @@
 			{/if}
 
 			<button
-				class="p-1 interactable"
+				class="interactable p-1"
 				on:click={() => {
 					possibleWord = null;
 				}}
@@ -97,12 +97,12 @@
 		</div>
 	</div>
 
-	<p class="faded">
+	<p class="text-muted-foreground">
 		<WordUsageSummary {word} />
 	</p>
 
 	{#if word.usage_category === 'obscure' || word.usage_category === 'sandbox'}
-		<p class="mt-2 faded text-sm">
+		<p class="mt-2 text-sm text-muted-foreground">
 			{#if word.usage_category === 'sandbox'}
 				This word is in the
 				<b class={categoryTextColors.sandbox}>sandbox</b>, so almost no
@@ -116,7 +116,7 @@
 	{/if}
 
 	{#if word.deprecated}
-		<p class="my-4 p-4 alert">
+		<p class="alert my-4 p-4">
 			This word is
 			<strong>deprecated by its creator</strong>, and its use is
 			discouraged.
@@ -150,7 +150,7 @@
 	{/if}
 
 	{#if word.ku_data}
-		<h3 class="mt-2 text-lg flex items-center">
+		<h3 class="mt-2 flex items-center text-lg">
 			ku translations
 
 			<a
@@ -181,7 +181,7 @@
 		</span>
 
 		{#if translation.sp_etymology}
-			<p class="faded">
+			<p class="text-muted-foreground">
 				{translation.sp_etymology}
 			</p>
 		{/if}
@@ -193,7 +193,7 @@
 		<img
 			src={word.representations.sitelen_sitelen}
 			alt="{word.word} sitelen sitelen"
-			class="w-10 h-10 dark:invert"
+			class="h-10 w-10 dark:invert"
 		/>
 	{/if}
 
@@ -220,13 +220,13 @@
 	{/if}
 
 	{#if translation.commentary}
-		<p class="mt-2 faded">
+		<p class="mt-2 text-muted-foreground">
 			{translation.commentary}
 		</p>
 	{/if}
 
 	<span
-		class="absolute -top-4 -left-4 p-4 rounded-full {categoryColors[
+		class="absolute -left-4 -top-4 rounded-full p-4 {categoryColors[
 			word.usage_category
 		]}"
 	/>

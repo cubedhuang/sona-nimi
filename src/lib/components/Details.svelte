@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { fly } from 'svelte/transition';
+	import { flyAndScale } from '$lib/transitions';
 
 	// ESLint doesn't recognize Svelte's generic types
 	// eslint-disable-next-line no-undef
@@ -22,15 +22,14 @@
 
 {#if value}
 	<div
-		class="z-20 fixed bottom-0 right-0 w-full md:top-0 md:w-0"
-		transition:fly|local={{ y: 16, duration: 300 }}
+		class="fixed bottom-0 right-0 z-20 w-full md:top-0 md:w-0"
+		transition:flyAndScale|local={{ y: 16, start: 0.975 }}
 	>
 		{#key key(value)}
 			<div
-				transition:fly|local={{ y: 16, duration: 300 }}
-				class="absolute bottom-0 right-0 left-0 max-h-[75vh] p-6 overflow-y-auto bg-white border-t border-gray-400 shadow-lg
-					md:bottom-4 md:right-4 md:left-auto md:w-[36rem] md:max-h-[min(40rem,100vh-2rem)] md:border md:rounded-lg
-					dark:bg-black dark:border-gray-800"
+				transition:flyAndScale|local={{ y: 16, start: 0.975 }}
+				class="absolute bottom-0 left-0 right-0 max-h-[75vh] overflow-y-auto border-t border-contrast bg-background p-6 shadow-lg
+					md:bottom-4 md:left-auto md:right-4 md:max-h-[min(40rem,100vh-2rem)] md:w-[36rem] md:rounded-lg md:border"
 			>
 				<slot value={nonNullValue} />
 			</div>

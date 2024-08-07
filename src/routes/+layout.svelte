@@ -2,7 +2,6 @@
 	import '../app.postcss';
 
 	import { onMount } from 'svelte';
-	import { fly } from 'svelte/transition';
 
 	import NProgress from 'nprogress';
 
@@ -11,6 +10,7 @@
 	import { afterNavigate, beforeNavigate } from '$app/navigation';
 
 	import { screenWidth } from '$lib/stores';
+	import { flyAndScale } from '$lib/transitions';
 
 	import ThemeSelector from './ThemeSelector.svelte';
 
@@ -78,14 +78,14 @@
 />
 
 <div
-	class="px-4 sm:px-8 lg:px-16 m-auto"
+	class="m-auto px-4 sm:px-8 lg:px-16"
 	class:max-w-screen-xl={$screenWidth === 'large'}
 >
-	<nav class="pt-4 sm:pt-0 flex justify-between">
-		<div class="hidden sm:flex gap-2">
+	<nav class="flex justify-between pt-4 sm:pt-0">
+		<div class="hidden gap-2 sm:flex">
 			{#each routes as route}
 				{#if $page.url.pathname === route.href}
-					<span class="nav-item faded cursor-default">
+					<span class="nav-item cursor-default text-muted-foreground">
 						{route.name}
 					</span>
 				{:else}
@@ -109,7 +109,7 @@
 					xmlns="http://www.w3.org/2000/svg"
 					viewBox="0 0 24 24"
 					fill="currentColor"
-					class="w-6 h-6"
+					class="h-6 w-6"
 				>
 					<path
 						fill-rule="evenodd"
@@ -121,13 +121,14 @@
 
 			{#if opened}
 				<div
-					transition:fly={{ y: 4, duration: 300 }}
-					class="z-10 absolute top-full mt-2 flex flex-col bg-white border border-gray-200 divide-y divide-gray-200 rounded-lg shadow-lg
-						dark:bg-black dark:border-gray-800 dark:divide-gray-800"
+					transition:flyAndScale={{ x: -2, y: -4, duration: 300 }}
+					class="absolute top-full z-10 mt-2 flex flex-col divide-y divide-border rounded-lg border bg-background shadow-lg"
 				>
 					{#each routes as route}
 						{#if $page.url.pathname === route.href}
-							<span class="p-2 faded cursor-default">
+							<span
+								class="cursor-default p-2 text-muted-foreground"
+							>
 								{route.name}
 							</span>
 						{:else}
@@ -151,7 +152,7 @@
 					on:click={() => {
 						deferredPrompt.prompt();
 					}}
-					transition:fly={{ y: -4, duration: 300 }}
+					transition:flyAndScale={{ y: 4 }}
 					class="nav-item-interactive"
 					aria-label="install as app"
 				>
@@ -161,7 +162,7 @@
 						viewBox="0 0 24 24"
 						stroke-width="1.5"
 						stroke="currentColor"
-						class="w-6 h-6"
+						class="h-6 w-6"
 					>
 						<path
 							stroke-linecap="round"
@@ -173,7 +174,7 @@
 			{/if}
 
 			<button
-				class="max-xl:hidden nav-item-interactive cursor-pointer"
+				class="nav-item-interactive cursor-pointer max-xl:hidden"
 				on:click={() => {
 					if ($screenWidth === 'full') {
 						$screenWidth = 'large';
@@ -192,7 +193,7 @@
 						viewBox="0 0 24 24"
 						stroke-width="1.5"
 						stroke="currentColor"
-						class="w-6 h-6"
+						class="h-6 w-6"
 					>
 						<path
 							stroke-linecap="round"
@@ -207,7 +208,7 @@
 						viewBox="0 0 24 24"
 						stroke-width="1.5"
 						stroke="currentColor"
-						class="w-6 h-6"
+						class="h-6 w-6"
 					>
 						<path
 							stroke-linecap="round"
@@ -222,7 +223,7 @@
 		</div>
 	</nav>
 
-	<main class="pt-4 sm:pt-8 pb-24">
+	<main class="pb-24 pt-4 sm:pt-8">
 		<slot />
 	</main>
 </div>
@@ -233,15 +234,15 @@
 	}
 
 	:global(#nprogress .bar) {
-		@apply fixed top-0 left-0 w-full h-0.5 bg-blue-500 z-50;
+		@apply fixed left-0 top-0 z-50 h-0.5 w-full bg-accent;
 	}
 
 	:global(#nprogress .peg) {
-		@apply block absolute right-0 w-24 h-full opacity-100;
+		@apply absolute right-0 block h-full w-24 opacity-100;
 
 		box-shadow:
-			0 0 theme(width.2) theme(colors.blue.500),
-			0 0 theme(width.1) theme(colors.blue.500);
+			0 0 theme(width.2) theme(colors.accent.DEFAULT),
+			0 0 theme(width.1) theme(colors.accent.DEFAULT);
 		transform: rotate(3deg) translate(0px, -4px);
 	}
 </style>

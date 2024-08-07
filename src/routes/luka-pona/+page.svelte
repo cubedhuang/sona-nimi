@@ -54,7 +54,7 @@
 <h1 class="text-4xl">luka pona</h1>
 
 <p class="mt-2">
-	Explore <strong>Luka Pona</strong> signs. Hover over a sign to view it!
+	Explore <strong>Luka Pona</strong> signs. Hover over a sign to watch it!
 </p>
 
 <div class="mt-4 flex flex-wrap gap-1 sm:gap-x-2 sm:gap-y-1">
@@ -65,7 +65,7 @@
 	/>
 </div>
 
-<p class="mt-2 faded">
+<p class="mt-2 text-muted-foreground">
 	{filteredWords.length} / {genericFilteredWords.length}
 </p>
 
@@ -86,7 +86,7 @@
 
 {#if !filteredWords.length}
 	<p>wile sina la, nimi li lon ala!</p>
-	<p class="faded">Your query didn't match any words!</p>
+	<p class="text-muted-foreground">Your query didn't match any words!</p>
 {/if}
 
 <WordDetails

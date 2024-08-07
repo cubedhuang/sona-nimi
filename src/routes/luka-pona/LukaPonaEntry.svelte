@@ -57,7 +57,7 @@
 </script>
 
 <button
-	class="text-left group outline-none focus-visible:outline-gray-500"
+	class="group text-left outline-none focus-visible:outline-contrast"
 	id={word}
 	on:click
 	on:mouseenter={handleEnter}
@@ -71,13 +71,13 @@
 		<canvas
 			aria-hidden="true"
 			bind:this={canvas}
-			class="rounded-lg w-full aspect-video bg-gray-100 dark:bg-gray-900"
+			class="aspect-video w-full rounded-lg bg-muted"
 		/>
 
 		<img
 			src={video.gif}
 			alt="{word} luka pona"
-			class="absolute top-0 left-0 z-10 rounded-lg w-full aspect-video bg-gray-100 dark:bg-gray-900"
+			class="absolute left-0 top-0 z-10 aspect-video w-full rounded-lg bg-muted"
 			class:opacity-0={!$autoplay}
 			loading="lazy"
 			bind:this={img}
@@ -85,7 +85,7 @@
 		/>
 	</div>
 
-	<b class="block mt-2 group-hover:text-blue-500 transition">
+	<b class="mt-2 block transition group-hover:text-accent">
 		{word}
 	</b>
 </button>

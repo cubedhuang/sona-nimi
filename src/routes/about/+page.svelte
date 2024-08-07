@@ -24,7 +24,7 @@
 </svelte:head>
 
 <p>
-	<button class="px-2 py-1 interactable" on:click={() => (pona = !pona)}>
+	<button class="interactable px-2 py-1" on:click={() => (pona = !pona)}>
 		{pona ? 'use English' : 'o toki pona'}
 	</button>
 </p>
@@ -176,6 +176,6 @@
 	}
 
 	ul {
-		@apply mt-2 ml-4 list-disc;
+		@apply ml-4 mt-2 list-disc;
 	}
 </style>

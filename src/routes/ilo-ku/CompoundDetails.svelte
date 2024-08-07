@@ -18,7 +18,7 @@
 		<h2 class="text-2xl">{compound.compound}</h2>
 
 		<button
-			class="ml-auto p-1 interactable"
+			class="interactable ml-auto p-1"
 			on:click={() => {
 				possibleCompound = null;
 			}}
@@ -40,11 +40,11 @@
 		{/each}
 	</p>
 
-	<div class="flex flex-col mt-2">
+	<div class="mt-2 flex flex-col">
 		{#each Object.entries(compound.uses) as [use, count]}
 			<p>
 				{use}
-				<span class="faded">
+				<span class="text-muted-foreground">
 					&middot; {count}%
 				</span>
 			</p>
