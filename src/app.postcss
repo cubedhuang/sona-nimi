@@ -53,7 +53,7 @@
 			@apply bg-blue-100;
 		}
 		100% {
-			@apply bg-white;
+			@apply bg-card;
 		}
 	}
 
@@ -62,16 +62,13 @@
 			@apply bg-slate-900;
 		}
 		100% {
-			@apply bg-black;
+			@apply bg-card;
 		}
 	}
 
 	:target {
+		@apply darkish:[animation-name:highlight-dark];
 		animation: highlight-light 3s ease-out;
-	}
-
-	.dark :target {
-		animation: highlight-dark 3s ease-out;
 	}
 
 	.no-transition {
