@@ -41,7 +41,7 @@
 <div
 	bind:this={div}
 	class="sticky -top-1 z-10 -mx-2 -mb-2 -mt-2 box-content flex w-fit max-w-full items-center gap-1 rounded-b-lg px-2 pb-2 pt-3 transition
-		{!stick ? 'bg-transparent' : 'bg-background shadow-lg ring-1 ring-border'}"
+		{!stick ? 'bg-transparent' : 'bg-card shadow-lg ring-1 ring-border'}"
 >
 	<input
 		type="search"

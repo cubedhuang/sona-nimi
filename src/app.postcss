@@ -11,8 +11,8 @@
 
 		color-scheme: light;
 
-		--scrollbar-bg: theme(colors.white);
-		--scrollbar-thumb: theme(colors.gray.400);
+		--scrollbar-bg: var(--background);
+		--scrollbar-thumb: var(--muted-foreground);
 
 		--background: theme(colors.white);
 		--foreground: theme(colors.gray.950);
@@ -31,13 +31,13 @@
 
 		--accent: theme(colors.blue.600);
 		--accent-foreground: theme(colors.blue.50);
+
+		--card: theme(colors.white);
+		--card-foreground: theme(colors.gray.950);
 	}
 
 	html.dark {
 		color-scheme: dark;
-
-		--scrollbar-bg: theme(colors.black);
-		--scrollbar-thumb: theme(colors.gray.600);
 
 		--background: theme(colors.black);
 		--foreground: theme(colors.gray.50);
@@ -56,6 +56,34 @@
 
 		--accent: theme(colors.blue.400);
 		--accent-foreground: theme(colors.blue.900);
+
+		--card: theme(colors.black);
+		--card-foreground: theme(colors.gray.50);
+	}
+
+	html.dim {
+		color-scheme: dark;
+
+		--background: theme(colors.gray.900);
+		--foreground: theme(colors.gray.50);
+
+		--muted: theme(colors.gray.800);
+		--muted-foreground: theme(colors.gray.400);
+
+		--border: theme(colors.gray.800);
+		--contrast: theme(colors.gray.700);
+
+		--primary: theme(colors.gray.50);
+		--primary-foreground: theme(colors.gray.900);
+
+		--secondary: theme(colors.gray.700);
+		--secondary-foreground: theme(colors.gray.50);
+
+		--accent: theme(colors.blue.400);
+		--accent-foreground: theme(colors.blue.900);
+
+		--card: theme(colors.gray.800);
+		--card-foreground: theme(colors.gray.50);
 	}
 
 	html,
@@ -135,7 +163,7 @@
 
 @layer components {
 	.focusable {
-		@apply select-none overflow-hidden rounded-lg border bg-background outline-none transition focus-visible:border-contrast disabled:cursor-default disabled:bg-muted disabled:text-muted-foreground disabled:focus-visible:border-border;
+		@apply bg-card select-none overflow-hidden rounded-lg border outline-none transition focus-visible:border-contrast disabled:cursor-default disabled:bg-muted disabled:text-muted-foreground disabled:focus-visible:border-border;
 	}
 
 	.interactable {
@@ -155,7 +183,7 @@
 	}
 
 	.nav-item {
-		@apply rounded-lg border p-2 transition-colors sm:rounded-t-none sm:border-t-0;
+		@apply bg-card rounded-lg border p-2 transition-colors sm:rounded-t-none sm:border-t-0;
 	}
 
 	.nav-item-interactive {

@@ -1,12 +1,6 @@
 <script lang="ts">
-	import { theme } from '$lib/stores';
 	import { flyAndScale } from '$lib/transitions';
-
-	const options = [
-		{ value: 'system' },
-		{ value: 'light' },
-		{ value: 'dark' }
-	] as const;
+	import ThemeOption from './ThemeOption.svelte';
 
 	let opened = false;
 </script>
@@ -49,33 +43,15 @@
 	{#if opened}
 		<div
 			transition:flyAndScale={{ x: 2, y: -4 }}
-			class="absolute right-0 top-full z-10 mt-2 flex flex-col divide-y divide-border rounded-lg border bg-background shadow-lg"
+			class="absolute right-0 top-full z-10 mt-2 grid w-max grid-cols-3 gap-3 rounded-lg border bg-card p-4 shadow-lg"
 		>
-			{#each options as option}
-				{#if $theme === option.value}
-					<span
-						class="cursor-default p-2 text-muted-foreground"
-						role="option"
-						aria-selected="true"
-						aria-disabled="true"
-					>
-						{option.value}
-					</span>
-				{:else}
-					<button
-						class="p-2 text-left"
-						on:click|stopPropagation
-						on:touchstart|passive|stopPropagation
-						on:click={() => {
-							$theme = option.value;
-						}}
-						role="option"
-						aria-selected="false"
-					>
-						{option.value}
-					</button>
-				{/if}
-			{/each}
+			<ThemeOption
+				value="system"
+				class="bg-white text-gray-950 dark:bg-black dark:text-gray-50"
+			/>
+			<ThemeOption value="light" class="bg-white text-gray-950" />
+			<ThemeOption value="dark" class="bg-black text-gray-50" />
+			<ThemeOption value="dim" class="bg-gray-900 text-gray-50" />
 		</div>
 	{/if}
 </div>

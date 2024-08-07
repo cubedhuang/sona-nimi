@@ -42,28 +42,31 @@ function persisted<T>(
 	};
 }
 
-export const theme = persisted<'system' | 'dark' | 'light'>(
-	'theme',
-	'system',
-	value => ['system', 'dark', 'light'].includes(value)
+export const themes = ['system', 'dark', 'light', 'dim'] as const;
+export type Theme = (typeof themes)[number];
+
+export const theme = persisted<Theme>('theme', 'system', value =>
+	themes.includes(value)
 );
 
 if (browser) {
 	theme.subscribe(value => {
-		const isDark =
-			value === 'dark' ||
-			(value === 'system' &&
-				window.matchMedia('(prefers-color-scheme: dark)').matches);
-
-		const isCurrentlyDark =
-			document.documentElement.classList.contains('dark');
-
-		if (isDark === isCurrentlyDark) {
+		if (document.documentElement.classList.contains('value')) {
 			return;
 		}
 
 		document.documentElement.classList.add('no-transition');
-		document.documentElement.classList.toggle('dark', isDark);
+
+		if (value === 'system') {
+			const isDark = window.matchMedia(
+				'(prefers-color-scheme: dark)'
+			).matches;
+			value = isDark ? 'dark' : 'light';
+		}
+
+		for (const theme of themes) {
+			document.documentElement.classList.toggle(theme, value === theme);
+		}
 
 		// Force a reflow to make sure the transition is triggered
 		document.documentElement.offsetWidth;

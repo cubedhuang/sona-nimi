@@ -3,7 +3,7 @@ import plugin from 'tailwindcss/plugin';
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-	darkMode: 'class',
+	darkMode: 'media',
 	content: ['./src/**/*.{html,js,svelte,ts}'],
 	theme: {
 		extend: {
@@ -33,6 +33,10 @@ module.exports = {
 				accent: {
 					DEFAULT: 'var(--accent)',
 					foreground: 'var(--accent-foreground)'
+				},
+				card: {
+					DEFAULT: 'var(--card)',
+					foreground: 'var(--card-foreground)'
 				}
 			},
 			fontFamily: {
