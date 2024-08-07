@@ -10,7 +10,7 @@
 </svelte:head>
 
 <div class="py-24">
-	<h1 class="darkish:text-orange-400 text-5xl text-orange-500 sm:text-6xl">
+	<h1 class="text-5xl text-orange-500 darkish:text-orange-400 sm:text-6xl">
 		pakala nanpa {$page.status}!
 	</h1>
 
