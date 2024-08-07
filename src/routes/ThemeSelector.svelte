@@ -50,9 +50,10 @@
 				class="bg-white text-gray-950 dark:bg-black dark:text-gray-50"
 			/>
 			<ThemeOption value="light" class="bg-white text-gray-950" />
+			<ThemeOption value="orange" class="bg-orange-100 text-zinc-950" />
 			<ThemeOption value="dark" class="bg-black text-gray-50" />
 			<ThemeOption value="dim" class="bg-gray-800 text-gray-50" />
-			<ThemeOption value="orange" class="bg-orange-100 text-zinc-950" />
+			<ThemeOption value="warm" class="bg-stone-800 text-stone-50" />
 		</div>
 	{/if}
 </div>
