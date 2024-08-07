@@ -12,13 +12,13 @@
 	export let value: T;
 </script>
 
-<label class="contents">
+<label class="relative">
 	<span class="sr-only">{name}</span>
 
 	<select
 		bind:value
 		on:change
-		class="interactable max-w-full appearance-none text-ellipsis py-0.5 pl-2"
+		class="interactable max-w-full appearance-none text-ellipsis py-0.5 pl-2 pr-10"
 	>
 		{#each options as option}
 			<option value={option.value} selected={option.value === value}>
@@ -26,14 +26,20 @@
 			</option>
 		{/each}
 	</select>
-</label>
 
-<style lang="postcss">
-	select {
-		background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
-		background-position: right 0.5rem center;
-		background-repeat: no-repeat;
-		background-size: 1.5em 1.5em;
-		padding-right: 2.5em;
-	}
-</style>
+	<svg
+		xmlns="http://www.w3.org/2000/svg"
+		fill="none"
+		viewBox="0 0 20 20"
+		aria-hidden="true"
+		class="pointer-events-none absolute right-2 top-1/2 size-6 -translate-y-1/2 select-none text-muted"
+	>
+		<path
+			stroke="currentColor"
+			stroke-linecap="round"
+			stroke-linejoin="round"
+			stroke-width="1.5"
+			d="M6 8l4 4 4-4"
+		/>
+	</svg>
+</label>
