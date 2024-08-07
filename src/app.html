@@ -50,13 +50,15 @@
 					themeValue = null;
 				}
 
-				const isDark =
-					themeValue === 'dark' ||
-					((themeValue === null || themeValue === 'system') &&
-						window.matchMedia('(prefers-color-scheme: dark)')
-							.matches);
+				if (themeValue) {
+					document.documentElement.classList.add(themeValue);
+				} else {
+					const isDark = window.matchMedia(
+						'(prefers-color-scheme: dark)'
+					).matches;
 
-				document.documentElement.classList.toggle('dark', isDark);
+					document.documentElement.classList.toggle('dark', isDark);
+				}
 			}
 		</script>
 
