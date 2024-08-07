@@ -44,7 +44,7 @@
 				/** @type {string | null} */
 				let themeValue;
 				try {
-					let value = localStorage.getItem('theme');
+					let value = localStorage.getItem('nimi.li:theme');
 					themeValue = value ? JSON.parse(value) : null;
 				} catch {
 					themeValue = null;
@@ -58,6 +58,21 @@
 					).matches;
 
 					document.documentElement.classList.toggle('dark', isDark);
+				}
+
+				/** @type {string | null} */
+				let fontValue;
+				try {
+					let value = localStorage.getItem('nimi.li:font');
+					fontValue = value ? JSON.parse(value) : null;
+				} catch {
+					fontValue = null;
+				}
+
+				if (fontValue) {
+					document.documentElement.classList.add(fontValue);
+				} else {
+					document.documentElement.classList.add('font-sans');
 				}
 			}
 		</script>

@@ -41,7 +41,9 @@ module.exports = {
 			},
 			fontFamily: {
 				sans: ['"Inter"', ...defaultTheme.fontFamily.sans],
-				serif: ['"Crimson Pro"', ...defaultTheme.fontFamily.serif],
+				serif: ['"SourceSerif"', ...defaultTheme.fontFamily.serif],
+				mono: ['"IBM Plex Mono"', ...defaultTheme.fontFamily.mono],
+				dyslexic: ['"OpenDyslexic"', ...defaultTheme.fontFamily.sans],
 				pona: ['"ssk"', ...defaultTheme.fontFamily.sans],
 				display: ['"SFRounded"', ...defaultTheme.fontFamily.sans]
 			}

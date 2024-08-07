@@ -10,6 +10,8 @@ function persisted<T>(
 	initialValue: T,
 	validator?: (value: T) => boolean
 ): Writable<T> {
+	key = `nimi.li:${key}`;
+
 	const { subscribe, set, update } = writable(initialValue);
 
 	if (browser) {
@@ -51,9 +53,19 @@ export const themes = [
 	'warm'
 ] as const;
 export type Theme = (typeof themes)[number];
-
 export const theme = persisted<Theme>('theme', 'system', value =>
 	themes.includes(value)
+);
+
+export const fonts = [
+	'font-sans',
+	'font-serif',
+	'font-mono',
+	'font-dyslexic'
+] as const;
+export type Font = (typeof fonts)[number];
+export const font = persisted<Font>('font', 'font-sans', value =>
+	fonts.includes(value)
 );
 
 if (browser) {
@@ -79,6 +91,16 @@ if (browser) {
 		document.documentElement.offsetWidth;
 
 		document.documentElement.classList.remove('no-transition');
+	});
+
+	font.subscribe(value => {
+		if (document.documentElement.classList.contains('value')) {
+			return;
+		}
+
+		for (const font of fonts) {
+			document.documentElement.classList.toggle(font, value === font);
+		}
 	});
 }
 

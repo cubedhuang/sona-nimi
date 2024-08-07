@@ -40,10 +40,12 @@
 		background-color: var(--scrollbar-thumb);
 	}
 
-	h1,
-	h2,
-	h3 {
-		@apply font-display;
+	:is(h1, h2, h3) {
+		@apply font-bold;
+	}
+
+	.font-sans :is(h1, h2, h3) {
+		@apply font-display font-normal;
 	}
 
 	@keyframes highlight-light {

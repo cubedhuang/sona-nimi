@@ -1,3 +1,5 @@
+@import 'plex-mono.postcss';
+
 @layer base {
 	@font-face {
 		font-family: 'ssk';
@@ -41,5 +43,59 @@
 		font-weight: 700;
 		font-display: swap;
 		src: url('/fonts/Inter-Bold.woff2') format('woff2');
+	}
+
+	@font-face {
+		font-family: 'SourceSerif';
+		src: url('/fonts/SourceSerif4-Bold.otf.woff2') format('woff2');
+		font-weight: bold;
+		font-style: normal;
+		font-display: swap;
+	}
+
+	@font-face {
+		font-family: 'SourceSerif';
+		src: url('/fonts/SourceSerif4-It.otf.woff2') format('woff2');
+		font-weight: normal;
+		font-style: italic;
+		font-display: swap;
+	}
+
+	@font-face {
+		font-family: 'SourceSerif';
+		src: url('/fonts/SourceSerif4-Regular.otf.woff2') format('woff2');
+		font-weight: normal;
+		font-style: normal;
+		font-display: swap;
+	}
+
+	@font-face {
+		font-family: 'OpenDyslexic';
+		src:
+			url('/fonts/OpenDyslexic-Regular.woff2') format('woff2'),
+			url('/fonts/OpenDyslexic-Regular.woff') format('woff');
+		font-weight: normal;
+		font-style: normal;
+		font-display: swap;
+	}
+
+	@font-face {
+		font-family: 'OpenDyslexic';
+		src:
+			url('/fonts/OpenDyslexic-Bold.woff2') format('woff2'),
+			url('/fonts/OpenDyslexic-Bold.woff') format('woff');
+		font-weight: bold;
+		font-style: normal;
+		font-display: swap;
+	}
+
+	@font-face {
+		font-family: 'OpenDyslexic';
+		src:
+			url('/fonts/OpenDyslexic-Italic.woff2') format('woff2'),
+			url('/fonts/OpenDyslexic-Italic.woff') format('woff');
+		font-weight: normal;
+		font-style: italic;
+		font-display: swap;
 	}
 }

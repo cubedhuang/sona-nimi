@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { flyAndScale } from '$lib/transitions';
+	import FontOption from './FontOption.svelte';
 	import ThemeOption from './ThemeOption.svelte';
 
 	let opened = false;
@@ -43,17 +44,29 @@
 	{#if opened}
 		<div
 			transition:flyAndScale={{ x: 2, y: -4 }}
-			class="absolute right-0 top-full z-10 mt-2 grid w-max grid-cols-3 gap-3 rounded-lg border bg-card p-4 shadow-lg"
+			class="absolute right-0 top-full z-50 mt-2 w-max rounded-lg border bg-card p-4 shadow-lg"
 		>
-			<ThemeOption
-				value="system"
-				class="bg-white text-gray-950 dark:bg-black dark:text-gray-50"
-			/>
-			<ThemeOption value="light" class="bg-white text-gray-950" />
-			<ThemeOption value="orange" class="bg-orange-100 text-zinc-950" />
-			<ThemeOption value="dark" class="bg-black text-gray-50" />
-			<ThemeOption value="dim" class="bg-gray-800 text-gray-50" />
-			<ThemeOption value="warm" class="bg-stone-800 text-stone-50" />
+			<div class="grid grid-cols-3 gap-3">
+				<ThemeOption
+					value="system"
+					class="bg-white text-gray-950 dark:bg-black dark:text-gray-50"
+				/>
+				<ThemeOption value="light" class="bg-white text-gray-950" />
+				<ThemeOption
+					value="orange"
+					class="bg-orange-100 text-zinc-950"
+				/>
+				<ThemeOption value="dark" class="bg-black text-gray-50" />
+				<ThemeOption value="dim" class="bg-gray-800 text-gray-50" />
+				<ThemeOption value="warm" class="bg-stone-800 text-stone-50" />
+			</div>
+
+			<div class="mt-3 grid gap-2">
+				<FontOption value="font-sans" name="Inter" />
+				<FontOption value="font-serif" name="Source Serif" />
+				<FontOption value="font-mono" name="IBM Plex Mono" />
+				<FontOption value="font-dyslexic" name="OpenDyslexic" />
+			</div>
 		</div>
 	{/if}
 </div>
