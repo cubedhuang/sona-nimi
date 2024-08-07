@@ -17,19 +17,19 @@ export const usageCategories = [
 ] as const satisfies UsageCategory[];
 
 export const categoryColors: Record<UsageCategory, string> = {
-	core: 'bg-emerald-400 dark:bg-emerald-600',
-	common: 'bg-sky-400 dark:bg-sky-600',
-	uncommon: 'bg-yellow-400 dark:bg-yellow-600',
-	obscure: 'bg-fuchsia-400 dark:bg-fuchsia-600',
-	sandbox: 'bg-gray-400 dark:bg-gray-600'
+	core: 'bg-emerald-400 darkish:bg-emerald-600',
+	common: 'bg-sky-400 darkish:bg-sky-600',
+	uncommon: 'bg-yellow-400 darkish:bg-yellow-600',
+	obscure: 'bg-fuchsia-400 darkish:bg-fuchsia-600',
+	sandbox: 'bg-gray-400 darkish:bg-gray-600'
 };
 
 export const categoryTextColors: Record<UsageCategory, string> = {
-	core: 'text-emerald-600 dark:text-emerald-400',
-	common: 'text-sky-600 dark:text-sky-400',
-	uncommon: 'text-yellow-600 dark:text-yellow-400',
-	obscure: 'text-fuchsia-600 dark:text-fuchsia-400',
-	sandbox: 'text-gray-600 dark:text-gray-300'
+	core: 'text-emerald-600 darkish:text-emerald-400',
+	common: 'text-sky-600 darkish:text-sky-400',
+	uncommon: 'text-yellow-600 darkish:text-yellow-400',
+	obscure: 'text-fuchsia-600 darkish:text-fuchsia-400',
+	sandbox: 'text-gray-600 darkish:text-gray-300'
 };
 
 export const bookColors: Record<Book, string> = {

@@ -55,6 +55,7 @@ module.exports = {
 				'.group:hover &',
 				'.group:focus-visible &'
 			]);
+			addVariant('darkish', ['.dark &', '.dim &']);
 		}),
 		plugin(({ matchUtilities, theme }) => {
 			matchUtilities(
