@@ -4,7 +4,7 @@
 	"private": true,
 	"type": "module",
 	"engines": {
-		"pnpm": "^9.0.0"
+		"pnpm": ">=9.0.0"
 	},
 	"scripts": {
 		"dev": "vite dev",
@@ -42,6 +42,7 @@
 		"tslib": "^2.6.3",
 		"typescript": "^5.5.4",
 		"vite": "^5.3.5",
-		"vite-plugin-pwa": "^0.18.2"
+		"vite-plugin-pwa": "^0.18.2",
+		"wrangler": "^3.69.1"
 	}
 }
