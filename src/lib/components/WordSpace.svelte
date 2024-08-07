@@ -45,7 +45,7 @@
 				<img
 					src={word.representations.sitelen_sitelen}
 					alt="{word.word} sitelen sitelen"
-					class="ml-auto h-10 w-10 shrink-0 dark:invert"
+					class="invertible ml-auto h-10 w-10 shrink-0"
 				/>
 			{/if}
 		{:else if $sitelenMode === 'jelo'}

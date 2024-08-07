@@ -1,0 +1,106 @@
+@layer base {
+	html {
+		color-scheme: light;
+
+		--background: theme(colors.white);
+		--foreground: theme(colors.gray.950);
+
+		--muted: theme(colors.gray.100);
+		--muted-foreground: theme(colors.gray.500);
+
+		--border: theme(colors.gray.200);
+		--contrast: theme(colors.gray.400);
+
+		--primary: theme(colors.gray.900);
+		--primary-foreground: theme(colors.gray.100);
+
+		--secondary: theme(colors.gray.100);
+		--secondary-foreground: theme(colors.gray.900);
+
+		--accent: theme(colors.blue.600);
+		--accent-foreground: theme(colors.blue.50);
+
+		--card: theme(colors.white);
+		--card-foreground: theme(colors.gray.950);
+	}
+
+	html.dark {
+		color-scheme: dark;
+		--invert: 1;
+
+		--background: theme(colors.black);
+		--foreground: theme(colors.gray.50);
+
+		--muted: theme(colors.gray.800);
+		--muted-foreground: theme(colors.gray.400);
+
+		--border: theme(colors.gray.800);
+		--contrast: theme(colors.gray.700);
+
+		--primary: theme(colors.gray.50);
+		--primary-foreground: theme(colors.gray.900);
+
+		--secondary: theme(colors.gray.900);
+		--secondary-foreground: theme(colors.gray.50);
+
+		--accent: theme(colors.blue.400);
+		--accent-foreground: theme(colors.blue.900);
+
+		--card: theme(colors.black);
+		--card-foreground: theme(colors.gray.50);
+	}
+
+	html.dim {
+		color-scheme: dark;
+		--invert: 1;
+
+		--background: theme(colors.gray.900);
+		--foreground: theme(colors.gray.50);
+
+		--muted: theme(colors.gray.800);
+		--muted-foreground: theme(colors.gray.400);
+
+		--border: theme(colors.gray.800);
+		--contrast: theme(colors.gray.700);
+
+		--primary: theme(colors.gray.50);
+		--primary-foreground: theme(colors.gray.900);
+
+		--secondary: theme(colors.gray.700);
+		--secondary-foreground: theme(colors.gray.50);
+
+		--accent: theme(colors.blue.400);
+		--accent-foreground: theme(colors.blue.900);
+
+		--card: theme(colors.gray.800);
+		--card-foreground: theme(colors.gray.50);
+	}
+
+	html.orange {
+		color-scheme: light;
+
+		--scrollbar-bg: var(--background);
+		--scrollbar-thumb: var(--muted-foreground);
+
+		--background: theme(colors.orange.100);
+		--foreground: theme(colors.orange.950);
+
+		--muted: theme(colors.zinc.100);
+		--muted-foreground: theme(colors.zinc.500);
+
+		--border: theme(colors.orange.200);
+		--contrast: theme(colors.orange.400);
+
+		--primary: theme(colors.zinc.900);
+		--primary-foreground: theme(colors.zinc.100);
+
+		--secondary: theme(colors.zinc.100);
+		--secondary-foreground: theme(colors.zinc.900);
+
+		--accent: theme(colors.orange.600);
+		--accent-foreground: theme(colors.orange.50);
+
+		--card: theme(colors.orange.50);
+		--card-foreground: theme(colors.zinc.950);
+	}
+}

@@ -96,7 +96,7 @@
 				<img
 					src={word.representations.sitelen_sitelen}
 					alt="{word.word} sitelen sitelen"
-					class="ml-auto h-9 w-9 dark:invert"
+					class="invertible ml-auto h-9 w-9"
 				/>
 			{/if}
 		</div>

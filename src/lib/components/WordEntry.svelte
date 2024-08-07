@@ -27,7 +27,7 @@
 			<img
 				src={word.representations.sitelen_sitelen}
 				alt="{word.word} sitelen sitelen"
-				class="my-0.5 h-6 w-6 shrink-0 dark:invert"
+				class="invertible my-0.5 h-6 w-6 shrink-0"
 			/>
 		{:else}
 			<span class="w-6 shrink-0" />

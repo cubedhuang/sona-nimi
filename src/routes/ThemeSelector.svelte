@@ -51,7 +51,8 @@
 			/>
 			<ThemeOption value="light" class="bg-white text-gray-950" />
 			<ThemeOption value="dark" class="bg-black text-gray-50" />
-			<ThemeOption value="dim" class="bg-gray-900 text-gray-50" />
+			<ThemeOption value="dim" class="bg-gray-800 text-gray-50" />
+			<ThemeOption value="orange" class="bg-orange-100 text-zinc-950" />
 		</div>
 	{/if}
 </div>

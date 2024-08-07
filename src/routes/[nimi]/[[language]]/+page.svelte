@@ -395,7 +395,7 @@
 			<img
 				src={word.representations.sitelen_sitelen}
 				alt="{word.word} sitelen sitelen"
-				class="mt-2 h-16 w-16 dark:invert"
+				class="invertible mt-2 h-16 w-16"
 			/>
 		{/if}
 
@@ -474,6 +474,6 @@
 
 <style lang="postcss">
 	.box {
-		@apply rounded-lg border p-6;
+		@apply rounded-lg border bg-card p-6;
 	}
 </style>
