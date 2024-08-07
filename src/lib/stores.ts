@@ -46,15 +46,16 @@ function persisted<T>(
 
 export const themes = [
 	'system',
-	'dark',
 	'light',
 	'orange',
+	'dark',
+	'stone',
 	'pink',
 	'purple',
 	'blue',
 	'green',
 	'red',
-	'stone',
+	'emerald',
 	'dim',
 	'indigo'
 ] as const;

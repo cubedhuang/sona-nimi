@@ -53,8 +53,9 @@ module.exports = {
 			]);
 			addVariant('darkish', [
 				'.dark &',
-				'.red &',
 				'.stone &',
+				'.red &',
+				'.emerald &',
 				'.dim &',
 				'.indigo &'
 			]);
