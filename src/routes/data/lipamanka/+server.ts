@@ -18,6 +18,11 @@ export async function GET({ fetch, setHeaders }) {
 
 	while ((match = re.exec(rawText))) {
 		const [, word, definition] = match;
+
+		if (word === 'mije-and-meli') {
+			words['mije'] = words['meli'] = definition;
+		}
+		
 		words[word] = definition;
 	}
 
