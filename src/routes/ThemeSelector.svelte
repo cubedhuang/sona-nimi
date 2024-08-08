@@ -43,7 +43,7 @@
 
 	{#if opened}
 		<div
-			transition:flyAndScale={{ x: 2, y: -4 }}
+			transition:flyAndScale={{ x: 4, y: -8 }}
 			class="absolute right-0 top-full z-50 mt-2 w-max rounded-lg border bg-card p-4 shadow-lg"
 		>
 			<div class="flex justify-center">
