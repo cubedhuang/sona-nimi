@@ -312,10 +312,9 @@
 {#if missingDefinitions}
 	<p class="mt-2">
 		<strong>o sona a!</strong>
-		toki kon ale pi
 		{data.languages[$language].name.tok ??
 			data.languages[$language].name.en}
-		li lon ala. nimi ni la, toki Inli li lon.
+		la sona pi nimi ale li lon ala. toki Inli li lon nimi ni.
 	</p>
 	<p>
 		<strong>Warning!</strong>

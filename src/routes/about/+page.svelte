@@ -44,7 +44,7 @@
 		</p>
 
 		<p>
-			pali <strong>nimi.li</strong> la,
+			ilo pona mute li ken e lipu ni. pali <strong>nimi.li</strong> la,
 		</p>
 
 		<ul>
@@ -57,20 +57,19 @@
 			</li>
 
 			<li>
-				<Link href="https://tokipona.org/compounds.txt"
+				mi kepeken <Link href="https://tokipona.org/compounds.txt"
 					>sona ku lili</Link
 				>
-				pi jan Sonja li kama e ilo ku.
+				pi jan Sonja tawa ilo ku.
 			</li>
 
 			<li>
-				sitelen
+				mi sitelen pona e nimi kepeken
 				<Link
-					href="https://www.kreativekorp.com/software/fonts/fairfaxponahd/"
+					href="https://www.kreativekorp.com/software/fonts/sitelenselikiwen/"
 				>
-					Fairfax Pona HD
-				</Link>
-				li sitelen pona e nimi.
+					sitelen seli kiwen
+				</Link>.
 			</li>
 		</ul>
 
@@ -91,8 +90,8 @@
 
 		<p>
 			poka ale la, sona pi lipu ni li sama sona Linku. taso, mi wan e sona
-			Linku e sona lipamanka la jan li ken lukin e sona lipamanka lon lipu
-			ni.
+			Linku e sona lipamanka la jan li ken lukin e ona tu kepeken lipu
+			wan. (lipamanka li ken e ni.)
 		</p>
 	{:else}
 		<h1>about &ndash; nimi.li</h1>
@@ -131,9 +130,9 @@
 			<li>
 				The
 				<Link
-					href="https://www.kreativekorp.com/software/fonts/fairfaxponahd/"
+					href="https://www.kreativekorp.com/software/fonts/sitelenselikiwen/"
 				>
-					Fairfax Pona HD
+					sitelen seli kiwen
 				</Link>
 				font is used for sitelen pona displayed on the site.
 			</li>
@@ -154,7 +153,7 @@
 		<p>
 			Almost all data on this website is directly from sona Linku.
 			However, I'm also directly scraping lipamanka's semantic space
-			dictionary to make them immediately available.
+			dictionary (with permission) to make them immediately available.
 		</p>
 	{/if}
 </div>
