@@ -47,11 +47,7 @@ self.addEventListener('fetch', event => {
 		try {
 			const response = await fetch(event.request);
 
-			if (!(response instanceof Response)) {
-				throw new Error('bad response');
-			}
-
-			if (response.status === 200) {
+			if (response.ok) {
 				cache.put(event.request, response.clone());
 			}
 
