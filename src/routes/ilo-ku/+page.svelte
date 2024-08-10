@@ -85,7 +85,7 @@
 <h1 class="text-4xl">ilo ku</h1>
 
 <p class="mt-2">
-	<span class="font-bold">ilo ku</span> lets you explore the
+	<strong>ilo ku</strong> lets you explore the
 	<Link href="https://tokipona.org/compounds.txt">public subset</Link> of
 	<span class="italic">
 		<Link
@@ -98,7 +98,7 @@
 
 <blockquote class="alert my-4 p-4 leading-relaxed">
 	<p>
-		<span class="font-bold">Warning!</span>
+		<strong>Warning!</strong>
 		There are no hard-set compound phrases in Toki Pona. This is by design! Part
 		of the goal of the language is for you to break down your surroundings from
 		your own viewpoint and describe things dynamically, not use the same phrase

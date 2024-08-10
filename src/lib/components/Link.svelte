@@ -6,7 +6,7 @@
 	{href}
 	target={href.startsWith('/') || href.startsWith('#') ? undefined : '_blank'}
 	rel="noopener noreferrer"
-	class="link"
+	class="link inline-flex items-center gap-1"
 	on:click
 >
 	<slot />

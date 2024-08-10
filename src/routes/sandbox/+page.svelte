@@ -59,7 +59,7 @@
 </p>
 
 <p class="alert my-4 p-4 leading-relaxed">
-	<span class="font-bold">Warning!</span>
+	<strong>Warning!</strong>
 	If you are a learner, <em>stick to the main dictionary</em>. These words
 	will not help you speak the language.
 </p>
