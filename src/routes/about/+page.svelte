@@ -37,8 +37,9 @@
 			toki a! mi
 			<Link href="https://github.com/cubedhuang/">ilo Tani</Link> li pali e
 			ni. jan
-			<Link href="https://github.com/woflydev/">woflydev</Link> li ilo PWA
-			e lipu ni. sina wile ante pona e lipu ni la, o kepeken ilo
+			<Link href="https://github.com/woflydev/">woflydev</Link> li ken e ni:
+			sina awen e lipu lon ilo sina. sina wile pona e lipu ni la, o kepeken
+			ilo
 			<Link href="https://github.com/cubedhuang/sona-nimi">GitHub</Link>!
 		</p>
 
