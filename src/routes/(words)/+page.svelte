@@ -26,7 +26,6 @@
 	import { flyAndScale } from '$lib/transitions';
 
 	import ColoredCheckbox from '$lib/components/ColoredCheckbox.svelte';
-	import Link from '$lib/components/Link.svelte';
 	import Search from '$lib/components/Search.svelte';
 	import Select from '$lib/components/Select.svelte';
 	import WordDetails from '$lib/components/WordDetails.svelte';

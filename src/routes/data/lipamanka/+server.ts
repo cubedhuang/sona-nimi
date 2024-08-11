@@ -22,7 +22,7 @@ export async function GET({ fetch, setHeaders }) {
 		if (word === 'mije-and-meli') {
 			words['mije'] = words['meli'] = definition;
 		}
-		
+
 		words[word] = definition;
 	}
 
