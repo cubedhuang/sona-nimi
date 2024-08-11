@@ -137,7 +137,12 @@
 </p>
 
 <p class="alert my-4 p-4 leading-relaxed">
-	The 2024 <Link href="https://linku.la/wile">
+	The 2024 <a
+		href="https://linku.la/wile"
+		target="_blank"
+		rel="noopener noreferrer"
+		class="link inline-flex items-center gap-1"
+	>
 		Linku usage survey <svg
 			xmlns="http://www.w3.org/2000/svg"
 			viewBox="0 0 16 16"
@@ -151,8 +156,9 @@
 				d="M3.5 6.75c0-.69.56-1.25 1.25-1.25H7A.75.75 0 0 0 7 4H4.75A2.75 2.75 0 0 0 2 6.75v4.5A2.75 2.75 0 0 0 4.75 14h4.5A2.75 2.75 0 0 0 12 11.25V9a.75.75 0 0 0-1.5 0v2.25c0 .69-.56 1.25-1.25 1.25h-4.5c-.69 0-1.25-.56-1.25-1.25v-4.5Z"
 			/>
 		</svg>
-	</Link> is now open! <strong>nimi.li</strong> relies on kulupu Linku to describe
-	the community's usage of words. Please take the survey to help improve the dictionary!
+	</a>
+	is now open! <strong>nimi.li</strong> relies on kulupu Linku to describe the
+	community's usage of words. Please take the survey to help improve the dictionary!
 </p>
 
 <div class="mt-4 flex flex-wrap gap-1 sm:gap-x-2 sm:gap-y-1">
