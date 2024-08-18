@@ -3,7 +3,7 @@ import jpeg from 'jpeg-js';
 import { PNG } from 'pngjs/browser';
 
 export async function GET({ fetch, setHeaders, url }) {
-	const word = url.searchParams.get('word');
+	let word = url.searchParams.get('word');
 
 	if (!word) {
 		error(400, 'Missing word');
@@ -11,6 +11,10 @@ export async function GET({ fetch, setHeaders, url }) {
 
 	if (!/^[a-z]+$/.test(word)) {
 		error(400, 'Invalid word');
+	}
+
+	if (word === 'ali') {
+		word = 'ale';
 	}
 
 	const imageUrl = `https://raw.githubusercontent.com/lipu-linku/ijo/main/sitelensitelen/jonathangabel/${word}.jpg`;
