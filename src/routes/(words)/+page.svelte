@@ -87,7 +87,7 @@
 			return;
 		}
 
-		const words = (await fetch(`/data/linku?lang=${lang}`).then(res =>
+		const words = (await fetch(`/api/linku?lang=${lang}`).then(res =>
 			res.json()
 		)) as Record<string, LocalizedWord>;
 

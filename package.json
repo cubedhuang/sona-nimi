@@ -15,13 +15,16 @@
 	"dependencies": {
 		"@kulupu-linku/sona": "0.3.1",
 		"fastest-levenshtein": "^1.0.16",
-		"nprogress": "^0.2.0"
+		"jpeg-js": "^0.4.4",
+		"nprogress": "^0.2.0",
+		"pngjs": "^7.0.0"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-cloudflare": "^4.7.0",
 		"@sveltejs/kit": "^2.5.20",
 		"@sveltejs/vite-plugin-svelte": "^3.1.1",
 		"@types/nprogress": "^0.2.3",
+		"@types/pngjs": "^6.0.5",
 		"@typescript-eslint/eslint-plugin": "^7.18.0",
 		"@typescript-eslint/parser": "^7.18.0",
 		"@vite-pwa/sveltekit": "^0.3.0",

@@ -17,7 +17,7 @@ export async function load({ fetch, params, setHeaders }) {
 				query: { lang: params.language ?? 'en' }
 			})
 			.then(res => res.json()),
-		fetch('/data/lipamanka').then(res => res.json()) as Promise<
+		fetch('/api/lipamanka').then(res => res.json()) as Promise<
 			Record<string, string>
 		>
 	]);

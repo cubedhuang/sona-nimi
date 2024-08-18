@@ -25,7 +25,7 @@
 	{:else if $sitelenMode === 'sitelen'}
 		{#if word.representations?.sitelen_sitelen}
 			<img
-				src={word.representations.sitelen_sitelen}
+				src="/api/ss?word={word.word}"
 				alt="{word.word} sitelen sitelen"
 				class="invertible my-0.5 h-6 w-6 shrink-0"
 			/>

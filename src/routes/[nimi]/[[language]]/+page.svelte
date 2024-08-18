@@ -423,7 +423,7 @@
 			<h2 class="mt-4 text-lg">sitelen sitelen</h2>
 
 			<img
-				src={word.representations.sitelen_sitelen}
+				src="/api/ss?word={word.word}"
 				alt="{word.word} sitelen sitelen"
 				class="invertible mt-2 h-16 w-16"
 			/>
