@@ -62,21 +62,21 @@
 				<ThemeOption value="dark" class="bg-black text-gray-50" />
 				<ThemeOption value="stone" class="bg-stone-800 text-stone-50" />
 				<ThemeOption value="pink" class="bg-pink-100 text-pink-900" />
-				<ThemeOption
-					value="purple"
-					class="bg-purple-100 text-purple-900"
-				/>
 				<ThemeOption value="blue" class="bg-blue-100 text-blue-900" />
 				<ThemeOption
 					value="green"
 					class="bg-green-100 text-green-900"
 				/>
-				<ThemeOption value="red" class="bg-red-950 text-red-100" />
+				<ThemeOption value="dim" class="bg-gray-800 text-gray-50" />
 				<ThemeOption
 					value="emerald"
 					class="bg-emerald-950 text-emerald-100"
 				/>
-				<ThemeOption value="dim" class="bg-gray-800 text-gray-50" />
+				<ThemeOption
+					value="purple"
+					class="bg-purple-100 text-purple-900"
+				/>
+				<ThemeOption value="red" class="bg-red-950 text-red-100" />
 				<ThemeOption
 					value="indigo"
 					class="bg-indigo-950 text-indigo-100"
@@ -85,13 +85,13 @@
 
 			<div class="mt-3 grid gap-2">
 				<FontOption value="font-sans" name="Inter" />
-				<FontOption value="font-serif" name="Source Serif" />
-				<FontOption value="font-mono" name="IBM Plex Mono" />
-				<FontOption value="font-dyslexic" name="OpenDyslexic" />
 				<FontOption
 					value="font-atkinson"
 					name="Atkinson Hyperlegible"
 				/>
+				<FontOption value="font-serif" name="Source Serif" />
+				<FontOption value="font-mono" name="IBM Plex Mono" />
+				<FontOption value="font-dyslexic" name="OpenDyslexic" />
 			</div>
 		</div>
 	{/if}
