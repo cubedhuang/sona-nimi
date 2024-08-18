@@ -57,7 +57,7 @@
 	/>
 	<meta
 		property="og:image"
-		content="https://sitelen.nimi.li/img/{word.word}.png"
+		content="https://raw.githubusercontent.com/lipu-linku/ijo/main/sitelenpona/sitelen-seli-kiwen/{word.id}.png"
 	/>
 	<meta property="og:site_name" content="nimi.li" />
 	<meta property="og:type" content="website" />
