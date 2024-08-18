@@ -2,6 +2,8 @@
 	import Link from '$lib/components/Link.svelte';
 
 	let pona = true;
+
+	$: t = (tokiPona: string, english: string) => (pona ? tokiPona : english);
 </script>
 
 <svelte:head>
@@ -25,137 +27,101 @@
 
 <p>
 	<button class="interactable px-2 py-1" on:click={() => (pona = !pona)}>
-		{pona ? 'use English' : 'o toki pona'}
+		{t('use English', 'o toki pona')}
 	</button>
 </p>
 
 <div class="leading-relaxed">
-	{#if pona}
-		<h1>sona &ndash; nimi.li</h1>
+	<h1>{t('sona', 'about')} &ndash; nimi.li</h1>
 
-		<p>
-			mi
-			<Link href="https://github.com/cubedhuang/">ilo Tani</Link> li pali e
-			ni. jan
-			<Link href="https://github.com/woflydev/">woflydev</Link> li ken e ni:
-			sina awen e lipu lon ilo sina. sina wile pona e lipu ni la, o kepeken
-			ilo
-			<Link href="https://github.com/cubedhuang/sona-nimi">GitHub</Link>!
-		</p>
+	<p>
+		{t('mi', "Hi! I'm")}
+		<Link href="https://github.com/cubedhuang/">ilo Tani</Link>{t(
+			' li pali e ni. jan',
+			', and I made this project. Thanks to'
+		)}
+		<Link href="https://github.com/woflydev/">woflydev</Link>
+		{t(
+			'li ken e ni: sina awen e lipu lon ilo sina. sina wile pona e lipu ni la, o kepeken ilo',
+			'for making this a Progressive Web Application. This is an'
+		)}
+		<Link href="https://github.com/cubedhuang/sona-nimi"
+			>{t('GitHub', 'open source project on GitHub')}</Link
+		>!
+	</p>
 
-		<p>
-			ilo pona mute li ken e lipu ni. pali <strong>nimi.li</strong> la,
-		</p>
+	<p>
+		{t('ilo pona mute li ken e lipu ni. pali', '')}
+		<strong>nimi.li</strong>
+		{t(
+			'la,',
+			'was built with data from many amazing projects. Thanks to all of the following projects for their work:'
+		)}
+	</p>
 
-		<ul>
-			<li>
-				<Link href="https://linku.la/about/">sona Linku</Link> en
-				<Link href="https://lipamanka.gay/essays/dictionary"
-					>lipu lipamanka</Link
-				>
-				li kama e sona nimi.
-			</li>
+	<ul>
+		<li>
+			<Link href="https://linku.la/about/"
+				>{t('sona Linku', "Linku's public API")}</Link
+			>
+			{t('en', 'and')}
+			<Link href="https://lipamanka.gay/essays/dictionary"
+				>{t(
+					'lipu lipamanka',
+					"lipamanka's semantic space dictionary"
+				)}</Link
+			>
+			{t(
+				'li kama e sona nimi.',
+				'is used for all of data with the vocabulary.'
+			)}
+		</li>
 
-			<li>
-				mi kepeken <Link href="https://tokipona.org/compounds.txt"
-					>sona ku lili</Link
-				>
-				pi jan Sonja tawa ilo ku.
-			</li>
+		<li>
+			{t('mi kepeken', "Sonja Lang's")}
+			<Link href="https://tokipona.org/compounds.txt"
+				>{t('sona ku lili', 'public subsets of ku')}</Link
+			>
+			{t('pi jan Sonja tawa ilo ku.', 'were used for ilo ku.')}
+		</li>
 
-			<li>
-				mi sitelen pona e nimi kepeken
-				<Link
-					href="https://www.kreativekorp.com/software/fonts/sitelenselikiwen/"
-				>
-					sitelen seli kiwen</Link
-				>.
-			</li>
-		</ul>
+		<li>
+			{t('mi sitelen pona e nimi kepeken', 'The')}
+			<Link
+				href="https://www.kreativekorp.com/software/fonts/sitelenselikiwen/"
+			>
+				{t('sitelen seli kiwen', 'sitelen seli kiwen font')}</Link
+			>{t('.', ' is used for sitelen pona displayed on the site.')}
+		</li>
+	</ul>
 
-		<h2>lipu ni</h2>
+	<h2>{t('lipu ni', 'this website')}</h2>
 
-		<p>
-			mi pali e lipu ni kepeken ilo
-			<Link href="https://kit.svelte.dev">SvelteKit</Link>
-			kepeken ilo
-			<Link href="https://www.typescriptlang.org">TypeScript</Link>
-			kepeken ilo
-			<Link href="https://tailwindcss.com">TailwindCSS</Link>
-			kepeken ilo
-			<Link href="https://vite-pwa-org.netlify.app/">Vite PWA</Link>.
-		</p>
+	<p>
+		{t('mi pali e lipu ni kepeken ilo', 'This website was built with')}
+		<Link href="https://kit.svelte.dev">SvelteKit</Link>{t(
+			' kepeken ilo',
+			','
+		)}
+		<Link href="https://www.typescriptlang.org">TypeScript</Link>{t(
+			' kepeken ilo',
+			','
+		)}
+		<Link href="https://tailwindcss.com">TailwindCSS</Link>{t(
+			' kepeken ilo',
+			', and'
+		)}
+		<Link href="https://vite-pwa-org.netlify.app/">Vite PWA</Link>.
+	</p>
 
-		<h3>ante</h3>
+	<h3>{t('ante', 'differences')}</h3>
 
-		<p>
-			ijo mute a lipu li tan sona Linku. taso, mi wan e sona Linku e sona
-			lipamanka la jan li ken lukin e ona tu kepeken lipu wan. (lipamanka
-			li ken e ni.)
-		</p>
-	{:else}
-		<h1>about &ndash; nimi.li</h1>
-
-		<p>
-			Hi! I'm <Link href="https://github.com/cubedhuang/">ilo Tani</Link>,
-			and I made this project. Thanks to
-			<Link href="https://github.com/woflydev/">woflydev</Link>
-			for making this a Progressive Web Application. This is an
-			<Link href="https://github.com/cubedhuang/sona-nimi">
-				open source project on GitHub</Link
-			>!
-		</p>
-
-		<p>
-			<strong>nimi.li</strong> was built with data from many amazing projects.
-			Thanks to all of the following projects for their work:
-		</p>
-
-		<ul>
-			<li>
-				<Link href="https://linku.la/about/">Linku</Link>'s public API
-				and <Link href="https://lipamanka.gay/essays/dictionary"
-					>lipamanka's semantic space dictionary</Link
-				> is used for all of data with the vocabulary.
-			</li>
-
-			<li>
-				Sonja Lang's
-				<Link href="https://tokipona.org/compounds.txt">
-					public subsets of ku
-				</Link>
-				were used for ilo ku.
-			</li>
-
-			<li>
-				The
-				<Link
-					href="https://www.kreativekorp.com/software/fonts/sitelenselikiwen/"
-				>
-					sitelen seli kiwen
-				</Link>
-				font is used for sitelen pona displayed on the site.
-			</li>
-		</ul>
-
-		<h2>this website</h2>
-
-		<p>
-			This website was built with
-			<Link href="https://kit.svelte.dev">SvelteKit</Link>,
-			<Link href="https://www.typescriptlang.org">TypeScript</Link>,
-			<Link href="https://tailwindcss.com">TailwindCSS</Link>, and
-			<Link href="https://vite-pwa-org.netlify.app/">Vite PWA</Link>.
-		</p>
-
-		<h3>differences</h3>
-
-		<p>
-			Almost all data on this website is directly from sona Linku.
-			However, I'm also scraping lipamanka's semantic space dictionary
-			(with permission) to make the entries immediately available here.
-		</p>
-	{/if}
+	<p>
+		{t(
+			'ijo mute a lipu li tan sona Linku. taso, mi wan e sona Linku e sona lipamanka la jan li ken lukin e ona tu kepeken lipu wan. (lipamanka li ken e ni.)',
+			"Almost all data on this website is directly from sona Linku. However, I'm also scraping lipamanka's semantic space dictionary (with permission) to make the entries immediately available here."
+		)}
+	</p>
 </div>
 
 <style lang="postcss">
