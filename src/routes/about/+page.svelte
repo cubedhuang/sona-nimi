@@ -34,7 +34,7 @@
 		<h1>sona &ndash; nimi.li</h1>
 
 		<p>
-			toki a! mi
+			mi
 			<Link href="https://github.com/cubedhuang/">ilo Tani</Link> li pali e
 			ni. jan
 			<Link href="https://github.com/woflydev/">woflydev</Link> li ken e ni:
@@ -89,9 +89,9 @@
 		<h3>ante</h3>
 
 		<p>
-			poka ale la, sona pi lipu ni li sama sona Linku. taso, mi wan e sona
-			Linku e sona lipamanka la jan li ken lukin e ona tu kepeken lipu
-			wan. (lipamanka li ken e ni.)
+			ijo mute a lipu li tan sona Linku. taso, mi wan e sona Linku e sona
+			lipamanka la jan li ken lukin e ona tu kepeken lipu wan. (lipamanka
+			li ken e ni.)
 		</p>
 	{:else}
 		<h1>about &ndash; nimi.li</h1>
@@ -152,8 +152,8 @@
 
 		<p>
 			Almost all data on this website is directly from sona Linku.
-			However, I'm also directly scraping lipamanka's semantic space
-			dictionary (with permission) to make them immediately available.
+			However, I'm also scraping lipamanka's semantic space dictionary
+			(with permission) to make the entries immediately available here.
 		</p>
 	{/if}
 </div>
