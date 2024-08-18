@@ -5,7 +5,7 @@ import { distance } from 'fastest-levenshtein';
 
 export async function load({ fetch, params, setHeaders }) {
 	if (params.language === 'en') {
-		throw redirect(301, `/${params.nimi}`);
+		redirect(301, `/${params.nimi}`);
 	}
 
 	const [data, lukaPona, lipamanka] = await Promise.all([
@@ -23,7 +23,7 @@ export async function load({ fetch, params, setHeaders }) {
 	]);
 
 	if (!data.ok) {
-		throw error(404, { message: 'Language not found' });
+		error(404, { message: 'Language not found' });
 	}
 
 	const wordData = await data.json();
@@ -42,7 +42,7 @@ export async function load({ fetch, params, setHeaders }) {
 
 		if (sandboxWord) {
 			if (params.language) {
-				throw redirect(301, `/${params.nimi}`);
+				redirect(301, `/${params.nimi}`);
 			}
 
 			setHeaders({ 'Cache-Control': 's-maxage=3600' });
@@ -75,7 +75,7 @@ export async function load({ fetch, params, setHeaders }) {
 			closest.push('kijetesantakalu');
 		}
 
-		throw error(404, {
+		error(404, {
 			message: 'Not found',
 			closest
 		});

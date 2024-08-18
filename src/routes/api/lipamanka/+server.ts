@@ -6,7 +6,7 @@ export async function GET({ fetch, setHeaders }) {
 		.catch(() => '');
 
 	if (!rawText) {
-		throw error(500, 'Failed to fetch data');
+		error(500, 'Failed to fetch data');
 	}
 
 	const re =
