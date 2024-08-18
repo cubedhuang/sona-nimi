@@ -36,7 +36,7 @@ export async function GET({ fetch, setHeaders, url }) {
 
 async function removeWhiteBackground(jpegData: jpeg.BufferLike) {
 	// Decode JPEG
-	const rawImageData = jpeg.decode(jpegData);
+	const rawImageData = jpeg.decode(jpegData, { useTArray: true });
 
 	// Create a new PNG with the same dimensions
 	const png = new PNG({
