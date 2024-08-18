@@ -12,7 +12,7 @@
 	export let value: T;
 </script>
 
-<label class="relative">
+<label class="relative max-w-full">
 	<span class="sr-only">{name}</span>
 
 	<select
