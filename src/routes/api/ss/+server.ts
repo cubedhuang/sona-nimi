@@ -59,10 +59,10 @@ async function removeWhiteBackground(jpegData: jpeg.BufferLike) {
 			} else {
 				const min = Math.min(r, g, b);
 
-				png.data[i] = min;
-				png.data[i + 1] = min;
-				png.data[i + 2] = min;
-				png.data[i + 3] = 255;
+				png.data[i] = min / 4;
+				png.data[i + 1] = min / 4;
+				png.data[i + 2] = min / 4;
+				png.data[i + 3] = 255 - min;
 			}
 		}
 	}
