@@ -14,14 +14,11 @@ module.exports = {
 				ring: 'var(--ring)',
 				background: 'var(--background)',
 				foreground: 'var(--foreground)',
+				accent: 'var(--accent)',
 				muted: 'var(--muted)',
 				secondary: {
 					DEFAULT: 'var(--secondary)',
 					foreground: 'var(--secondary-foreground)'
-				},
-				accent: {
-					DEFAULT: 'var(--accent)',
-					foreground: 'var(--accent-foreground)'
 				},
 				card: {
 					DEFAULT: 'var(--card)',
