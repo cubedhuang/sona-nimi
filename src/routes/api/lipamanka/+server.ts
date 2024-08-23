@@ -10,7 +10,7 @@ export async function GET({ fetch, setHeaders }) {
 	}
 
 	const re =
-		/<details>\s*?<summary id="([^"]+)">.*?<\/summary>\s*([\s\S]*?)\s*<\/details>/g;
+		/<details(?: open)?>\s*?<summary id="([^"]+)">.*?<\/summary>\s*([\s\S]*?)\s*<\/details>/g;
 
 	const words: Record<string, string> = {};
 
