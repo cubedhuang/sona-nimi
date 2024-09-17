@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@kulupu-linku/sona':
-        specifier: 0.3.5
-        version: 0.3.5
+        specifier: 0.3.7
+        version: 0.3.7
       fastest-levenshtein:
         specifier: ^1.0.16
         version: 1.0.16
@@ -1042,8 +1042,8 @@ packages:
     peerDependencies:
       hono: '*'
 
-  '@hono/vite-dev-server@0.12.2':
-    resolution: {integrity: sha512-aq09IUi/+Ut/EXR8t1lCjsV/OEnSQoO4F6RmV7Ufvy3x0tE2TIYLs6YL0kZ7+gLIbmVg6V2MppHGQaLMNs7G8Q==}
+  '@hono/vite-dev-server@0.14.0':
+    resolution: {integrity: sha512-rhd+hxIIG6wSS73WQxXF7/CiOHBlxdynrRUihSwEszpysB0HWOMN2Q7QprnPHsZSNmGohoTXZxwo7iM4hukGzw==}
     engines: {node: '>=18.14.1'}
     peerDependencies:
       hono: '*'
@@ -1095,8 +1095,8 @@ packages:
   '@jridgewell/trace-mapping@0.3.9':
     resolution: {integrity: sha512-3Belt6tdc8bPgAtbcmdtNJlirVoTmEb5e2gC94PnkwEW9jI6CAHUeoG85tjWP5WquqfavoMtMwiG4P926ZKKuQ==}
 
-  '@kulupu-linku/sona@0.3.5':
-    resolution: {integrity: sha512-/KDl9kcnqMIiQaUjUsGfnNQTKXS9zZHC++EhuxrmyR3YABmh/ZAlfN2qlyoStDZkh3ODwLnWtuGeITriiGs1aA==}
+  '@kulupu-linku/sona@0.3.7':
+    resolution: {integrity: sha512-tNnK30zJyeWk6oR2MegLiTiNCvMaQTwBfJelubm0vdjn7rkDFudJVGAvwyj7AbR83JFGldkoNKTklwhyBN8J5Q==}
     engines: {pnpm: '>=9'}
 
   '@nodelib/fs.scandir@2.1.5':
@@ -4252,7 +4252,7 @@ snapshots:
     dependencies:
       hono: 4.5.6
 
-  '@hono/vite-dev-server@0.12.2(hono@4.5.6)':
+  '@hono/vite-dev-server@0.14.0(hono@4.5.6)':
     dependencies:
       '@hono/node-server': 1.12.0
       hono: 4.5.6
@@ -4316,10 +4316,10 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.0
 
-  '@kulupu-linku/sona@0.3.5':
+  '@kulupu-linku/sona@0.3.7':
     dependencies:
       '@hono/vite-cloudflare-pages': 0.4.2(hono@4.5.6)
-      '@hono/vite-dev-server': 0.12.2(hono@4.5.6)
+      '@hono/vite-dev-server': 0.14.0(hono@4.5.6)
       '@hono/zod-validator': 0.2.2(hono@4.5.6)(zod@3.23.8)
       hono: 4.5.6
       p-lazy: 4.0.0

@@ -12,8 +12,7 @@
 		bookColors,
 		categoryColors,
 		combinedWordSort,
-		recognitionWordSort,
-		sortLanguages
+		recognitionWordSort
 	} from '$lib/util';
 	import { filter } from '$lib/search';
 	import {
@@ -28,6 +27,7 @@
 	import ColoredCheckbox from '$lib/components/ColoredCheckbox.svelte';
 	import Search from '$lib/components/Search.svelte';
 	import Select from '$lib/components/Select.svelte';
+	import SelectLanguage from '$lib/components/SelectLanguage.svelte';
 	import WordDetails from '$lib/components/WordDetails.svelte';
 	import WordView from '$lib/components/WordView.svelte';
 
@@ -68,7 +68,6 @@
 
 	$: missingDefinitions =
 		$language !== 'en' &&
-		$language !== 'eng' &&
 		fetchedTranslations.includes($language) &&
 		genericFilteredWords.some(
 			word =>
@@ -78,15 +77,10 @@
 		);
 
 	$: if (!fetchedTranslations.includes($language)) {
-		setTranslation($language);
+		fetchTranslation($language);
 	}
 
-	async function setTranslation(lang: string) {
-		if (fetchedTranslations.includes(lang)) {
-			$language = lang;
-			return;
-		}
-
+	async function fetchTranslation(lang: string) {
 		const words = (await fetch(`/api/linku?lang=${lang}`).then(res =>
 			res.json()
 		)) as Record<string, LocalizedWord>;
@@ -102,7 +96,7 @@
 	}
 
 	onMount(() => {
-		setTranslation($language);
+		fetchTranslation($language);
 	});
 </script>
 
@@ -260,20 +254,14 @@
 		bind:value={$sortingMethod}
 	/>
 
-	<Select
-		name="Language"
-		options={sortLanguages(data.languages).map(language => {
-			return {
-				label: language.name.endonym ?? language.name.en,
-				value: language.id
-			};
-		})}
-		value={$language}
-		on:change={e => {
-			// @ts-expect-error The type of e is only Event, not ChangeEvent
-			const lang = e.target.value;
-
-			setTranslation(lang);
+	<SelectLanguage
+		languages={data.languages}
+		on:select={e => {
+			if (fetchedTranslations.includes(e.detail)) {
+				$language = e.detail;
+			} else {
+				fetchTranslation(e.detail);
+			}
 		}}
 	/>
 

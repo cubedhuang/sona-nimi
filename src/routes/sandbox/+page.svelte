@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
+
 	import type { LocalizedWord } from '@kulupu-linku/sona';
 
 	import { goto } from '$app/navigation';
@@ -10,6 +12,7 @@
 
 	import Search from '$lib/components/Search.svelte';
 	import Select from '$lib/components/Select.svelte';
+	import SelectLanguage from '$lib/components/SelectLanguage.svelte';
 	import WordDetails from '$lib/components/WordDetails.svelte';
 	import WordView from '$lib/components/WordView.svelte';
 
@@ -27,6 +30,41 @@
 
 	$: sortedWords = words.sort(genericSorter);
 	$: filteredWords = filter(sortedWords, search, $language);
+
+	let fetchedTranslations = ['en'];
+
+	$: missingDefinitions =
+		$language !== 'en' &&
+		fetchedTranslations.includes($language) &&
+		sortedWords.some(
+			word =>
+				!word.translations[$language]?.definition ||
+				word.translations[$language].definition ===
+					word.translations.en.definition
+		);
+
+	$: if (!fetchedTranslations.includes($language)) {
+		fetchTranslation($language);
+	}
+
+	async function fetchTranslation(lang: string) {
+		const words = (await fetch(`/api/sandbox?lang=${lang}`).then(res =>
+			res.json()
+		)) as Record<string, LocalizedWord>;
+
+		for (const word of Object.values(words)) {
+			data.words[word.id].translations[lang] = word.translations[lang];
+		}
+
+		fetchedTranslations.push(lang);
+		fetchedTranslations = fetchedTranslations;
+
+		$language = lang;
+	}
+
+	onMount(() => {
+		fetchTranslation($language);
+	});
 </script>
 
 <svelte:head>
@@ -85,6 +123,17 @@
 		bind:value={sortingMethod}
 	/>
 
+	<SelectLanguage
+		languages={data.languages}
+		on:select={e => {
+			if (fetchedTranslations.includes(e.detail)) {
+				$language = e.detail;
+			} else {
+				fetchTranslation(e.detail);
+			}
+		}}
+	/>
+
 	<Select
 		name="sitelen type"
 		options={[
@@ -96,6 +145,20 @@
 		bind:value={$sitelenMode}
 	/>
 </div>
+
+{#if missingDefinitions}
+	<p class="mt-2">
+		<strong>o sona a!</strong>
+		{data.languages[$language].name.tok ??
+			data.languages[$language].name.en}
+		la sona pi nimi ale li lon ala. toki Inli li lon nimi ni.
+	</p>
+	<p>
+		<strong>Warning!</strong>
+		Some words are missing {data.languages[$language].name.en} translations.
+		These are replaced with English translations.
+	</p>
+{/if}
 
 <p class="mt-2 text-muted">
 	{filteredWords.length} / {words.length}
