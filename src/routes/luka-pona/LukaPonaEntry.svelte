@@ -6,8 +6,13 @@
 
 	import { autoplay } from '$lib/stores';
 
-	export let word: string;
-	export let video: SignVideo;
+	interface Props {
+		word: string;
+		video: SignVideo;
+		onclick?: () => void;
+	}
+
+	const { word, video, onclick }: Props = $props();
 
 	let img: HTMLImageElement;
 	let canvas: HTMLCanvasElement;
@@ -59,20 +64,20 @@
 <button
 	class="group text-left outline-none focus-visible:outline-contrast"
 	id={word}
-	on:click
-	on:mouseenter={handleEnter}
-	on:mouseleave={handleLeave}
-	on:focus={handleEnter}
-	on:blur={handleLeave}
-	on:touchstart={handleEnter}
-	on:touchend={handleLeave}
+	{onclick}
+	onmouseenter={handleEnter}
+	onmouseleave={handleLeave}
+	onfocus={handleEnter}
+	onblur={handleLeave}
+	ontouchstart={handleEnter}
+	ontouchend={handleLeave}
 >
 	<div class="relative">
 		<canvas
 			aria-hidden="true"
 			bind:this={canvas}
 			class="aspect-video w-full rounded-lg bg-secondary"
-		/>
+		></canvas>
 
 		<img
 			src={video.gif}
@@ -81,7 +86,7 @@
 			class:opacity-0={!$autoplay}
 			loading="lazy"
 			bind:this={img}
-			on:load|once={handleLoaded}
+			onload={handleLoaded}
 		/>
 	</div>
 

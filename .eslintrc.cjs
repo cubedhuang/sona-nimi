@@ -27,5 +27,8 @@ module.exports = {
 				parser: '@typescript-eslint/parser'
 			}
 		}
-	]
+	],
+	rules: {
+		'prefer-const': ['error', { destructuring: 'all' }]
+	}
 };

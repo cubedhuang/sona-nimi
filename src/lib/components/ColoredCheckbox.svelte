@@ -1,12 +1,16 @@
 <script lang="ts">
-	export let checked: boolean;
-	export let label: string;
-	export let color: string;
+	interface Props {
+		checked: boolean;
+		label: string;
+		color: string;
+	}
+
+	let { checked = $bindable(), label, color }: Props = $props();
 </script>
 
 <button
 	class="interactable flex items-center"
-	on:click={() => (checked = !checked)}
+	onclick={() => (checked = !checked)}
 	role="checkbox"
 	aria-checked={checked}
 >
@@ -14,7 +18,7 @@
 		class="{color} h-full w-4 transition-opacity"
 		class:opacity-100={checked}
 		class:opacity-30={!checked}
-	/>
+	></span>
 
 	<span class="px-2 py-0.5 transition-colors" class:text-muted={!checked}>
 		{label}

@@ -1,9 +1,11 @@
 <script lang="ts">
 	import Link from '$lib/components/Link.svelte';
 
-	let pona = true;
+	let pona = $state(true);
 
-	$: t = (tokiPona: string, english: string) => (pona ? tokiPona : english);
+	const t = $derived((tokiPona: string, english: string) =>
+		pona ? tokiPona : english
+	);
 </script>
 
 <svelte:head>
@@ -26,7 +28,7 @@
 </svelte:head>
 
 <p>
-	<button class="interactable px-2 py-1" on:click={() => (pona = !pona)}>
+	<button class="interactable px-2 py-1" onclick={() => (pona = !pona)}>
 		{t('use English', 'o toki pona')}
 	</button>
 </p>

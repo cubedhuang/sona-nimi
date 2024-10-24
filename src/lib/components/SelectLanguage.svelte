@@ -1,6 +1,4 @@
 <script lang="ts">
-	import { createEventDispatcher } from 'svelte';
-
 	import type { Language } from '@kulupu-linku/sona';
 
 	import { language } from '$lib/stores';
@@ -8,9 +6,12 @@
 
 	import Select from './Select.svelte';
 
-	let dispatch = createEventDispatcher<{ select: string }>();
+	interface Props {
+		languages: Record<string, Language>;
+		onchange: (value: string) => void;
+	}
 
-	export let languages: Record<string, Language>;
+	const { languages, onchange }: Props = $props();
 </script>
 
 <Select
@@ -22,10 +23,5 @@
 		};
 	})}
 	value={$language}
-	on:change={e => {
-		// @ts-expect-error The type of e is only Event, not ChangeEvent
-		const lang = e.target.value;
-
-		dispatch('select', lang);
-	}}
+	{onchange}
 />

@@ -1,13 +1,17 @@
 <script lang="ts">
-	export let href: string;
+	import type { HTMLAnchorAttributes } from 'svelte/elements';
+
+	const { children, href, ...props }: HTMLAnchorAttributes = $props();
 </script>
 
 <a
 	{href}
-	target={href.startsWith('/') || href.startsWith('#') ? undefined : '_blank'}
+	target={!href || href.startsWith('/') || href.startsWith('#')
+		? undefined
+		: '_blank'}
 	rel="noopener noreferrer"
 	class="link"
-	on:click
+	{...props}
 >
-	<slot />
+	{@render children?.()}
 </a>

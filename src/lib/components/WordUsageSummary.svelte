@@ -3,7 +3,11 @@
 
 	import { getWordDisplayRecognition } from '$lib/util';
 
-	export let word: LocalizedWord;
+	interface Props {
+		word: LocalizedWord;
+	}
+
+	const { word }: Props = $props();
 </script>
 
 {#if word.usage_category !== 'sandbox'}

@@ -1,8 +1,6 @@
 <script lang="ts">
 	import { distance } from 'fastest-levenshtein';
 
-	import type { PageData } from './$types';
-
 	import type { Compound } from '$lib/types';
 	import { normalize } from '$lib/util';
 
@@ -11,50 +9,54 @@
 	import Link from '$lib/components/Link.svelte';
 	import Search from '$lib/components/Search.svelte';
 
-	export let data: PageData;
+	const { data } = $props();
 
 	function getCompoundRecognition(compound: Compound) {
 		return Math.max(...Object.values(compound.uses));
 	}
 
-	$: compounds = Object.values(data).sort(
-		(a: Compound, b: Compound) =>
-			getCompoundRecognition(b) - getCompoundRecognition(a)
+	const compounds = $derived(
+		Object.values(data).sort(
+			(a: Compound, b: Compound) =>
+				getCompoundRecognition(b) - getCompoundRecognition(a)
+		)
 	);
 
-	let search = '';
-	let selectedCompound: Compound | null = null;
+	let search = $state('');
+	let selectedCompound: Compound | null = $state(null);
 
-	$: fixedSearch = normalize(search);
+	const fixedSearch = $derived(normalize(search));
 
-	$: filteredCompounds = compounds
-		.filter(
-			compound =>
-				compound.compound.includes(fixedSearch) ||
-				distance(compound.compound, fixedSearch) <= 2 ||
-				Object.keys(compound.uses).some(
-					use =>
-						use.includes(fixedSearch) ||
-						distance(use, fixedSearch) <= 2
-				)
-		)
-		.sort((a, b) => {
-			if (fixedSearch === '') return 0;
-			if (a.compound === fixedSearch) return -1;
-			if (b.compound === fixedSearch) return 1;
-			if (Object.keys(a.uses).includes(fixedSearch)) return -1;
-			if (Object.keys(b.uses).includes(fixedSearch)) return 1;
-			const aContains = Object.keys(a.uses).some(use =>
-				use.includes(fixedSearch)
-			);
-			const bContains = Object.keys(b.uses).some(use =>
-				use.includes(fixedSearch)
-			);
-			if (aContains && bContains) return 0;
-			if (aContains && !bContains) return -1;
-			if (!aContains && bContains) return 1;
-			return 0;
-		});
+	const filteredCompounds = $derived(
+		compounds
+			.filter(
+				compound =>
+					compound.compound.includes(fixedSearch) ||
+					distance(compound.compound, fixedSearch) <= 2 ||
+					Object.keys(compound.uses).some(
+						use =>
+							use.includes(fixedSearch) ||
+							distance(use, fixedSearch) <= 2
+					)
+			)
+			.sort((a, b) => {
+				if (fixedSearch === '') return 0;
+				if (a.compound === fixedSearch) return -1;
+				if (b.compound === fixedSearch) return 1;
+				if (Object.keys(a.uses).includes(fixedSearch)) return -1;
+				if (Object.keys(b.uses).includes(fixedSearch)) return 1;
+				const aContains = Object.keys(a.uses).some(use =>
+					use.includes(fixedSearch)
+				);
+				const bContains = Object.keys(b.uses).some(use =>
+					use.includes(fixedSearch)
+				);
+				if (aContains && bContains) return 0;
+				if (aContains && !bContains) return -1;
+				if (!aContains && bContains) return 1;
+				return 0;
+			})
+	);
 </script>
 
 <svelte:head>
@@ -121,7 +123,7 @@
 	{#each filteredCompounds as compound (compound.compound)}
 		<CompoundSpace
 			{compound}
-			on:click={() => {
+			onclick={() => {
 				if (selectedCompound?.compound === compound.compound)
 					selectedCompound = null;
 				else selectedCompound = compound;

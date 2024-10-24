@@ -1,19 +1,23 @@
 <script lang="ts">
 	import { fade, fly } from 'svelte/transition';
 
-	export let value: string;
+	interface Props {
+		value: string;
+	}
 
-	let copied = false;
+	const { value }: Props = $props();
+
+	let copied = $state(false);
 
 	// ESLint doesn't recognize NodeJS.Timeout
 	// eslint-disable-next-line no-undef
-	let timeout: NodeJS.Timeout;
+	let timeout: NodeJS.Timeout | undefined = $state();
 </script>
 
 <button
 	class="interactable relative flex justify-center overflow-visible p-1"
 	aria-label="copy ucsur"
-	on:click={() => {
+	onclick={() => {
 		navigator.clipboard.writeText(value);
 
 		copied = true;

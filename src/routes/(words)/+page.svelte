@@ -4,8 +4,6 @@
 	import type { LocalizedWord } from '@kulupu-linku/sona';
 	import type { Book } from '@kulupu-linku/sona/utils';
 
-	import type { PageData } from './$types';
-
 	import { outclick } from '$lib/actions/outclick';
 	import {
 		azWordSort,
@@ -31,54 +29,21 @@
 	import WordDetails from '$lib/components/WordDetails.svelte';
 	import WordView from '$lib/components/WordView.svelte';
 
-	export let data: PageData;
+	const { data } = $props();
 
-	$: words = Object.values(data.words);
+	let moreOptions = $state(false);
 
-	let moreOptions = false;
+	let search = $state('');
+	let selectedWord: LocalizedWord | null = $state(null);
 
-	let search = '';
-	let selectedWord: LocalizedWord | null = null;
+	let books = $state(
+		Object.keys(bookColors).map(book => ({
+			name: book as Book,
+			shown: true
+		}))
+	);
 
-	$: shownCategories = $categories
-		.filter(category => category.shown)
-		.map(category => category.name);
-
-	let books = Object.keys(bookColors).map(book => ({
-		name: book as Book,
-		shown: true
-	}));
-	$: shownBooks = books.filter(book => book.shown).map(book => book.name);
-
-	$: genericSorter =
-		$sortingMethod === 'alphabetical'
-			? azWordSort
-			: $sortingMethod === 'recognition'
-				? recognitionWordSort
-				: combinedWordSort;
-
-	$: genericFilter = (word: LocalizedWord) =>
-		shownCategories.includes(word.usage_category) &&
-		shownBooks.includes(word.book);
-
-	$: genericFilteredWords = words.filter(genericFilter).sort(genericSorter);
-	$: filteredWords = filter(genericFilteredWords, search, $language);
-
-	let fetchedTranslations = ['en'];
-
-	$: missingDefinitions =
-		$language !== 'en' &&
-		fetchedTranslations.includes($language) &&
-		genericFilteredWords.some(
-			word =>
-				!word.translations[$language]?.definition ||
-				word.translations[$language].definition ===
-					word.translations.en.definition
-		);
-
-	$: if (!fetchedTranslations.includes($language)) {
-		fetchTranslation($language);
-	}
+	let fetchedTranslations = $state(['en']);
 
 	async function fetchTranslation(lang: string) {
 		const words = (await fetch(`/api/linku?lang=${lang}`).then(res =>
@@ -97,6 +62,57 @@
 
 	onMount(() => {
 		fetchTranslation($language);
+	});
+
+	const words = $derived(Object.values(data.words));
+
+	const shownCategories = $derived(
+		$categories
+			.filter(category => category.shown)
+			.map(category => category.name)
+	);
+
+	const shownBooks = $derived(
+		books.filter(book => book.shown).map(book => book.name)
+	);
+
+	const genericSorter = $derived(
+		$sortingMethod === 'alphabetical'
+			? azWordSort
+			: $sortingMethod === 'recognition'
+				? recognitionWordSort
+				: combinedWordSort
+	);
+
+	const genericFilter = $derived(
+		(word: LocalizedWord) =>
+			shownCategories.includes(word.usage_category) &&
+			shownBooks.includes(word.book)
+	);
+
+	const genericFilteredWords = $derived(
+		words.filter(genericFilter).sort(genericSorter)
+	);
+
+	const filteredWords = $derived(
+		filter(genericFilteredWords, search, $language)
+	);
+
+	const missingDefinitions = $derived(
+		$language !== 'en' &&
+			fetchedTranslations.includes($language) &&
+			genericFilteredWords.some(
+				word =>
+					!word.translations[$language]?.definition ||
+					word.translations[$language].definition ===
+						word.translations.en.definition
+			)
+	);
+
+	$effect(() => {
+		if (!fetchedTranslations.includes($language)) {
+			fetchTranslation($language);
+		}
 	});
 </script>
 
@@ -140,7 +156,7 @@
 
 	<div class="relative flex justify-center">
 		<button
-			on:click={() => {
+			onclick={() => {
 				moreOptions = !moreOptions;
 			}}
 			class="interactable p-0.5 lg:block"
@@ -167,7 +183,7 @@
 			<div
 				transition:flyAndScale|local={{ y: -4 }}
 				use:outclick
-				on:outclick={() => {
+				onoutclick={() => {
 					// delay to make clicking on the button also close
 					requestAnimationFrame(() => {
 						moreOptions = false;
@@ -208,7 +224,7 @@
 		</div>
 
 		<button
-			on:click={() => {
+			onclick={() => {
 				moreOptions = false;
 			}}
 			class="interactable shrink-0 p-0.5"
@@ -256,11 +272,11 @@
 
 	<SelectLanguage
 		languages={data.languages}
-		on:select={e => {
-			if (fetchedTranslations.includes(e.detail)) {
-				$language = e.detail;
+		onchange={lang => {
+			if (fetchedTranslations.includes(lang)) {
+				$language = lang;
 			} else {
-				fetchTranslation(e.detail);
+				fetchTranslation(lang);
 			}
 		}}
 	/>
@@ -299,28 +315,28 @@
 
 <WordView
 	words={filteredWords}
-	on:select={e => {
-		if (selectedWord?.id === e.detail.id) selectedWord = null;
-		else selectedWord = e.detail;
+	onselect={word => {
+		if (selectedWord?.id === word.id) selectedWord = null;
+		else selectedWord = word;
 	}}
 />
 
 <WordDetails
 	bind:word={selectedWord}
 	lipamanka={data.lipamanka[selectedWord?.id ?? '']}
-	on:refer={e => {
-		if (!filteredWords.some(word => word.word === e.detail)) {
+	onrefer={referred => {
+		if (!filteredWords.some(word => word.word === referred)) {
 			search = '';
 
 			$categories = $categories.map(category => ({
 				...category,
 				shown:
 					category.shown ||
-					category.name === data.words[e.detail].usage_category
+					category.name === data.words[referred].usage_category
 			}));
 			books = books.map(book => ({
 				...book,
-				shown: book.shown || book.name === data.words[e.detail].book
+				shown: book.shown || book.name === data.words[referred].book
 			}));
 		}
 	}}

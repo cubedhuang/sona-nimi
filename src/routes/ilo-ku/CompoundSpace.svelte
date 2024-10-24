@@ -3,15 +3,22 @@
 
 	import Space from '$lib/components/Space.svelte';
 
-	export let compound: Compound;
+	interface Props {
+		compound: Compound;
+		onclick: () => void;
+	}
 
-	$: uses = Object.entries(compound.uses).sort((a, b) => b[1] - a[1]);
-	$: usesString = uses
-		.map(([use]) => use.replaceAll(' (', '\u00a0('))
-		.join(', ');
+	const { compound, onclick }: Props = $props();
+
+	const uses = $derived(
+		Object.entries(compound.uses).sort((a, b) => b[1] - a[1])
+	);
+	const usesString = $derived(
+		uses.map(([use]) => use.replaceAll(' (', '\u00a0(')).join(', ')
+	);
 </script>
 
-<Space on:click id={compound.compound}>
+<Space {onclick} id={compound.compound}>
 	<div class="flex justify-between gap-2">
 		<div>
 			<h2 class="text-xl">{compound.compound}</h2>

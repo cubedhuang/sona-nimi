@@ -7,38 +7,37 @@
 	import WordEntry from './WordEntry.svelte';
 	import WordSpace from './WordSpace.svelte';
 	import WordSpaceDetailed from './WordSpaceDetailed.svelte';
-	import { createEventDispatcher } from 'svelte';
 
-	export let words: LocalizedWord[];
+	interface Props {
+		words: LocalizedWord[];
+		onselect: (word: LocalizedWord) => void;
+	}
 
-	const dispatch = createEventDispatcher<{ select: LocalizedWord }>();
+	const { words, onselect }: Props = $props();
 </script>
 
 {#if $viewMode === 'compact'}
 	<div class="mt-4 grid">
 		{#each words as word (word.id)}
-			<WordEntry {word} on:click={() => dispatch('select', word)} />
+			<WordEntry {word} onclick={() => onselect(word)} />
 		{/each}
 	</div>
 {:else if $viewMode === 'glyphs'}
 	<div class="mt-4 grid gap-4 grid-cols-fill-24">
 		{#each words as word (word.id)}
-			<GlyphEntry {word} on:click={() => dispatch('select', word)} />
+			<GlyphEntry {word} onclick={() => onselect(word)} />
 		{/each}
 	</div>
 {:else if $viewMode === 'detailed'}
 	<div class="mt-4 grid gap-4 grid-cols-fill-96">
 		{#each words as word (word.id)}
-			<WordSpaceDetailed
-				{word}
-				on:click={() => dispatch('select', word)}
-			/>
+			<WordSpaceDetailed {word} onclick={() => onselect(word)} />
 		{/each}
 	</div>
 {:else}
 	<div class="mt-4 grid gap-4 grid-cols-fill-80">
 		{#each words as word (word.id)}
-			<WordSpace {word} on:click={() => dispatch('select', word)} />
+			<WordSpace {word} onclick={() => onselect(word)} />
 		{/each}
 	</div>
 {/if}

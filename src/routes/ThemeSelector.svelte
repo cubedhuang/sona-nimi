@@ -1,26 +1,35 @@
 <script lang="ts">
+	import { passive, stopPropagation, createBubbler } from 'svelte/legacy';
+
+	const bubble = createBubbler();
 	import { flyAndScale } from '$lib/transitions';
 	import FontOption from './FontOption.svelte';
 	import ThemeOption from './ThemeOption.svelte';
 
-	let opened = false;
+	let opened = $state(false);
 </script>
 
 <svelte:window
-	on:click={() => {
+	onclick={() => {
 		opened = false;
 	}}
-	on:touchstart|passive={() => {
-		opened = false;
-	}}
+	use:passive={[
+		'touchstart',
+		() => () => {
+			opened = false;
+		}
+	]}
 />
 
 <div class="relative">
 	<button
-		on:click|stopPropagation={() => {
+		onclick={stopPropagation(() => {
 			opened = !opened;
-		}}
-		on:touchstart|passive|stopPropagation
+		})}
+		use:passive={[
+			'touchstart',
+			() => stopPropagation(bubble('touchstart'))
+		]}
 		class="nav-item-interactive cursor-pointer"
 		role="listbox"
 		aria-label="set theme"

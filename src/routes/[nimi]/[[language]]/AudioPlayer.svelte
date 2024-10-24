@@ -1,19 +1,23 @@
 <script lang="ts">
 	import type { WordAudio } from '@kulupu-linku/sona';
 
-	export let audio: WordAudio[number];
+	interface Props {
+		audio: WordAudio[number];
+	}
 
-	let element: HTMLAudioElement | null = null;
+	const { audio }: Props = $props();
+
+	let element: HTMLAudioElement | null = $state(null);
 
 	function play() {
 		element?.play();
 	}
 </script>
 
-<audio src={audio.link} bind:this={element} />
+<audio src={audio.link} bind:this={element}></audio>
 
 <div class="flex items-center gap-2">
-	<button class="interactable p-1" on:click={play}>
+	<button class="interactable p-1" aria-label="play audio" onclick={play}>
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
 			fill="none"

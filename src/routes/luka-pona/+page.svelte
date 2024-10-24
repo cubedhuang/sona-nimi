@@ -12,18 +12,24 @@
 	import Search from '$lib/components/Search.svelte';
 	import WordDetails from '$lib/components/WordDetails.svelte';
 
-	export let data: PageData;
+	interface Props {
+		data: PageData;
+	}
 
-	$: words = Object.values(data.words);
+	const { data }: Props = $props();
 
-	let search = '';
-	let selectedWord: LocalizedWord | null = null;
+	const words = $derived(Object.values(data.words));
 
-	$: genericFilteredWords = words
-		.filter(word => data.signs[word.id])
-		.sort(azWordSort);
+	let search = $state('');
+	let selectedWord: LocalizedWord | null = $state(null);
 
-	$: filteredWords = filter(genericFilteredWords, search, $language);
+	const genericFilteredWords = $derived(
+		words.filter(word => data.signs[word.id]).sort(azWordSort)
+	);
+
+	const filteredWords = $derived(
+		filter(genericFilteredWords, search, $language)
+	);
 </script>
 
 <svelte:head>
@@ -76,7 +82,7 @@
 		<LukaPonaEntry
 			word={word.id}
 			video={data.signs[word.id]}
-			on:click={() => {
+			onclick={() => {
 				if (selectedWord?.id === word.id) selectedWord = null;
 				else selectedWord = word;
 			}}
@@ -91,8 +97,8 @@
 
 <WordDetails
 	bind:word={selectedWord}
-	on:refer={e => {
-		if (!filteredWords.some(word => word.word === e.detail)) {
+	onrefer={referred => {
+		if (!filteredWords.some(word => word.word === referred)) {
 			search = '';
 		}
 	}}

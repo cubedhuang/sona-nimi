@@ -1,10 +1,22 @@
 <script lang="ts">
+	import {
+		createBubbler,
+		stopPropagation,
+		handlers,
+		passive
+	} from 'svelte/legacy';
+
+	const bubble = createBubbler();
 	import { font, type Font } from '$lib/stores';
 
-	export let value: Font;
-	export let name: string;
+	interface Props {
+		value: Font;
+		name: string;
+	}
 
-	$: selected = value === $font;
+	const { value, name }: Props = $props();
+
+	const selected = $derived(value === $font);
 </script>
 
 <button
@@ -12,11 +24,10 @@
 		{selected
 		? 'ring-2 ring-secondary-foreground ring-offset-2 ring-offset-card'
 		: ''}"
-	on:click|stopPropagation
-	on:touchstart|passive|stopPropagation
-	on:click={() => {
+	onclick={handlers(stopPropagation(bubble('click')), () => {
 		$font = value;
-	}}
+	})}
+	use:passive={['touchstart', () => stopPropagation(bubble('touchstart'))]}
 	role="option"
 	aria-selected="false"
 >

@@ -1,15 +1,17 @@
-<script lang="ts">
-	// ESLint doesn't recognize Svelte's generic types
-	// eslint-disable-next-line no-undef
-	type T = $$Generic;
+<script lang="ts" generics="T">
+	/* eslint no-undef: off */
 
-	export let options: {
-		label: string;
+	interface Props {
+		options: {
+			label: string;
+			value: T;
+		}[];
+		name: string;
 		value: T;
-	}[];
+		onchange?: (value: T) => void;
+	}
 
-	export let name: string;
-	export let value: T;
+	let { options, name, value = $bindable(), onchange }: Props = $props();
 </script>
 
 <label class="relative max-w-full">
@@ -17,7 +19,7 @@
 
 	<select
 		bind:value
-		on:change
+		onchange={() => onchange?.(value as T)}
 		class="interactable max-w-full appearance-none text-ellipsis py-0.5 pl-2 pr-10"
 	>
 		{#each options as option}

@@ -10,12 +10,17 @@
 	import { language, sitelenMode } from '$lib/stores';
 	import Space from '$lib/components/Space.svelte';
 
-	export let word: LocalizedWord;
+	interface Props {
+		word: LocalizedWord;
+		onclick?: () => void;
+	}
 
-	$: translation = getWordTranslation(word, $language);
+	const { word, onclick }: Props = $props();
+
+	const translation = $derived(getWordTranslation(word, $language));
 </script>
 
-<Space on:click id={word.id}>
+<Space {onclick} id={word.id}>
 	<div class="grid grid-cols-3 text-muted">
 		<div>
 			<p class="line-clamp-1 break-all">
@@ -106,5 +111,5 @@
 		class="absolute -left-3 -top-3 rounded-full p-3 {categoryColors[
 			word.usage_category
 		]}"
-	/>
+	></span>
 </Space>

@@ -1,12 +1,22 @@
 <script lang="ts">
+	import {
+		createBubbler,
+		stopPropagation,
+		handlers,
+		passive
+	} from 'svelte/legacy';
+
+	const bubble = createBubbler();
 	import { theme, type Theme } from '$lib/stores';
 
-	export let value: Theme;
+	interface Props {
+		value: Theme;
+		class?: string | undefined;
+	}
 
-	let className: string | undefined = undefined;
-	export { className as class };
+	const { value, class: className = undefined }: Props = $props();
 
-	$: selected = value === $theme;
+	const selected = $derived(value === $theme);
 </script>
 
 <button
@@ -14,11 +24,10 @@
 		{selected
 		? 'ring-2 ring-secondary-foreground ring-offset-2 ring-offset-card'
 		: ''}"
-	on:click|stopPropagation
-	on:touchstart|passive|stopPropagation
-	on:click={() => {
+	onclick={handlers(stopPropagation(bubble('click')), () => {
 		$theme = value;
-	}}
+	})}
+	use:passive={['touchstart', () => stopPropagation(bubble('touchstart'))]}
 	role="option"
 	aria-selected={selected}
 	aria-label={value}

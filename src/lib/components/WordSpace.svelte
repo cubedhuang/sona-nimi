@@ -7,12 +7,17 @@
 	import Space from '$lib/components/Space.svelte';
 	import WordUsageSummary from './WordUsageSummary.svelte';
 
-	export let word: LocalizedWord;
+	interface Props {
+		word: LocalizedWord;
+		onclick?: () => void;
+	}
 
-	$: translation = getWordTranslation(word, $language);
+	const { word, onclick }: Props = $props();
+
+	const translation = $derived(getWordTranslation(word, $language));
 </script>
 
-<Space on:click id={word.id}>
+<Space {onclick} id={word.id}>
 	<div class="flex justify-between gap-2">
 		<div>
 			<h2 class="text-xl">{word.word}</h2>
@@ -68,6 +73,6 @@
 			class="absolute -left-3 -top-3 rounded-full p-3 {categoryColors[
 				word.usage_category
 			]}"
-		/>
+		></span>
 	</div>
 </Space>

@@ -1,9 +1,13 @@
 <script lang="ts">
 	import Collapsible from './Collapsible.svelte';
 
-	export let data: Record<string, number>;
+	interface Props {
+		data: Record<string, number>;
+	}
 
-	$: entries = Object.entries(data).sort((a, b) => b[1] - a[1]);
+	const { data }: Props = $props();
+
+	const entries = $derived(Object.entries(data).sort((a, b) => b[1] - a[1]));
 </script>
 
 <Collapsible>

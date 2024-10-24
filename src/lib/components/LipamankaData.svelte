@@ -1,16 +1,22 @@
 <script lang="ts">
 	import type { Action } from 'svelte/action';
 
-	import ExternalLink from './icons/ExternalLink.svelte';
 	import type { LocalizedWord } from '@kulupu-linku/sona';
 
-	export let word: LocalizedWord;
-	export let content: string;
+	import ExternalLink from './icons/ExternalLink.svelte';
 
-	$: href =
+	interface Props {
+		word: LocalizedWord;
+		content: string;
+	}
+
+	const { word, content }: Props = $props();
+
+	const href = $derived(
 		word.word === 'mije' || word.word === 'meli'
 			? 'https://lipamanka.gay/essays/dictionary#mije-and-meli'
-			: `https://lipamanka.gay/essays/dictionary#${word.word}`;
+			: `https://lipamanka.gay/essays/dictionary#${word.word}`
+	);
 
 	const fixLinks: Action<HTMLDivElement> = node => {
 		const update = () => {

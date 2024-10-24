@@ -3,8 +3,6 @@
 
 	import { page } from '$app/stores';
 
-	import type { PageData } from './$types';
-
 	import { outclick } from '$lib/actions/outclick';
 	import { flyAndScale } from '$lib/transitions';
 	import {
@@ -24,18 +22,19 @@
 	import Wikipedia from '$lib/components/icons/Wikipedia.svelte';
 	import WordEtymology from '$lib/components/WordEtymology.svelte';
 
-	export let data: PageData;
+	const { data } = $props();
 
-	$: language = $page.params.language;
-	$: word = data.word;
+	const language = $derived($page.params.language);
+	const word = $derived(data.word);
 
-	$: translation = getWordTranslation(word, language);
+	const translation = $derived(getWordTranslation(word, language));
 
-	$: puData =
+	const puData = $derived(
 		word.pu_verbatim?.[language as keyof LocalizedWord['pu_verbatim']] ||
-		word.pu_verbatim?.en;
+			word.pu_verbatim?.en
+	);
 
-	let showHistory = false;
+	let showHistory = $state(false);
 </script>
 
 <svelte:head>
@@ -280,7 +279,8 @@
 				{#if Object.keys(word.usage).length}
 					<button
 						class="icon-interactable"
-						on:click={() => (showHistory = !showHistory)}
+						aria-label="view usage history"
+						onclick={() => (showHistory = !showHistory)}
 					>
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
@@ -304,7 +304,7 @@
 						class="absolute left-1/2 top-full flex w-max -translate-x-1/2 gap-4 rounded-lg border bg-card p-4 shadow-lg"
 						transition:flyAndScale|local={{ y: -4 }}
 						use:outclick
-						on:outclick={() => {
+						onoutclick={() => {
 							// delay to make clicking on the button also close
 							requestAnimationFrame(() => {
 								showHistory = false;

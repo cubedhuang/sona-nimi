@@ -8,9 +8,14 @@
 	} from '$lib/util';
 	import { language, sitelenMode } from '$lib/stores';
 
-	export let word: LocalizedWord;
+	interface Props {
+		word: LocalizedWord;
+		onclick?: () => void;
+	}
 
-	$: translation = getWordTranslation(word, $language);
+	const { word, onclick }: Props = $props();
+
+	const translation = $derived(getWordTranslation(word, $language));
 </script>
 
 <p class="flex gap-1" id={word.id}>
@@ -20,7 +25,7 @@
 				>{word.representations.ligatures[0]}</span
 			>
 		{:else}
-			<span class="w-5 shrink-0" />
+			<span class="w-5 shrink-0"></span>
 		{/if}
 	{:else if $sitelenMode === 'sitelen'}
 		{#if word.representations?.sitelen_sitelen}
@@ -30,7 +35,7 @@
 				class="invertible my-0.5 h-6 w-6 shrink-0"
 			/>
 		{:else}
-			<span class="w-6 shrink-0" />
+			<span class="w-6 shrink-0"></span>
 		{/if}
 	{:else if $sitelenMode === 'jelo'}
 		{#if word.representations?.sitelen_jelo}
@@ -38,18 +43,18 @@
 				{word.representations.sitelen_jelo[0]}
 			</span>
 		{:else}
-			<span class="w-6 shrink-0" />
+			<span class="w-6 shrink-0"></span>
 		{/if}
 	{:else if word.representations?.sitelen_emosi}
 		<span class="w-6 shrink-0 text-right text-xl">
 			{word.representations.sitelen_emosi}
 		</span>
 	{:else}
-		<span class="w-6 shrink-0" />
+		<span class="w-6 shrink-0"></span>
 	{/if}
 
 	<span class="ml-0.5 mt-0.5">
-		<button on:click class="font-bold transition hv:text-accent">
+		<button {onclick} class="font-bold transition hv:text-accent">
 			{word.word}
 		</button>
 

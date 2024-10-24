@@ -1,7 +1,7 @@
 <script lang="ts">
 	import '../app.postcss';
 
-	import { onMount } from 'svelte';
+	import { onMount, type Snippet } from 'svelte';
 
 	import NProgress from 'nprogress';
 
@@ -14,6 +14,12 @@
 
 	import ThemeSelector from './ThemeSelector.svelte';
 
+	interface Props {
+		children: Snippet;
+	}
+
+	const { children }: Props = $props();
+
 	const routes = [
 		{ name: 'dictionary', href: '/' },
 		{ name: 'luka pona', href: '/luka-pona' },
@@ -22,7 +28,7 @@
 		{ name: 'about', href: '/about' }
 	];
 
-	let opened = false;
+	let opened = $state(false);
 
 	// ESLint doesn't recognize NodeJS.Timeout
 	// eslint-disable-next-line no-undef
@@ -47,7 +53,7 @@
 
 	// BeforeInstallPromptEvent doesn't have a type definition :(
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	let deferredPrompt: Event & any;
+	let deferredPrompt: Event & any = $state();
 
 	onMount(() => {
 		window.addEventListener('beforeinstallprompt', e => {
@@ -69,10 +75,10 @@
 </script>
 
 <svelte:window
-	on:click={() => {
+	onclick={() => {
 		opened = false;
 	}}
-	on:touchstart|passive={() => {
+	ontouchstart={() => {
 		opened = false;
 	}}
 />
@@ -98,10 +104,11 @@
 
 		<div class="relative sm:hidden">
 			<button
-				on:click|stopPropagation={() => {
+				onclick={e => {
+					e.stopPropagation();
 					opened = !opened;
 				}}
-				on:touchstart|passive|stopPropagation
+				ontouchstart={e => e.stopPropagation()}
 				class="nav-item-interactive cursor-pointer"
 				aria-label="open navigation"
 			>
@@ -133,8 +140,8 @@
 							<a
 								href={route.href}
 								class="p-2"
-								on:click|stopPropagation
-								on:touchstart|passive|stopPropagation
+								onclick={e => e.stopPropagation()}
+								ontouchstart={e => e.stopPropagation()}
 							>
 								{route.name}
 							</a>
@@ -147,7 +154,7 @@
 		<div class="flex gap-2">
 			{#if deferredPrompt}
 				<button
-					on:click={() => {
+					onclick={() => {
 						deferredPrompt.prompt();
 					}}
 					transition:flyAndScale={{ y: 4 }}
@@ -173,7 +180,7 @@
 
 			<button
 				class="nav-item-interactive cursor-pointer max-xl:hidden"
-				on:click={() => {
+				onclick={() => {
 					if ($screenWidth === 'full') {
 						$screenWidth = 'large';
 					} else {
@@ -222,7 +229,7 @@
 	</nav>
 
 	<main class="pb-24 pt-4 sm:pt-8">
-		<slot />
+		{@render children()}
 	</main>
 </div>
 

@@ -16,36 +16,18 @@
 	import WordDetails from '$lib/components/WordDetails.svelte';
 	import WordView from '$lib/components/WordView.svelte';
 
-	export let data: PageData;
-
-	$: words = Object.values(data.words);
-
-	let search = '';
-	let selectedWord: LocalizedWord | null = null;
-
-	let sortingMethod: 'alphabetical' | 'recognition' = 'recognition';
-
-	$: genericSorter =
-		sortingMethod === 'alphabetical' ? azWordSort : recognitionWordSort;
-
-	$: sortedWords = words.sort(genericSorter);
-	$: filteredWords = filter(sortedWords, search, $language);
-
-	let fetchedTranslations = ['en'];
-
-	$: missingDefinitions =
-		$language !== 'en' &&
-		fetchedTranslations.includes($language) &&
-		sortedWords.some(
-			word =>
-				!word.translations[$language]?.definition ||
-				word.translations[$language].definition ===
-					word.translations.en.definition
-		);
-
-	$: if (!fetchedTranslations.includes($language)) {
-		fetchTranslation($language);
+	interface Props {
+		data: PageData;
 	}
+
+	let { data = $bindable() }: Props = $props();
+
+	let search = $state('');
+	let selectedWord: LocalizedWord | null = $state(null);
+
+	let sortingMethod = $state<'alphabetical' | 'recognition'>('recognition');
+
+	let fetchedTranslations = $state(['en']);
 
 	async function fetchTranslation(lang: string) {
 		const words = (await fetch(`/api/sandbox?lang=${lang}`).then(res =>
@@ -64,6 +46,33 @@
 
 	onMount(() => {
 		fetchTranslation($language);
+	});
+
+	const words = $derived(Object.values(data.words));
+
+	const genericSorter = $derived(
+		sortingMethod === 'alphabetical' ? azWordSort : recognitionWordSort
+	);
+
+	const sortedWords = $derived(words.sort(genericSorter));
+
+	const filteredWords = $derived(filter(sortedWords, search, $language));
+
+	const missingDefinitions = $derived(
+		$language !== 'en' &&
+			fetchedTranslations.includes($language) &&
+			sortedWords.some(
+				word =>
+					!word.translations[$language]?.definition ||
+					word.translations[$language].definition ===
+						word.translations.en.definition
+			)
+	);
+
+	$effect(() => {
+		if (!fetchedTranslations.includes($language)) {
+			fetchTranslation($language);
+		}
 	});
 </script>
 
@@ -125,11 +134,11 @@
 
 	<SelectLanguage
 		languages={data.languages}
-		on:select={e => {
-			if (fetchedTranslations.includes(e.detail)) {
-				$language = e.detail;
+		onchange={lang => {
+			if (fetchedTranslations.includes(lang)) {
+				$language = lang;
 			} else {
-				fetchTranslation(e.detail);
+				fetchTranslation(lang);
 			}
 		}}
 	/>
@@ -168,18 +177,18 @@
 
 <WordView
 	words={filteredWords}
-	on:select={e => {
-		if (selectedWord?.id === e.detail.id) selectedWord = null;
-		else selectedWord = e.detail;
+	onselect={word => {
+		if (selectedWord?.id === word.id) selectedWord = null;
+		else selectedWord = word;
 	}}
 />
 
 <WordDetails
 	bind:word={selectedWord}
-	on:refer={e => {
-		if (!filteredWords.some(word => word.word === e.detail)) {
-			if (!words.some(word => word.word === e.detail)) {
-				goto(`/${e.detail}`);
+	onrefer={referred => {
+		if (!filteredWords.some(word => word.word === referred)) {
+			if (!words.some(word => word.word === referred)) {
+				goto(`/${referred}`);
 			} else {
 				search = '';
 			}

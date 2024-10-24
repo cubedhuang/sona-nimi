@@ -3,12 +3,16 @@
 
 	import XMark from './icons/XMark.svelte';
 
-	export let placeholder: string;
-	export let value = '';
+	interface Props {
+		placeholder: string;
+		value: string;
+	}
+
+	let { placeholder, value = $bindable('') }: Props = $props();
 
 	let div: HTMLDivElement;
 	let searchBar: HTMLInputElement;
-	let stick = false;
+	let stick = $state(false);
 
 	onMount(() => {
 		searchBar?.focus();
@@ -24,7 +28,7 @@
 </script>
 
 <svelte:window
-	on:keydown={e => {
+	onkeydown={e => {
 		if (e.ctrlKey || e.metaKey || e.altKey) {
 			return;
 		}
@@ -54,7 +58,7 @@
 	{#if value}
 		<button
 			class="interactable shrink-0 p-2"
-			on:click={() => {
+			onclick={() => {
 				value = '';
 				searchBar.focus();
 			}}

@@ -1,8 +1,12 @@
 <script lang="ts">
 	import type { LocalizedWord, WordTranslation } from '@kulupu-linku/sona';
 
-	export let word: LocalizedWord;
-	export let translation: WordTranslation;
+	interface Props {
+		word: LocalizedWord;
+		translation: WordTranslation;
+	}
+
+	const { word, translation }: Props = $props();
 </script>
 
 {#if word.source_language.startsWith('multiple') || word.source_language.startsWith('unknown')}

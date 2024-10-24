@@ -8,20 +8,25 @@
 	} from '$lib/util';
 	import { language, sitelenMode } from '$lib/stores';
 
-	export let word: LocalizedWord;
+	interface Props {
+		word: LocalizedWord;
+		onclick?: () => void;
+	}
 
-	$: translation = getWordTranslation(word, $language);
+	const { word, onclick }: Props = $props();
+
+	const translation = $derived(getWordTranslation(word, $language));
 </script>
 
 <div class="flex flex-col items-center" id={word.id}>
-	<button class="group contents" on:click>
+	<button class="group contents" {onclick}>
 		{#if $sitelenMode === 'pona'}
 			{#if word.representations?.ligatures?.length}
 				<p class="whitespace-nowrap font-pona text-4xl">
 					{word.representations.ligatures.slice(0, 3).join(' ')}
 				</p>
 			{:else}
-				<span class="h-10" />
+				<span class="h-10"></span>
 			{/if}
 		{:else if $sitelenMode === 'sitelen'}
 			{#if word.representations?.sitelen_sitelen}
@@ -31,7 +36,7 @@
 					class="invertible h-10 w-10"
 				/>
 			{:else}
-				<span class="h-10" />
+				<span class="h-10"></span>
 			{/if}
 		{:else if $sitelenMode === 'jelo'}
 			{#if word.representations?.sitelen_jelo}
@@ -39,14 +44,14 @@
 					{word.representations.sitelen_jelo.slice(0, 3).join('')}
 				</p>
 			{:else}
-				<span class="h-10" />
+				<span class="h-10"></span>
 			{/if}
 		{:else if word.representations?.sitelen_emosi}
 			<p class="text-4xl">
 				{word.representations.sitelen_emosi}
 			</p>
 		{:else}
-			<span class="h-10" />
+			<span class="h-10"></span>
 		{/if}
 
 		<b class="transition group-hv:text-accent">
