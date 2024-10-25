@@ -1,7 +1,4 @@
 <script lang="ts">
-	import { passive, stopPropagation, createBubbler } from 'svelte/legacy';
-
-	const bubble = createBubbler();
 	import { flyAndScale } from '$lib/transitions';
 	import FontOption from './FontOption.svelte';
 	import ThemeOption from './ThemeOption.svelte';
@@ -13,26 +10,20 @@
 	onclick={() => {
 		opened = false;
 	}}
-	use:passive={[
-		'touchstart',
-		() => () => {
-			opened = false;
-		}
-	]}
+	ontouchstart={() => {
+		opened = false;
+	}}
 />
 
 <div class="relative">
 	<button
-		onclick={stopPropagation(() => {
+		onclick={e => {
+			e.stopPropagation();
 			opened = !opened;
-		})}
-		use:passive={[
-			'touchstart',
-			() => stopPropagation(bubble('touchstart'))
-		]}
+		}}
+		ontouchstart={e => e.stopPropagation()}
 		class="nav-item-interactive cursor-pointer"
-		role="listbox"
-		aria-label="set theme"
+		aria-label="set color theme and font"
 	>
 		<svg
 			xmlns="http://www.w3.org/2000/svg"

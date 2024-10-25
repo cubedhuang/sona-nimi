@@ -1,12 +1,4 @@
 <script lang="ts">
-	import {
-		createBubbler,
-		stopPropagation,
-		handlers,
-		passive
-	} from 'svelte/legacy';
-
-	const bubble = createBubbler();
 	import { font, type Font } from '$lib/stores';
 
 	interface Props {
@@ -24,10 +16,11 @@
 		{selected
 		? 'ring-2 ring-secondary-foreground ring-offset-2 ring-offset-card'
 		: ''}"
-	onclick={handlers(stopPropagation(bubble('click')), () => {
+	onclick={e => {
+		e.stopPropagation();
 		$font = value;
-	})}
-	use:passive={['touchstart', () => stopPropagation(bubble('touchstart'))]}
+	}}
+	ontouchstart={e => e.stopPropagation()}
 	role="option"
 	aria-selected="false"
 >
