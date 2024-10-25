@@ -16,7 +16,7 @@
 
 <audio src={audio.link} bind:this={element}></audio>
 
-<div class="flex items-center gap-2">
+<span class="flex items-center gap-2">
 	<button class="interactable p-1" aria-label="play audio" onclick={play}>
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
@@ -35,4 +35,4 @@
 	</button>
 
 	{audio.author}
-</div>
+</span>
