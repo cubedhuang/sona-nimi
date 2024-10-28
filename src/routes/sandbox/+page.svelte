@@ -4,7 +4,6 @@
 	import type { LocalizedWord } from '@kulupu-linku/sona';
 
 	import { goto } from '$app/navigation';
-	import type { PageData } from './$types';
 
 	import { filter } from '$lib/search';
 	import { language, sitelenMode, viewMode } from '$lib/stores';
@@ -16,16 +15,12 @@
 	import WordDetails from '$lib/components/WordDetails.svelte';
 	import WordView from '$lib/components/WordView.svelte';
 
-	interface Props {
-		data: PageData;
-	}
-
-	let { data = $bindable() }: Props = $props();
+	const { data } = $props();
 
 	let search = $state('');
 	let selectedWord = $state<LocalizedWord | null>(null);
 
-	let sortingMethod = $state<'alphabetical' | 'recognition'>('recognition');
+	let sorter = $state(recognitionWordSort);
 
 	let fetchedTranslations = $state(['en']);
 
@@ -50,11 +45,9 @@
 
 	const words = $derived(Object.values(data.words));
 
-	const genericSorter = $derived(
-		sortingMethod === 'alphabetical' ? azWordSort : recognitionWordSort
-	);
+	const sortedWords = $derived(words.sort(sorter).slice());
 
-	const sortedWords = $derived(words.sort(genericSorter));
+	$effect(() => console.log('sorter', sorter, sortedWords, filteredWords));
 
 	const filteredWords = $derived(filter(sortedWords, search, $language));
 
@@ -126,10 +119,10 @@
 	<Select
 		name="Sorting Method"
 		options={[
-			{ label: 'Sort by Usage', value: 'recognition' },
-			{ label: 'Sort Alphabetically', value: 'alphabetical' }
+			{ label: 'Sort by Usage', value: recognitionWordSort },
+			{ label: 'Sort Alphabetically', value: azWordSort }
 		]}
-		bind:value={sortingMethod}
+		bind:value={sorter}
 	/>
 
 	<SelectLanguage
