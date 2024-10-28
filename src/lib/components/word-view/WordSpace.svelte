@@ -5,7 +5,7 @@
 	import { language, sitelenMode } from '$lib/stores';
 
 	import Space from '$lib/components/Space.svelte';
-	import WordUsageSummary from './WordUsageSummary.svelte';
+	import WordUsageSummary from '../WordUsageSummary.svelte';
 
 	interface Props {
 		word: LocalizedWord;

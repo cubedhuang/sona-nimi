@@ -3,10 +3,10 @@
 
 	import { viewMode } from '$lib/stores';
 
-	import GlyphEntry from './WordGlyphEntry.svelte';
-	import WordEntry from './WordEntry.svelte';
-	import WordSpace from './WordSpace.svelte';
-	import WordSpaceDetailed from './WordSpaceDetailed.svelte';
+	import WordGlyphEntry from './word-view/WordGlyphEntry.svelte';
+	import WordEntry from './word-view/WordEntry.svelte';
+	import WordSpace from './word-view/WordSpace.svelte';
+	import WordSpaceDetailed from './word-view/WordSpaceDetailed.svelte';
 
 	interface Props {
 		words: LocalizedWord[];
@@ -25,7 +25,7 @@
 {:else if $viewMode === 'glyphs'}
 	<div class="mt-4 grid gap-4 grid-cols-fill-24">
 		{#each words as word (word.id)}
-			<GlyphEntry {word} onclick={() => onselect(word)} />
+			<WordGlyphEntry {word} onclick={() => onselect(word)} />
 		{/each}
 	</div>
 {:else if $viewMode === 'detailed'}
