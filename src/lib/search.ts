@@ -18,6 +18,8 @@ export function filter(
 		if (!content) return 0;
 
 		if (Array.isArray(content)) {
+			if (content.length === 0) return 0;
+
 			let score = 0;
 
 			for (const item of content) {
