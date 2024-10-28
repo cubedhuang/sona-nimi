@@ -7,7 +7,7 @@
 
 	const { audio }: Props = $props();
 
-	let element: HTMLAudioElement | null = $state(null);
+	let element = $state<HTMLAudioElement | undefined>(undefined);
 
 	function play() {
 		element?.play();

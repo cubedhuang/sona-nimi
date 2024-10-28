@@ -7,18 +7,13 @@
 
 	const { children }: Props = $props();
 
-	let span: HTMLSpanElement;
-	let expandable = $state(false);
-
-	$effect(() => {
-		if (span) {
-			expandable = span.scrollHeight > span.clientHeight + 2;
-		}
-	});
-
+	let span = $state<HTMLSpanElement | undefined>();
+	const expandable = $derived(
+		span ? span.scrollHeight > span.clientHeight + 2 : false
+	);
 	let expanded = $state(false);
 
-	let button: HTMLButtonElement | undefined = $state();
+	let button = $state<HTMLButtonElement | undefined>();
 </script>
 
 <span class:line-clamp-2={!expanded} bind:this={span}>

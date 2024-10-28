@@ -21,7 +21,7 @@
 	const words = $derived(Object.values(data.words));
 
 	let search = $state('');
-	let selectedWord: LocalizedWord | null = $state(null);
+	let selectedWord = $state<LocalizedWord | null>(null);
 
 	const genericFilteredWords = $derived(
 		words.filter(word => data.signs[word.id]).sort(azWordSort)

@@ -23,7 +23,7 @@
 	let { data = $bindable() }: Props = $props();
 
 	let search = $state('');
-	let selectedWord: LocalizedWord | null = $state(null);
+	let selectedWord = $state<LocalizedWord | null>(null);
 
 	let sortingMethod = $state<'alphabetical' | 'recognition'>('recognition');
 

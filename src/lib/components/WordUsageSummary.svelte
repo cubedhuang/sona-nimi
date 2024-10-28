@@ -8,16 +8,24 @@
 	}
 
 	const { word }: Props = $props();
+	const displayRecognition = $derived(getWordDisplayRecognition(word));
 </script>
 
 {#if word.usage_category !== 'sandbox'}
-	{word.usage_category}
-	&middot;
+	{word.usage_category} &middot;
 {/if}
-{getWordDisplayRecognition(word)}
+{#if displayRecognition !== 'unknown'}
+	{getWordDisplayRecognition(word)}
+	{#if word.book !== 'none' || word.coined_year}
+		&middot;
+	{/if}
+{/if}
 {#if word.book !== 'none'}
-	&middot; {word.book}
+	{word.book}
+	{#if word.coined_year}
+		&middot;
+	{/if}
 {/if}
 {#if word.coined_year}
-	&middot; {word.coined_year}
+	{word.coined_year}
 {/if}

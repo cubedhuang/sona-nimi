@@ -3,9 +3,8 @@
 
 	let pona = $state(true);
 
-	const t = $derived((tokiPona: string, english: string) =>
-		pona ? tokiPona : english
-	);
+	const t = (tokiPona: string, english: string) =>
+		pona ? tokiPona : english;
 </script>
 
 <svelte:head>

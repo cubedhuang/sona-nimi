@@ -18,6 +18,7 @@
 	const { word, onclick }: Props = $props();
 
 	const translation = $derived(getWordTranslation(word, $language));
+	const displayRecognition = $derived(getWordDisplayRecognition(word));
 </script>
 
 <Space {onclick} id={word.id}>
@@ -35,8 +36,10 @@
 		</div>
 
 		<p class="mt-auto text-center text-xs text-muted">
-			{word.usage_category} &middot;
-			{getWordDisplayRecognition(word)}
+			{word.usage_category}
+			{#if displayRecognition !== 'unknown'}
+				&middot; {displayRecognition}
+			{/if}
 			{#if word.book !== 'none'}
 				&middot; {word.book}
 			{/if}

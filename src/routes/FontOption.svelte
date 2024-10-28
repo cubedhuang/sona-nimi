@@ -22,7 +22,7 @@
 	}}
 	ontouchstart={e => e.stopPropagation()}
 	role="option"
-	aria-selected="false"
+	aria-selected={selected}
 >
 	{name}
 </button>

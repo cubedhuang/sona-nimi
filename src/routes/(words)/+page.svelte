@@ -34,7 +34,7 @@
 	let moreOptions = $state(false);
 
 	let search = $state('');
-	let selectedWord: LocalizedWord | null = $state(null);
+	let selectedWord = $state<LocalizedWord | null>(null);
 
 	let books = $state(
 		Object.keys(bookColors).map(book => ({
@@ -84,11 +84,12 @@
 				: combinedWordSort
 	);
 
-	const genericFilter = $derived(
-		(word: LocalizedWord) =>
+	function genericFilter(word: LocalizedWord) {
+		return (
 			shownCategories.includes(word.usage_category) &&
 			shownBooks.includes(word.book)
-	);
+		);
+	}
 
 	const genericFilteredWords = $derived(
 		words.filter(genericFilter).sort(genericSorter)

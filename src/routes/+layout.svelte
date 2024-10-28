@@ -53,7 +53,7 @@
 
 	// BeforeInstallPromptEvent doesn't have a type definition :(
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	let deferredPrompt: Event & any = $state();
+	let deferredPrompt = $state<Event & any>();
 
 	onMount(() => {
 		window.addEventListener('beforeinstallprompt', e => {

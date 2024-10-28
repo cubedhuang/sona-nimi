@@ -23,7 +23,7 @@
 	);
 
 	let search = $state('');
-	let selectedCompound: Compound | null = $state(null);
+	let selectedCompound = $state<Compound | null>(null);
 
 	const fixedSearch = $derived(normalize(search));
 

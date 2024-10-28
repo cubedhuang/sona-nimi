@@ -11,7 +11,7 @@
 
 	// ESLint doesn't recognize NodeJS.Timeout
 	// eslint-disable-next-line no-undef
-	let timeout: NodeJS.Timeout | undefined = $state();
+	let timeout = $state<NodeJS.Timeout | undefined>();
 </script>
 
 <button

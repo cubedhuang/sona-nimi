@@ -32,7 +32,7 @@
 		onrefer
 	}: Props = $props();
 
-	let audio: HTMLAudioElement | null = $state(null);
+	let audio = $state<HTMLAudioElement | undefined>();
 
 	function play() {
 		audio?.play();
