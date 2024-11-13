@@ -47,8 +47,6 @@
 
 	const sortedWords = $derived(words.sort(sorter).slice());
 
-	$effect(() => console.log('sorter', sorter, sortedWords, filteredWords));
-
 	const filteredWords = $derived(filter(sortedWords, search, $language));
 
 	const missingDefinitions = $derived(
