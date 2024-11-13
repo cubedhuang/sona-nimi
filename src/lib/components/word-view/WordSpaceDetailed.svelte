@@ -82,7 +82,7 @@
 
 			{#if translation.commentary}
 				<p class="mt-2 text-sm text-muted">
-					{translation.commentary}
+					{translation.commentary.replace(/\n/g, ' / ')}
 				</p>
 			{/if}
 		</div>

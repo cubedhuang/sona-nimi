@@ -395,9 +395,11 @@
 
 		{#if translation.commentary}
 			<h2 class="mt-4 text-lg">commentary</h2>
-			<p class="mt-2">
-				{translation.commentary}
-			</p>
+			{#each translation.commentary.split('\n') as line, i}
+				<p class:mt-2={i === 0}>
+					{line}
+				</p>
+			{/each}
 		{/if}
 	</div>
 

@@ -258,9 +258,11 @@
 		{/if}
 
 		{#if translation.commentary}
-			<p class="mt-2 text-muted">
-				{translation.commentary}
-			</p>
+			{#each translation.commentary.split('\n') as line, i}
+				<p class="text-muted" class:mt-2={i === 0}>
+					{line}
+				</p>
+			{/each}
 		{/if}
 
 		<span
