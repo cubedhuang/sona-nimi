@@ -77,7 +77,7 @@
 
 <Search placeholder="o alasa..." bind:value={search} />
 
-<div class="mt-4 grid gap-4 grid-cols-fill-64">
+<div class="mt-4 grid gap-3 grid-cols-fill-64">
 	{#each filteredWords as word (word.id)}
 		<LukaPonaEntry
 			word={word.id}

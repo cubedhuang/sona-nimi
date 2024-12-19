@@ -70,7 +70,7 @@
 		{/if}
 	</span>
 
-	<p class="line-clamp-3 text-center text-xs">
+	<p class="line-clamp-3 text-center text-xs leading-tight">
 		{translation.definition}
 	</p>
 </div>
