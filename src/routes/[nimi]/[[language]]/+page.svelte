@@ -503,9 +503,3 @@
 		{/if}
 	</div>
 </div>
-
-<style lang="postcss">
-	.box {
-		@apply rounded-lg border bg-card p-6;
-	}
-</style>

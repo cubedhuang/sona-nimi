@@ -35,7 +35,7 @@
 <h1>{t('sona', 'about')} &ndash; nimi.li</h1>
 
 <div class="mt-4 grid gap-4 leading-relaxed md:grid-cols-2">
-	<div class="alert">
+	<div class="box">
 		<h2>{t('mi', 'me')}</h2>
 
 		<p>
@@ -55,7 +55,7 @@
 		</p>
 	</div>
 
-	<div class="alert">
+	<div class="box">
 		<h2>{t('ilo pali', 'tools')}</h2>
 
 		<p>
@@ -76,7 +76,7 @@
 		</p>
 	</div>
 
-	<div class="alert">
+	<div class="box">
 		<h2>{t('tan sona', 'sources')}</h2>
 
 		<p>
@@ -125,7 +125,7 @@
 		</ul>
 	</div>
 
-	<div class="alert">
+	<div class="box">
 		<h2>{t('ante', 'differences')}</h2>
 
 		<p>
@@ -152,9 +152,5 @@
 
 	ul {
 		@apply ml-4 mt-2 list-disc;
-	}
-
-	.alert {
-		@apply p-4;
 	}
 </style>
