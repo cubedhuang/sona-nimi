@@ -331,20 +331,20 @@
 
 		<p class="mt-1">
 			<span class="text-muted">found in</span>
-			<strong>
+			<b>
 				{word.book === 'none' ? 'no book' : word.book}
-			</strong>
+			</b>
 		</p>
 
 		{#if word.coined_era}
 			<p class="mt-1">
 				<span class="text-muted">coined</span>
-				<strong>
+				<b>
 					{word.coined_era}
 					{#if word.coined_year}
 						&middot; {word.coined_year}
 					{/if}
-				</strong>
+				</b>
 			</p>
 		{/if}
 

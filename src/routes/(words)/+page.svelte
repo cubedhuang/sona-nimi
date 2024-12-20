@@ -142,8 +142,8 @@
 <h1 class="text-4xl">nimi.li</h1>
 
 <p class="mt-2">
-	<strong>nimi.li</strong> is an interactive Toki Pona dictionary. Click on a word
-	to read more!
+	<b>nimi.li</b> is an interactive Toki Pona dictionary. Click on a word to read
+	more!
 </p>
 
 <div class="mt-4 flex flex-wrap gap-1 sm:gap-x-2 sm:gap-y-1">

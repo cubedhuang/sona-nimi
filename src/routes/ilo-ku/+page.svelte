@@ -87,14 +87,14 @@
 <h1 class="text-4xl">ilo ku</h1>
 
 <p class="mt-2">
-	<strong>ilo ku</strong> lets you explore the
+	<b>ilo ku</b> lets you explore the
 	<Link href="https://tokipona.org/compounds.txt">public subset</Link> of
-	<span class="italic">
+	<cite>
 		<Link
 			href="https://www.amazon.com/Toki-Pona-Dictionary-Official/dp/0978292367"
 		>
 			Toki Pona Dictionary</Link
-		></span
+		></cite
 	>. Click on an expression to see more!
 </p>
 

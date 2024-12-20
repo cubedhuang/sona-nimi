@@ -89,8 +89,7 @@
 <h1 class="text-4xl">sandbox</h1>
 
 <p class="mt-2 leading-relaxed">
-	Explore Linku's <strong>sandbox</strong>, a collection of proposed words
-	which are
+	Explore Linku's <b>sandbox</b>, a collection of proposed words which are
 	<em>not actively in use</em>. Some of these words are of value to the
 	community as pieces of culture, essentially memes. Some reflect early drafts
 	of Toki Pona. Many are one-off jokes, created and abandoned immediately.

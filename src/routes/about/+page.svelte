@@ -81,7 +81,7 @@
 
 		<p>
 			{t('ilo pona mute li ken e lipu ni. pali', '')}
-			<strong>nimi.li</strong>
+			<b>nimi.li</b>
 			{t(
 				'la,',
 				'was built with data from many amazing projects. Thanks to all of the following projects for their work:'

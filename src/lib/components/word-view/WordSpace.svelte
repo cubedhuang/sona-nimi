@@ -31,8 +31,8 @@
 			</p>
 
 			{#if word.usage_category === 'sandbox' && word.creator.length}
-				<p class="mt-1 italic text-muted">
-					by {word.creator.join(', ')}
+				<p class="mt-1 text-muted">
+					by <i>{word.creator.join(', ')}</i>
 				</p>
 			{/if}
 		</div>

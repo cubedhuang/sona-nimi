@@ -35,8 +35,8 @@
 {/each}
 
 {#if word.creator.length}
-	<p class="italic">
+	<p>
 		coined by
-		{word.creator.join(', ')}
+		<i>{word.creator.join(', ')}</i>
 	</p>
 {/if}
