@@ -12,9 +12,6 @@
 
 <Collapsible class="text-sm">
 	{#each entries as [key, value], i}
-		{#if i > 0}
-			,
-		{/if}
-		{key}<sup class="text-xs">{value}</sup>
+		{key}<sup class="text-xs">{value}</sup>{' '}
 	{/each}
 </Collapsible>
