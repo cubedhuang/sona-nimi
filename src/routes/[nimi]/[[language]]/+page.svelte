@@ -19,6 +19,7 @@
 	import KuData from '$lib/components/KuData.svelte';
 	import Link from '$lib/components/Link.svelte';
 	import LipamankaData from '$lib/components/LipamankaData.svelte';
+	import SignsList from '$lib/components/SignsList.svelte';
 	import Wikipedia from '$lib/components/icons/Wikipedia.svelte';
 	import WordEtymology from '$lib/components/WordEtymology.svelte';
 
@@ -353,6 +354,16 @@
 			<WordEtymology {word} {translation} />
 		</div>
 
+		{#if word.audio.length}
+			<h2 class="mb-2 mt-4 text-lg">listen</h2>
+
+			{#each word.audio as audio}
+				<p class="mt-1">
+					<AudioPlayer {audio} />
+				</p>
+			{/each}
+		{/if}
+
 		{#if word.author_verbatim}
 			<div class="mt-4 flex items-center gap-2">
 				<h2 class="text-lg">author verbatim</h2>
@@ -467,39 +478,33 @@
 		{/if}
 	</div>
 
-	<div class:box={word.audio.length || data.lukaPona}>
-		{#if word.audio.length}
-			<h2 class="text-lg">audio</h2>
+	{#if data.signs?.length}
+		<div class="box">
+			<h2 class="text-lg">luka pona</h2>
 
-			{#each word.audio as audio}
+			{#if data.signs[0].video.mp4}
 				<p class="mt-2">
-					<AudioPlayer {audio} />
+					<video
+						src={data.signs[0].video.mp4}
+						class="aspect-video w-full max-w-sm rounded-lg bg-secondary"
+						autoplay
+						loop
+						muted
+						playsinline
+					>
+						<track kind="captions" />
+					</video>
 				</p>
-			{/each}
-		{/if}
+				<p class="mt-2">
+					{#if data.signs[0].video.gif}
+						<Link href={data.signs[0].video.gif}>gif</Link>
+						&middot;
+					{/if}
+					<Link href={data.signs[0].video.mp4}>mp4</Link>
+				</p>
+			{/if}
 
-		{#if data.lukaPona?.video.mp4}
-			<h2 class="text-lg" class:mt-4={word.audio}>luka pona</h2>
-
-			<p class="mt-2">
-				<video
-					src={data.lukaPona.video.mp4}
-					class="aspect-video w-full max-w-sm rounded-lg bg-secondary"
-					autoplay
-					loop
-					muted
-					playsinline
-				>
-					<track kind="captions" />
-				</video>
-			</p>
-			<p class="mt-2">
-				{#if data.lukaPona.video.gif}
-					<Link href={data.lukaPona.video.gif}>gif</Link>
-					&middot;
-				{/if}
-				<Link href={data.lukaPona.video.mp4}>mp4</Link>
-			</p>
-		{/if}
-	</div>
+			<SignsList signs={data.signs} />
+		</div>
+	{/if}
 </div>

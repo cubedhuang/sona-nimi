@@ -88,7 +88,7 @@ export async function load({ fetch, params, setHeaders }) {
 
 	return {
 		word,
-		lukaPona: Object.values(lukaPona).find(
+		signs: Object.values(lukaPona).filter(
 			word => params.nimi === word.definition
 		),
 		lipamanka: lipamanka[params.nimi],
