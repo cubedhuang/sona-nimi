@@ -10,7 +10,7 @@
 	const entries = $derived(Object.entries(data).sort((a, b) => b[1] - a[1]));
 </script>
 
-<Collapsible>
+<Collapsible class="text-sm">
 	{#each entries as [key, value], i}
 		{#if i > 0}
 			,

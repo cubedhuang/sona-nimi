@@ -2,10 +2,11 @@
 	import type { Snippet } from 'svelte';
 
 	interface Props {
+		class?: string;
 		children: Snippet;
 	}
 
-	const { children }: Props = $props();
+	const { class: className, children }: Props = $props();
 
 	let span = $state<HTMLSpanElement | undefined>();
 	const expandable = $derived(
@@ -16,7 +17,7 @@
 	let button = $state<HTMLButtonElement | undefined>();
 </script>
 
-<span class:line-clamp-2={!expanded} bind:this={span}>
+<span class:line-clamp-2={!expanded} class={className} bind:this={span}>
 	{@render children()}
 </span>
 
