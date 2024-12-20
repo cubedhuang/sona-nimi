@@ -72,7 +72,7 @@
 	ontouchstart={handleEnter}
 	ontouchend={handleLeave}
 >
-	<div class="relative">
+	<div class="relative isolate">
 		<canvas
 			aria-hidden="true"
 			bind:this={canvas}
