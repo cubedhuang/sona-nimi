@@ -94,11 +94,11 @@
 	}
 
 	.focusable {
-		@apply select-none overflow-hidden rounded-lg border bg-card outline-none transition focus-visible:border-contrast disabled:cursor-default disabled:text-muted disabled:focus-visible:border-border;
+		@apply overflow-hidden rounded-lg border bg-card outline-none transition focus-visible:border-contrast disabled:cursor-default disabled:text-muted disabled:focus-visible:border-border;
 	}
 
 	.interactable {
-		@apply focusable cursor-pointer focus-visible:outline-contrast hv:border-contrast disabled:hv:border-border;
+		@apply focusable cursor-pointer select-none focus-visible:outline-contrast hv:border-contrast disabled:hv:border-border;
 	}
 
 	.icon-interactable {
