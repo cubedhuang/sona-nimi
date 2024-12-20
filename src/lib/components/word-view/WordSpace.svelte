@@ -22,7 +22,7 @@
 		<div>
 			<h2 class="text-xl">{word.word}</h2>
 
-			<p class="text-muted">
+			<p class="text-sm text-muted">
 				<WordUsageSummary {word} />
 			</p>
 
