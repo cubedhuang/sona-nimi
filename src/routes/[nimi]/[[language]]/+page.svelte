@@ -10,7 +10,7 @@
 		getUsageCategoryFromPercent,
 		getWordDisplayRecognition,
 		getWordLink,
-		getWordTranslation
+		getTranslation
 	} from '$lib/util';
 
 	import AudioPlayer from './AudioPlayer.svelte';
@@ -27,7 +27,7 @@
 	const language = $derived($page.params.language);
 	const word = $derived(data.word);
 
-	const translation = $derived(getWordTranslation(word, language));
+	const translation = $derived(getTranslation(word, language));
 
 	const puData = $derived(
 		word.pu_verbatim?.[language as keyof LocalizedWord['pu_verbatim']] ||
@@ -484,7 +484,7 @@
 			<p class="mt-2">
 				<video
 					src={data.lukaPona.video.mp4}
-					class="w-full max-w-sm rounded-lg"
+					class="aspect-video w-full max-w-sm rounded-lg bg-secondary"
 					autoplay
 					loop
 					muted

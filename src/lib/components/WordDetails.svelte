@@ -6,7 +6,7 @@
 		categoryColors,
 		categoryTextColors,
 		getWordLink,
-		getWordTranslation
+		getTranslation
 	} from '$lib/util';
 
 	import Copy from '$lib/components/Copy.svelte';
@@ -43,7 +43,7 @@
 
 <Details bind:value={possibleWord} key={word => word.id}>
 	{#snippet children(word)}
-		{@const translation = getWordTranslation(word, $language)}
+		{@const translation = getTranslation(word, $language)}
 
 		<div class="flex items-end">
 			<h2 class="text-2xl">{word.word}</h2>

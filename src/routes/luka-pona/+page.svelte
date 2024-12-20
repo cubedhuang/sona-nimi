@@ -10,7 +10,7 @@
 	import ColoredCheckbox from '$lib/components/ColoredCheckbox.svelte';
 	import LukaPonaEntry from './LukaPonaEntry.svelte';
 	import Search from '$lib/components/Search.svelte';
-	import WordDetails from '$lib/components/WordDetails.svelte';
+	import SignDetails from './SignDetails.svelte';
 
 	interface Props {
 		data: PageData;
@@ -18,7 +18,7 @@
 
 	const { data }: Props = $props();
 
-	const words = $derived(Object.values(data.words));
+	const words = $derived(data.words);
 
 	let search = $state('');
 	let selectedWord = $state<LocalizedWord | null>(null);
@@ -81,7 +81,7 @@
 	{#each filteredWords as word (word.id)}
 		<LukaPonaEntry
 			word={word.id}
-			video={data.signs[word.id]}
+			video={data.signs[word.id][0].video}
 			onclick={() => {
 				if (selectedWord?.id === word.id) selectedWord = null;
 				else selectedWord = word;
@@ -95,11 +95,7 @@
 	<p class="text-muted">Your query didn't match any words!</p>
 {/if}
 
-<WordDetails
+<SignDetails
 	bind:word={selectedWord}
-	onrefer={referred => {
-		if (!filteredWords.some(word => word.word === referred)) {
-			search = '';
-		}
-	}}
+	signs={data.signs[selectedWord?.id ?? ''] || []}
 />

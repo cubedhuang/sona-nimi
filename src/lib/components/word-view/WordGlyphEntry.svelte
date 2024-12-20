@@ -4,7 +4,7 @@
 	import {
 		categoryTextColors,
 		getWordDisplayRecognition,
-		getWordTranslation
+		getTranslation
 	} from '$lib/util';
 	import { language, sitelenMode } from '$lib/stores';
 
@@ -15,7 +15,7 @@
 
 	const { word, onclick }: Props = $props();
 
-	const translation = $derived(getWordTranslation(word, $language));
+	const translation = $derived(getTranslation(word, $language));
 </script>
 
 <div class="flex flex-col items-center" id={word.id}>

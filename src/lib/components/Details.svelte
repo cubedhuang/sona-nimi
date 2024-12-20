@@ -8,10 +8,16 @@
 	interface Props {
 		value: T | null;
 		key: (value: T) => string;
+		padding?: boolean;
 		children: Snippet<[T]>;
 	}
 
-	let { value = $bindable(), key, children }: Props = $props();
+	let {
+		value = $bindable(),
+		key,
+		padding = true,
+		children
+	}: Props = $props();
 </script>
 
 <svelte:window
@@ -28,8 +34,9 @@
 		{#key key(value)}
 			<div
 				transition:flyAndScale|local={{ y: 16, start: 0.975 }}
-				class="absolute bottom-0 left-0 right-0 max-h-[75vh] overflow-y-auto border-t border-contrast bg-card p-6 shadow-lg
-					md:bottom-4 md:left-auto md:right-4 md:max-h-[min(40rem,100vh-2rem)] md:w-[36rem] md:rounded-lg md:border"
+				class="absolute bottom-0 left-0 right-0 max-h-[75vh] overflow-y-auto border-t border-contrast bg-card shadow-lg
+					md:bottom-4 md:left-auto md:right-4 md:max-h-[min(40rem,100vh-2rem)] md:w-[36rem] md:rounded-lg md:border
+					{padding ? 'p-6' : 'p-0'}"
 			>
 				{@render children(value)}
 			</div>

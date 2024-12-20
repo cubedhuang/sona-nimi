@@ -66,7 +66,10 @@ export function sortLanguages(languages: Record<string, Language>) {
 	}));
 }
 
-export function getWordTranslation(word: LocalizedWord, $language: string) {
+export function getTranslation<
+	T extends { translations: Record<string, unknown> }
+>(word: T, $language: string): T['translations'][string] {
+	// @ts-expect-error this is fine
 	return word.translations[$language] ?? word.translations.en;
 }
 
@@ -74,7 +77,7 @@ export function getShortWordEtymologies(
 	word: LocalizedWord,
 	$language: string
 ) {
-	const translation = getWordTranslation(word, $language);
+	const translation = getTranslation(word, $language);
 
 	return word.etymology
 		.map(({ word: sourceWord, alt }, index) => {

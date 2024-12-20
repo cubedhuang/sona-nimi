@@ -1,4 +1,4 @@
-import type { LocalizedSign, SignVideo } from '@kulupu-linku/sona';
+import type { LocalizedSign } from '@kulupu-linku/sona';
 import { client } from '@kulupu-linku/sona/client';
 
 export async function load({ fetch, setHeaders }) {
@@ -12,17 +12,19 @@ export async function load({ fetch, setHeaders }) {
 	]);
 
 	const lukaPonaData = Object.values(lukaPona);
+	const signs: Record<string, LocalizedSign[]> = {};
 
-	const signs = Object.keys(words)
-		.map(word => lukaPonaData.find(sign => sign.definition === word))
-		.filter(sign => sign)
-		.map(sign => {
-			sign = sign as LocalizedSign;
-
-			return [sign.definition, sign.video] as [string, SignVideo];
-		});
+	for (const word of Object.keys(words)) {
+		const results = lukaPonaData.filter(sign => sign.definition === word);
+		if (results.length) {
+			signs[word] = results;
+		}
+	}
 
 	setHeaders({ 'Cache-Control': 's-maxage=3600' });
 
-	return { words, signs: Object.fromEntries(signs) };
+	return {
+		words: Object.values(words).filter(word => signs[word.word]),
+		signs
+	};
 }

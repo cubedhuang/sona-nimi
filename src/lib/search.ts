@@ -1,7 +1,7 @@
 import type { LocalizedWord } from '@kulupu-linku/sona';
 import { distance } from 'fastest-levenshtein';
 
-import { getWordTranslation, normalize } from './util';
+import { getTranslation, normalize } from './util';
 
 export function filter(
 	words: LocalizedWord[],
@@ -48,7 +48,7 @@ export function filter(
 	}
 
 	function scoreSearch(word: LocalizedWord) {
-		const translation = getWordTranslation(word, $language);
+		const translation = getTranslation(word, $language);
 
 		let score =
 			scoreMatch(word.word) * 500 +

@@ -5,7 +5,7 @@
 		categoryColors,
 		getWordDisplayRecognition,
 		getShortWordEtymologies,
-		getWordTranslation
+		getTranslation
 	} from '$lib/util';
 	import { language, sitelenMode } from '$lib/stores';
 	import Space from '$lib/components/Space.svelte';
@@ -17,7 +17,7 @@
 
 	const { word, onclick }: Props = $props();
 
-	const translation = $derived(getWordTranslation(word, $language));
+	const translation = $derived(getTranslation(word, $language));
 	const displayRecognition = $derived(getWordDisplayRecognition(word));
 </script>
 

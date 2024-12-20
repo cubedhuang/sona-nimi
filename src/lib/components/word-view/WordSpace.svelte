@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { LocalizedWord } from '@kulupu-linku/sona';
 
-	import { categoryColors, getWordTranslation } from '$lib/util';
+	import { categoryColors, getTranslation } from '$lib/util';
 	import { language, sitelenMode } from '$lib/stores';
 
 	import Space from '$lib/components/Space.svelte';
@@ -14,7 +14,7 @@
 
 	const { word, onclick }: Props = $props();
 
-	const translation = $derived(getWordTranslation(word, $language));
+	const translation = $derived(getTranslation(word, $language));
 </script>
 
 <Space {onclick} id={word.id}>

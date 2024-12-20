@@ -90,7 +90,7 @@
 		/>
 	</div>
 
-	<b class="mt-2 block transition group-hover:text-accent">
-		{word}
+	<b class="mt-1 block transition group-hover:text-accent">
+		{word.toUpperCase()}
 	</b>
 </button>
