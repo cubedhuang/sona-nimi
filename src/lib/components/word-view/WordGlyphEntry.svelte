@@ -22,21 +22,21 @@
 	<button class="group contents" {onclick}>
 		{#if $sitelenMode === 'pona'}
 			{#if word.representations?.ligatures?.length}
-				<p class="whitespace-nowrap font-pona text-4xl">
+				<p class="whitespace-nowrap font-pona text-5xl">
 					{word.representations.ligatures.slice(0, 3).join(' ')}
 				</p>
 			{:else}
-				<span class="h-10"></span>
+				<span class="h-12"></span>
 			{/if}
 		{:else if $sitelenMode === 'sitelen'}
 			{#if word.representations?.sitelen_sitelen}
 				<img
 					src="/api/ss?word={word.word}"
 					alt="{word.word} sitelen sitelen"
-					class="invertible h-10 w-10"
+					class="invertible size-12"
 				/>
 			{:else}
-				<span class="h-10"></span>
+				<span class="h-12"></span>
 			{/if}
 		{:else if $sitelenMode === 'jelo'}
 			{#if word.representations?.sitelen_jelo}
@@ -44,14 +44,14 @@
 					{word.representations.sitelen_jelo.slice(0, 3).join('')}
 				</p>
 			{:else}
-				<span class="h-10"></span>
+				<span class="h-12"></span>
 			{/if}
 		{:else if word.representations?.sitelen_emosi}
 			<p class="text-4xl">
 				{word.representations.sitelen_emosi}
 			</p>
 		{:else}
-			<span class="h-10"></span>
+			<span class="h-12"></span>
 		{/if}
 
 		<b class="transition group-hv:text-accent">
@@ -70,7 +70,7 @@
 		{/if}
 	</span>
 
-	<p class="line-clamp-3 text-center text-xs leading-tight">
+	<p class="line-clamp-4 text-center text-xs leading-tight">
 		{translation.definition}
 	</p>
 </div>

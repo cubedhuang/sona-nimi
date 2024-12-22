@@ -19,23 +19,21 @@
 </script>
 
 <Space {onclick} id={compound.compound}>
-	<div class="flex justify-between gap-2">
-		<div>
-			<h2 class="text-xl">{compound.compound}</h2>
-
-			<p class="text-muted">{uses[0][1]}%</p>
-
-			<p class="line-clamp-3">
-				{usesString}
-			</p>
-		</div>
-
+	<div class="h-full">
 		{#if compound.glyphs?.length}
-			<div class="flex flex-col items-end text-right">
+			<div class="float-right flex flex-col items-end text-right">
 				{#each compound.glyphs as glyph}
 					<p class="whitespace-nowrap font-pona text-4xl">{glyph}</p>
 				{/each}
 			</div>
 		{/if}
+
+		<h2 class="text-xl">{compound.compound}</h2>
+
+		<p class="text-muted">{uses[0][1]}%</p>
+
+		<p class="line-clamp-3">
+			{usesString}
+		</p>
 	</div>
 </Space>
