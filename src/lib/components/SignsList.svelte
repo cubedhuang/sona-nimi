@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { page } from '$app/stores';
+	import { page } from '$app/state';
 	import { language } from '$lib/stores';
 	import { getTranslation } from '$lib/util';
 	import type { LocalizedSign } from '@kulupu-linku/sona';
@@ -11,7 +11,7 @@
 	let { signs }: Props = $props();
 
 	const shown = $derived(
-		$page.url.searchParams.has('sona') ? signs : ([] as LocalizedSign[])
+		page.url.searchParams.has('sona') ? signs : ([] as LocalizedSign[])
 	);
 </script>
 

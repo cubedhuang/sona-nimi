@@ -126,7 +126,7 @@ export function getUsageCategoryFromPercent(percent: number): UsageCategory {
 	if (percent >= 90) return 'core';
 	if (percent >= 60) return 'common';
 	if (percent >= 30) return 'uncommon';
-	if (percent >= 2) 'obscure';
+	if (percent >= 2) return 'obscure';
 	return 'sandbox';
 }
 

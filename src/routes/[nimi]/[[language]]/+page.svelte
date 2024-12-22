@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { LocalizedWord } from '@kulupu-linku/sona';
 
-	import { page } from '$app/stores';
+	import { page } from '$app/state';
 
 	import { outclick } from '$lib/actions/outclick';
 	import { flyAndScale } from '$lib/transitions';
@@ -26,7 +26,7 @@
 
 	const { data } = $props();
 
-	const language = $derived($page.params.language);
+	const language = $derived(page.params.language);
 	const word = $derived(data.word);
 
 	const translation = $derived(getTranslation(word, language));

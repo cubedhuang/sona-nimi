@@ -96,6 +96,7 @@ if (browser) {
 		}
 
 		// Force a reflow to make sure the transition is triggered
+		// eslint-disable-next-line @typescript-eslint/no-unused-expressions
 		document.documentElement.offsetWidth;
 
 		document.documentElement.classList.remove('no-transition');

@@ -11,7 +11,7 @@
 </script>
 
 <Collapsible class="text-sm">
-	{#each entries as [key, value], i}
+	{#each entries as [key, value]}
 		{key}<sup class="text-xs">{value}</sup>{' '}
 	{/each}
 </Collapsible>

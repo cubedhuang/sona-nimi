@@ -5,7 +5,7 @@
 
 	import NProgress from 'nprogress';
 
-	import { page } from '$app/stores';
+	import { page } from '$app/state';
 	import { dev } from '$app/environment';
 	import { afterNavigate, beforeNavigate } from '$app/navigation';
 
@@ -87,7 +87,7 @@
 	<nav class="flex justify-between pt-4 sm:pt-0">
 		<div class="hidden gap-2 sm:flex">
 			{#each routes as route}
-				{#if $page.url.pathname === route.href}
+				{#if page.url.pathname === route.href}
 					<span class="nav-item cursor-default text-muted">
 						{route.name}
 					</span>
@@ -129,7 +129,7 @@
 					class="absolute top-full z-50 mt-2 flex flex-col divide-y divide-border rounded-lg border bg-card shadow-lg"
 				>
 					{#each routes as route}
-						{#if $page.url.pathname === route.href}
+						{#if page.url.pathname === route.href}
 							<span class="cursor-default p-2 text-muted">
 								{route.name}
 							</span>
