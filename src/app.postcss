@@ -89,6 +89,44 @@
 }
 
 @layer components {
+	.content {
+		--content-padding: theme(width.4);
+		--content-margin: minmax(var(--content-padding), 1fr);
+		--content-width: minmax(0, calc(theme(screens.lg)));
+
+		display: grid;
+		grid-template-columns:
+			[full-start] var(--content-margin)
+			[main-start] var(--content-width)
+			[main-end] var(--content-margin) [full-end];
+	}
+
+	@media (min-width: theme(screens.sm)) {
+		.content {
+			--content-padding: theme(width.8);
+		}
+	}
+
+	@media (min-width: theme(screens.lg)) {
+		.content {
+			--content-padding: theme(width.16);
+		}
+	}
+
+	.content.fullscreen,
+	.fullscreen .content {
+		--content-margin: var(--content-padding);
+		--content-width: 1fr;
+	}
+
+	.content > * {
+		grid-column: main;
+	}
+
+	.content > .full {
+		grid-column: full;
+	}
+
 	.invertible {
 		@apply invert-[var(--invert,0)];
 	}

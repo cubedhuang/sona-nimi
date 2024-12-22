@@ -83,10 +83,7 @@
 	}}
 />
 
-<div
-	class="m-auto px-4 sm:px-8 lg:px-16"
-	class:max-w-screen-xl={$screenWidth === 'large'}
->
+<div class="content" class:fullscreen={$screenWidth === 'full'}>
 	<nav class="flex justify-between pt-4 sm:pt-0">
 		<div class="hidden gap-2 sm:flex">
 			{#each routes as route}
@@ -179,7 +176,7 @@
 			{/if}
 
 			<button
-				class="nav-item-interactive cursor-pointer max-xl:hidden"
+				class="nav-item-interactive cursor-pointer max-lg:hidden"
 				onclick={() => {
 					if ($screenWidth === 'full') {
 						$screenWidth = 'large';
@@ -228,7 +225,7 @@
 		</div>
 	</nav>
 
-	<main class="pb-24 pt-4 sm:pt-8">
+	<main class="content full pb-24 pt-4 sm:pt-8">
 		{@render children()}
 	</main>
 </div>
