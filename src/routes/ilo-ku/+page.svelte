@@ -8,6 +8,7 @@
 	import CompoundSpace from './CompoundSpace.svelte';
 	import Link from '$lib/components/Link.svelte';
 	import Search from '$lib/components/Search.svelte';
+	import Meta from '$lib/components/Meta.svelte';
 
 	const { data } = $props();
 
@@ -59,30 +60,12 @@
 	);
 </script>
 
-<svelte:head>
-	<title>ilo ku &ndash; nimi.li</title>
-
-	<meta name="author" content="ilo Tani" />
-	<meta
-		name="description"
-		content="ilo ku lets you explore the public subset of Toki Pona Dictionary."
-	/>
-	<meta
-		name="keywords"
-		content="toki pona, toki pona dictionary, dictionary, nimi, compounds, ku, ilo ku, compound expressions"
-	/>
-
-	<meta property="og:title" content="ilo ku – nimi.li" />
-	<meta property="og:author" content="ilo Tani" />
-	<meta
-		property="og:description"
-		content="ilo ku lets you explore the public subset of Toki Pona Dictionary."
-	/>
-	<meta property="og:url" content="https://nimi.li/ilo-ku" />
-	<meta property="og:image" content="https://nimi.li/favicon.png" />
-	<meta property="og:site_name" content="nimi.li" />
-	<meta property="og:type" content="website" />
-</svelte:head>
+<Meta
+	title="ilo ku – nimi.li | Toki Pona Dictionary"
+	description="Explore the public subset of Sonja Lang's Toki Pona Dictionary."
+	url="https://nimi.li/ilo-ku"
+	keywords={['compounds', 'ku', 'ilo ku', 'compound expressions']}
+/>
 
 <h1 class="text-4xl">ilo ku</h1>
 

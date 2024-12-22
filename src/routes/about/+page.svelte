@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Link from '$lib/components/Link.svelte';
+	import Meta from '$lib/components/Meta.svelte';
 
 	let pona = $state(true);
 
@@ -7,24 +8,12 @@
 		pona ? tokiPona : english;
 </script>
 
-<svelte:head>
-	<title>about &ndash; nimi.li</title>
-
-	<meta name="author" content="ilo Tani" />
-	<meta name="description" content="About nimi.li." />
-	<meta
-		name="keywords"
-		content="toki pona, toki pona dictionary, dictionary, nimi, about page, about"
-	/>
-
-	<meta property="og:title" content="about – nimi.li" />
-	<meta property="og:author" content="ilo Tani and woflydev" />
-	<meta property="og:description" content="About nimi.li." />
-	<meta property="og:url" content="https://nimi.li/about" />
-	<meta property="og:image" content="https://nimi.li/favicon.png" />
-	<meta property="og:site_name" content="nimi.li" />
-	<meta property="og:type" content="website" />
-</svelte:head>
+<Meta
+	title="about – nimi.li | Toki Pona Dictionary"
+	description="About nimi.li."
+	url="https://nimi.li/about"
+	keywords={['about page', 'about']}
+/>
 
 <p>
 	<button class="interactable px-2 py-1" onclick={() => (pona = !pona)}>

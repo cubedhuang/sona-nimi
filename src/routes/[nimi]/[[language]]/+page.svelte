@@ -19,6 +19,7 @@
 	import KuData from '$lib/components/KuData.svelte';
 	import Link from '$lib/components/Link.svelte';
 	import LipamankaData from '$lib/components/LipamankaData.svelte';
+	import Meta from '$lib/components/Meta.svelte';
 	import SignsList from '$lib/components/SignsList.svelte';
 	import Wikipedia from '$lib/components/icons/Wikipedia.svelte';
 	import WordEtymology from '$lib/components/WordEtymology.svelte';
@@ -38,30 +39,14 @@
 	let showHistory = $state(false);
 </script>
 
-<svelte:head>
-	<title>{word.word} &ndash; nimi.li</title>
-
-	<meta name="author" content="ilo Tani" />
-	<meta name="description" content={translation.definition} />
-	<meta
-		name="keywords"
-		content="toki pona, toki pona dictionary, dictionary, nimi, {word.word}"
-	/>
-
-	<meta property="og:title" content={word.word} />
-	<meta property="og:author" content="ilo Tani" />
-	<meta property="og:description" content={translation.definition} />
-	<meta
-		property="og:url"
-		content="https://nimi.li{getWordLink(word.id, language)}"
-	/>
-	<meta
-		property="og:image"
-		content="https://raw.githubusercontent.com/lipu-linku/ijo/main/sitelenpona/sitelen-seli-kiwen/{word.id}.png"
-	/>
-	<meta property="og:site_name" content="nimi.li" />
-	<meta property="og:type" content="website" />
-</svelte:head>
+<Meta
+	title="{word.word} – nimi.li | Toki Pona Dictionary"
+	description={translation.definition}
+	url="https://nimi.li${getWordLink(word.id, language)}"
+	image="https://raw.githubusercontent.com/lipu-linku/ijo/main/sitelenpona/sitelen-seli-kiwen/${word.id}.png"
+	imageSize="256"
+	keywords={[word.word]}
+/>
 
 <div class="flex flex-wrap items-center gap-2">
 	<h1 class="mr-auto text-4xl">{word.word}</h1>

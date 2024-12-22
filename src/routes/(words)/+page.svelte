@@ -23,6 +23,7 @@
 	import { flyAndScale } from '$lib/transitions';
 
 	import ColoredCheckbox from '$lib/components/ColoredCheckbox.svelte';
+	import Meta from '$lib/components/Meta.svelte';
 	import Search from '$lib/components/Search.svelte';
 	import Select from '$lib/components/Select.svelte';
 	import SelectLanguage from '$lib/components/SelectLanguage.svelte';
@@ -117,27 +118,11 @@
 	});
 </script>
 
-<svelte:head>
-	<title>nimi.li</title>
-
-	<meta name="author" content="ilo Tani" />
-	<meta name="description" content="Interactive Toki Pona dictionary." />
-	<meta
-		name="keywords"
-		content="toki pona, toki pona dictionary, dictionary, nimi"
-	/>
-
-	<meta property="og:title" content="nimi.li" />
-	<meta property="og:author" content="ilo Tani" />
-	<meta
-		property="og:description"
-		content="Interactive Toki Pona dictionary."
-	/>
-	<meta property="og:url" content="https://nimi.li/" />
-	<meta property="og:image" content="https://nimi.li/favicon.png" />
-	<meta property="og:site_name" content="nimi.li" />
-	<meta property="og:type" content="website" />
-</svelte:head>
+<Meta
+	title="nimi.li | Toki Pona Dictionary"
+	description="Comprehensive Toki Pona dictionary with interactive search, detailed word information, and multiple writing systems."
+	url="https://nimi.li/"
+/>
 
 <h1 class="text-4xl">nimi.li</h1>
 

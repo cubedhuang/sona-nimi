@@ -14,6 +14,7 @@
 	import SelectLanguage from '$lib/components/SelectLanguage.svelte';
 	import WordDetails from '$lib/components/WordDetails.svelte';
 	import WordView from '$lib/components/WordView.svelte';
+	import Meta from '$lib/components/Meta.svelte';
 
 	const { data } = $props();
 
@@ -67,24 +68,12 @@
 	});
 </script>
 
-<svelte:head>
-	<title>sandbox &ndash; nimi.li</title>
-
-	<meta name="author" content="ilo Tani" />
-	<meta name="description" content="Explore Linku's sandbox." />
-	<meta
-		name="keywords"
-		content="toki pona, toki pona dictionary, dictionary, nimi, sandbox"
-	/>
-
-	<meta property="og:title" content="sandbox – nimi.li" />
-	<meta property="og:author" content="ilo Tani" />
-	<meta property="og:description" content="Explore Linku's sandbox." />
-	<meta property="og:url" content="https://nimi.li/sandbox" />
-	<meta property="og:image" content="https://nimi.li/favicon.png" />
-	<meta property="og:site_name" content="nimi.li" />
-	<meta property="og:type" content="website" />
-</svelte:head>
+<Meta
+	title="sandbox – nimi.li | Toki Pona Dictionary"
+	description="Explore Linku's sandbox, a collection of experimental Toki Pona words."
+	url="https://nimi.li/sandbox"
+	keywords={['sandbox']}
+/>
 
 <h1 class="text-4xl">sandbox</h1>
 
