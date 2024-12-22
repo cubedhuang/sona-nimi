@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import { slide } from 'svelte/transition';
 
 	import type { LocalizedWord } from '@kulupu-linku/sona';
 	import type { Book } from '@kulupu-linku/sona/utils';
@@ -145,7 +146,7 @@
 			onclick={() => {
 				moreOptions = !moreOptions;
 			}}
-			class="interactable p-0.5 lg:block"
+			class="interactable p-0.5 md:block"
 			class:hidden={moreOptions}
 			aria-label="more options"
 		>
@@ -176,7 +177,7 @@
 					});
 				}}
 				class="absolute top-full z-10 mt-2 hidden w-max flex-wrap gap-1 rounded-lg border bg-card p-2 shadow-lg
-					sm:gap-x-2 sm:gap-y-1 lg:flex"
+					sm:gap-x-2 sm:gap-y-1 md:flex"
 			>
 				{#each books as book}
 					<ColoredCheckbox
@@ -194,8 +195,9 @@
 
 {#if moreOptions}
 	<div
-		class="mt-2 flex items-start justify-between gap-2 rounded-lg border border-contrast p-2
-			lg:hidden"
+		class="mt-2 flex items-start justify-between gap-2 rounded-lg border border-contrast bg-card p-2
+			md:hidden"
+		transition:slide
 	>
 		<div class="flex flex-wrap gap-1 sm:gap-x-2 sm:gap-y-1">
 			{#each books as book}
