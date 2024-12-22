@@ -44,29 +44,31 @@
 
 <div
 	bind:this={div}
-	class="sticky -top-1 z-10 -mx-2 -mb-2 -mt-2 box-content flex w-fit max-w-full items-center gap-1 rounded-b-lg px-2 pb-2 pt-3 transition
-		{!stick ? 'bg-transparent' : 'bg-card shadow-lg ring-1 ring-border'}"
+	class="content full sticky -top-px z-10 -mb-2 -mt-2 box-content pb-2 pt-[9px] transition
+		{!stick ? 'bg-transparent' : 'bg-card shadow ring-1 ring-border'}"
 >
-	<input
-		type="search"
-		{placeholder}
-		bind:value
-		bind:this={searchBar}
-		class="focusable w-96 max-w-full cursor-auto px-4 py-2 placeholder:text-muted"
-	/>
+	<div class="flex items-center gap-1">
+		<input
+			type="search"
+			{placeholder}
+			bind:value
+			bind:this={searchBar}
+			class="focusable w-96 max-w-full cursor-auto px-4 py-2 placeholder:text-muted"
+		/>
 
-	{#if value}
-		<button
-			class="interactable shrink-0 p-2"
-			onclick={() => {
-				value = '';
-				searchBar.focus();
-			}}
-			aria-label="clear search"
-		>
-			<XMark />
-		</button>
-	{/if}
+		{#if value}
+			<button
+				class="interactable shrink-0 p-2"
+				onclick={() => {
+					value = '';
+					searchBar.focus();
+				}}
+				aria-label="clear search"
+			>
+				<XMark />
+			</button>
+		{/if}
+	</div>
 </div>
 
 <style lang="postcss">
