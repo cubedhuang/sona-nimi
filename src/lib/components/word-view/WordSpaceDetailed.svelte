@@ -5,7 +5,8 @@
 		categoryColors,
 		getWordDisplayRecognition,
 		getShortWordEtymologies,
-		getTranslation
+		getTranslation,
+		getWordLink
 	} from '$lib/util';
 	import { language, sitelenMode } from '$lib/stores';
 	import Space from '$lib/components/Space.svelte';
@@ -21,7 +22,7 @@
 	const displayRecognition = $derived(getWordDisplayRecognition(word));
 </script>
 
-<Space {onclick} id={word.id}>
+<Space href={getWordLink(word.id, $language)} {onclick} id={word.id}>
 	<div class="grid grid-cols-3 text-muted">
 		<div>
 			<p class="line-clamp-1 break-all">

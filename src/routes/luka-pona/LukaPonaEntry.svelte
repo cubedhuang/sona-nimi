@@ -4,7 +4,8 @@
 
 	import { browser } from '$app/environment';
 
-	import { autoplay } from '$lib/stores';
+	import { autoplay, language } from '$lib/stores';
+	import { getWordLink } from '$lib/util';
 
 	interface Props {
 		word: string;
@@ -61,10 +62,14 @@
 	});
 </script>
 
-<button
+<a
+	href={getWordLink(word, $language)}
+	onclick={e => {
+		e.preventDefault();
+		onclick?.();
+	}}
 	class="group text-left outline-none focus-visible:outline-contrast"
 	id={word}
-	{onclick}
 	onmouseenter={handleEnter}
 	onmouseleave={handleLeave}
 	onfocus={handleEnter}
@@ -93,4 +98,4 @@
 	<b class="mt-1 block transition group-hover:text-accent">
 		{word.toUpperCase()}
 	</b>
-</button>
+</a>

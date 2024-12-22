@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { LocalizedWord } from '@kulupu-linku/sona';
 
-	import { categoryColors, getTranslation } from '$lib/util';
+	import { categoryColors, getTranslation, getWordLink } from '$lib/util';
 	import { language, sitelenMode } from '$lib/stores';
 
 	import Space from '$lib/components/Space.svelte';
@@ -17,7 +17,7 @@
 	const translation = $derived(getTranslation(word, $language));
 </script>
 
-<Space {onclick} id={word.id}>
+<Space href={getWordLink(word.id, $language)} {onclick} id={word.id}>
 	<div class="flex justify-between gap-2">
 		<div>
 			<h2 class="text-xl">{word.word}</h2>

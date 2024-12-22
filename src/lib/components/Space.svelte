@@ -1,12 +1,24 @@
 <script lang="ts">
-	import type { HTMLButtonAttributes } from 'svelte/elements';
+	import type {
+		HTMLAnchorAttributes,
+		MouseEventHandler
+	} from 'svelte/elements';
 
-	const { children, ...props }: HTMLButtonAttributes = $props();
+	const { children, ...props }: HTMLAnchorAttributes = $props();
 </script>
 
-<button
+<svelte:element
+	this={props.href ? 'a' : 'button'}
 	class="interactable relative flex w-full flex-col items-stretch overflow-hidden p-4 text-left transition hover:scale-[1.02]"
 	{...props}
+	onclick={(e: Parameters<MouseEventHandler<HTMLAnchorElement>>[0]) => {
+		e.preventDefault();
+		if (props.onclick) {
+			props.onclick(e);
+		}
+	}}
+	role="link"
+	tabindex="0"
 >
 	{@render children?.()}
-</button>
+</svelte:element>
