@@ -285,7 +285,7 @@
 					{@const dates = Object.keys(word.usage).sort()}
 
 					<div
-						class="absolute left-1/2 top-full flex w-max -translate-x-1/2 gap-4 rounded-lg border bg-card p-4 shadow-lg"
+						class="absolute left-1/2 top-full flex w-max -translate-x-1/2 gap-4 rounded-lg border bg-card p-4 shadow-md"
 						transition:flyAndScale|local={{ y: -4 }}
 						use:outclick
 						onoutclick={() => {

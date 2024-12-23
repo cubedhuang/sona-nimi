@@ -176,7 +176,7 @@
 						moreOptions = false;
 					});
 				}}
-				class="absolute top-full z-10 mt-2 hidden w-max flex-wrap gap-1 rounded-lg border bg-card p-2 shadow-lg
+				class="absolute top-full z-10 mt-2 hidden w-max flex-wrap gap-1 rounded-lg border bg-card p-2 shadow-md
 					sm:gap-x-2 sm:gap-y-1 md:flex"
 			>
 				{#each books as book}
