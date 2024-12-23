@@ -36,7 +36,7 @@
 		{/if}
 	{:else if $sitelenMode === 'jelo'}
 		{#if word.representations?.sitelen_jelo}
-			<div class="shrink-0">
+			<div class="float-right">
 				{#each word.representations.sitelen_jelo.slice(0, 3) as sitelen}
 					<p class="ml-auto text-right text-3xl">
 						{sitelen}
@@ -45,7 +45,7 @@
 			</div>
 		{/if}
 	{:else if word.representations?.sitelen_emosi}
-		<p class="ml-auto shrink-0 text-right text-3xl">
+		<p class="float-right text-right text-3xl">
 			{word.representations.sitelen_emosi}
 		</p>
 	{/if}
