@@ -163,7 +163,7 @@
 	</div>
 {/if}
 
-<div class="mt-6 grid gap-6 sm:grid-cols-2">
+<div class="mt-6 grid gap-4 sm:grid-cols-2">
 	<div class="box">
 		{#if word.deprecated}
 			<div class="mb-4 flex items-center gap-2">
@@ -189,14 +189,14 @@
 		{/if}
 
 		<h2 class="text-lg">meaning</h2>
-		<p class="mt-2">
+		<p class="mt-1">
 			{translation.definition}
 		</p>
 
 		{#if word.see_also.length}
 			<h2 class="mt-4 text-lg">see also</h2>
 
-			<p class="mt-2">
+			<p class="mt-1">
 				{#each word.see_also as other, i (other)}
 					{#if i > 0},{/if}
 					<Link href={getWordLink(other, language)}>{other}</Link>
@@ -206,12 +206,12 @@
 
 		{#if data.lipamanka}
 			<div class="mt-4">
-				<LipamankaData {word} content={data.lipamanka} />
+				<LipamankaData {word} content={data.lipamanka} space />
 			</div>
 		{/if}
 
 		{#if word.ku_data}
-			<h2 class="mt-4 flex items-center text-lg">
+			<h2 class="mb-1 mt-4 flex items-center text-lg">
 				ku translations
 				<a
 					class="icon-interactable"
@@ -230,26 +230,26 @@
 		{#if puData}
 			<h2 class="mt-4 text-lg">pu verbatim</h2>
 
-			<div>
+			<ul class="mt-1">
 				{#each puData.split('\n') as line}
 					{@const partOfSpeech = line.split(' ')[0]}
 					{@const definition = line.slice(partOfSpeech.length + 1)}
 
-					<p class="mt-1">
+					<li>
 						<span class="shrink-0 text-sm text-muted"
 							>{partOfSpeech}</span
 						>
 						{definition}
-					</p>
+					</li>
 				{/each}
-			</div>
+			</ul>
 		{/if}
 	</div>
 
 	<div class="box">
 		<h2 class="text-lg">usage</h2>
 
-		<div class="mt-2 flex items-center">
+		<div class="mt-1 flex items-center">
 			<p>
 				<b class={categoryTextColors[word.usage_category]}>
 					{word.usage_category} &middot; {getWordDisplayRecognition(
@@ -312,7 +312,7 @@
 			</div>
 		</div>
 
-		<p class="mt-1">
+		<p>
 			<span class="text-muted">found in</span>
 			<b>
 				{word.book === 'none' ? 'no book' : word.book}
@@ -320,7 +320,7 @@
 		</p>
 
 		{#if word.coined_era}
-			<p class="mt-1">
+			<p>
 				<span class="text-muted">coined</span>
 				<b>
 					{word.coined_era}
@@ -333,12 +333,12 @@
 
 		<h2 class="mt-4 text-lg">origin</h2>
 
-		<div class="mt-2">
+		<div class="mt-1">
 			<WordEtymology {word} {translation} />
 		</div>
 
 		{#if word.audio.length}
-			<h2 class="mb-2 mt-4 text-lg">listen</h2>
+			<h2 class="mt-4 text-lg">listen</h2>
 
 			{#each word.audio as audio}
 				<p class="mt-1">
@@ -381,7 +381,7 @@
 			</div>
 
 			{#each word.author_verbatim.split('\n') as line, i}
-				<p class:mt-2={i === 0}>
+				<p class="mt-1">
 					{line}
 				</p>
 			{/each}
@@ -390,7 +390,7 @@
 		{#if translation.commentary}
 			<h2 class="mt-4 text-lg">commentary</h2>
 			{#each translation.commentary.split('\n') as line, i}
-				<p class:mt-2={i === 0}>
+				<p class="mt-1">
 					{line}
 				</p>
 			{/each}
@@ -404,12 +404,12 @@
 		{#if word.representations?.ligatures?.length}
 			<h2 class="text-lg">sitelen pona</h2>
 
-			<span class="mt-2 font-pona text-7xl">
+			<span class="mt-1 font-pona text-7xl">
 				{word.representations.ligatures.join(' ')}
 			</span>
 
 			{#if translation.sp_etymology}
-				<p class="mt-1 text-muted">
+				<p class="text-muted">
 					{translation.sp_etymology}
 				</p>
 			{/if}
@@ -421,14 +421,14 @@
 			<img
 				src="/api/ss?word={word.word}"
 				alt="{word.word} sitelen sitelen"
-				class="invertible mt-2 h-16 w-16"
+				class="invertible mt-1 h-16 w-16"
 			/>
 		{/if}
 
 		{#if word.representations?.sitelen_jelo}
 			<h2 class="mt-4 text-lg">sitelen jelo</h2>
 
-			<p class="mt-2 text-6xl">
+			<p class="mt-1 text-6xl">
 				{word.representations.sitelen_jelo.join('')}
 			</p>
 		{/if}
@@ -436,7 +436,7 @@
 		{#if word.representations?.sitelen_emosi}
 			<h2 class="mt-4 text-lg">sitelen Emosi</h2>
 
-			<p class="mt-2 text-6xl">
+			<p class="mt-1 text-6xl">
 				{word.representations.sitelen_emosi}
 			</p>
 		{/if}
@@ -449,7 +449,7 @@
 				ucsur
 			</h2>
 
-			<p class="flex items-center gap-2">
+			<p class="mt-1 flex items-center gap-2">
 				{word.representations.ucsur}
 
 				<Copy

@@ -8,9 +8,10 @@
 	interface Props {
 		word: LocalizedWord;
 		content: string;
+		space?: boolean;
 	}
 
-	const { word, content }: Props = $props();
+	const { word, content, space = false }: Props = $props();
 
 	const href = $derived(
 		word.word === 'mije' || word.word === 'meli'
@@ -58,7 +59,7 @@
 	</a>
 </h3>
 
-<div class="lipamanka grid text-sm" use:fixLinks>
+<div class:mt-1={space} class="lipamanka grid text-sm" use:fixLinks>
 	<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 	{@html content}
 </div>
