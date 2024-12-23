@@ -32,7 +32,7 @@
 
 		<p class="text-muted">{uses[0][1]}%</p>
 
-		<p class="line-clamp-3">
+		<p class="line-clamp-4">
 			{usesString}
 		</p>
 	</div>
