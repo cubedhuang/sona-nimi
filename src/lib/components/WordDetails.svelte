@@ -202,9 +202,7 @@
 				</a>
 			</h3>
 
-			<p>
-				<KuData data={word.ku_data} />
-			</p>
+			<KuData data={word.ku_data} />
 		{/if}
 
 		<h3 class="mt-2 text-lg">origin</h3>

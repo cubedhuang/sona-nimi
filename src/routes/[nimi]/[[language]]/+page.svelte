@@ -224,15 +224,13 @@
 				</a>
 			</h2>
 
-			<p class="mt-2">
-				<KuData data={word.ku_data} />
-			</p>
+			<KuData data={word.ku_data} />
 		{/if}
 
 		{#if puData}
 			<h2 class="mt-4 text-lg">pu verbatim</h2>
 
-			<div class="mt-2">
+			<div>
 				{#each puData.split('\n') as line}
 					{@const partOfSpeech = line.split(' ')[0]}
 					{@const definition = line.slice(partOfSpeech.length + 1)}

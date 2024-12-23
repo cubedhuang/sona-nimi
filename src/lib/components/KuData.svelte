@@ -10,8 +10,8 @@
 	const entries = $derived(Object.entries(data).sort((a, b) => b[1] - a[1]));
 </script>
 
-<Collapsible class="text-sm">
+<Collapsible class="text-sm leading-relaxed">
 	{#each entries as [key, value]}
-		{key}<sup class="text-xs">{value}</sup>{' '}
+		{key}<sup>{value}</sup>{' '}
 	{/each}
 </Collapsible>
